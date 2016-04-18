@@ -1,0 +1,34 @@
+{template 'header','mobile'}
+{template 'search','mobile'}
+
+<section>
+    {template 'area','mobile'}
+    <article id="areaselect" class="clear">
+        <span><a href="/mobile/job/index.php" style="background-color:#fe0018;color:#fff;display:block;border:1px solid #fff;border-radius: 10px;width:70%;margin:0 auto;min-width:80px;">餐饮招聘</a></span>
+        <span ><a href="/mobile/job/resume.php" style="color:#6d6d6d;display:block;">求职信息</a></span>
+    </article>
+    <article class="list">
+        {if $list}
+        <table class="jobtable">
+            <tr><th>职位名称</th><th>公司名称</th><th>月薪</th><th>工作地</th></tr>
+            {loop $list $k $v}
+            <tr>
+                <td><a href="show.php?id={$v['itemid']}">{dsubstr($v['title'],16)}</a></td>
+                <td><a href="show.php?id={$v['itemid']}">{dsubstr($v['company'],8)}</a></td>
+                <td align="center"><a href="show.php?id={$v['itemid']}">面议</a></td>
+                <td align="center"><a href="show.php?id={$v['itemid']}">{implode('/',array_slice(explode('/',area_pos($v['areaid'],'/')),1,2))}</a></td>
+            </tr>
+            {/loop}
+        </table>
+        {/if}
+    </article>
+    {if $list && $page!=$totalpage}
+    <article class="readmore" onclick="getmorecommont('{$CFG[url]}/mobile/job/index.php?catid={$catid}&areaid={$areaid}',this,'jobtable')" data-page="1">
+        <a>查看更多>></a>
+    </article>
+    {else}
+    <article class="line" style="border-width:0px;"></article>
+    {/if}
+</section>
+
+{template 'footer','mobile'}

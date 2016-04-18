@@ -1,0 +1,85 @@
+{template 'header','mobile'}
+{template 'search1','mobile'}
+<style>
+    .list .content .info .text .title {color:#000;font-size:2em;height:1.8em;}
+    .list .content .info .text .introduce {font-size:1.6em;max-height:4.2em;line-height:1.4em;}
+    .list .content .info {padding-top:10px;padding-bottom:10px;}
+    .list .content .handle img {width: 20%;
+        max-width: 181px;
+        min-width:100px;
+        font-size: 0px;
+        margin-right: 10px;
+        vertical-align: middle;}
+</style>
+<section id="content">
+    {template 'thumbinfo','mobile'}
+</section>
+<section>
+    <article class="list">
+        <div class="content" style="margin-bottom:0px;">
+            <div class="clear info">
+                <a class="thumb"><img src="{if $aKnow['thumb']}{$aKnow['thumb']}{else}{$DT['memberlogo']}{/if}" /></a>
+                <span class="numsviews" style="float:none;text-align:right;display:block;margin-top:-5px;">
+                    <img src="{DT_SKIN}image/public/icon-liulan.png" />浏览({$info['hits']})&nbsp;&nbsp;&nbsp;
+                    <img src="{DT_SKIN}image/public/icon-pinlun.png" />评论({$info['comments']})
+                </span>
+                <div class="text">
+                    <a class="title">名厨：{$aKnow['truename']}</a>
+                    <p class="introduce">{$aKnow['introduce']}</p>
+                </div>
+            </div>
+            {if doubleval($info['coofee'])}
+            <div class="handle clear hasbutton" style="border-bottom-width: 0px;padding-top:10px;padding-bottom:0px;text-align:right;">
+                <span class="handle1 price1 " style="font-size:1.2em;">
+                    <img src="{DT_SKIN}image/mobile/yes.png" style="width:26px;min-width:26px;height:auto;margin-right:0px;" />
+                    技术合作费：{doubleval($info['coofee'])}元
+                </span>
+            </div>
+            {/if}
+            <div class="handle clear hasbutton" style="border-bottom-width: 0px;padding-top:0px;padding-bottom:10px;text-align:right;">
+                <span class="handle1 price1 " style="width:100%;display:block;font-size:1.2em;">
+                 <img onclick="vote({$info['itemid']},2,this)" src="{DT_SKIN}image/mobile/bigvote.png" style="max-width:150px;" class="bigvote" /><i class="num">票数：<i>{$info['votes']}</i>
+                </span>
+            </div>
+        </div>
+    </article>
+</section>
+<section id="content">
+    <article class="line"></article>
+    {template 'view','mobile'}
+    {if !isset($isajax) || !$isajax}
+    <article class="line"></article>
+    {template 'commentlist','mobile'}
+    {/if}
+    <article class="line"></article>
+</section>
+<section class="contentlist">
+    <header class="channelheader clear">
+        <div class="fl"><img src="{DT_SKIN}image/mobile/promote1.png"><span>最新菜系</span></div>
+        <a class="fr" href="food.php">查看全部&nbsp;&gt;</a>
+    </header>
+    <article class="list">
+        <ul class="comul clear">
+        {if $aRecommendFood}
+        {loop $aRecommendFood $k $v}
+        <li class="clear">
+            <div class="lidiv">
+                <a class="schoola" href="/mobile/school/foodshow.php?id={$v['itemid']}">
+                    <img src="{$v['thumb']}" />
+                    <span>名厨：{$memberlistRec[$v['userid']]['truename']}</span>
+                    <span class="hiddensl">名厨：{$memberlistRec[$v['userid']]['truename']}</span>
+                </a>
+                <a class="title" href="/mobile/school/foodshow.php?id={$v['itemid']}">{$v['title']}</a>
+                <p class="handle clear">
+                    <img onclick="vote({$v['itemid']},2,this)" class="votes" src="{DT_SKIN}image/mobile/vote.png" />
+                    <i class="num">票数：<i>{$v['votes']}</i></i>
+                </p>
+            </div>
+        </li>
+        {/loop}
+        {/if}
+            </ul>
+    </article>
+
+</section>
+{template 'footer','mobile'}

@@ -1,0 +1,48 @@
+{template 'header','mobile'}
+{template 'search1','mobile'}
+<section id="content">
+    {template 'thumbinfo','mobile'}
+    <article class="info clear">
+        <span class="numsview">
+            <img src="{DT_SKIN}image/mobile/biglove.png" class="likethujmsd" />喜欢({$info['likes']})&nbsp;&nbsp;&nbsp;
+            <img src="{DT_SKIN}image/public/icon-liulan.png" />浏览({$info['hits']})&nbsp;&nbsp;&nbsp;
+            <img src="{DT_SKIN}image/public/icon-pinlun.png" />评论({$info['comments']})
+        </span>
+        <span>供应价格：{doubleval($info['price'])}元/{$info['unit']}</span>
+    </article>
+    <article class="line"></article>
+    {template 'shop','mobile'}
+    <article class="line"></article>
+    {template 'view','mobile'}
+    {if !isset($isajax) || !$isajax}
+    <article class="line"></article>
+    {template 'commentlist','mobile'}
+    {/if}
+    <article class="line"></article>
+</section>
+<section class="contentlist">
+    <header class="channelheader clear">
+        <div class="fl"><img src="{DT_SKIN}image/mobile/promote1.png"><span>最新餐饮供应</span></div>
+        <a class="fr" href="index.php">查看全部&nbsp;&gt;</a>
+    </header>
+    <article class="list">
+        <ul class="comul clear">
+            {if $aRecommendFood}
+            {loop $aRecommendFood $k $v}
+            <li class="clear">
+                <div class="lidiv">
+                    <a class="schoola" href="/mobile/food/show.php?id={$v['itemid']}">
+                        <img src="{$v['thumb']}" />
+                    </a>
+                    <a class="title" href="/mobile/food/show.php?id={$v['itemid']}">{$v['title']}</a>
+                    <p class="handle clear">
+                        <i class="num pricesdf"><i>{$v['price']}元/{$v['unit']}</i></i>
+                    </p>
+                </div>
+            </li>
+            {/loop}
+            {/if}
+        </ul>
+    </article>
+</section>
+{template 'footer','mobile'}

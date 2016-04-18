@@ -1,0 +1,52 @@
+{template 'header','mobile'}
+{template 'search','mobile'}
+<style>
+    .comul li .lidiv .handle .num {font-size:1.6em;}
+    .comul li .lidiv .title {color:#434343;}
+    .numsviews {font-size:10px;margin-top:5px;}
+    #areaselect span {width:25%;}
+</style>
+<section>
+    <span class="ids">{ad(81)}</span>
+    <article id="areaselect"  class="clear">
+        <span onclick="location.href='/mobile/area.php'">
+            {if isset($areainfo) && $areainfo}{$areainfo['areaname']}{else}选择城市{/if}
+            <img src="{DT_SKIN}image/smallsanjiao.png" style="position:absolute;bottom:3px;right:3px;" />
+        </span>
+        <span ><a href="/mobile/school/index.php" style="background-color:#00c19a;color:#fff;display:block;">名厨风采</a></span>
+        <span ><a href="/mobile/school/food.php" style="background-color:#e9544e;color:#fff;display:block;">名菜列表</a></span>
+        <span><a href="/mobile/share/publish.php?moduleidtype={$moduleidtype}">发布菜式</a></span>
+    </article>
+
+    <article class="line" style="border-bottom-width:0px;"></article>
+    <article class="list">
+        <ul class="comul clear">
+            {if $list}
+            {loop $list $k $v}
+            <li class="clear">
+                <div class="lidiv">
+                    <a class="schoola" href="show.php?id={$v['userid']}">
+                        <img src="{if $v['thumb']}{$v['thumb']}{else}{$DT['memberlogo']}{/if}" />
+                    </a>
+                    <a class="title clear" href="show.php?id={$v['userid']}">
+                        <span class="fl">名厨：{$v['truename']}</span>
+                        <span class="numsviews">
+                            <img src="{DT_SKIN}image/public/icon-liulan.png" />({$v['hits']})
+                        </span>
+                    </a>
+                    <p class="handle clear">
+                        <i class="num">总票数：<i>{$v['infonums']}</i></i>
+                    </p>
+                </div>
+            </li>
+            {/loop}
+            {/if}
+        </ul>
+    </article>
+    {if $list && $page!=$totalpage}
+    <article class="readmore" onclick="getmorecommont('{$CFG[url]}/mobile/school/index.php?areaid={$areaid}',this,'comul')" data-page="1">
+        <a>查看更多>></a>
+    </article>
+    {/if}
+</section>
+{template 'footer','mobile'}
