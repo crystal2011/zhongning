@@ -48,7 +48,12 @@ if(!in_array($from, array('thumb', 'album', 'photo', 'editor', 'attach', 'file')
 if($MG['uploadcredit'] > 0 && $_credit < $MG['uploadcredit']) {
 	$errmsg = lang('message->upload_credit', array($MG['uploadcredit'], $_credit));
 	if($swfupload) exit(convert($errmsg, DT_CHARSET, 'utf-8'));
-	dalert($errmsg);
+    if($adnfl) {
+        exit(json_encode(array('status' => 'n', 'info' => $errmsg)));
+    }else{
+        dalert($errmsg);
+    }
+
 }
 $remote = isset($remote) ? trim($remote) : '';
 if(!$_FILES && !$remote) {
@@ -107,14 +112,24 @@ if($do->save()) {
 			file_del(DT_ROOT.'/'.$do->saveto);
 			$errmsg = lang('message->upload_bad');
 			if($swfupload) exit(convert($errmsg, DT_CHARSET, 'utf-8'));
-			dalert($errmsg, '', $errjs);
+            if($adnfl) {
+                exit(json_encode(array('status' => 'n', 'info' => $do->ext)));
+            }else{
+                dalert($errmsg, '', $errjs);
+            }
+
 		}
 	}
 	if(in_array($do->ext, array('jpg', 'jpeg')) && $img_info['channels'] == 4) {
 		file_del(DT_ROOT.'/'.$do->saveto);
 		$errmsg = lang('message->upload_cmyk');
 		if($swfupload) exit(convert($errmsg, DT_CHARSET, 'utf-8'));
-		dalert($errmsg, '', $errjs);
+        if($adnfl) {
+            exit(json_encode(array('status' => 'n', 'info' => $errmsg)));
+        }else{
+            dalert($errmsg, '', $errjs);
+        }
+
 	}
 	$img_w = $img_h = 0;
 	if($do->image) {
@@ -124,7 +139,12 @@ if($do->save()) {
 				file_del(DT_ROOT.'/'.$do->saveto);
 				$errmsg = lang('message->upload_jpg');
 				if($swfupload) exit(convert($errmsg, DT_CHARSET, 'utf-8'));
-				dalert($errmsg, '', $errjs);
+                if($adnfl) {
+                    exit(json_encode(array('status' => 'n', 'info' => $errmsg)));
+                }else{
+                    dalert($errmsg, '', $errjs);
+                }
+
 			}
 		}
 		if($DT['gif_ani'] && $do->ext == 'gif') {

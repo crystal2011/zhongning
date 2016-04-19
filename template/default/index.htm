@@ -1,0 +1,447 @@
+{template  'header'}
+<script src="{DT_SKIN_TWO}js/jquery.SuperSlide.2.1.1.js"></script>
+<div id="slideBox" class="slideBox">
+    <div class="hd">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <div class="bd">
+        <ul>
+            <li style="background:url({DT_SKIN_TWO}images/wycms/banner.jpg) top center no-repeat"></li>
+            <li style="background:url({DT_SKIN_TWO}images/wycms/banner1.jpg) top center no-repeat"></li>
+            <li style="background:url({DT_SKIN_TWO}images/wycms/banner3.jpg) top center no-repeat"></li>
+        </ul>
+    </div>
+</div>
+<script>
+/* 首页banner轮播*/
+$(document).ready(function() {
+    jQuery(".slideBox").slide({
+        mainCell: ".bd ul",
+        effect: "left",
+        autoPlay: true
+    });
+    $('#slideBox .bd li').eq(1).on('click', function(event) {
+       $(this).find('.inner').toggle();
+    });
+});
+</script>
+<section class="system">
+    <div class="container">
+        <div class="intro">
+            <div><img src="{DT_SKIN_TWO}images/wycms/yousi.png" /></div>
+        </div>
+        <div class="index-set clearfix">
+            <div class="index-set1"></div>
+            <div class="index-set2"></div>
+            <div class="index-set3"></div>
+            <div class="index-set4"></div>
+            <div class="index-set5"></div>
+        </div>
+    </div>
+</section>
+<section class="system">
+    <div class="container">
+        <div class="intro">
+            <div><img src="{DT_SKIN_TWO}images/wycms/indextitle2.png" /></div>
+            <p class="introtitle">资金安全保证-是我们的使命；投资，抓住时机是关键；区内首创“投资理财”新概念；</p>
+        </div>
+        <div class="step-box">
+            <div class="step step1">
+                <div class="title-box">会员注册</div>
+                <div class="nav-box">
+                    <div class="line">
+                    </div>
+                    <div class="circle">
+                        <i class="fa fa-laptop"></i>
+                        <img src="{DT_SKIN_TWO}images/wycms/indexmo1.png" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="step step2">
+                <div class="title-box">银行开户 </div>
+                <div class="nav-box center-block">
+                    <div class="line">
+                    </div>
+                    <div class="circle">
+                        <i class="fa fa-pencil-square-o"></i>
+                        <img src="{DT_SKIN_TWO}images/wycms/indexmo2.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="step step3">
+                <div class="title-box">预约登记</div>
+                <div class="nav-box center-block">
+                    <div class="line">
+                    </div>
+                    <div class="circle">
+                        <i class="fa fa-bar-chart"></i>
+                        <img src="{DT_SKIN_TWO}images/wycms/indexmo3.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="step step4">
+                <div class="title-box">按月收息</div>
+                <div class="nav-box center-block">
+                    <div class="line">
+                    </div>
+                    <div class="circle">
+                        <i class="fa fa-bar-chart"></i>
+                        <img src="{DT_SKIN_TWO}images/wycms/indexmo4.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="step step5">
+                <div class="title-box">签约并转款</div>
+                <div class="nav-box center-block">
+                    <div class="line">
+                    </div>
+                    <div class="circle">
+                        <i class="fa fa-bar-chart"></i>
+                        <img src="{DT_SKIN_TWO}images/wycms/indexmo5.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="step step6">
+                <div class="title-box">领取合同和借据</div>
+                <div class="nav-box center-block">
+                    <div class="line">
+                    </div>
+                    <div class="circle">
+                        <i class="fa fa-bar-chart"></i>
+                        <img src="{DT_SKIN_TWO}images/wycms/indexmo6.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="step step7">
+                <div class="title-box">到期收本金</div>
+                <div class="nav-box center-block">
+                    <div class="line">
+                    </div>
+                    <div class="circle">
+                        <i class="fa fa-bar-chart"></i>
+                        <img src="{DT_SKIN_TWO}images/wycms/indexmo7.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-bar">
+
+        </div>
+        <div class="focus">
+            <ul>
+                <li>
+                    <img src="{DT_SKIN_TWO}images/wycms/indexmob1.jpg" alt="">
+                </li>
+                <li>
+                    <img src="{DT_SKIN_TWO}images/wycms/indexmob2.jpg" alt="">
+                </li>
+                <li>
+                    <img src="{DT_SKIN_TWO}images/wycms/indexmob3.jpg" alt="">
+                </li>
+                <li class="cur">
+                    <img src="{DT_SKIN_TWO}images/wycms/indexmob4.jpg" alt="">
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="{DT_SKIN_TWO}images/wycms/yunyun_03.png" alt="">
+                    </div>
+                    <div class="right">
+                        <div class="title-box">
+                            <big>W</big>
+                            <div class="block"><span>网站运营</span> <small>Website operation</small>
+                            </div>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>建立网站营销推广基础</span>
+                            <span><i class="fa fa-check-square-o"></i>整合外部运营推广资源</span>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>内外部数据分析优劣</span>
+                            <span><i class="fa fa-check-square-o"></i>社交、口碑全网营销</span>
+                        </div>
+                        <p>由内到外运营推广/律所官网</p>
+                        <a href="http://www.lawyermarketing.cn/promotion/wzyy/operation/" class="more-btn pop-btn">了解更多</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="left">
+                        <img src="{DT_SKIN_TWO}images/wycms/weixin_03.png" alt="">
+                    </div>
+                    <div class="right">
+                        <div class="title-box">
+                            <big>M</big>
+                            <div class="block"><span>微信营销</span> <small>Micro message marketing</small>
+                            </div>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>8亿潜在客户推广</span>
+                            <span><i class="fa fa-check-square-o"></i>快速增加有效粉丝</span>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>最全营销工具</span>
+                            <span><i class="fa fa-check-square-o"></i>互动转化案源</span>
+                        </div>
+                        <p>微信营销难点在哪里？</p>
+                        <a href="http://www.lawyermarketing.cn/solutions/sjmt/wxyx/" class="more-btn pop-btn">了解更多</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="{DT_SKIN_TWO}images/wycms/kefu_03.png" alt="">
+                    </div>
+                    <div class="right">
+                        <div class="title-box">
+                            <big>C</big>
+                            <div class="block"><span>客服托管</span> <small>Customer trust</small>
+                            </div>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>代回复咨询</span>
+                            <span><i class="fa fa-check-square-o"></i>筛选有效客户</span>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>快速抓住案源客户</span>
+                            <span><i class="fa fa-check-square-o"></i>提高案源转化率</span>
+                        </div>
+                        <p>让回归核心业务，为当事人创造更多价值</p>
+                        <a href="http://www.lawyermarketing.cn/promotion/service/" class="more-btn pop-btn">了解更多</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="{DT_SKIN_TWO}images/wycms/wenan_03.png" alt="">
+                    </div>
+                    <div class="right">
+                        <div class="title-box">
+                            <big>C</big>
+                            <div class="block"><span>文案撰写</span> <small>Copywriting </small>
+                            </div>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>为律所创造实际利益</span>
+                            <span><i class="fa fa-check-square-o"></i>塑造独特、惟一的实力</span>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>让/律所成为品牌</span>
+                            <span><i class="fa fa-check-square-o"></i>文案促成委托代理</span>
+                        </div>
+                        <p>文案使当事人注意、记住您，对您产生兴趣，促成委托代理的决策</p>
+                        <a href="http://www.lawyermarketing.cn/promotion/copywrite/" class="more-btn pop-btn">了解更多</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <img src="{DT_SKIN_TWO}images/wycms/zhenghe_03.png" alt="">
+                    </div>
+                    <div class="right">
+                        <div class="title-box">
+                            <big>I</big>
+                            <div class="block"><span>整合营销</span> <small>Integrated marketing solutions</small>
+                            </div>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>为律所制定推广策略</span>
+                            <span><i class="fa fa-check-square-o"></i>法律行业大数据分析优化</span>
+                        </div>
+                        <div class="char">
+                            <span><i class="fa fa-check-square-o"></i>制定专业法律行业营销传播方案</span>
+                            <span><i class="fa fa-check-square-o"></i>专业团队专人实施方案</span>
+                        </div>
+                        <p>全案营销解决方案助力/律所快速占领市场</p>
+                        <a href="http://www.lawyermarketing.cn/solutions/ydyx/" class="more-btn pop-btn">了解更多</a>
+                    </div>
+                </li>
+            </ul>
+            <span class="direction prev"><</span>
+            <span class="direction next">></span>
+        </div>
+        <div id="indexnotice">
+            <img src="{DT_SKIN_TWO}images/wycms/indexnotice.png" alt=""/>
+            <div id="scroll_div" class="scroll_div">
+                <div id="scroll_begin">
+                    <span>不会噶大幅度发是范德萨飞洒地方发法师打发的阿斯顿发送到啥都范德萨飞洒地方撒旦范德萨发发送地方大事发生打发多少反复</span>
+                    <span>不会噶大幅度发是多少反范德萨飞洒地方四大发仿盛大发生大发复</span>
+                    <div id="scroll_end"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="group">
+    <div class="container" style="position:relative;">
+        <img src="{DT_SKIN_TWO}images/wycms/indexmodu5.jpg" />
+        <div class="modumoney">已为投资人赚取<span>156460</span>元</div>
+        <img src="{DT_SKIN_TWO}images/wycms/indexmodu5button.png" class="indexmodu5button" />
+    </div>
+</section>
+<section class="system">
+    <div class="container">
+        <div class="intro">
+            <div><img src="{DT_SKIN_TWO}images/wycms/indexmodu6.png" /></div>
+        </div>
+        <div class="clearfix indexmodu6">
+            <div class="indexmodu6left">
+                <img src="{DT_SKIN_TWO}images/wycms/indexmodu6left.png" />
+            </div>
+            <div class="indexmodu6right">
+                <table>
+                    <tr class="rightth">
+                        <th class="td1">借款方</th>
+                        <th class="td2">年利率</th>
+                        <th class="td3">金额</th>
+                        <th class="td4">用途</th>
+                        <th class="td5">期限</th>
+                        <th class="td6">进度</th>
+                        <th class="td7"></th>
+                    </tr>
+                    <tr class="dan0">
+                        <td><span class="dai">贷</span>中宁公司...</td>
+                        <td>10.00%</td>
+                        <td align="center">100000000.00%</td>
+                        <td align="center">贷款买房</td>
+                        <td align="center">24个月</td>
+                        <td>98.54%</td>
+                        <td><img src="{DT_SKIN_TWO}images/wycms/daitou.png" class="daitou" /></td>
+                    </tr>
+                    <tr class="dan1">
+                        <td><span class="dai">贷</span>中宁公司...</td>
+                        <td>10.00%</td>
+                        <td align="center">100000000.00%</td>
+                        <td align="center">贷款买房</td>
+                        <td align="center">24个月</td>
+                        <td>98.54%</td>
+                        <td><img src="{DT_SKIN_TWO}images/wycms/daiman.png" class="daiman" /></td>
+                    </tr>
+                    <tr class="dan0">
+                        <td><span class="dai">贷</span>中宁公司...</td>
+                        <td>10.00%</td>
+                        <td align="center">100000000.00%</td>
+                        <td align="center">贷款买房</td>
+                        <td align="center">24个月</td>
+                        <td>98.54%</td>
+                        <td><img src="{DT_SKIN_TWO}images/wycms/daitou.png" class="daitou" /></td>
+                    </tr>
+                    <tr class="dan1">
+                        <td><span class="dai">贷</span>中宁公司...</td>
+                        <td>10.00%</td>
+                        <td align="center">100000000.00%</td>
+                        <td align="center">贷款买房</td>
+                        <td align="center">24个月</td>
+                        <td>98.54%</td>
+                        <td><img src="{DT_SKIN_TWO}images/wycms/daiman.png" class="daiman" /></td>
+                    </tr>
+                    <tr class="dan0">
+                        <td><span class="dai">贷</span>中宁公司...</td>
+                        <td>10.00%</td>
+                        <td align="center">100000000.00%</td>
+                        <td align="center">贷款买房</td>
+                        <td align="center">24个月</td>
+                        <td>98.54%</td>
+                        <td><img src="{DT_SKIN_TWO}images/wycms/daitou.png" class="daitou" /></td>
+                    </tr>
+                    <tr class="dan1">
+                        <td><span class="dai">贷</span>中宁公司...</td>
+                        <td>10.00%</td>
+                        <td align="center">100000000.00%</td>
+                        <td align="center">贷款买房</td>
+                        <td align="center">24个月</td>
+                        <td>98.54%</td>
+                        <td><img src="{DT_SKIN_TWO}images/wycms/daiman.png" class="daiman" /></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="group">
+    <div class="container" style="width:1200px;">
+        <img src="{DT_SKIN_TWO}images/wycms/indexmodu7.jpg" />
+    </div>
+</section>
+<section class="system">
+    <div class="container">
+        <div class="intro">
+            <div><img src="{DT_SKIN_TWO}images/wycms/indexmodu7.png" /></div>
+            <div class="indexmodu7title">累计融资业务分布数据统计-按期限</div>
+        </div>
+        <div class="clearfix indexmodu7">
+            <div class="numsnsow numtitle1">
+                <p class="numtitle">成交笔数</p>
+                <p class="numtnum">25</p>
+                <p class="numtdan">( 笔 )</p>
+            </div>
+            <div class="numsnsow numtitle2">
+                <p class="numtitle">成交金额</p>
+                <p class="numtnum">7500</p>
+                <p class="numtdan">( 万元 )</p>
+            </div>
+            <div class="numsnsow numtitle3">
+                <p class="numtitle">为投资者赚取</p>
+                <p class="numtnum">2501241</p>
+                <p class="numtdan">( 元 )</p>
+            </div>
+            <div class="numsnsow numtitle4">
+                <p class="numtitle">投资利率( % )</p>
+                <p class="numtnum">9.60%</p>
+                <p class="numtdan">( 6个月以下 )</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="group">
+    <div class="container">
+        <div class="intro">
+            <div><img src="{DT_SKIN_TWO}images/wycms/indexmodu8.png" /></div>
+        </div>
+        <div class="clearfix indexmodu8">
+            <div class="indexmodu8left clearfix">
+                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r1.jpg" /></a>
+                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r2.jpg" /></a>
+                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r3.jpg" /></a>
+                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r4.jpg" /></a>
+                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r5.jpg" /></a>
+                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r6.jpg" /></a>
+            </div>
+            <div class="indexmodu8right">
+                <ul>
+                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好</a></li>
+                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好设计客户赞赏的才是好设计！</a></li>
+                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好设计客户赞赏的才是好设计！</a></li>
+                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好设计客户赞赏的才是好设计！</a></li>
+                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好设计客户赞赏的才是好设计！</a></li>
+                </ul>
+                <p><a href="">MOVE>></a></p>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script>
+    //通告向左滚动
+    function ScrollImgLeft(){
+        var speed=50;
+        var scroll_begin = document.getElementById("scroll_begin");
+        var scroll_end = document.getElementById("scroll_end");
+        var scroll_div = document.getElementById("scroll_div");
+        scroll_end.innerHTML=scroll_begin.innerHTML;
+        function Marquee(){
+            if(scroll_end.offsetWidth-scroll_div.scrollLeft<=0)
+                scroll_div.scrollLeft-=scroll_begin.offsetWidth;
+            else
+                scroll_div.scrollLeft++;
+        }
+        var MyMar=setInterval(Marquee,speed);
+        scroll_div.onmouseover=function() {clearInterval(MyMar);}
+        scroll_div.onmouseout=function() {MyMar=setInterval(Marquee,speed);}
+    }
+    ScrollImgLeft();
+</script>
+{template  'footer'}
+

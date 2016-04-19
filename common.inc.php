@@ -43,6 +43,7 @@ define('DT_CHARSET', strtoupper($CFG['charset']));
 define('DT_CHARLEN', DT_CHARSET == 'GBK' ? 2 : 3);
 define('DT_CACHE', $CFG['cache_dir'] ? $CFG['cache_dir'] : DT_ROOT.'/file/cache');
 define('DT_SKIN', DT_STATIC.'skin/'.$CFG['skin'].'/');
+define('DT_SKIN_TWO', DT_STATIC.'skins/');
 define('VIP', $CFG['com_vip']);
 define('errmsg', 'Invalid Request');
 $L = array();
