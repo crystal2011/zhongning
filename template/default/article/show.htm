@@ -1,41 +1,133 @@
 {template  'header'}
-<link rel="stylesheet" href="{DT_SKIN}css/food.css"/>
-<section class="home">
-    <header class="sites">
-        <a>您现在的位置：</a><a href="/">首页</a>&nbsp;&gt;&nbsp;<a href="/article/list.php">文章列表</a>&nbsp;&gt;&nbsp;<a href="">详情</a>
-    </header>
+<section class="group" style="background-color:#fff;position:relative;">
+    <div  id="module1" class="g banner" style=" background: url({DT_SKIN_TWO}images/wycms/article1.jpg) no-repeat center top;height:402px;"></div>
 </section>
+<div class="container school">
+    <div class="school-left details">
+        <div class="big-article">
+            <h2><a href="http://www.lawyermarketing.cn/2015/ppsz_0702/639.html">什么样的律师才是好律师？</a><span class="info">发表于：2015-07-02 18:15:43&nbsp;&nbsp;关键词： <a href="">
+                <mark>律师</mark>
+                <mark>职业</mark>
+            </a>&nbsp;&nbsp;点击：72 次</span></h2>
+            <p>fdsfasdfdsfsffafafdsf发送方式大发送的范德萨发生大发</p>
+        </div>
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            <a href="#" class="bds_more" data-cmd="more"></a>
+        </div>
+        <div class="nav-box">
+            <h4>你可能感兴趣的文章</h4>
+            <ul>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1112/46.html">论律师、律所品牌塑造战略</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1112/49.html">律师、律所品牌形象网站元素构成</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1112/52.html">注重“品牌塑造”的律师营销</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1112/55.html">律师营销的前提就是要打造律师品牌</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1112/58.html">构建个人网站有利于律师品牌塑造</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1112/61.html">律师要了解用户特征再来规划品牌形象网</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1112/64.html">律师正面形象如何塑造</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1205/188.html">律师品牌形象塑造：穿着的重要性</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1219/207.html">律师品牌形象塑造的具体做法</a></li>
+                <li><a href="http://www.lawyermarketing.cn/2012/ppsz_1221/208.html">律师品牌网站的定位与设计</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="school-right">
+        <div class="search">
+            <form action="http://www.lawyermarketing.cn/index.php" id="searchform" method="get" target="_blank">
+                <input type="text" name="q" id="q" placeholder="输入关键词搜索文章内容">
+                <button type="submit" value="" id="submitbtn"><i class="fa fa-search"></i></button>
+                <input type="hidden" name="m" value="search"/>
+                <input type="hidden" name="c" value="index"/>
+                <input type="hidden" name="a" value="init"/>
+                <input type="hidden" name="typeid" value="0" id="typeid"/>
+                <input type="hidden" name="siteid" value="1" id="siteid"/>
+            </form>
+        </div>
+        <script type="text/javascript">
+            $(function(){
+                $("#submitbtn").click(function(){
+                    if ($("#q").val()=='') {
+                        alert('请输入搜索关键字');
+                        return false;
+                    } else {
+                        $("#searchform").submit();
+                    }
+                });
+            });
+        </script>
+        <div class="school-right-accordion">
+            <dl class="cur">
+                <dd><a href="http://www.lawyermarketing.cn/school/yxzk/ppsz/">品牌塑造</a>
+                </dd>
+                <dd><a href="http://www.lawyermarketing.cn/school/yxzk/szal/">诊断分析</a>
+                </dd>
+                <dd><a href="http://www.lawyermarketing.cn/school/yxzk/zdfx/">SEO优化</a>
+                </dd>
+                <dd><a href="http://www.lawyermarketing.cn/school/yxzk/yxtg/">视频课堂</a>
+                </dd>
+                <dd><a href="http://www.lawyermarketing.cn/school/yxzk/seoyh/">实战案例</a>
+                </dd>
+                <dd><a href="http://www.lawyermarketing.cn/school/yxzk/sjty/">营销推广</a>
+                </dd>
+                <dd><a href="http://www.lawyermarketing.cn/school/yxzk/spkt/">视觉体验</a>
+                </dd>
+                <dd><a href="http://www.lawyermarketing.cn/school/yxzk/cjwt/">合作常见问题</a>
+                </dd>
+            </dl>
+        </div>
+        <h3>热门标签</h3>
+        <div class="tags-box" id="tags-box">
+            <a href="javascript:void(0)">律师 职业</a>                                                                                <a href="javascript:void(0)">微信 文章 配图</a>                                                                                <a href="javascript:void(0)">律师 办案</a>                                                                                <a href="javascript:void(0)">法律顾问 案例 工具</a>                                                                                <a href="javascript:void(0)">青年律师 职业</a>                                                                                <a href="javascript:void(0)">律师 案件 当事人</a>                                                                                <a href="javascript:void(0)">律师 案源</a>                                                                                <a href="javascript:void(0)">互联网 律师</a>                                                </div>
+        <h3>热门文章</h3>
+        <ul class="article-hot">
 
-<section class="homenew">
-    <section class="home clearfix">
-        <section class="food-del fl">
-            <article class="horntop" style="overflow: hidden">
-                <div class="horntitle">{$aArticle['title']}</div>
-                <p class="clearfix">
-                <div class="fl horntime">{date('Y-m-d H:i:s',$aArticle['addtime'])}</div>
-                <div class="fr share clearfix">
-                    <span class="numsnd"><i class="icon-liulan"></i><em>浏览({$aArticle['hits']})</em><i class="icon-pinlun"></i><em>评论({$aArticle['comments']})</em></span>
-                    <div class="bdsharebuttonbox fr" >
-                        <a href="#" class="bds_more" data-cmd="more"></a>
-                        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-                        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-                        <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-                        <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-                        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-                    </div>
+            <li><a href="http://www.lawyermarketing.cn/2013/yxtg_0617/294.html" target="_blank">微信营销：律师微信公众号如何有效</a></li>
+            <li><a href="http://www.lawyermarketing.cn/2013/yxtg_1204/476.html" target="_blank">形象决定案源  10个细节毁掉你的</a></li>
+            <li><a href="http://www.lawyermarketing.cn/2014/szal_0117/493.html" target="_blank">祝贺上海谭芳律师品牌形象站正式上</a></li>
+            <li><a href="http://www.lawyermarketing.cn/2013/szal_0719/341.html" target="_blank">建站仅3月 案源自动找上门</a></li>
+            <li><a href="http://www.lawyermarketing.cn/2014/yxtg_0422/520.html" target="_blank">形象决定案源 10个细节毁掉你的律</a></li>
+            <li><a href="http://www.lawyermarketing.cn/2013/szal_0719/340.html" target="_blank">18年资深大律师利用网络突破案源瓶颈</a></li>
+            <li><a href="http://www.lawyermarketing.cn/2013/szal_1121/465.html" target="_blank">北京郭淼律师正义团队刑辩网成功上</a></li>
+            <li><a href="http://www.lawyermarketing.cn/2013/seoyh_0227/248.html" target="_blank">律师网站选择&ldquo;长尾关键词&rdquo;优化的</a></li>
+        </ul>
+        <div class="qr-code">
+            <img src="http://www.lawyermarketing.cn/skins/images/wycms/ewm1.jpg" alt="">
+            <p>微信公众平台：搜索“<span>律师营销网</span>” 或<span>扫描二维码</span>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        /* 百度分享*/
+        window._bd_share_config = {
+            "common": {
+                "bdSnsKey": {},
+                "bdText": "",
+                "bdMini": "2",
+                "bdMiniList": false,
+                "bdPic": "",
+                "bdStyle": "0",
+                "bdSize": "32"
+            },
+            "share": {},
+            "image": {
+                "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+                "viewText": "分享到：",
+                "viewSize": "32"
+            },
+            "selectShare": {
+                "bdContainerClass": null,
+                "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+            }
+        };
+        with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    }
+</script>
 
-                </div>
-                </p>
-            </article>
-            <article class="food-del-main">
-                {$aArticle['content']}
-            </article>
-            {template  'comment'}
-        </section>
-        {template  'right'}
-    </section>
-    <section class="foodad">{ad(75)}</section>
-</section>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 {template  'footer'}
 

@@ -1,6 +1,5 @@
 <?php
 define('DT_REWRITE', true);
-require 'config.inc.php';
 require '../common.inc.php';
 
 //文章
@@ -19,8 +18,9 @@ $aHotFood = $oArticle->getright('title,itemid,introduce,addtime',11,'hits desc')
 $aRecommendFood = $oArticle->getright('title,itemid,addtime',10,'addtime desc');  //推荐
 $catname='文章';
 $foodshowright = 76;
-$nav_selected = 'article';
 
-$seo_title = '文章-';
-include template('list','article');
+
+$nav_selected = 'article';
+$seo_title = '最新资讯-';
+include template('index','article');
 ?>

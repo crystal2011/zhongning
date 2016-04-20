@@ -1,30 +1,47 @@
 {template  'header'}
 <script>
     $(function(){
-        $(".quanclick").mouseenter(function(){
+        $(".investclick").mouseenter(function(){
             var index = $(this).index();
-            var imageindex = parseInt(index)+3;
-            $(this).parent().css('background-image','url({DT_SKIN_TWO}images/wycms/finance'+imageindex+'.jpg)');
+            var imageindex = parseInt(index)+4;
+            $(this).parent().css('background-image','url({DT_SKIN_TWO}images/wycms/invest'+imageindex+'.jpg)');
         })
 
     })
-    function reloadcaptcha() {
-        $('#captchapng').attr("src",'{DT_PATH}api/captcha.png.php?action=image&refresh='+Math.random());
-
-    }
 </script>
 <section class="group" style="background-color:#fff;position:relative;">
-    <div  id="module1" class="g banner" style=" background: url({DT_SKIN_TWO}images/wycms/invest1.jpg) no-repeat center top;height:492px;"></div>
-    <div  id="module2" class="" style=" background: url({DT_SKIN_TWO}images/wycms/invest2.jpg) no-repeat center top;height:450px;"></div>
-    <div  id="module2" class="" style=" background: url({DT_SKIN_TWO}images/wycms/invest3.jpg) no-repeat center top;height:450px;"></div>
-    <div  id="module3" style=" background: url({DT_SKIN_TWO}images/wycms/invest4.jpg) no-repeat center top;height:910px;position:relative;margin-top:70px;">
-        <span class="quanclick" style="margin-top:179px;">&nbsp;</span>
-        <span class="quanclick" style="margin-top:337px;">&nbsp;</span>
-        <span class="quanclick" style="margin-top:492px;">&nbsp;</span>
-        <span class="quanclick" style="margin-top:649px;">&nbsp;</span>
+    <div  id="module1" class="g banner" style=" background: url({DT_SKIN_TWO}images/wycms/invest0.jpg) no-repeat center top;height:401px;"></div>
+    <div   class="" style=" background: url({DT_SKIN_TWO}images/wycms/invest01.jpg) no-repeat center top;height:216px;margin:60px 0px 40px 0px;"></div>
+    <div   class="" style=" background: url({DT_SKIN_TWO}images/wycms/invset1.jpg) no-repeat center top;height:868px;"></div>
+    <p style="font-size:30px;color:#3f3f3f;margin-top:45px;">业绩：从开展业务到目前</p>
+    <div class="container">
+        <div class=" clearfix investyezhi">
+            <div class="yezhileft yezhileft1">
+                <p class="yezhititle">累计为投资人赚取利息</p>
+                <p class="zezhinum">88888</p>
+                <p class="zezhidan">( 万元 )</p>
+            </div>
+            <div class="yezhileft yezhileft2">
+                <p class="yezhititle">累计投资额</p>
+                <p class="zezhinum">7500</p>
+                <p class="zezhidan">( 万元 )</p>
+            </div>
+            <div class="yezhileft yezhileft3">
+                <p class="yezhititle">累计投资人数达</p>
+                <p class="zezhinum">342700</p>
+                <p class="zezhidan">( 人 )</p>
+            </div>
+        </div>
     </div>
-    <div style=" background: url({DT_SKIN_TWO}images/wycms/finance8.jpg) no-repeat center top;height:565px;margin-top:60px;"></div>
-    <div style=" background: url({DT_SKIN_TWO}images/wycms/finance9.jpg) no-repeat center top;height:565px;margin-top:60px;"></div>
+    <div class="" style=" background: url({DT_SKIN_TWO}images/wycms/invest3.jpg) no-repeat center top;height:681px;"></div>
+    <div  id="module2" style=" background: url({DT_SKIN_TWO}images/wycms/invest4.jpg) no-repeat center top;height:851px;position:relative">
+        <span class="investclick" style="margin-left:-421px;">&nbsp;</span>
+        <span class="investclick" style="margin-left:-215px;">&nbsp;</span>
+        <span class="investclick" style="margin-left:-9px;">&nbsp;</span>
+        <span class="investclick" style="margin-left:197px;">&nbsp;</span>
+    </div>
+    <div id="module3" style=" background: url({DT_SKIN_TWO}images/wycms/invest8.jpg) no-repeat center top;height:650px;margin-top:70px"></div>
+    <div id="module4" style=" background: url({DT_SKIN_TWO}images/wycms/invest9.jpg) no-repeat center top;height:772px;margin-top:105px;"></div>
 
 </section>
 {template  'footer'}

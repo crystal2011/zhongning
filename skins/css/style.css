@@ -725,6 +725,9 @@ footer.g .bottom img {
     position:absolute;left:50%;margin-left:-541px;width:125px;height:124px;display:block;border-radius: 100%;
 
 }
+.investclick {
+    position:absolute;left:50%;top:156px;width:205px;height:60px;display:block;
+}
 .financeform {width:700px;border:5px solid #61a6e6;position:absolute;top:180px;left:50%;margin-left:-390px;background-color:#fff;padding:15px 40px 40px 40px;}
 
  .financeform .financeform-title {
@@ -1974,7 +1977,7 @@ footer.g .bottom img {
 .school-left span.info {
     display: block;
     padding: 10px 0;
-    color: #999;
+    color: #a0a0a0;
     white-space: nowrap;
     overflow: hidden;
     font-size: 14px;
@@ -1983,7 +1986,7 @@ footer.g .bottom img {
     margin: 5px 0;
 }
 .school-left mark {
-    background-color: #97bed6;
+    background-color: #7abef6;
     padding: 2px 3px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -2011,8 +2014,8 @@ footer.g .bottom img {
     overflow: hidden;
 }
 .school-left article {
-    padding: 30px 0;
-    border-top: 1px solid #dedede;
+    padding: 40px 0;
+    border-bottom: 1px solid #dedede;
 }
 .school-left article a.img-box {
     float: left;
@@ -2048,7 +2051,7 @@ footer.g .bottom img {
     text-overflow: ellipsis;
 }
 .school-left article h3 a {
-    color: #3386cc;
+    color: #7abef6;
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
@@ -2109,8 +2112,9 @@ footer.g .bottom img {
 }
 .school-right .search button i {
     font-size: 40px;
-    line-height: 50px;
+    line-height: 48px;
 }
+
 .school-right .search button i:hover {
     transform: scale(1) rotate(0deg) rotateY(360deg);
     -ms-transform: scale(1) rotate(0deg) rotateY(360deg);
@@ -2211,7 +2215,6 @@ footer.g .bottom img {
 .school-right .tags-box {
     border-top: 1px solid #d5d5d5;
     padding: 15px 0;
-    height: 180px;
     overflow: hidden;
 }
 .school-right .tags-box a {
@@ -11137,4 +11140,143 @@ p.introtitle {
 .indexmodu8right p{
     text-align:right;
     padding-right:28px;
+}
+.investyezhi {
+    margin-left:24px;
+    margin-top:45px;
+    margin-bottom:120px;
+}
+.investyezhi .yezhileft{
+    width:270px;
+    height:250px;
+    background-color:#efefef;
+    float:left;
+    text-align:center;
+    margin:0px 37px;
+}
+
+.investyezhi .yezhileft1 .yezhititle{
+    background-color:#f44336;
+}
+.investyezhi .yezhileft2 .yezhititle{
+    background-color:#00bcd4;
+}
+.investyezhi .yezhileft3 .yezhititle{
+    background-color:#ffb607;
+}
+.investyezhi .yezhileft .zezhinum {
+    font-size:55px;
+    line-height:55px;
+    margin:55px 0px 10px 0px;
+}
+.investyezhi .yezhileft1 .yezhinum {
+    color:#f44336;
+}
+.investyezhi .yezhileft2 .zezhinum {
+    color:#00bcd4;
+}
+.investyezhi .yezhileft3 .zezhinum {
+    color:#ffb607;
+}
+.investyezhi .yezhileft .yezhititle{
+    height:55px;
+    line-height:55px;
+    font-size:22px;
+    color:#fff;
+    text-align:center;
+
+}
+
+/*分页*/
+.page-box{
+    height: 30px;
+    display:table;
+    text-align: center;
+    margin:25px auto 0;
+    *position: relative;/*ie 7 支持*/
+}
+.page-box .pager{
+    vertical-align:middle;
+    display:table-cell;
+    overflow: hidden;
+    *position: absolute;/*ie 7 支持*/
+    *top: 0;/*ie 7 支持*/
+    *left: 25%;/*ie 7 支持*/
+}
+.pager li {
+    width:40px;
+    height:30px;
+    text-align: center;
+    font-size: 12px;
+    line-height:30px;
+    border: 1px solid #e2e2e2;
+    float: left;
+    color: #999;
+    margin: 0 3px
+}
+.pager a {float:left;}
+.pager-first-li-disable {
+    width: 40px;
+    color: #999;
+    cursor: not-allowed;
+}
+.pager-previous-li-disable {
+    width: 60px;
+    color: #999;
+    cursor: not-allowed;
+}
+.pager-first-li {
+    width: 40px;
+    cursor: pointer;
+}
+.pager-previous-li {
+    width: 60px;
+    cursor: pointer;
+}
+.pager-first-li:hover ,.pager-previous-li:hover,.pager-normal-li:hover,.pager-next-li:hover,.pager-last-li:hover{
+    color:#fff;
+    background:#7abef6;
+}
+.pager-normal-li{
+    cursor: pointer;
+}
+.pager .pager-index-li {
+    background:#7abef6;
+    color: #fff;
+    cursor: default;
+}
+.pager-space-li {
+    cursor: not-allowed;
+}
+.pager-next-li-disable {
+    width: 60px;
+    color: #999;
+    cursor: not-allowed;
+}
+.pager-last-li-disable {
+    width: 40px;
+    color: #999;
+    cursor: not-allowed;
+}
+.pager-next-li {
+    width: 60px;
+    cursor: pointer;
+}
+.pager-last-li {
+    width: 40px;
+    cursor: pointer;
+}
+/*分页end*/
+
+.questiontitle {border-bottom:1px solid #ccc;text-align:center;margin-top:55px;margin-bottom:35px;}
+.questiontitle span{
+    font-size:35px;
+    color:#000;
+    line-height:55px;
+    display:block;
+    width:145px;
+    margin:0 auto;
+    text-align:center;
+    height:55px;
+    border-bottom:3px solid #000;
 }
