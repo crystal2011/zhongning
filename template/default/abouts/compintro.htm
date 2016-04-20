@@ -1,0 +1,166 @@
+{template  'header'}
+{template  'commontop','abouts'}
+<div class="about-main common">
+    <div class="container clearfix">
+        <h3>公司简介</h3>
+        <p>       中宁县民间借贷登记服务中心是一家集“金融服务、信息咨询、投融资理财、项目融资、业务代理、理财顾问、业务培训、民间借贷登记服务等业务”的
+            公司，是自治区金融工作局支持下的宁夏第一家民间借贷登记服务机构，采用“政府引导，企业经营，市场运作”的模式开展工作。</p>
+
+        <img src="{DT_SKIN_TWO}images/wycms/intro1.jpg" alt="">
+        <h3>核心价值</h3>
+        <p>       公司以“奉献+服务+发展”为己任，以追求永续经营为目标，把推动宁夏中小微企业的健康发展、促进地区经济建设、加强社会和谐与文明进步作为公司
+            发展的根本任务，以追求股东、企业、员工与社会的共赢发展、实现公司经济效益和社会效益的最大化为行为准则，致力于服务宁夏经济发展和社会繁荣，为
+            人民群众生活的改善提高，提供金融服务。有效集合民间资金，挖掘融资企业资金需求，通过信息发布与对接服务，引导民间资金以债权方式投资于中小企业，
+            促进实体经济发展。为投资人提供资金的保值和增值，为融资企业提供可持续发展的保障。</p>
+        <img src="{DT_SKIN_TWO}images/wycms/intro2.jpg" alt="">
+        <h3>诚信服务</h3>
+        <p>
+            中宁县民间借贷登记服务中心通过阳光化服务，树立诚信典范，助推宁夏民间借贷诚信体系的完善，为民间金融投资拓展了一个新的渠道，丰富了金融市
+            场的层次和产品，为西部金融改革试验做出了积极探索。我们坚信在“法律”与“诚信”的旗帜下，在主管部门的引导和监管下，中宁民间借贷登记服务中心
+            将竭诚建立一个合法、安全、阳光的民间资金交易平台，引导民间资金进入实体经济，做人民的金融、普惠金融。
+        </p>
+
+        <img src="{DT_SKIN_TWO}images/wycms/intro3.jpg" alt="">
+        <img src="{DT_SKIN_TWO}images/wycms/intro4.jpg" alt="">
+        <div class="contact-left-box">
+            <h3>联系我们</h3>
+            <p>投资顾问</p>
+            <p>李翊煊   15909559866</p>
+            <p>贺建辉   13519253521</p>
+            <p>史   韵   13639588261</p>
+            <p>王志芮  18465153520</p>
+            <br>
+            <p>公司电话：+86-0955-5716799</p>
+            <p>公司地址：中宁县宁安东街雅泰城市华园31、32#营业房</p>
+        </div>
+        <div id="dituContent" style="width:535px;height:285px;margin-top:50px;"></div>
+    </div>
+
+</div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap() {
+        createMap(); //创建地图
+        setMapEvent(); //设置地图事件
+        addMapControl(); //向地图添加控件
+        addMarker(); //向地图中添加marker
+    }
+
+    //创建地图函数：
+    function createMap() {
+        var map = new BMap.Map("dituContent"); //在百度地图容器中创建一个地图
+        var point = new BMap.Point(113.423332, 23.182378); //定义一个中心点坐标
+        map.centerAndZoom(point, 17); //设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map; //将map变量存储在全局
+    }
+
+    //地图事件设置函数：
+    function setMapEvent() {
+        map.enableDragging(); //启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom(); //启用地图滚轮放大缩小
+        map.enableDoubleClickZoom(); //启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard(); //启用键盘上下左右键移动地图
+    }
+
+    //地图控件添加函数：
+    function addMapControl() {
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({
+            anchor: BMAP_ANCHOR_TOP_LEFT,
+            type: BMAP_NAVIGATION_CONTROL_LARGE
+        });
+        map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+        var ctrl_ove = new BMap.OverviewMapControl({
+            anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+            isOpen: 1
+        });
+        map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+        var ctrl_sca = new BMap.ScaleControl({
+            anchor: BMAP_ANCHOR_BOTTOM_LEFT
+        });
+        map.addControl(ctrl_sca);
+    }
+
+    //标注点数组
+    var markerArr = [{
+        title: "广州网律互联网科技有限公司",
+        content: "我的备注广州网律互联网科技有限公司",
+        point: "113.422874|23.182411",
+        isOpen: 0,
+        icon: {
+            w: 21,
+            h: 21,
+            l: 0,
+            t: 0,
+            x: 6,
+            lb: 5
+        }
+    }];
+    //创建marker
+    function addMarker() {
+        for (var i = 0; i < markerArr.length; i++) {
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0, p1);
+            var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point, {
+                icon: iconImg
+            });
+            var iw = createInfoWindow(i);
+            var label = new BMap.Label(json.title, {
+                "offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20)
+            });
+            marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                borderColor: "#808080",
+                color: "#333",
+                cursor: "pointer"
+            });
+
+            (function() {
+                var index = i;
+                var _iw = createInfoWindow(i);
+                var _marker = marker;
+                _marker.addEventListener("click", function() {
+                    this.openInfoWindow(_iw);
+                });
+                _iw.addEventListener("open", function() {
+                    _marker.getLabel().hide();
+                })
+                _iw.addEventListener("close", function() {
+                    _marker.getLabel().show();
+                })
+                label.addEventListener("click", function() {
+                    _marker.openInfoWindow(_iw);
+                })
+                if (!!json.isOpen) {
+                    label.hide();
+                    _marker.openInfoWindow(_iw);
+                }
+            })()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i) {
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>" + json.content + "</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json) {
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w, json.h), {
+            imageOffset: new BMap.Size(-json.l, -json.t),
+            infoWindowOffset: new BMap.Size(json.lb + 5, 1),
+            offset: new BMap.Size(json.x, json.h)
+        })
+        return icon;
+    }
+
+    initMap(); //创建和初始化地图
+</script>
+{template  'footer'}
