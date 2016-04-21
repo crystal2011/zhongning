@@ -19,34 +19,33 @@
 </head>
 <script>
     var DTPath = "{$CFG['url']}";
+    //头部二维码弹出
     $(function(){
-        //头部二维码
-        $(".qrcode").click(function(){
-            $(".toptwo").css('display','block');
+        $(".fa-qrcode").click(function(){
+            $(".toptwo").toggle();
         })
     })
-
-
-
 </script>
 <body>
 <header class="g">
     <div class="top">
         <div class="container" style="position:relative;">
-            <span class='fr'>咨询热线：0955-5716799 </span>
+            <span class='fr'>咨询热线：{$DT['telephone']} </span>
             <a href="" class="social"><i class="fa fa-wechat"></i></a>
             <a href="" class="social"><i class="fa fa-weibo"></i></a>
             <a href="javascript:;" class="social qrcode"><i class="fa fa-qrcode"></i></a>
-            <div class="login"> <a href="http://u.lawyermarketing.cn/reg/">注册&nbsp;|</a>&nbsp;<a href="http://u.lawyermarketing.cn/login/">登录</a></div>
-            <img src="{DT_SKIN_TWO}images/wycms/twowap.png" class="toptwo"  />
+            <div class="login"> <a href="{$CFG['url']}member/register.php">注册&nbsp;</a><a>|</a>&nbsp;<a href="{$CFG['url']}member/login.php">登录</a></div>
+            <div class="toptwo">
+                <img src="{DT_SKIN_TWO}images/wycms/wap.png"  />
+                <p>扫描关注</p>
+            </div>
         </div>
     </div>
-
     <div class="header">
         <div class="container">
             <div class="clearfix">
                 <a href="/"><img  class="header-logo" src="{DT_SKIN_TWO}images/wycms/logo.png" alt=""></a>
-                <img  class="header-logo header-logo-right" src="{DT_SKIN_TWO}images/wycms/logoright.png" alt="">
+                <a href="/"><img  class="header-logo header-logo-right" src="{DT_SKIN_TWO}images/wycms/logoright.png" alt=""></a>
             </div>
             <nav>
                 <ul class="clearfix">
@@ -58,115 +57,83 @@
                                 <dl>
                                     <dt><a href="{$CFG['url']}abouts/compintro.php">公司介绍</a></dt>
                                 </dl>
-                                <dl>
-                                    <dt><a href="{$CFG['url']}abouts/advantage.php">行业优势</a></dt>
-                                </dl>
-                            </div>
-                            <div class="menu-line fl"></div>
-                            <div class="box">
+
                                 <dl>
                                     <dt><a href="{$CFG['url']}abouts/new.php">公司动态</a></dt>
-                                </dl>
-                                <dl>
-                                    <dt><a href="{$CFG['url']}abouts/contact.php">联系我们</a></dt>
                                 </dl>
                                 <dl>
                                     <dt><a href="{$CFG['url']}abouts/joinus.php">加入我们</a></dt>
                                 </dl>
                             </div>
-                            <div class="menu-line fl"></div>
-                            <div class="menu-img fl"></div>
-                            <div class="menu-line fl"></div>
-                            <div class="text fl">
-                                <h2>关于我们</h2>
-                                <p>中宁县民间借贷登记服务中心是一家集“金融服务、信息咨询、投融资理财、项目融资、业务代理、理财顾问、业务培训、民间借贷登记服务等业务”的公司</p>
+                            <div class="box">
+                                <dl>
+                                    <dt><a href="{$CFG['url']}abouts/advantage.php">行业优势</a></dt>
+                                </dl>
+                                <dl>
+                                    <dt><a href="{$CFG['url']}abouts/contact.php">联系我们</a></dt>
+                                </dl>
+
                             </div>
+                            <img src="{DT_SKIN_TWO}images/wycms/01.png"  />
                         </div>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='finance'}now{/if}" >融资业务<small>PROMOTION </small><span></span></a>
+                        <a href="javascript:void(0)"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='finance'}now{/if}" >融资业务<small>INVESTMENT</small><span></span></a>
                         <div class="menu-box menu2">
                             <div class="box">
                                 <dl>
                                     <dt><a href="{$CFG['url']}finance/index.php#module1">新手指引</a></dt>
                                 </dl>
-                                <dl>
-                                    <dt><a href="{$CFG['url']}finance/index.php#module2">融资流程</a></dt>
-                                </dl>
 
-                            </div>
-                            <div class="menu-line fl"></div>
-                            <div class="box">
-                                <dl>
-                                    <dt><a href="{$CFG['url']}finance/index.php#module3">风险把控</a></dt>
-                                </dl>
                                 <dl>
                                     <dt><a href="{$CFG['url']}finance/index.php#module4">在线申请</a></dt>
                                 </dl>
                             </div>
-                            <div class="menu-line fl"></div>
-                            <div class="menu-img fl"></div>
-                            <div class="menu-line fl"></div>
-                            <div class="text fl">
-                                <h2>融资业务</h2>
-                                <p>有直接监管部门严格的监管把控，建立风险防范和预警机制，专项风险准备金的计提，业绩报告公示</p>
+                            <div class="box">
+                                <dl>
+                                    <dt><a href="{$CFG['url']}finance/index.php#module2">融资流程</a></dt>
+                                </dl>
                             </div>
+                            <div class="box">
+                                <dl>
+                                    <dt><a href="{$CFG['url']}finance/index.php#module3">风险把控</a></dt>
+                                </dl>
+
+                            </div>
+                            <img src="{DT_SKIN_TWO}images/wycms/02.png"  />
                         </div>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='invest'}now{/if}" >投资理财<small>SOLUTIONS</small><span></span></a>
+                        <a href="javascript:void(0)"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='invest'}now{/if}" >投资理财<small>FINANCING</small><span></span></a>
                         <div class="menu-box menu3">
                             <div class="box">
                                 <dl>
                                     <dt><a href="{$CFG['url']}invest/index.php#module1">新手必读</a></dt>
                                 </dl>
-                                <dl>
-                                    <dt><a href="{$CFG['url']}invest/index.php#module2">投资流程</a></dt>
-                                </dl>
 
-                            </div>
-                            <div class="menu-line fl"></div>
-                            <div class="box">
-                                <dl>
-                                    <dt><a href="{$CFG['url']}invest/index.php#module3">安全保障</a></dt>
-                                </dl>
                                 <dl>
                                     <dt><a href="{$CFG['url']}invest/index.php#module4">理财产品</a></dt>
                                 </dl>
                             </div>
-                            <div class="menu-line fl"></div>
-                            <div class="menu-img fl"></div>
-                            <div class="menu-line fl"></div>
-                            <div class="text fl">
-                                <h2>投资理财</h2>
-                                <p>投资有风险，请选择正规合法安全的投资平台。</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="/article/index.php"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='article'}now{/if}" >最新资讯<small>NEWS</small><span></span></a>
-                        <div class="menu-box menu4">
-                            <div class="text fl">
-                                <h2>行业新闻</h2>
-                                <p>中宁县民间借贷登记服务中心</p>
-                            </div>
-                            <div class="menu-line fl"></div>
-                            <div class="menu-img fl"></div>
-                            <div class="menu-line fl"></div>
                             <div class="box">
+                                <dl>
+                                    <dt><a href="{$CFG['url']}invest/index.php#module2">投资流程</a></dt>
+                                </dl>
+                            </div>
+                            <div class="box">
+                                <dl>
+                                    <dt><a href="{$CFG['url']}invest/index.php#module3">安全保障</a></dt>
+                                </dl>
 
                             </div>
-                            <div class="menu-line fl"></div>
-                            <div class="box">
-
-                            </div>
+                            <img src="{DT_SKIN_TWO}images/wycms/03.png"  />
                         </div>
                     </li>
-                    <li><a  class="frist {if isset($nav_selected) && $nav_selected=='question'}now{/if}"  href="/question/index.php">常见问题<small>question</small></a></li>
+                    <li><a class="frist {if isset($nav_selected) && $nav_selected=='article'}now{/if}"  href="/article/index.php">最新资讯<small>NEWS</small></a></li>
+                    <li><a class="frist {if isset($nav_selected) && $nav_selected=='question'}now{/if}" href="/question/index.php">常见问题<small>question</small></a></li>
 
                 </ul>
             </nav>
         </div>
-
     </div>
 </header>

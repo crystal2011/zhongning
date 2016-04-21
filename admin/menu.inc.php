@@ -11,14 +11,7 @@ $menu = array(
 	array('搜索记录', '?file=keyword'),
 	array('后台日志', '?file=log'),
 	array('404日志', '?file=404'),
-	array('问题验证', '?file=question'),
-	array('词语过滤', '?file=banword'),
 	array('禁止IP', '?file=banip'),
-	array('重名检测', '?file=repeat'),
-	array('单页采编', '?file=fetch'),
-	array('编辑助手', '?file=word'),
-	array('后台搜索', '?file=search'),
-	array('系统体检', '?file=doctor'),
 );
 if(!$_founder) unset($menu[0],$menu[1],$menu[3]);
 $menu_help = array(

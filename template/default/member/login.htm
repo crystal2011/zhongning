@@ -1,37 +1,34 @@
-{template 'header'}
-<link rel="stylesheet" href="{DT_SKIN}css/login.css"/>
-<section class="home">
-    <header class="sites">
-        <a href="/">首页</a>&nbsp;&gt;&nbsp;<a href="/member/login.php">登录</a>
-    </header>
-</section>
-<section class="home clearfix">
-    <article class="login-box fl">
-        <form id="form" action="/member/login.php" method="post">
-            <p>
-                <label class="icon-user"></label>
-                <input id="user" type="text" placeholder="请输入手机号/用户名" name="username" datatype="m|s3-15" errormsg="请输入手机号/用户名" />
+{template 'header','member'}
+<section class="usercon">
+    <div class="clearfix usercondiv">
+        <form class="userconleft fl" style="margin-top:75px;">
+            <p class="usercontitle">用户登录</p>
+            <p class="userconp clearfix">
+                <span class="fl userconpl" style="width:auto;">账号：</span>
+                <span class="userconli fl">
+                    <input type="text" >
+                    <span>fdf</span>
+                </span>
             </p>
-            <p>
-                <label class="icon-pwd"></label>
-                <input id="pwd" type="password" placeholder="请输入登录密码：" name="password" datatype="s6-20" />
+            <p class="userconp clearfix">
+                <span class="fl userconpl" style="width:auto;">密码：</span>
+                <span class="userconli fl">
+                    <input type="text" >
+                </span>
             </p>
-            <input type="hidden" name="submit" value="1" />
-            <input id="login-btn" type="submit" class="submit-btn" value="登录">
-            <input type="hidden" name="forward" value="{$forward}" />
+            <p class="userconp clearfix">
+                <span class="fl userconpl" style="width:43px;"></span>
+                <span class="userconli fl">
+                    <input type="submit" class="userconbu redchu" value="马上登录"  />
+                    <em class="clearfix" style="margin-top:5px;"><a class="forgetpaw">忘记密码？</a><a class="nowregister">还没注册账号,立即注册！</a></em>
+                </span>
+            </p>
+
         </form>
-        <div class="login-box-tip clearfix">
-            <div class="fl">
-                <input id="checkbox" type="checkbox" name="isautologin" value="1" >
-                <a>2周内自动登录</a>
-            </div>
-            <a class="forget-pwd fr" href="/member/findpw.php">忘记密码？</a>
+        <div class="userconright fr" style="margin-top:0px;margin-right:130px;">
+            <img src="{DT_SKIN_TWO}images/wycms/wap.png" width="165px" height="165px;" />
         </div>
-    </article>
-    <aside class="login-item fl">
-        <span>没有账号，请点击注册</span>
-        <a href="/member/register.php">立即注册</a>
-    </aside>
+    </div>
 </section>
 <script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
 <script type="text/javascript">
@@ -55,4 +52,4 @@
         location.href = url;
     }
 </script>
-{template 'footer'}
+{template 'footer','member'}

@@ -100,12 +100,6 @@ switch($action) {
 			$totime = $totime ? timetodate($totime, 3) : '';
             $fromtime = $fromtime ? timetodate($fromtime, 3) : '';
 			$menuon = array('4', '3', '2', '1');
-            require_once DT_ROOT.'/module/member/member.class.php';
-            $member_do = new member;
-            if(!$aUser = $member_do->isCompany($userid,'userid')){
-                msg($member_do->errmsg);
-            }
-            $username = $aUser['username'];
 			$menuid = $menuon[$status];
 			include tpl($action, $module);
 		}

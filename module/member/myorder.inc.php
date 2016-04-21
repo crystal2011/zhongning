@@ -20,6 +20,6 @@ if($submit){
     $seo_title = '安全中心-会员中心-';
     $active = 'safe';
     $nav_selected='member';
-    include template('safe', $module);
+    include template('myorder', $module);
 }
 ?>

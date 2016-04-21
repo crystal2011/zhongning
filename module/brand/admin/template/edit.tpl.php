@@ -12,41 +12,10 @@ show_menu($menus);
 <div class="tt"><?php echo $action == 'add' ? '添加' : '修改';?><?php echo $MOD['name'];?></div>
 <table cellpadding="2" cellspacing="1" class="tb">
 <tr>
-<td class="tl"><span class="f_red">*</span> 所属分类</td>
-<td><?php echo ajax_category_select('post[catid]', '选择分类', $catid, $moduleid,'data-type="1"');?> <span class="Validform_checktip"></span></td>
+<td class="tl"><span class="f_red">*</span> <?php echo $MOD['name'];?>标题</td>
+<td><input name="post[title]" type="text" id="title" size="60" datatype="*2-50" maxlength="50" value="<?php echo $title;?>"/> </td>
 </tr>
-<tr>
-<td class="tl"><span class="f_red">*</span> <?php echo $MOD['name'];?>名称</td>
-<td><input name="post[title]" type="text" id="title" size="60" datatype="*2-50" maxlength="50" value="<?php echo $title;?>"/> <?php echo level_select('post[level]', '级别', $level, 'id="level"');?> <span id="dtitle" class="f_red"></span></td>
-</tr>
-<tr>
-<td class="tl"><span class="f_red">*</span> 图片</td>
-<td><input name="post[thumb]" id="thumb" type="text" nullmsg="请上传图片" errormsg="请上传图片" datatype="url" size="60" value="<?php echo $thumb;?>"/>&nbsp;&nbsp;<span onclick="Dthumb(<?php echo $moduleid;?>,'','', Dd('thumb').value,true);" class="jt">[上传]</span>&nbsp;&nbsp;<span onclick="_preview(Dd('thumb').value);" class="jt">[预览]</span>&nbsp;&nbsp;<span onclick="Dd('thumb').value='';" class="jt">[删除]</span><span id="dthumb" class="f_red"></span></td>
-</tr>
-    <tr>
-        <td class="tl"><span class="f_red">*</span> 优惠日期</td>
-        <td><?php echo dcalendar('post[fromtime]', $fromtime);?> 至 <?php echo dcalendar('post[totime]', $totime);?> <span class="Validform_checktip" style="display:inline-block"></span></td>
-    </tr>
-    <tr>
-        <td class="tl"><span class="f_red">*</span> 商家</td>
-        <td class="tr"><input name="post[company]" datatype="*2-50"  id="company" type="text" size="50" value="<?php echo $company; ?>"/> <span id="company" class="f_red"></span></td>
-    </tr>
-    <tbody id="d_guest">
-    <tr>
-        <td class="tl"> 联系电话</td>
-        <td class="tr">
-            <input type="text" name="post[telephone]" maxlength="15" id="phone" size="20" value="<?php echo isset($telephone)?$telephone:''; ?>" > &nbsp;手机/固话 <span id="dtelephone"  class="f_red"></span>
-        </td>
-    </tr>
-    </tbody>
-    <tr>
-        <td class="tl"><span class="f_red">*</span> 所在地区</td>
-        <td class="tr"><?php echo ajax_area_select('post[areaid]', '请选择', $areaid,'data-type="1" isarea = "1"');?> <span class="Validform_checktip"></span></td>
-    </tr>
-    <tr>
-        <td class="tl"><span class="f_red">*</span> 所在地址</td>
-        <td class="tr"><input name="post[address]" id="address" type="text" size="50" datatype="*3-50" value="<?php echo $address; ?>"/> <span id="daddress class="f_red"></span></td>
-    </tr>
+
 <tr>
 <td class="tl"><span class="f_hid">*</span> 详细说明</td>
 <td><textarea name="post[content]" id="content" class="dsn"><?php echo $content;?></textarea>
@@ -67,12 +36,7 @@ show_menu($menus);
         <td><textarea name="post[introduce]" style="width:90%;height:45px;"><?php echo $introduce;?></textarea></td>
     </tr>
 </tr>
-    <tbody id="d_member" >
-    <tr>
-        <td class="tl"><span class="f_red">*</span> 会员名</td>
-        <td><input name="post[username]" type="text" datatype="*2-20" size="20" value="<?php echo $username;?>" id="username"/> <a href="javascript:_user(Dd('username').value);" class="t">[资料]</a> <span id="dusername" class="f_red"></span></td>
-    </tr>
-    </tbody>
+
 <tr>
 <td class="tl"><span class="f_hid">*</span> <?php echo $MOD['name'];?>状态</td>
 <td>
@@ -98,32 +62,7 @@ show_menu($menus);
                 if(!is_price(gets)) return false;
                 return true;
             }
-        },
-        beforeCheck:function(curform){
-            var isnotselect = true;
-
-            var dn = 0;
-            $("#dform select").each(function(){
-                var selvel = $(this).val();
-                var datatype = $(this).attr("data-type");
-                if($(this).attr("isarea")==1 && selvel!=0){
-                    dn = dn+1;
-                }
-                if(selvel==0 && datatype==1  && !($(this).attr("isarea")==1 && dn>=2)){
-                    isnotselect = false;
-                    $(this).parent().parent().find('.Validform_checktip').removeClass('Validform_right').addClass('Validform_wrong').html('请选择');
-                    $(this).focus();
-                    return false;
-                }
-            })
-            if(!isnotselect) return false;
-            return true;
         }
-    })
-
-    $("select").live("change",function(){
-        $(this).parent().parent().find('.Validform_checktip').removeClass('Validform_wrong').html('');
-
     })
 </script>
 <script type="text/javascript">Menuon(<?php echo $menuid;?>);</script>

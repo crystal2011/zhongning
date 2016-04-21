@@ -18,33 +18,15 @@ class brand {
 		$this->table_data = $db->pre.'brand_data_13';
         $this->split = '';
 		$this->db = &$db;
-		$this->fields = array('catid','istop','userid','level','title','style','fee','introduce','areaid','thumb','fromtime','homepage','totime','status','hits','username','addtime','adddate','editor','edittime','editdate','ip','template', 'linkurl','filepath','note','company','truename','telephone','mobile','address','email','msn','qq','ali','skype');
+		$this->fields = array('title','status','hits','addtime','adddate','edittime','editdate','introduce');
     }
 
 	function pass($post,$isadmin=true) {
 		global $DT_TIME, $MOD;
 		if(!is_array($post)) return false;
-
-        require_once DT_ROOT.'/module/member/member.class.php';
-        $member_do = new member;
-        if($isadmin){
-            if(!$aUser = $member_do->isCompany($post['username'])) return $this->_($member_do->errmsg);
-            else $post['userid'] = $aUser['userid'];
-        }else{
-            $post['clear_link'] = true;
-            $post['save_remotepic'] = true;
-        }
-
-        if(!is_length($post['title'],2,50)) return $this->_('标题输入有误');
-        $catinfo = get_cat($post['catid']);
-        if(!$catinfo || $catinfo['moduleid']!=13 || $catinfo['child']) return $this->_('分类选择有误');
-        if(!is_url($post['thumb'])) return $this->_('图片上传有误');
-        $areainfo = get_area($post['areaid']);
-        if(!$areainfo || count(explode(',',$areainfo['arrparentid']))<2) return $this->_('地区选择有误');
-        if(!is_length($post['address'],3,50)) return $this->_('地址输入有误');
+        if(!is_length($post['title'],2,50)) return $this->_('公告标题输入有误');
         if(DT_MAX_LEN && strlen($post['content']) > DT_MAX_LEN) return $this->_(lang('message->pass_max'));
-        if(!is_length($post['company'],2,50)) return $this->_('商家输入有误');
-        if(!is_date($post['fromtime']) || !is_date($post['totime']) || strtotime($post['fromtime'])>strtotime($post['totime']))	return $this->_('优惠时间输入有误');
+
 	    return $post;
     }
 
@@ -53,8 +35,6 @@ class brand {
 		$post['edittime'] = $DT_TIME;
 		$post['content'] = stripslashes($post['content']);
 		$post['content'] = save_local($post['content']);
-        $post['fromtime'] = strtotime($post['fromtime']);
-        $post['totime'] = strtotime($post['totime']);
         $post['status'] = isset($post['status'])?$post['status']:3;
         $post['content'] = stripslashes($post['content']);
         $post['content'] = save_local($post['content']);
@@ -65,10 +45,8 @@ class brand {
 
         if($this->itemid) {
 			$new = $post['content'];
-			if($post['thumb']) $new .= '<img src="'.$post['thumb'].'"/>';
 			$r = $this->get_one();
 			$old = $r['content'];
-			if($r['thumb']) $old .= '<img src="'.$r['thumb'].'"/>';
 			delete_diff($new, $old);
 		} else {
 			$post['addtime'] = $DT_TIME;
@@ -141,7 +119,6 @@ class brand {
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
 		clear_upload($post['content'].$post['thumb'], $this->itemid);
-        addPublishs($post['userid']);
 		return $this->itemid;
 	}
 
@@ -157,9 +134,6 @@ class brand {
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
 		clear_upload($post['content'].$post['thumb'], $this->itemid);
-        if(isset($post['status']) && $post['status']==3){
-            horncode(1,$this->itemid);
-        }
 		return true;
 	}
 
@@ -200,7 +174,6 @@ class brand {
 			foreach($itemid as $v) { $this->restore($v); }
 		} else {
 			$this->db->query("UPDATE {$this->table} SET status=3 WHERE itemid=$itemid");
-            horncode(1,$itemid);
 			return true;
 		}		
 	}
@@ -235,7 +208,6 @@ class brand {
 			$item = $this->get_one();
 			$editdate = timetodate($DT_TIME, 3);
 			$this->db->query("UPDATE {$this->table} SET status=3,hits=hits+1,editor='$_username',edittime=$DT_TIME,editdate='$editdate' WHERE itemid=$itemid");
-            horncode(1,$itemid);
 			return true;
 		}
 	}

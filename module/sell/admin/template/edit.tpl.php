@@ -17,6 +17,14 @@ show_menu($menus);
         <td><input name="post[title]" type="text" id="title" size="60" datatype="*2-50"  maxlength="50" value="<?php echo $title;?>"/><?php echo level_select('post[level]', '级别', $level);?> <span id="dtitle" class="f_red"></span></td>
     </tr>
     <tr>
+        <td class="tl"><span class="f_red">*</span> 进度</td>
+        <td>
+            <input name="post[setbacks]" type="text" id="setbacks" size="20" datatype="*1-10"  maxlength="10" value="<?php echo isset($setbacks) && $setbacks?$setbacks:'0%';?>"/>
+            <input type="radio" name="post[setstatus]" value="0" checked />投标中
+            <input type="radio" name="post[setstatus]" value="1" <?php echo isset($setstatus) && $setstatus==1?'checked':'';?> />满标
+        </td>
+    </tr>
+    <tr>
         <td class="tl"><span class="f_red">*</span> 融资企业</td>
         <td><input name="post[company]" type="text" id="company" size="60" datatype="*2-50"  maxlength="50" value="<?php echo $company;?>"/></td>
     </tr>

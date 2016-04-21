@@ -26,8 +26,6 @@ show_menu($menus);
 <option value="addtime" <?php if($datetype == 'addtime') echo 'selected';?>>发布日期</option>
 </select>&nbsp;
 <?php echo dcalendar('fromdate', $fromdate, '');?> 至 <?php echo dcalendar('todate', $todate, '');?>&nbsp;
-<?php echo category_select('catid', '所属分类', $catid,13);?>&nbsp;
-<?php echo ajax_area_select('areaid', '所在地区', $areaid);?>&nbsp;
 ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&nbsp;
 </td>
 </tr>
@@ -38,26 +36,19 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <table cellpadding="2" cellspacing="1" class="tb">
 <tr>
 <th width="50"><input type="checkbox" onclick="checkall(this.form);"/></th>
-    <th width="14"> </th>
-<th>分类</th>
-<th>图片</th>
 <th>标 题</th>
-<th>会员</th>
+
+    <th>简介</th>
 <th width="130"><?php echo $timetype == 'add' ? '添加' : '更新';?>时间</th>
 <th>浏览</th>
 <th width="100">操作</th>
 </tr>
 <?php foreach($lists as $k=>$v) {?>
 <tr onmouseover="this.className='on';" onmouseout="this.className='';" align="center">
-<td><input type="checkbox" name="itemid[]" value="<?php echo $v['itemid'];?>"/><?php echo $v['itemid'];?></td>
-    <td><?php if($v['level']) {?><a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=<?php echo $action;?>&level=<?php echo $v['level'];?>"><img src="admin/image/level_<?php echo $v['level'];?>.gif" title="<?php echo $v['level'];?>级" alt=""/></a><?php } ?></td>
-
-    <td><?php echo $v['catname'];?></td>
-<td><a href="javascript:_preview('<?php echo $v['thumb'];?>');"><img src="<?php echo $v['thumb'];?>" width="80" style="padding:5px;"/></a></td>
-<td align="left">&nbsp;<?php echo $v['title'];?></td>
 <td>
-    <a href="javascript:_user('<?php echo $v['userid'];?>','userid');"><?php echo $getListUser[$v['userid']]['username'];?></a>
-</td>
+    <input type="checkbox" name="itemid[]" value="<?php echo $v['itemid'];?>"/><?php echo $v['itemid'];?></td>
+    <td align="left">&nbsp;<?php echo $v['title'];?></td>
+    <td align="left" style="width:600px;">&nbsp;<?php echo $v['introduce'];?></td>
 <?php if($timetype == 'add') {?>
 <td class="px11" title="更新时间<?php echo $v['editdate'];?>"><?php echo $v['adddate'];?></td>
 <?php } else { ?>
@@ -90,10 +81,7 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <?php } else { ?>
 
 <input type="submit" value="刷新信息" class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=refresh';" title="刷新时间为最新"/>&nbsp;
-
     <input type="submit" value=" 回收站 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete&recycle=1';"/>&nbsp;
-    <?php echo level_select('level', '设置级别为</option><option value="0">取消', 0, 'onchange="this.form.action=\'?moduleid='.$moduleid.'&file='.$file.'&action=level\';this.form.submit();"');?>
-
 <?php } ?>
 
 </div>

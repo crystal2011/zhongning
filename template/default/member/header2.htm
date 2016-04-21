@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{$seo_title}{$DT['seo_title']}</title>
+    <meta name="keywords" content="{$DT['seo_keywords']}">
+    <meta name="description" content="{$DT['seo_description']}">
+    <link rel="stylesheet" href="{DT_SKIN_TWO}css/font-awesome.min.css">
+    <link rel="stylesheet" href="{DT_SKIN_TWO}css/style.css">
+    <link rel="stylesheet" href="{DT_SKIN_TWO}css/validform.css">
+    <script src="{DT_SKIN_TWO}js/jquery-1.11.1.min.js"></script>
+    <script src="{DT_SKIN_TWO}js/lm.js"></script>
+    <script src="{DT_SKIN_TWO}js/html5shiv.js"></script>
+    <script src="{DT_SKIN_TWO}js/Validform_v5.3.2.js"></script>
+    <!--[if lte IE 7]><script>window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer='+location.href;</script><![endif]-->
+    <!--[if IE 8]><script src="{DT_SKIN_TWO}js/html5shiv.js"></script><style type="text/css">.shadow {background: black;filter: alpha(opacity=60);}</style><![endif]-->
+</head>
+<style>
+    body {  background-color: #f7f7f7;}
+    .usertop {background-color:#fff;}
+    .usertop header .topsane {border-color: #f5a100;color:#f5a100;}
+    .usertop header .topphone {color:#f5a100;}
+    .usertop {border-bottom: 1px solid #e7e7e7;}
+
+    .usermy {background-color:#f7f7f7;padding-top:10px;}
+    .usermytop {
+        border-top: 3px solid #6a8caf;
+        width:1200px;
+        margin:0 auto;
+        padding: 16px 0 0 0;
+        background-color:#fff;
+    }
+    .usermytop #member_logo{
+        width: 86px;
+        height: 86px;
+        -webkit-border-radius: 43px;
+        -moz-border-radius: 43px;
+        border-radius: 43px;
+        margin-right: 20px;
+        margin-left: 30px;
+    }
+    .usermytop h2 {
+        font-size: 18px;
+        color: #111;
+        margin-bottom: 20px;
+        font-weight: 400;
+    }
+    .usermytop .rank {
+        display: block;
+    }
+    .usermytop li {
+        color: #333;
+        height: 86px;
+    }
+    .usermytop li.money {
+        text-align: center;
+        padding: 10px 70px 2px 0;
+    }
+    .userfooter {
+        margin-top:200px;
+        border-top: 1px solid #e7e7e7;
+        background-color:#fff;
+    }
+    .usermytop li.user-data {
+        width: 326px;
+    }
+    .safety {
+        color:#686a69;
+        background-color:#dad9de;
+        padding:2px 5px;
+        font-size:12px;
+        cursor:pointer;
+        margin-left:20px;
+    }
+    .backnow {
+        background-color:#f7b63e;
+        color:#fff;
+        padding:2px 5px;
+        font-size:12px;
+        margin-left:10px;
+    }
+    .erweim {
+        width:100px;
+        height:100px;
+        border-right:2px solid #dddddd;
+        border-bottom:2px solid #dddddd;
+        margin-top:-10px;
+        margin-right:50px;
+        border-radius: 2px;;
+    }
+
+    .m-c-main {
+        background: #f7f7f7;
+        padding: 20px 0 0px;
+    }
+    .home {
+        width: 1200px;
+        height: inherit;
+        margin: auto;
+        position: relative;
+    }
+    .m-c-main .home {
+        border: 1px solid #e2e2e2;
+        background: #fff;
+    }
+    .m-c-main .left-main {
+        width: 200px;
+        border-right: 1px solid #e2e2e2;
+    }
+    .m-c-main .record-tilte {
+        height: 55px;
+        line-height: 55px;
+        font-size: 18px;
+        background: #e2e2e2;
+    }
+    .db, .info-220 .qq {
+        display: block;
+    }
+    .m-c-main .record-lists a.active {
+        background: #39f;
+        color: #fff;
+        margin-right: 0;
+    }
+    .m-c-main .record-lists a {
+        font-size: 16px;
+        height: 40px;
+        line-height: 40px;
+        position: relative;
+        border-bottom: 1px solid #f5f5f5;
+        margin-right: 1px;
+    }
+    .m-c-main .record-lists .trangle {
+        position: absolute;
+        right: -1px;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-top: 20px solid transparent;
+        border-right: 10px solid #fff;
+        border-bottom: 20px solid transparent;
+    }
+    .tc {
+        text-align: center;
+    }
+    .m-c-main .record-lists a {
+        font-size: 16px;
+        height: 40px;
+        line-height: 40px;
+        position: relative;
+        border-bottom: 1px solid #f5f5f5;
+        margin-right: 1px;
+    }
+    .m-c-main .right-main {
+        border-left: 1px solid #e2e2e2;
+        width: 969px;
+        padding: 15px;
+        margin-left: -1px;
+    }
+    .mh-info {
+        color: #333;
+        font-size: 14px;
+    }
+    .mh-evaluate {
+        padding: 5px 25px;
+    }
+    .mh-evaluate .mh-title {
+        font-size: 14px;
+        color: #226cc0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e5e5e5;
+        font-weight: 400;
+    }
+    .orange {
+        color: #ff8d00;
+    }
+    .o-tip img {
+        vertical-align: middle;
+        margin: -5px 5px 0 25px;
+    }
+    .mh-info .info-title {
+        font-size: 14px;
+        padding: 25px 0;
+    }
+    .mh-info .info-title .tip {
+        font-size: 12px;
+    }
+    .mh-info i {
+        font-style: normal;
+    }
+    .mh-info .info-list .name {
+        margin-right: 5px;
+        width: 65px;
+    }
+    .content {
+        margin-top: 20px;
+    }
+    .mh-info .info-list .content {
+        margin-right: 10px;
+    }
+    .mh-info .info-list {
+        margin: 20px 0;
+        line-height:32px;
+    }
+    .mh-info .info-list .info-sub, .mh-info .info-list .info-sub-x {
+        border: none;
+        background: #a6b8d2;
+        padding: 1px 20px;
+        border-radius: 3px;
+        margin-left: 10px;
+        cursor: pointer;
+        font-size:14px;
+        line-height:26px;
+    }
+    .white {
+        color: #fff;
+    }
+    .mh-info .info-list input[type=text] {
+        width: 280px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        color: #666;
+    }
+    .mh-info .info-list .txt-addr {
+        width: 480px!important;
+    }
+    input[type=password], input[type=number], input[type=text] {
+        border: 1px solid #e2e2e2;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        padding: 0 5px;
+    }
+    .mh-info .info-list .area-sel {
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        margin-right: 10px;
+        border: 1px solid #e2e2e2;
+        color: #999;
+    }
+    .mh-info .info-list .blank {
+        padding: 0 13px;
+    }
+    .lay-user-data {
+        padding: 30px 50px;
+    }
+    .lay-user-data .type {
+        margin-bottom: 15px;
+        clear: none;
+    }
+    .lay-user-data .type span:first-child {
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+        margin-right: 10px;
+        float: left;
+    }
+    .lay-user-data .type strong {
+        font-weight: 400;
+    }
+    .lay-user-data .type input[type=text] {
+        height: 30px;
+        line-height: 30px;
+        width: 230px;
+    }
+    .lay-user-data .type.verify-yard input[type=text] {
+        width: 120px;
+        margin-right: 10px;
+    }
+    .lay-user-data .type.verify-yard input[type=button] {
+        height: 28px;
+        cursor: pointer;
+        width: 75px;
+        text-align: center;
+        font-size: 12px;
+        border: 1px solid #b2b2b2;
+        border-radius: 3px;
+        background: -moz-linear-gradient(0 0,0 100%,#fefefe,#e5e5e5);
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fefefe),to(#e5e5e5));
+    }
+    .lay-user-data input.execute {
+        width: 218px;
+        margin-top: 30px;
+        height: 40px;
+        background: #ff8d00;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        margin-left: 100px;
+    }
+
+
+
+
+    .rightColumn {
+        float: right;
+        border-left: 1px solid #e2e2e2;
+        width: 969px;
+        padding: 15px;
+        margin-left: -1px;
+    }
+    .deManage {
+        padding: 0px 30px 0;
+    }
+    .column .columnCont {
+        background-color: #fff;
+    }
+    .deManage table {
+        border-left: 1px solid #e2e2e2;
+        border-right: 1px solid #e2e2e2;
+    }
+    .deManage table td {
+        border: 1px solid #e2e2e2;
+        border-left: none;
+        border-right: none;
+        height: 50px;
+    }
+    .deManage table td.ti {
+        text-indent: 1em;
+    }
+    .blue {
+        color: #39f;
+        line-height: 1.8;
+    }
+    .deManage table td .blue {
+        color: #5c699e;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .pageIcons {
+        height: 33px;
+        padding: 20px 0
+    }
+    .pageIcons .iconWrap {
+        float: right;
+        border-right: 1px solid #e2e2e2
+    }
+    .pageIcons .iconWrap a {
+        float: left;
+        width: 33px;
+        height: 31px;
+        border: 1px solid #e2e2e2;
+        border-right: none;
+        text-align: center;
+        line-height: 31px;
+        font-size: 12px
+    }
+    .pageIcons .iconWrap a.active,.pageIcons .iconWrap a:hover {
+        background: #f5f5f5;
+        transition: all .3s
+    }
+    .pageIcons .iconWrap a i {
+        font-size: 14px
+    }
+</style>
+<body>
+<section class="usertop">
+    <header class="clearfix">
+        <a href="/" class="fl"><img  class="userlogo"  src="{DT_SKIN_TWO}images/wycms/logo.png" alt=""></a>
+        <span class="fl topsane">会员中心</span>
+        <span class="fr topphone"><img src="{DT_SKIN_TWO}images/wycms/userphone2.png" />咨询热线：+86-0955-5716799</span>
+    </header>
+</section>
+<section class="usermy">
+    <header class="usermytop clearfix">
+        <img style="cursor:pointer;" src="http://www.shang.cn/file/upload/201601/12/14-50-12-12-1.png" class="fl" id="member_logo" onclick="Dthumb(2,'150','150','',true,'','member_logo',200)">
+        <ul>
+            <li class="user-data fl">
+                <h2>Hi~ 商机无限，你好啊！</h2>
+                <span class="safety">修改用户名称</span><a class="backnow">退出</a>
+            </li>
+            <li class="fr">
+                <img src="{DT_SKIN_TWO}images/wycms/wap.png" class="erweim" />
+            </li>
+            <li class="money fr">
+                <p>您已预约 0 次</p>
+                <p>您已申请 0 次</p>
+            </li>
+        </ul>
+    </header>
+</section>
+

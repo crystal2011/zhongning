@@ -18,7 +18,7 @@ class sell {
 		$this->table_search = $table_search;
 		$this->split = '';
 		$this->db = &$db;
-		$this->fields = array('level','title','fee','introduce','price','status','addtime','adddate','edittime','editdate','company','month','reason','apr','bonding');
+		$this->fields = array('level','title','setbacks','setstatus','fee','introduce','price','status','addtime','adddate','edittime','editdate','company','month','reason','apr','bonding');
 
     }
 
@@ -26,6 +26,7 @@ class sell {
 		global $DT_TIME, $MOD;
 		if(!is_array($post)) return false;
         if(!is_length($post['title'],2,50)) return $this->_('融资年期输入有误');
+        if(!is_length($post['setbacks'],1,10)) return $this->_('进度输入有误');
         if(!is_length($post['company'],2,50)) return $this->_('融资企业输入有误');
         if(!is_length($post['price'],2,10)) return $this->_('融资金额输入有误');
         if(!is_length($post['month'],2,10)) return $this->_('融资期限输入有误');
@@ -278,6 +279,16 @@ class sell {
         $count = $this->db->get_one("select count(*) as num from {$this->table} where $condition");
         $totalpage = ceil($count['num']/$limit);
         return array($list,$totalpage);
+    }
+
+    function sellLists($field='*',$condition='1=1',$order='hits desc',$limit=10){
+        global $page;
+        $result = $this->db->query("select {$field} from {$this->table} where $condition  order by $order limit $limit");
+        $list = array();
+        while($r = $this->db->fetch_array($result)){
+            $list[] = $r;
+        }
+        return $list;
     }
     function checkSell($aSell){
         if(!$aSell){

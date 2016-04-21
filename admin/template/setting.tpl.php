@@ -8,8 +8,6 @@ $menus = array (
     array('安全中心'),
     array('图片处理'),
     array('邮件发送'),
-    array('页面细节'),
-    array('云服务'),
 );
 show_menu($menus);
 ?>
@@ -60,16 +58,13 @@ show_menu($menus);
 </td> 
 </tr>
     <tr>
-        <td class="tl">评论审核</td>
-        <td>
-            <input type="radio" name="setting[commentscheck]" value="0"  <?php if(empty($commentscheck)){ ?>checked <?php } ?> /> 开启&nbsp;&nbsp;
-            <input type="radio" name="setting[commentscheck]" value="1"  <?php if(isset($commentscheck) && $commentscheck){ ?>checked <?php } ?> /> 关闭
-        </td>
-    </tr>
-    <tr>
         <td class="tl">用户头像</td>
         <td><input name="setting[memberlogo]" type="text" value="<?php echo isset($memberlogo) ? $memberlogo : '';?>" id="memberlogo" size="58"/> <span onclick="Dthumb(1,143,143, Dd('memberlogo').value, 0, 'memberlogo');" class="jt">[上传]</span>&nbsp;&nbsp;<span onclick="if(Dd('memberlogo').value){Dd('showlogo1').src=Dd('memberlogo').value;}" class="jt">[预览]</span>&nbsp;&nbsp;<span onclick="Dd('memberlogo').value='';" class="jt">[删除]</span><br/>
             <a href="<?php echo DT_PATH;?>" target="_blank"><img src="<?php echo isset($memberlogo) ? $memberlogo : '';?>" style="margin:2px;" id="showlogo1"/></a></td>
+    </tr>
+    <tr>
+        <td class="tl">已为投资者赚取金额</td>
+        <td><input name="setting[invest_money]" type="text" value="<?php echo isset($invest_money)?$invest_money:0;?>" size="10"/> 元</td>
     </tr>
 <tr>
 <td class="tl">城市分站</td>
