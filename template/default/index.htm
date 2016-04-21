@@ -191,7 +191,7 @@ $(document).ready(function() {
                     {if $aSell}
                     {loop $aSell $k $v}
                     <tr class="dan<?php echo $k%2; ?>">
-                        <td><span class="dai" title="{$v['title']}">贷</span>{mb_substr($v['title'],0,3,'utf-8')}{if mb_strlen($v['title'])>3}...{/if}</td>
+                        <td><span class="dai" title="{$v['title']}">贷</span>{mb_substr($v['title'],0,4,'utf-8')}{if mb_strlen($v['title'])>4}...{/if}</td>
                         <td>{$v['apr']}</td>
                         <td align="center">{$v['price']}</td>
                         <td align="center" title="{$v['reason']}">{mb_substr($v['reason'],0,4,'utf-8')}</td>
@@ -230,13 +230,13 @@ $(document).ready(function() {
             </div>
             <div class="numsnsow numtitle3">
                 <p class="numtitle">为投资者赚取</p>
-                <p class="numtnum">2501241</p>
+                <p class="numtnum">{$DT['invest_money']}</p>
                 <p class="numtdan">( 元 )</p>
             </div>
             <div class="numsnsow numtitle4">
                 <p class="numtitle">投资利率( % )</p>
-                <p class="numtnum">9.60%</p>
-                <p class="numtdan">( 6个月以下 )</p>
+                <p class="numtnum">{$DT['rate']}</p>
+                <p class="numtdan">( {$DT['rate_time']} )</p>
             </div>
         </div>
     </div>
@@ -244,26 +244,26 @@ $(document).ready(function() {
 <section class="group">
     <div class="container">
         <div class="intro">
-            <div><img src="{DT_SKIN_TWO}images/wycms/indexmodu8.png" /></div>
+            <div><a href="{$CFG['url']}article/index.php"><img src="{DT_SKIN_TWO}images/wycms/indexmodu8.png" /></a></div>
         </div>
         <div class="clearfix indexmodu8">
             <div class="indexmodu8left clearfix">
                 <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r1.jpg" /></a>
-                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r2.jpg" /></a>
-                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r3.jpg" /></a>
-                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r4.jpg" /></a>
-                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r5.jpg" /></a>
-                <a><img src="{DT_SKIN_TWO}images/wycms/indexmodu8r6.jpg" /></a>
+                {if $aArticleHasThumb}
+                {loop $aArticleHasThumb $k $v}
+                <a href="{$CFG['url']}article/show.php?id={$v['itemid']}" title="{$v['title']}" target="_blank"><img src="{$v['thumb']}" /></a>
+                {/loop}
+                {/if}
             </div>
             <div class="indexmodu8right">
                 <ul>
-                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好</a></li>
-                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好设计客户赞赏的才是好设计！</a></li>
-                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好设计客户赞赏的才是好设计！</a></li>
-                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好设计客户赞赏的才是好设计！</a></li>
-                    <li class="clearfix"><span>01、</span><a>什么样的设计才是好设计客户赞赏的才是好设计！</a></li>
+                    {if $aArticleHasThumb}
+                        {loop $aArticleHasThumb $k $v}
+                        <li class="clearfix"><span>0{$k+1}、</span><a href="{$CFG['url']}article/show.php?id={$v['itemid']}" title="{$v['title']}" target="_blank">{$v['title']}</a></li>
+                        {/loop}
+                    {/if}
                 </ul>
-                <p><a href="">MOVE>></a></p>
+                <p><a href="{$CFG['url']}article/index.php">MOVE>></a></p>
             </div>
         </div>
     </div>

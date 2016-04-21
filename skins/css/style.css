@@ -473,12 +473,7 @@ header.g .header .menu3{
     width:640px;
     left:-200px;
 }
-header.g .header .menu3 .box{
-    float:left;
-    width:130px;
-    overflow:hidden;
-    padding:0 10px 0 30px;
-}
+
 header.g .header .menu3 dl{
     margin-bottom:0;
 }
@@ -581,6 +576,7 @@ footer.g .column .title {
     border-bottom: 1px solid #4c4c4c;
     padding-bottom:20px;
     width:200px;
+    height:33px;
 }
 footer.g .column .title img {
     vertical-align: bottom;

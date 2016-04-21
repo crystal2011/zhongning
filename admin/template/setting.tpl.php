@@ -66,6 +66,25 @@ show_menu($menus);
         <td class="tl">已为投资者赚取金额</td>
         <td><input name="setting[invest_money]" type="text" value="<?php echo isset($invest_money)?$invest_money:0;?>" size="10"/> 元</td>
     </tr>
+    <tr>
+        <td class="tl">投资利率</td>
+        <td>
+            利率：<input name="setting[rate]" type="text" value="<?php echo isset($rate)?$rate:'';?>" size="10"/>
+            时间：<input name="setting[rate_time]" type="text" value="<?php echo isset($rate_time)?$rate_time:'';?>" size="10"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="tl">投资顾问<br /><span style="color:red;">每个顾问以,分割<br />左边名字、右边手机</span></td>
+        <td>
+            <textarea name="setting[invest_name]" style="width:100px;height:200px;"><?php echo $invest_name; ?></textarea>
+            <textarea name="setting[invest_phone]" style="width:150px;height:200px;"><?php echo $invest_phone; ?></textarea>
+
+        </td>
+    </tr>
+    <tr>
+        <td class="tl">公司地址</td>
+        <td><input name="setting[address]" type="text" value="<?php echo isset($address)?$address:'';?>" size="80"/> </td>
+    </tr>
 <tr>
 <td class="tl">城市分站</td>
 <td>
