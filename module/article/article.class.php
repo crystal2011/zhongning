@@ -28,7 +28,7 @@ class article {
         $this->keyword_data = $db->pre.'article_keyword';
 		$this->split = '';
 		$this->db = &$db;
-		$this->fields = array('catid','areaid','userid','level','title','style','fee','subtitle','introduce','thumb','tag','author','copyfrom','fromurl','voteid','status','hits','username','addtime','editor','edittime','ip','template','islink','linkurl','filepath','note');
+		$this->fields = array('catid','areaid','userid','level','title','keyword','style','fee','subtitle','introduce','thumb','tag','author','copyfrom','fromurl','voteid','status','hits','username','addtime','editor','edittime','ip','template','islink','linkurl','filepath','note');
     }
 
     function checkUserEdit($arr){
@@ -114,9 +114,11 @@ class article {
 			$items = $r['num'];
 		}
 
+
 		$pages = defined('CATID') ? listpages(1, CATID, $items, $page, $pagesize, 10, $MOD['linkurl']) : pages($items, $page, $pagesize);
 		if($items < 1 && $mygetcount!==false) return array();
 		$lists = $catids = $CATS = array();
+
 		$result = $this->db->query("SELECT * FROM {$this->table} WHERE $condition ORDER BY $order LIMIT $offset,$pagesize", $cache);
 		while($r = $this->db->fetch_array($result)) {
 			$r['adddate'] = timetodate($r['addtime'], 5);
@@ -142,8 +144,6 @@ class article {
 		global $MOD;
 		$post = $this->set($post);
 		$sqlk = $sqlv = '';
-        $keyword = $post['keyword'];
-        unset($post['keyword']);
 		foreach($post as $k=>$v) {
 			if(in_array($k, $this->fields)) { $sqlk .= ','.$k; $sqlv .= ",'$v'"; }
 		}
@@ -155,13 +155,6 @@ class article {
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
 		clear_upload($post['content'].$post['thumb'], $this->itemid);
 
-        //关键字处理
-        $keyword = explode(',',$keyword);
-        foreach($keyword as $k=>$v){
-            if(mb_strlen($v,'utf-8')>0){
-                $this->db->query("insert into {$this->keyword_data} (article_itemid,keyword) values ($this->itemid,'$v')");
-            }
-        }
 		return $this->itemid;
 	}
 
@@ -182,8 +175,6 @@ class article {
 		$this->delete($this->itemid, false);
 		$post = $this->set($post);
 		$sql = '';
-        $keyword = $post['keyword'];
-        unset($post['keyword']);
 		foreach($post as $k=>$v) {
 			if(in_array($k, $this->fields)) $sql .= ",$k='$v'";
 		}
@@ -191,16 +182,6 @@ class article {
 	    $this->db->query("UPDATE {$this->table} SET $sql WHERE itemid=$this->itemid");
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
-
-        //关键字处理
-        $keyword = explode(',',$keyword);
-        $this->db->query("delete from {$this->keyword_data} where  article_itemid = {$this->itemid}");
-        foreach($keyword as $k=>$v){
-            if(mb_strlen($v,'utf-8')>0){
-                $this->db->query("insert into {$this->keyword_data} (article_itemid,keyword) values ($this->itemid,'$v')");
-            }
-        }
-
 		clear_upload($post['content'].$post['thumb'], $this->itemid);
 		return true;
 	}
@@ -323,9 +304,27 @@ class article {
 		$this->db->query("UPDATE {$this->table} SET level=$level WHERE itemid IN ($itemids)");
 	}
 
-    function getright($field='*',$limit,$order=''){
+    function saveKeyword($keyword){
+        $info = $this->db->get_one("select itemid from {$this->db->pre}article_keyword where keyword = '".$keyword."'");
+        if($info){
+            $this->db->query("update {$this->db->pre}article_keyword set nums = nums+1 where itemid = ".$info['itemid']);
+        }else{
+            $this->db->query("insert into {$this->db->pre}article_keyword (keyword,nums) values ('$keyword',1)");
+        }
+    }
+
+    function getKeyword($limit=10){
+        $result = $this->db->query("select keyword from {$this->db->pre}article_keyword order by nums desc limit $limit");
+        $list = array();
+        while($r=$this->db->fetch_array($result)){
+            $list[] = $r;
+        }
+        return $list;
+    }
+
+    function getright($field='*',$limit,$order='',$where=''){
         global $dtcity;
-        $where = ' status=3 ';
+        $where = ' status=3 '.$where;
         $list = array();
         $result = $this->db->query("select {$field} from {$this->table} where {$where} order by {$order} limit $limit");
         while($r=$this->db->fetch_array($result)){

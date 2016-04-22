@@ -23,7 +23,7 @@ if(in_array($action, array('add', 'edit'))) {
 if($_catids || $_areaids) require DT_ROOT.'/admin/admin_check.inc.php';
 
 if(in_array($action, array('', 'check', 'reject', 'recycle'))) {
-	$sfields = array('模糊', '标题');
+	$sfields = array('关键词', '标题');
 	$dfields = array('keyword', 'title');
 	$sorder  = array('结果排序方式', '添加时间降序', '添加时间升序', '更新时间降序', '更新时间升序', '浏览次数降序', '浏览次数升序', '信息ID降序', '信息ID升序');
 	$dorder  = array($MOD['order'], 'addtime DESC', 'addtime ASC', 'edittime DESC', 'edittime ASC', 'hits DESC', 'hits ASC', 'itemid DESC', 'itemid ASC');
@@ -172,11 +172,6 @@ switch($action) {
 	case 'recycle':
 		$lists = $do->get_list('status=0'.$condition, $dorder[$order]);
 		$menuid = 4;
-        if($lists){
-            foreach($lists as $k=>$v){
-                $lists[$k]['keyword'] = $do->get_keyword($v['itemid']);
-            }
-        }
 		include tpl('index', $module);
 	break;
 	case 'reject':
@@ -186,11 +181,6 @@ switch($action) {
 		} else {
 			$lists = $do->get_list('status=1'.$condition, $dorder[$order]);
 			$menuid = 3;
-            if($lists){
-                foreach($lists as $k=>$v){
-                    $lists[$k]['keyword'] = $do->get_keyword($v['itemid']);
-                }
-            }
 			include tpl('index', $module);
 		}
 	break;
@@ -201,21 +191,11 @@ switch($action) {
 		} else {
 			$lists = $do->get_list('status=2'.$condition, $dorder[$order]);
 			$menuid = 2;
-            if($lists){
-                foreach($lists as $k=>$v){
-                    $lists[$k]['keyword'] = $do->get_keyword($v['itemid']);
-                }
-            }
 			include tpl('index', $module);
 		}
 	break;
 	default:
 		$lists = $do->get_list('status=3'.$condition, $dorder[$order]);
-        if($lists){
-            foreach($lists as $k=>$v){
-                $lists[$k]['keyword'] = $do->get_keyword($v['itemid']);
-            }
-        }
 		$menuid = 1;
 		include tpl('index', $module);
 	break;

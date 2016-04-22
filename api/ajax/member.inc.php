@@ -108,10 +108,19 @@ switch($job) {
         break;
     case 'saveinfo':
         if (!$_userid) exit(json_encode(array('status'=>'n','info'=>'请先登录')));
+        $do->userid = $_userid;
+        $info = $do->get_one();
         $field = isset($field)?$field:'';
         switch($field){
             case 'gender':
+                if($info['gender']) exit(json_encode(array('status'=>'n','info'=>'不能修改个人信息')));
                 $add = array('gender'=>isset($gender)&&$gender==1?1:2);
+                break;
+            case 'idcard':
+                $idcard = isset($idcard)?$idcard:'';
+                if($info['idcard']) exit(json_encode(array('status'=>'n','info'=>'不能修改个人信息')));
+                if(!is_idcard($idcard)) exit(json_encode(array('status'=>'n','info'=>'身份证号码输入有误')));
+                $add = array('idcard'=>$idcard);
                 break;
             case 'mobile':
                 $mobile = isset($mobile)?$mobile:'';
@@ -129,8 +138,8 @@ switch($job) {
             case 'address':
                 $areaid = isset($areaid)?intval($areaid):0;
                 $address = isset($address)?$address:'';
-                if(empty($areaid) || !get_area($areaid)) exit(json_encode(array('status'=>'n','info'=>'请选择地区')));
-                if(mb_strlen($address,'utf-8')==0) exit(json_encode(array('status'=>'n','info'=>'请填写地址')));
+                if(!empty($areaid) && !get_area($areaid)) exit(json_encode(array('status'=>'n','info'=>'地区不存在')));
+                if(!is_length($address,0,50)) exit(json_encode(array('status'=>'n','info'=>'请正确填写地址')));
                 $add = array('areaid'=>$areaid,'address'=>$address);
                 break;
             case 'truename':
@@ -147,6 +156,11 @@ switch($job) {
                 $username = isset($username)?$username:'';
                 if(!$do->is_username($username)) exit(json_encode(array('info'=>$do->errmsg,'status'=>'n')));
                 $add = array('username'=>$username);
+                break;
+            case 'email':
+                $email = isset($email)?$email:'';
+                if(!is_email($email)) exit(json_encode(array('status'=>'n','info'=>'邮箱输入有误')));
+                $add = array('email'=>$email);
                 break;
             default:
                 exit(json_encode(array('status'=>'n','info'=>'操作有误')));

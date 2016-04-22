@@ -852,6 +852,11 @@ function linkurl($linkurl) {
     return strpos($linkurl, '://') === false ? DT_PATH.$linkurl : $linkurl;
 }
 
+//验证身份证
+function is_idcard($idcard){
+    return ((preg_match("/^(\d{18,18}|\d{15,15}|\d{17,17}x)$/", $idcard) || preg_match("/^(\d{6})(18|19|20)?(\d{2})([01]\d)([0123]\d)(\d{3})(\d|X)?$/", $idcard)));
+}
+
 function imgurl($url = '', $width = '') {
     if($url) {
         return strpos($url, '://') === false ? DT_PATH.'file/upload/'.$url : $url;

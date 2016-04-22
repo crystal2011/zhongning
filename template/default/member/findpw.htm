@@ -1,39 +1,39 @@
 {template 'header','member'}
 <section class="usercon">
     <div class="clearfix usercondiv">
-        <form class="userconleft fl">
+        <form class="userconleft fl" id="findpwform">
             <p class="usercontitle">找回密码</p>
             <p class="userconp clearfix">
                 <span class="fl userconpl">手机账号：</span>
                 <span class="userconli fl">
-                    <input type="text" >
-                    <span>fdf</span>
+                    <input type="text" name="username" class="mobile" placeholder="请输入手机号" datatype="m,mobile">
                 </span>
             </p>
             <p class="userconp clearfix">
                 <span class="fl userconpl">验证码：</span>
                 <span class="userconli fl">
-                    <input type="text" class="userconma" >
-                    <input type="button" class="userconmacode" value="发送验证码" />
+                    <input type="text" class="userconma" placeholder="请输入验证码：" name="code"  datatype="n6-6">
+                    <button type="button" id="check-btn"  class="userconmacode" onclick="send_mobile_to(this,2)" disabled>获取验证码</button>
                 </span>
             </p>
             <p class="userconp clearfix">
                 <span class="fl userconpl">设置密码：</span>
                 <span class="userconli fl">
-                    <input type="text" >
+                    <input type="password"  name="password" placeholder="请设置密码：" datatype="s6-20" datatype="s6-20">
                 </span>
             </p>
             <p class="userconp clearfix">
                 <span class="fl userconpl">确认密码：</span>
                 <span class="userconli fl">
-                    <input type="text" >
+                    <input type="password" name="cpassword" placeholder="请确认密码："  datatype="*" recheck="password">
                 </span>
             </p>
             <p class="userconp clearfix">
                 <span class="fl userconpl"></span>
                 <span class="userconli fl">
+                    <input type="hidden" name="submit" value="1" />
                     <input type="submit" class="userconbu redchu" value="马上找回" />
-                    <em class="clearfix" style="margin-top:5px;"><a class="nowregister">还没注册账号,立即注册！</a></em>
+                    <em class="clearfix" style="margin-top:5px;"><a class="nowregister" href="register.php">还没注册账号,立即注册！</a></em>
                 </span>
             </p>
         </form>
@@ -47,7 +47,7 @@
 <script src="{DT_SKIN}js/send.js"></script>
 <script type="text/javascript">
 
-    $("#form").Validform({
+    $("#findpwform").Validform({
         tiptype: 3,
         datatype:{
             "mobile":function(gets,obj,curform,regxp){

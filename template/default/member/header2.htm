@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{DT_SKIN_TWO}css/validform.css">
     <script src="{DT_SKIN_TWO}js/jquery-1.11.1.min.js"></script>
     <script src="{DT_SKIN_TWO}js/lm.js"></script>
+    <script src="{DT_SKIN}js/global.js"></script>
     <script src="{DT_SKIN_TWO}js/html5shiv.js"></script>
     <script src="{DT_SKIN_TWO}js/Validform_v5.3.2.js"></script>
     <!--[if lte IE 7]><script>window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer='+location.href;</script><![endif]-->
@@ -119,7 +120,7 @@
         display: block;
     }
     .m-c-main .record-lists a.active {
-        background: #39f;
+        background: #7abef6;
         color: #fff;
         margin-right: 0;
     }
@@ -216,7 +217,7 @@
     .white {
         color: #fff;
     }
-    .mh-info .info-list input[type=text] {
+    .mh-info .info-list input[type=text],.mh-info .info-list input[type=password] {
         width: 280px;
         height: 30px;
         line-height: 30px;
@@ -359,21 +360,77 @@
         font-size: 14px
     }
 </style>
+<script type="text/javascript" src="{DT_STATIC}lang/zh-cn/lang.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/color.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/config.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/common.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/admin.js"></script>
+<script>
+    var DTPath = "{$CFG['url']}";
+    function member_logo(val){
+        if(val){
+            $.ajax({
+                type:'post',
+                url:'/ajax.php?action=member&job=memberlogo&moduleid=2',
+                data:{'logo':val},
+                success:function(data){
+                    $("#member_logo").attr("src",val);
+                }
+            })
+        }
+    }
+    function editname(){
+        $('#editName').submit();
+    }
+    function editnamenow(_this){
+        $(_this).attr("onclick","editname();")
+        $('.useranmeinput').show();
+        $('.usernamedfd').hide();
+        $('.useranmeinput input').val($('.usernamedfd').text());
+
+        // 对修改用户名的表单绑定验证
+
+        $('#editName').Validform({
+            tiptype:3,
+            ajaxPost:true,
+            callback:function(data){
+                if(data.status=='y'){
+                    $('.useranmeinput').hide();
+                    $('.usernamedfd').show();
+                    $('.usernamedfd').text($('.useranmeinput input').val());
+                    layer.msg(data.info);
+                }else{
+                    layer.msg(data.info);
+                }
+                $(_this).attr("onclick","editnamenow();")
+            }
+        });
+    }
+
+
+
+</script>
+
 <body>
 <section class="usertop">
     <header class="clearfix">
         <a href="/" class="fl"><img  class="userlogo"  src="{DT_SKIN_TWO}images/wycms/logo.png" alt=""></a>
         <span class="fl topsane">会员中心</span>
-        <span class="fr topphone"><img src="{DT_SKIN_TWO}images/wycms/userphone2.png" />咨询热线：+86-0955-5716799</span>
+        <span class="fr topphone"><img src="{DT_SKIN_TWO}images/wycms/userphone2.png" />咨询热线：{$DT['telephone']}</span>
     </header>
 </section>
 <section class="usermy">
     <header class="usermytop clearfix">
-        <img style="cursor:pointer;" src="http://www.shang.cn/file/upload/201601/12/14-50-12-12-1.png" class="fl" id="member_logo" onclick="Dthumb(2,'150','150','',true,'','member_logo',200)">
+        <img style="cursor:pointer;" src="{if $_thumb}{$_thumb}{else}{$DT['memberlogo']}{/if}" class="fl" id="member_logo" onclick="Dthumb(2,'150','150','',true,'','member_logo',200)">
         <ul>
             <li class="user-data fl">
-                <h2>Hi~ 商机无限，你好啊！</h2>
-                <span class="safety">修改用户名称</span><a class="backnow">退出</a>
+                <h2 class="usernamedfd">{$_username}</h2>
+                <div class=" useranmeinput" style="display:none;">
+                    <form id="editName" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=username">
+                        <div class="clear"><input type="text" placeholder="请输入2-12个字" datatype="*2-12" style="line-height:24px;height:24px;font-size:16px;margin-bottom:18px;margin-right:5px;" ajaxurl="/ajax.php?action=member&moduleid=2&job=username" name="username" errormsg="请输入2-12个字" nullmsg="请输入2-12个字"></div>
+                    </form>
+                </div>
+                <span class="safety" onclick="editnamenow(this)">修改用户名称</span><a class="backnow" href="logout.php">退出</a>
             </li>
             <li class="fr">
                 <img src="{DT_SKIN_TWO}images/wycms/wap.png" class="erweim" />

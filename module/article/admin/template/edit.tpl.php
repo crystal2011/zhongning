@@ -27,7 +27,6 @@ show_menu($menus);
     <tr>
         <td class="tl"><span class="f_red">*</span> 关键字</td>
         <td><input name="post[keyword]" type="text" id="keyword" size="60" datatype="*1-50" maxlength="50" value="<?php echo $keyword;?>"/>
-            <span style="color:red;">(多个关键字英文逗号分割 例如：投资,融资) </span>
         </td>
     </tr>
 <tr>

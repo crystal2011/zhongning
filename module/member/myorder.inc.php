@@ -16,10 +16,9 @@ if($submit){
     $do->logout();
     dalert('修改成功','/member/login.php');
 }else{
-    //if(!$_userid) dheader($CFG['url']);
-    $seo_title = '安全中心-会员中心-';
-    $active = 'safe';
-    $nav_selected='member';
+    if(!$_userid) dheader($CFG['url']);
+    $seo_title = '我的预约-会员中心-';
+    $two_nav_selected = 'myorder';
     include template('myorder', $module);
 }
 ?>

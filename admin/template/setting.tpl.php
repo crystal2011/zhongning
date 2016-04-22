@@ -74,17 +74,47 @@ show_menu($menus);
         </td>
     </tr>
     <tr>
+        <td class="tl">累计为投资人赚取利息</td>
+        <td><input name="setting[invest_rate]" type="text" value="<?php echo isset($invest_rate)?$invest_rate:0;?>" size="10"/> 万元</td>
+    </tr>
+    <tr>
+        <td class="tl">累计投资额</td>
+        <td><input name="setting[invest_all_money]" type="text" value="<?php echo isset($invest_all_money)?$invest_all_money:0;?>" size="10"/> 万元</td>
+    </tr>
+    <tr>
+        <td class="tl">累计投资人数达</td>
+        <td><input name="setting[invest_users]" type="text" value="<?php echo isset($invest_users)?$invest_users:0;?>" size="10"/> 人</td>
+    </tr>
+    <tr>
         <td class="tl">投资顾问<br /><span style="color:red;">每个顾问以,分割<br />左边名字、右边手机</span></td>
         <td>
-            <textarea name="setting[invest_name]" style="width:100px;height:200px;"><?php echo $invest_name; ?></textarea>
-            <textarea name="setting[invest_phone]" style="width:150px;height:200px;"><?php echo $invest_phone; ?></textarea>
+            <textarea name="setting[invest_name]" style="width:300px;height:50px;"><?php echo $invest_name; ?></textarea>
+            <textarea name="setting[invest_phone]" style="width:300px;height:50px;"><?php echo $invest_phone; ?></textarea>
 
+        </td>
+    </tr>
+    <tr>
+        <td class="tl">公司名称</td>
+        <td><input name="setting[company]" type="text" value="<?php echo isset($company)?$company:'';?>" size="80"/> </td>
+    </tr>
+    <tr>
+        <td class="tl">公司地图经纬度</td>
+        <td>
+            <input name="setting[companyx]" type="text" value="<?php echo isset($companyx)?$companyx:'';?>" size="20"/>
+            <input name="setting[companyy]" type="text" value="<?php echo isset($companyy)?$companyy:'';?>" size="20"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="tl">公司地图备注</td>
+        <td>
+            <textarea name="setting[companyintro]"  style="width:500px;height:50px;"><?php echo $companyintro;?></textarea><br/>支持HTML语法，常用代码： 空格 &amp;nbsp; 换行  &lt;br/&gt;
         </td>
     </tr>
     <tr>
         <td class="tl">公司地址</td>
         <td><input name="setting[address]" type="text" value="<?php echo isset($address)?$address:'';?>" size="80"/> </td>
     </tr>
+
 <tr>
 <td class="tl">城市分站</td>
 <td>

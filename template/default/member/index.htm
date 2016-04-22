@@ -2,469 +2,69 @@
 <section class="m-c-main">
     <section class="home clearfix">
         {template 'left','member'}
-        <script type="text/javascript">
-            function area_ajax(areaid){
-                str='';
-                $.ajax({
-                    type:"POST",
-                    async:false,//false时为同步true为异步一般是异步
-                    url:"http://www.shang.cn/ajax.php?action=areaapp",
-                    data:"areaid="+areaid,
-                    dataType:'text',
-                    success:function(result){
-                        str=result;
-                    }
-                });
-                return str;
-            }
-        </script>
         <section class="right-main fl">
             <section class="mh-evaluate mh-info">
-                <h2 class="mh-title">个人资料 <span class="orange o-tip"><img src="http://www.shang.cn/skin/zskche2/images/public/lamp.png" alt="">完善个人资料有利于我们为您提供更优质的商机速配服务</span></h2>
-
-
+                <h2 class="mh-title">个人资料 <span class="orange o-tip"><img src="http://www.shang.cn/skin/zskche2/images/public/lamp.png" alt="">完善个人资料</span></h2>
                 <header class="info-title">真实身份完善<i class="tip orange"></i><span class="orange">（提交后不能修改）</span></header>
-
-
                 <div class="info-list">
-                    <label class="name">真实姓名 :</label><span class="content">嘉客</span>
+                    <label class="name">真实姓名 :</label><span class="content">{$info['truename']}</span>
                 </div>
-                <div class="info-list">
-                    <label class="name">身份证号 :</label><span class="content">44**************65</span>
-                </div>
-                <div class="info-list">
-                    <label class="name">性<span class="blank"></span>别 :</label><span class="content">女</span>
-                </div>
-                <form method="post" action="http://www.shang.cn/ajax.php?action=send_mobile&amp;jsoncallback=json" class="info-from2">
+                <form id="idcardfrom" method="post" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=idcard" >
                     <div class="info-list clearfix">
-                        <label class="name fl">联系电话 :</label>
-                        <span id="mobile1_show" class="fl">18620503351</span>
-                        <input style="display:none" id="mobile1" value="18620503351" type="text" placeholder="请填写你的电话号码" datatype="m" errormsg="请填写正确的手机号码格式！" class="fl">
-                        <input onclick="showmobile1()" id="info-sub_m1" type="submit" value="完善手机" class="info-sub-x white" style="display:none">
-                        <input id="info-sub_m2" num="1" type="submit" value="修改" class="info-sub white fl">
-                        <script type="text/javascript">
-                            function showmobile1(obj){
-                                document.getElementById('mobile1').style.display="";
-                                document.getElementById('mobile1_show').style.display="none";
-                                document.getElementById('info-sub_m2').style.display="";
-                                document.getElementById('info-sub_m1').style.display="none";
-                            }
-
-                        </script>
-                        <span class="Validform_checktip"></span></div>
+                        <label class="name fl">身份证号 :</label>
+                        {if $info['idcard']}
+                            <span class="content">{substr_replace($info['idcard'],'**************',2,(strlen($info['idcard'])-4))}</span>
+                        {else}
+                            <input name="idcard" datatype="is_idcard" type="text" placeholder="请填写你的身份证号" errormsg="请填写正确的身份证号！" class="fl">
+                            <input  type="submit" value="保存" class="info-sub white fl">
+                        {/if}
+                    </div>
                 </form>
-                <div id="emailform" class="info-list clearfix">
+                <form id="genderfrom" method="post" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=gender" >
+                    <div class="info-list clearfix">
+                        <span class="fl"><label class="name">性<span class="blank"></span>别 :</label></span>
+                        {if $info['gender']}
+                        <span class="content">{if $info['gender']==1}男{else}女{/if}</span>
+                        {else}
+                        <span class="fl" style="margin-right:5px;"><input name="gender"  type="radio" value="1" checked >男</span>
+                        <span class="fl"><input name="gender"  type="radio" value="2">女</span>
+                        <input  type="submit" value="保存" class="info-sub white fl">
+                        {/if}
+                    </div>
+                </form>
+
+                <div class="info-list clearfix">
+                    <label class="name fl">联系电话 :</label>
+                    <span id="mobile1_show" class="fl">{substr_replace($info['mobile'],'****',3,4)}</span>
+                    <input id="info-sub_m2" type="submit" onclick="openPhoneNumber('')" value="修改" class="info-sub white fl">
+                </div>
+
+                <div id="emailform23" class="info-list clearfix">
                     <label class="name fl">联系邮箱 :</label>
-                    <span>504593498@qq.com</span>
+                    <span>{$info['email']}</span>
                     <input type="submit" onclick="emailform()" value="修改" class="info-sub-x white">
                 </div>
-                <form id="from3email" style="display:none" method="post" action="http://www.shang.cn/member/userdata.php?action=email" class="info-from3">
+                <form id="emailform" style="display:none" method="post" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=email" class="info-from3">
                     <div class="info-list clearfix">
                         <label class="name fl">联系邮箱 :</label>
-                        <input name="email" id="email" value="" type="text" placeholder="请填写你的邮箱" errormsg="请填写正确的邮箱格式！" class="fl">
-                        <input num="5" type="submit" value="保存" class="info-sub white fl">
+                        <input name="email" id="email" datatype="e" type="text" placeholder="请填写你的邮箱" errormsg="请填写正确的邮箱格式！" class="fl">
+                        <input type="submit" value="保存" class="info-sub white fl">
                     </div>
                 </form>
-                <script type="text/javascript">
-                    function emailform(){
-                        document.getElementById('emailform').style.display="none";
-                        document.getElementById('from3email').style.display="";
-
-                    }
-
-                </script>
                 <div id="area1" class="info-list clearfix">
-
                     <label class="name">通讯地址 :</label>
-
-                    <input id="area_pos" type="text" value="广东省广州市黄埔区科丰路31号华南新材" class="txt-addr">
+                    <span>{area_pos($info['areaid'],'')}{$info['address']}</span>
                     <input num="3" onclick="area()" type="button" value="修改地址" class="info-sub-x white">
-
-
                 </div>
-                <form method="post" action="http://www.shang.cn/ajax.php?action=userdata&amp;func=address&amp;field=areaid" class="info-from">
+                <form id="areaform" method="post" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=address" class="info-from">
                     <div style="display:none" id="area2" class="info-list clearfix">
-
-
                         <label class="name fl">通讯地址 :</label>
-
-                        <select id="area-sel1" class="area-sel fl"><option value="1">浙江省</option><option value="2">北京市</option><option value="3">上海市</option><option value="4">天津市</option><option value="5">重庆市</option><option value="6">河北省</option><option value="7">山西省</option><option value="8">内蒙古</option><option value="9">辽宁省</option><option value="10">吉林省</option><option value="11">黑龙江</option><option value="12">江苏省</option><option value="13">安徽省</option><option value="14">福建省</option><option value="15">江西省</option><option value="16">山东省</option><option value="17">河南省</option><option value="18">湖北省</option><option value="19">湖南省</option><option selected="selected" value="20">广东省</option><option value="21">广西</option><option value="22">海南省</option><option value="23">四川省</option><option value="24">贵州省</option><option value="25">云南省</option><option value="26">西藏</option><option value="27">陕西省</option><option value="28">甘肃省</option><option value="29">青海省</option><option value="30">宁夏</option><option value="31">新疆</option><option value="32">台湾省</option><option value="33">香港</option><option value="34">澳门</option><option value="35">国外</option></select><select id="area-sel2" class="area-sel fl"><option selected="selected" value="2065">广州市</option><option value="2066">韶关市</option><option value="2067">深圳市</option><option value="2068">珠海市</option><option value="2069">汕头市</option><option value="2070">佛山市</option><option value="2071">江门市</option><option value="2072">湛江市</option><option value="2073">茂名市</option><option value="2074">肇庆市</option><option value="2075">惠州市</option><option value="2076">梅州市</option><option value="2077">汕尾市</option><option value="2078">河源市</option><option value="2079">阳江市</option><option value="2080">清远市</option><option value="2081">东莞市</option><option value="2082">中山市</option><option value="2083">潮州市</option><option value="2084">揭阳市</option><option value="2085">云浮市</option></select><select onchange="changevalue(this)" id="area-sel3" class="area-sel fl"><option value="2086">东山区</option><option value="2087">荔湾区</option><option value="2088">越秀区</option><option value="2089">海珠区</option><option value="2090">天河区</option><option value="2091">芳村区</option><option value="2092">白云区</option><option selected="selected" value="2093">黄埔区</option><option value="2094">番禺区</option><option value="2095">花都区</option><option value="2096">增城市</option><option value="2097">从化市</option></select>
-                        <input type="hidden" name="areaid" id="area-sel" value="2093">
-                        <input type="text" value="科丰路31号华南新材" name="address" class="fl">
+                        <?php echo ajax_area_select('areaid', '请选择', $info['areaid'],'class="area-sel fl"');?>
+                        <input type="text" maxlength="50" name="address" class="fl">
                         <input num="3" type="submit" value="保存" class="info-sub-x white">
-
                     </div>
                 </form>
-                <script type="text/javascript">
-
-                    function area(){
-                        document.getElementById('area2').style.display="";
-                        document.getElementById('area1').style.display="none"
-                    }
-                    document.getElementById('area-sel1').onchange=function (){
-                        document.getElementById('area-sel2').innerHTML='<option >请选择</option>';
-                        document.getElementById('area-sel3').innerHTML='<option >请选择</option>';
-                        document.getElementById('area-sel').value='';
-                        document.getElementById('area-sel2').innerHTML=area_ajax(this.value);
-
-                    }
-                    document.getElementById('area-sel2').onchange=function (){
-                        str=area_ajax(this.value);
-                        if(str!=''){
-                            document.getElementById('area-sel3').style.display="";
-                            document.getElementById('area-sel3').innerHTML=area_ajax(this.value);
-                        }else{
-                            document.getElementById('area-sel').value=this.value;
-                            document.getElementById('area-sel3').style.display="none";
-                        }
-
-
-                    }
-                    function changevalue(obj){
-                        document.getElementById('area-sel').value=obj.value;
-                    }
-
-                </script>
-
             </section>
-            <script>
-
-                function demoformTime(){
-                    var InterValObj; //timer变量，控制时间
-                    var count = 120; //间隔函数，1秒执行
-                    var curCount;//当前剩余秒数
-                    var num = 120;
-                    var yard = $('.num1');
-                    $(document).on('click', '.num1', function () {
-                        window.clearInterval(InterValObj);//停止计时器
-                        yard.removeAttr("disabled");//启用按钮
-                        yard.val("重新获取");
-                        res=oldsms();
-                        if(res['status']!='1'){
-                            alert('发送失败');
-                            return false;
-                        }
-
-                        curCount = count;
-                        yard.attr("disabled", "true");
-                        yard.val(curCount + "秒内输入");
-                        InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-                        yard.on('click', function () {
-                            window.clearInterval(InterValObj);
-                            yard.removeAttr("disabled", true);//启用按钮
-                            yard.val("获取手机验证码");
-                        })
-                    })
-                    function SetRemainTime() {
-
-                        if (curCount == 0) {
-
-//$(this).attr('num',0);
-                            window.clearInterval(InterValObj);//停止计时器
-                            yard.removeAttr("disabled");//启用按钮
-                            yard.val("重新获取");
-                        }
-                        else {
-                            curCount--;
-//document.getElementById('thisnum1').getAttribute('num')
-//$('.num1').attr('num',thisnum);
-                            yard.val(curCount + "秒内输入");
-                        }
-                    };
-                }
-                function demoformTime3(){
-                    var InterValObj; //timer变量，控制时间
-                    var count = 120; //间隔函数，1秒执行
-                    var curCount;//当前剩余秒数
-                    var num = 120;
-                    var yard = $('.num4');
-                    $(document).on('click', '.num4', function () {
-                        res=smsmin();
-                        if(res['status']!='1'){
-                            alert('发送失败');
-                            return false;
-                        }
-                        /*if(($(this).attr('code'))==1){
-                         res=oldsms();
-
-
-                         }else if($(this).attr('code')==2){
-
-                         res=newsms();
-                         if(res['status']!='1'){
-                         alert('发送失败');
-                         return false;
-                         }
-                         }*/
-
-                        curCount = count;
-                        yard.attr("disabled", "true");
-                        yard.val(curCount + "秒内输入");
-                        InterValObj = window.setInterval(SetRemainTime3, 1000); //启动计时器，1秒执行一次
-                        yard.on('click', function () {
-                            window.clearInterval(InterValObj);
-                            yard.removeAttr("disabled", true);//启用按钮
-                            yard.val("获取手机验证码");
-                        })
-                    })
-                    function SetRemainTime3() {
-
-                        if (curCount == 0) {
-
-//$(this).attr('num',0);
-                            window.clearInterval(InterValObj);//停止计时器
-                            yard.removeAttr("disabled");//启用按钮
-                            yard.val("重新获取");
-                        }
-                        else {
-                            curCount--;
-//document.getElementById('thisnum1').getAttribute('num')
-//$('.num1').attr('num',thisnum);
-                            yard.val(curCount + "秒内输入");
-                        }
-                    };
-                }
-                function demoformTime2(){
-                    var InterValObj; //timer变量，控制时间
-                    var count = 120; //间隔函数，1秒执行
-                    var curCount;//当前剩余秒数
-                    var num = 120;
-                    var yard = $('.button2');
-                    $(document).on('click', '.button2', function () {
-                        res=newsms();
-                        if(res['status']!='1'){
-                            alert('发送失败');
-                            return false;
-                        }
-
-                        curCount = count;
-                        yard.attr("disabled", "true");
-                        yard.val(curCount + "秒内输入");
-                        InterValObj = window.setInterval(SetRemainTime2, 1000); //启动计时器，1秒执行一次
-                        yard.on('click', function () {
-                            window.clearInterval(InterValObj);
-                            yard.removeAttr("disabled", true);//启用按钮
-                            yard.val("获取手机验证码");
-                        })
-                    })
-                    function SetRemainTime2() {
-
-                        if (curCount == 0) {
-
-//$(this).attr('num',0);
-                            window.clearInterval(InterValObj);//停止计时器
-                            yard.removeAttr("disabled");//启用按钮
-                            yard.val("重新获取");
-                        }
-                        else {
-                            curCount--;
-//document.getElementById('thisnum1').getAttribute('num')
-//$('.num1').attr('num',thisnum);
-                            yard.val(curCount + "秒内输入");
-                        }
-                    };
-                }
-                var change = {
-                    phone1: "<div class='lay-user-data'><div class='type'><span>旧手机：</span><strong>18620503351</strong></div><div class='type verify-yard'><span>验证码：</span><input id='code' type='text' placeholder='手机验证码'><input class='num1' num='0' code='1' type='button' value='发送验证码'></div><div class='type'><span>新手机：</span><input id='new_mobile' type='text' placeholder='输入新手机号码' datatype='m'></div><input class='execute'  onclick='return myfrom1(this)'  type='button' value='下一步'></div>",
-                    phone2: "<div class='lay-user-data'><div class='type'><span>新手机：</span><strong></strong></div><div class='type verify-yard'><span>验证码：</span><input id='code' type='text' placeholder='新手机验证码'><input type='button' value='发送验证码'><input class='execute' onclick='return myfrom2(this)' type='submit' value='提交'></div>",
-                    perfectName:"<div class='lay-user-data'><div class='type'><span>真实姓名：</span><input type='text' placeholder='请输入姓名' datatype='*'></div><div class='type'><span>身份证号码：</span><input type='text' placeholder='请输入身份证号码' datatype='idcard',errormsg='您填写的身份证号码不对！' ,nullmsg='请填写身份证号码！'></div><div class='type'><span>性别：</span><div class='gender'><input type='radio' name='gender' id='box'><label for='box'>男</label><input type='radio' name='gender' id='woman'><label for='woman'>女</label><span>完善后不能修改</span></div></div><input class='execute' type='submit' value='提交'></div>",
-                    perfectPhone: "<div class='lay-user-data'><div class='type'><span>手机号：</span><strong></strong></div><div class='type verify-yard'><span>验证码：</span><input type='text' placeholder='手机验证码'><input type='button' value='发送验证码'><input   onclick='return myfrom1(this)' class='execute' type='submit' value='提交'></div>",
-                }
-
-
-                    $(".info-from").Validform({
-                        tiptype: 4,
-                        datatype:{
-                            "id":/^[0-9a-zA-Z]{16,18}$/
-                        },
-                        ajaxPost:true,
-                        callback:function(data){
-                            alert(data['info']);
-                            location.href='http://www.shang.cn/member/userdata.php';
-//layer.closeAll();
-                            return false;
-                        }
-                    });
-                    $(".immediate").on("click", function () {
-                        $(this).parent().hide();
-                        $(".immdate-box").show();
-                    });
-
-                    // layer.closeAll(); 关闭时直接调这个
-                    $('.info-sub').on('click',function(){
-                        num=($(this).attr('num'));
-                        if(num==1){
-                            formnan=1;
-
-                        }else if(num==2){
-
-
-                        }else if(num==3){
-
-
-                        }else if(num==4){
-                            mobile1=document.getElementById('mobile1').value;
-                            if(mobile1==''){
-
-                                alert('请输入手机号码');
-                                return false;
-                            }
-                            formnan=5;
-
-                        }else if(num==5){
-
-
-                            formnan=0;
-                        }
-
-                        switch (formnan){
-                            case 1:
-                                layer.open({
-                                    title: ['更换手机', 'font-size:14px;color:#333;height:40px;line-height:40px;background:#e7eaf3;border:none;'],
-                                    type: 1,
-                                    area: ['480px'],
-                                    content: "<form class='demoform'>"+change.phone1+"</form>",
-                                    success: function () {
-                                        $(".demoform").Validform({
-                                            tiptype: 4
-                                        })
-                                        demoformTime();
-                                    }
-                                })
-                                break;
-                            case 2:
-                                layer.open({
-                                    title: ['更换手机', 'font-size:14px;color:#333;height:40px;line-height:40px;background:#e7eaf3;border:none;'],
-                                    type: 1,
-                                    area: ['480px'],
-                                    content: "<form class='demoform'>"+change.phone2+"</form>",
-                                    success: function () {
-                                        $(".demoform").Validform({
-                                            tiptype: 4
-                                        })
-                                    }
-                                })
-                                break;
-                            case 3:
-                                layer.open({
-                                    title: ['完善实名',  'font-size:14px;color:#333;height:40px;line-height:40px;background:#e7eaf3;border:none;'],
-                                    type: 1,
-                                    area: ['480px'],
-                                    content: "<form class='demoform'>"+change.perfectName+"</form>",
-                                    success:function(){
-                                        $(".demoform").Validform({
-                                            tiptype: 4,
-                                            datatype: {//传入自定义datatype类型【方式二】;
-                                                "idcard": function (gets, obj, curform, datatype) {
-                                                    //该方法由佚名网友提供;
-
-                                                    var Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1];// 加权因子;
-                                                    var ValideCode = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2];// 身份证验证位值，10代表X;
-
-                                                    if (gets.length == 15) {
-                                                        return isValidityBrithBy15IdCard(gets);
-                                                    } else if (gets.length == 18) {
-                                                        var a_idCard = gets.split("");// 得到身份证数组
-                                                        if (isValidityBrithBy18IdCard(gets) && isTrueValidateCodeBy18IdCard(a_idCard)) {
-                                                            return true;
-                                                        }
-                                                        return false;
-                                                    }
-                                                    return false;
-
-                                                    function isTrueValidateCodeBy18IdCard(a_idCard) {
-                                                        var sum = 0; // 声明加权求和变量
-                                                        if (a_idCard[17].toLowerCase() == 'x') {
-                                                            a_idCard[17] = 10;// 将最后位为x的验证码替换为10方便后续操作
-                                                        }
-                                                        for (var i = 0; i < 17; i++) {
-                                                            sum += Wi[i] * a_idCard[i];// 加权求和
-                                                        }
-                                                        valCodePosition = sum % 11;// 得到验证码所位置
-                                                        if (a_idCard[17] == ValideCode[valCodePosition]) {
-                                                            return true;
-                                                        }
-                                                        return false;
-                                                    }
-
-                                                    function isValidityBrithBy18IdCard(idCard18) {
-                                                        var year = idCard18.substring(6, 10);
-                                                        var month = idCard18.substring(10, 12);
-                                                        var day = idCard18.substring(12, 14);
-                                                        var temp_date = new Date(year, parseFloat(month) - 1, parseFloat(day));
-                                                        // 这里用getFullYear()获取年份，避免千年虫问题
-                                                        if (temp_date.getFullYear() != parseFloat(year) || temp_date.getMonth() != parseFloat(month) - 1 || temp_date.getDate() != parseFloat(day)) {
-                                                            return false;
-                                                        }
-                                                        return true;
-                                                    }
-
-                                                    function isValidityBrithBy15IdCard(idCard15) {
-                                                        var year = idCard15.substring(6, 8);
-                                                        var month = idCard15.substring(8, 10);
-                                                        var day = idCard15.substring(10, 12);
-                                                        var temp_date = new Date(year, parseFloat(month) - 1, parseFloat(day));
-                                                        // 对于老身份证中的你年龄则不需考虑千年虫问题而使用getYear()方法
-                                                        if (temp_date.getYear() != parseFloat(year) || temp_date.getMonth() != parseFloat(month) - 1 || temp_date.getDate() != parseFloat(day)) {
-                                                            return false;
-                                                        }
-                                                        return true;
-                                                    }
-
-                                                }
-
-                                            }
-                                        });
-                                    }
-                                })
-                                break;
-                            case 4:
-                                layer.open({
-                                    title: ['更换手机',  'font-size:14px;color:#333;height:40px;line-height:40px;background:#e7eaf3;border:none;'],
-                                    type: 1,
-                                    area: ['480px'],
-                                    content: "<form class='demoform'><div class='lay-user-data'><div class='type'><span>新邮箱：</span><stron  id='new_email'>"+document.getElementById('email').value+"</strong></div><div class='type verify-yard'><span>验证码：</span><input id='code3' type='text' placeholder='新邮箱验证码'><input type='button' class='num4' value='发送验证码'><input class='execute' onclick='return myrom3(this)' type='submit' value='提交'></div></form>",
-                                    success: function () {
-                                        $(".demoform").Validform({
-                                            tiptype: 4
-                                        })
-                                        demoformTime3();
-                                    }
-                                })
-                                break;
-                            case 5:
-                                layer.open({
-                                    title: ['完善手机',  'font-size:14px;color:#333;height:40px;line-height:40px;background:#e7eaf3;border:none;'],
-                                    type: 1,
-                                    area: ['480px'],
-                                    content: "<form class='demoform'><div class='lay-user-data'><div class='type'><span>手机号：</span><strong id='new_mobile'>"+document.getElementById('mobile1').value+"</strong></div><div class='type verify-yard'><span>验证码：</span><input id='code2' type='text' placeholder='手机验证码'><input class='button2' type='button' value='发送验证码' code='2' num='60'><input   onclick='return myfrom2(this,"+'"'+"18620503351"+'"'+")' class='execute' type='submit' value='提交'></div></form>",
-                                    success: function () {
-                                        $(".demoform").Validform({
-                                            tiptype: 4
-                                        })
-                                        demoformTime2();
-                                    }
-                                })
-                        }
-                    })
-
-                $(".info-from2").Validform({
-                    tiptype: 4,
-                    ajaxPost:true,
-                    callback:function(data){
-                        document.getElementById('old_token').value=data.info;
-                        return false;
-                    }
-                });
-                $(".info-from3").Validform({
-                    tiptype: 4,
-                    ajaxPost:true,
-                    callback:function(data){
-                        smsmin();
-                        return false;
-                    }
-                });
-            </script>
         </section>
     </section>
 </section>
@@ -473,63 +73,69 @@
 <script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
 <script src="{DT_SKIN}js/send.js" type="text/javascript"></script>
 <script>
-
-    $("#mobileform").Validform({
+    $("#idcardfrom").Validform({
         tiptype: 3,
         ajaxPost:true,
-        beforeSubmit: function (curform) {
-            var oldmobile = $("#oldmobile").val();
-            openPhoneNumber(oldmobile);
-            return false;
-        },
-        callback:function(data){
-
-        }
-    })
-
-    $("#truenameform").Validform({
-        tiptype: 3,
-        postonce:true,
-        ajaxPost:true,
-        callback:function(data){
-            layer.msg(data.info);
-        }
-    })
-
-
-    $("#genderform").Validform({
-        tiptype: 3,
-        postonce:true,
-        ajaxPost:true,
-        callback:function(data){
-            layer.msg(data.info);
-        }
-    })
-
-    $("#addressform").Validform({
-        tiptype: 3,
-        postonce:true,
-        ajaxPost:true,
-        beforeSubmit:function(curform){
-            var areaid_1 = $("#areaid_1").val();
-            if(areaid_1==0){
-                $("#addresssubmit").next().removeClass('Validform_right').addClass('Validform_checktip Validform_wrong').html('请选择地区');
-                return false;
+        datatype:{
+            "is_idcard":function(gets,obj,curform,regxp){
+                if(!is_idcard(gets)) return '输入错误';
+                return true;
             }
         },
         callback:function(data){
-            layer.msg(data.info);
+            if(data.status=='y'){
+                location.reload();
+            }else{
+                layer.msg(data.info);
+            }
         }
     })
 
-    $("#infoform").Validform({
+    $("#genderfrom").Validform({
         tiptype: 3,
         ajaxPost:true,
-        postonce:true,
         callback:function(data){
-            layer.msg(data.info);
+            if(data.status=='y'){
+                location.reload();
+            }else{
+                layer.msg(data.info);
+            }
         }
     })
+
+    function area(){
+        document.getElementById('area2').style.display="";
+        document.getElementById('area1').style.display="none"
+    }
+    $("#areaform").Validform({
+        tiptype: 3,
+        ajaxPost:true,
+        callback:function(data){
+            if(data.status=='y'){
+                location.reload();
+            }else{
+                layer.msg(data.info);
+            }
+        }
+    })
+
+    function emailform(){
+        document.getElementById('emailform23').style.display="none";
+        document.getElementById('emailform').style.display="";
+    }
+
+    $("#emailform").Validform({
+        tiptype: 3,
+        ajaxPost:true,
+        callback:function(data){
+            if(data.status=='y'){
+                location.reload();
+            }else{
+                layer.msg(data.info);
+            }
+        }
+    })
+
 
     //弹出框集合
     function openPhoneNumber (d) {

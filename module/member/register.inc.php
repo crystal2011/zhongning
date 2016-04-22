@@ -23,7 +23,7 @@ if($submit) {
 
     //会员信息数组
     $post = array(
-        'username'=>isset($username)?$username:'',
+        'truename'=>isset($truename)?$truename:'',
         'mobile'=>$mobile,
         'password'=>isset($password)?$password:'',
         'cpassword'=>isset($cpassword)?$cpassword:'',
@@ -38,6 +38,7 @@ if($submit) {
     if($_userid) dheader($CFG['url']);
     $seo_title = '注册-';
     $nav_selected = 'register';
+    $two_nav_selected = '注册';
     include template('register', $module);
 }
 ?>

@@ -1,25 +1,29 @@
-{php $nav_selected = 'abouts';$two_nav_selected = 'compintro';$seo_title = '公司介绍-';}
+{php $nav_selected = 'abouts';$two_nav_selected = 'contact';$seo_title = '联系我们-';}
 {template  'header'}
 {template  'commontop','abouts'}
 <div class="about-main common">
     <div class="container clearfix">
-        {$content}
-         {php $ainvest_name = explode(',',$DT['invest_name']);$ainvest_phone = explode(',',$DT['invest_phone']);}
+        <div class="about-main common">
+    <div class="container clearfix">
         <div class="contact-left-box">
             <h3>联系我们</h3>
+            <p>公司地址：{$DT['address']}</p>
+            <p>公司电话：{$DT['telephone']}</p>
+            <br />
             <p>投资顾问</p>
+            {php $ainvest_name = explode(',',$DT['invest_name']);$ainvest_phone = explode(',',$DT['invest_phone']);}
             {if $ainvest_name}
                 {loop $ainvest_name $k $v}
                     <p class="clearfix"><span style="width:80px;display:block;float:left;">{$v}</span>   {$ainvest_phone[$k]}</p>
+
                 {/loop}
             {/if}
-            <br>
-            <p>公司电话：{$DT['telephone']}</p>
-            <p>公司地址：{$DT['address']}</p>
+            <img src="{$CFG['url']}skins/images/wycms/thirdwap.png" alt="" style="width:158px;height:181px;" data-bd-imgshare-binded="1">
         </div>
-        <div id="dituContent" style="width:535px;height:285px;margin-top:50px;"></div>
+        <div id="dituContent"></div>
     </div>
-
+</div>
+    </div>
 </div>
 <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 <script type="text/javascript">
@@ -148,6 +152,3 @@
     initMap(); //创建和初始化地图
 </script>
 {template  'footer'}
-
-
-

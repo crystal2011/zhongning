@@ -391,13 +391,13 @@ function cache_city(){
 function cache_link(){
     global $db;
     $result = $db->query("select * from {$db->pre}link limit 13");
-    $str = '<section class="friendLink">';
+    $str = '';
     while($r=$db->fetch_array($result)){
         $linkurl = $r['linkurl'];
         $title = $r['title'];
-        $str .= '<a href="'.$linkurl.'" target="_blank" rel="nofollow">'.$title.'</a>';
+        $thumb = $r['thumb'];
+        $str .= '<a href="'.$linkurl.'" target="_blank" ><img src="'.$thumb.'" /></a>';
     }
-    $str .= '</section>';
     file_put(DT_ROOT.'/template/default/link.htm',$str);
 }
 function cache_area_hot(){

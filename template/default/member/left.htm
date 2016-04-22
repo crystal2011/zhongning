@@ -1,9 +1,9 @@
 <aside class="left-main fl">
     <header class="record-tilte tc">账号管理</header>
     <ul class="record-lists">
-        <li><a href="myorder.php" class="tc db  ">我的预约<span class="trangle"></span></a></li>
-        <li><a href="myapply.php" class="tc db  ">我的申请<span class="trangle"></span></a></li>
-        <li><a href="safe.php" class="tc db secure-set ">安全设置<span class="trangle"></span></a></li>
-        <li><a href="index.php" class="tc db  active">个人资料<span class="trangle"></span></a></li>
+        <li><a href="myorder.php" class="tc db {if $two_nav_selected=='myorder'}active{/if}">我的预约<span class="trangle"></span></a></li>
+        <li><a href="myapply.php" class="tc db {if $two_nav_selected=='myapply'}active{/if}">我的申请<span class="trangle"></span></a></li>
+        <li><a href="safe.php" class="tc db {if $two_nav_selected=='safe'}active{/if}">安全设置<span class="trangle"></span></a></li>
+        <li><a href="index.php" class="tc db {if $two_nav_selected=='index'}active{/if}" >个人资料<span class="trangle"></span></a></li>
     </ul>
 </aside>

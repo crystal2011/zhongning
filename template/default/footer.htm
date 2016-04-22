@@ -7,11 +7,11 @@
                         <img src="{DT_SKIN_TWO}images/wycms/footerr1.png" /> 关于我们
                     </div>
                     <ul>
-                        <li><a href="{$CFG['url']}abouts/compintro.php">公司介绍</a></li>
-                        <li><a href="{$CFG['url']}abouts/advantage.php">行业优势</a></li>
-                        <li><a href="{$CFG['url']}abouts/new.php">公司动态</a></li>
-                        <li><a href="{$CFG['url']}abouts/contact.php">联系我们</a></li>
-                        <li><a href="{$CFG['url']}abouts/joinus.php">加入我们</a></li>
+                        <li><a href="{$CFG['url']}about/compintro.html">公司介绍</a></li>
+                        <li><a href="{$CFG['url']}about/advantage.html">行业优势</a></li>
+                        <li><a href="{$CFG['url']}about/news.html">公司动态</a></li>
+                        <li><a href="{$CFG['url']}about/contact.html">联系我们</a></li>
+                        <li><a href="{$CFG['url']}about/joinus.html">加入我们</a></li>
                     </ul>
                 </div>
                 <div class="column fl">
@@ -50,10 +50,25 @@
             </div>
             <div class="msg">
                 <div class="column column1 fl">
-                    <p class="clearfix"><span class="touwen">投资顾问： </span><span>李翊煊 15909559866</span><span>贺建辉 13519253521</span></p>
-                    <p class="clearfix"><span class="touwen">&nbsp;</span><span>史韵 13639588261</span><span>王志芮  18465153520</span></p>
+                    <?php
+                        $ainvest_name = array_chunk(explode(',',$DT['invest_name']),2);
+                        $ainvest_phone = array_chunk(explode(',',$DT['invest_phone']),2);
+                     ?>
+                    <p class="clearfix"><span class="touwen">投资顾问： </span><span>{if isset($ainvest_name[0][0])}{$ainvest_name[0][0]} {if isset($ainvest_phone[0][0])}{$ainvest_phone[0][0]}{/if}{/if}</span><span>{if isset($ainvest_name[0][1])}{$ainvest_name[0][1]} {if isset($ainvest_phone[0][1])}{$ainvest_phone[0][1]}{/if}{/if}</span></p>
+                    {if $ainvest_name}
+                    {loop $ainvest_name $k $v}
+                    {if $k>0}
+                    <p class="clearfix">
+                        <span class="touwen">&nbsp;</span>
+                        {loop $v $key $val}
+                        <span>{$val} {if isset($ainvest_phone[$k][$key])}{$ainvest_phone[$k][$key]}{/if}</span>
+                        {/loop}
+                    </p>
+                    {/if}
+                    {/loop}
+                    {/if}
                     <p>公司地址： {$DT['address']}</p>
-                    <p>公司电话： {$DT['phone']}</p>
+                    <p>公司电话： {$DT['telephone']}</p>
                 </div>
                 <div class="column column3 fl">
                     <div class="qr-code">

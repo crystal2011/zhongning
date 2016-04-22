@@ -47,22 +47,3 @@ isset($admin_user) or $admin_user = false;
 $table = $DT_PRE.'member';
 $table_company = $DT_PRE.'company';
 
-require_once DT_ROOT.'/module/special/special.class.php';
-$oSpecial = new special(11);
-$oSpecial->table = $db->pre.'special';
-$oSpecial->table_data = $db->pre.'special_data';
-$horninfo = $oSpecial->checkHasUser();
-
-function horncommon($codeid){
-    global $oSpecial;
-    $codenumed = $oSpecial->codenum($codeid);
-    $codenewno = $oSpecial->codenewno($codeid);
-    $applynum = applynum($codeid);
-    return array($codenumed,$codenewno,$applynum);
-}
-
-function applynum($codeid){
-    global $oSpecial;
-    $applynum = $oSpecial->applynum($codeid);
-    return $applynum;
-}

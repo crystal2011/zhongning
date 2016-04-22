@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{DT_SKIN_TWO}css/validform.css">
     <script src="{DT_SKIN_TWO}js/jquery-1.11.1.min.js"></script>
     <script src="{DT_SKIN_TWO}js/lm.js"></script>
+    <script src="{DT_SKIN}js/global.js"></script>
     <script src="{DT_SKIN_TWO}js/html5shiv.js"></script>
     <script src="{DT_SKIN_TWO}js/Validform_v5.3.2.js"></script>
     <!--[if lte IE 7]><script>window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer='+location.href;</script><![endif]-->
@@ -34,7 +35,13 @@
             <a href="" class="social"><i class="fa fa-wechat"></i></a>
             <a href="" class="social"><i class="fa fa-weibo"></i></a>
             <a href="javascript:;" class="social qrcode"><i class="fa fa-qrcode"></i></a>
-            <div class="login"> <a href="{$CFG['url']}member/register.php">注册&nbsp;</a><a>|</a>&nbsp;<a href="{$CFG['url']}member/login.php">登录</a></div>
+            <div class="login">
+                {if $_userid}
+                <a href="{$CFG['url']}member/index.php">会员中心&nbsp;</a>
+                {else}
+                <a href="{$CFG['url']}member/register.php">注册&nbsp;</a><a>|</a>&nbsp;<a href="{$CFG['url']}member/login.php">登录</a>
+                {/if}
+            </div>
             <div class="toptwo">
                 <img src="{DT_SKIN_TWO}images/wycms/wap.png"  />
                 <p>扫描关注</p>
@@ -55,22 +62,21 @@
                         <div class="menu-box menu1">
                             <div class="box">
                                 <dl>
-                                    <dt><a href="{$CFG['url']}abouts/compintro.php">公司介绍</a></dt>
-                                </dl>
-
-                                <dl>
-                                    <dt><a href="{$CFG['url']}abouts/new.php">公司动态</a></dt>
+                                    <dt><a href="{$CFG['url']}about/compintro.html">公司介绍</a></dt>
                                 </dl>
                                 <dl>
-                                    <dt><a href="{$CFG['url']}abouts/joinus.php">加入我们</a></dt>
+                                    <dt><a href="{$CFG['url']}about/news.html">公司动态</a></dt>
+                                </dl>
+                                <dl>
+                                    <dt><a href="{$CFG['url']}about/joinus.html">加入我们</a></dt>
                                 </dl>
                             </div>
                             <div class="box">
                                 <dl>
-                                    <dt><a href="{$CFG['url']}abouts/advantage.php">行业优势</a></dt>
+                                    <dt><a href="{$CFG['url']}about/advantage.html">行业优势</a></dt>
                                 </dl>
                                 <dl>
-                                    <dt><a href="{$CFG['url']}abouts/contact.php">联系我们</a></dt>
+                                    <dt><a href="{$CFG['url']}about/contact.html">联系我们</a></dt>
                                 </dl>
 
                             </div>
@@ -130,7 +136,7 @@
                         </div>
                     </li>
                     <li><a class="frist {if isset($nav_selected) && $nav_selected=='article'}now{/if}"  href="/article/index.php">最新资讯<small>NEWS</small></a></li>
-                    <li><a class="frist {if isset($nav_selected) && $nav_selected=='question'}now{/if}" href="/question/index.php">常见问题<small>question</small></a></li>
+                    <li><a class="frist {if isset($nav_selected) && $nav_selected=='question'}now{/if}" href="{$CFG['url']}about/question.html">常见问题<small>question</small></a></li>
 
                 </ul>
             </nav>

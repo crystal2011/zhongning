@@ -22,6 +22,11 @@ $names = array (
   'vote' => '投票',
   'webpage' => '单网页',
   'webpage-1' => 'webpage',
+  'webpage-2' => 'webpage2',
+  'webpage-3' => 'webpage3',
+  'webpage-4' => 'webpage4',
+  'webpage-5' => 'webpage5',
+  'webpage-6' => 'webpage6',
   'webpage1' => 'webpage',
 );
 ?>

@@ -16,68 +16,7 @@ function AddFavorite(sURL, sTitle) {
     }
 }
 
-/**
- * @name 点击喜欢
- * @param id ID
- * @param type 数字类型
- * @param _this 当前对象
- */
-function like(id,type,_this,typeid){
-    var _this = $(_this);
-    _this.attr("disabled",true);
-    getToken();
-    $.ajax({
-        type:'post',
-        url:'/ajax.php?action=ajax&at=like&type='+type+'&id='+id,
-        async:false,
-        dataType:'json',
-        success:function(data){
-            if(typeid==1){
-                layer.open({
-                    content: data.info,
-                    title:'提示'
-                });
-            }else{
-                layer.msg(data.info);
-            }
 
-            if(data.status=='y'){
-                $(".like-num").html(parseInt($(".like-num").html())+1);
-            }
-        }
-    })
-    _this.removeAttr("disabled");
-}
-function catonchange(_this,type,url){
-    var _this = $(_this);
-    var val = _this.val();
-    if(val==0){
-        _this.prev().html(_this.attr('dataname'));
-    }else if(type==0){
-        $("#showcat").html(_this.find("option:selected").text());
-        $("#catid").val(val);
-        $("#showcat").prev().removeClass('Validform_wrong').html('');
-        $(".layermbox").remove();
-    }else if(type==1){
-        location.href=url+'&catid='+val;
-    }
-}
-
-
-function lfdtd(_this,type,url){
-    var _this = $(_this);
-    if(_this.find('select').size()==0){
-        var val = _this.find('span').attr('data-id');
-        if(type==0){
-            $("#showcat").html(_this.find("span").text());
-            $("#catid").val(val);
-            $("#showcat").prev().removeClass('Validform_wrong').html('');
-            $(".layermbox").remove();
-        }else if(type==1){
-            location.href=url+'&catid='+val;
-        }
-    }
-}
 
 /**
  * @name 获取token
@@ -123,57 +62,13 @@ function isLogin(){
 }
 
 /**
- * @name 评论
+ * 是否为身份证
  */
-var iscommentsing = false;
-function comments(){
-    if(iscommentsing==true) return false;
-    iscommentsing = true;
-    if(!isLogin()) return false;
-    getToken();
-    var id = $("#commentsid").val();
-    var content = $("#commentscontent").val();
-    if(content.length>200 || content.length<5){
-        iscommentsing = false;
-        alert('请输入5-200个字');
-        return false;
-    }
-    var type = $("#commentstype").val();
-    $.ajax({
-        type:'post',
-        url:'/ajax.php?action=ajax&at=comment',
-        data:{'id':id,'content':content,'type':type},
-        async:false,
-        dataType:'json',
-        success:function(data){
-            alert(data.info);
-            $("#commentscontent").val('');
-        }
-    })
-    iscommentsing = false;
-    return true;
+function is_idcard(val){
+    var reg1 = /^((\d{18,18}|\d{15,15}|\d{17,17}x))|((\d{6})(18|19|20)?(\d{2})([01]\d)([0123]\d)(\d{3})(\d|X)?)$/;
+    return reg1.test(val);
 }
 
-//投票
-function vote(id,type,_this){
-    var _this = $(_this);
-    _this.attr("disabled",true);
-    getToken();
-    $.ajax({
-        type:'post',
-        url:'/ajax.php?action=ajax&at=vote&type='+type+'&id='+id,
-        async:false,
-        dataType:'json',
-        success:function(data){
-            if(data.status=='n'){
-                alert(data.info);
-            }else{
-                _this.next().find('i').html(parseInt(_this.next().find('i').html())+1);
-            }
-        }
-    })
-    _this.removeAttr("disabled");
-}
 
 function is_mobile(val) {
     var msg = /^1[3|4|5|7|8]{1}[0-9]{9}$/;

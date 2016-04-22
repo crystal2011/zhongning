@@ -755,8 +755,13 @@ footer.g .bottom img {
      height:60px;
      color:#999999;
      font-size:16px;
-
+    text-align:left;
  }
+.financeform .inputdiv span.pricetishi {
+    font-size:12px;
+    color:#d10101;
+    margin-left:85px;
+}
 .financeform .inputdiv div{
     width:340px;
 }
@@ -8063,7 +8068,7 @@ footer.g .bottom img {
 /* 关于-公司简介 */
 
 .banner.about {
-    height: 420px;
+    height: 400px;
     background: url(../images/wycms/aboutbanner.jpg) no-repeat center top;
     position: relative;
 }
@@ -8072,6 +8077,7 @@ footer.g .bottom img {
     position: relative;
     position: absolute;
     bottom: -50px;
+    width:1200px;
 }
 .banner.about nav a {
     margin-left: 114px;
@@ -10993,6 +10999,17 @@ p.introtitle {
     position:absolute;bottom:191px;left:653px;
     cursor:pointer;
 }
+.modumoney1 {
+    color:#7abef6;font-size:14px;position:absolute;bottom:185px;left:130px;width:260px;text-align:center;
+}
+.modumoney1 span{
+    font-size:25px;padding:0px 5px;color:#7abef6;
+}
+.indexmodu5button1 {
+    position:absolute;bottom:211px;left:583px;
+    cursor:pointer;
+}
+
 .indexmodu6 {
     padding-bottom:50px;
 }
@@ -11319,15 +11336,15 @@ p.introtitle {
     margin-bottom:25px;
 }
 .usercontitle a{font-size:14px;color:#ff0000;margin-left:5px;}
-.userconp {font-size:14px;color:#000;height:66px;}
+.userconp {font-size:14px;color:#000;height:67px;}
 .userconp .userconpl {width:70px;text-align:right;display:block;height:40px;line-height:40px;padding-right:20px;}
 .userconli {width:300px;vertical-align: top;}
 .userconli span{font-size:12px !important;}
-.userconp input {height:38px;line-height:38px;font-size:14px;border:1px solid #ccc;width:295px;}
+.userconp input {height:38px;line-height:38px;font-size:14px;border:1px solid #ccc;width:295px;text-indent: 10px;}
 .userconp input.userconma {width:140px;margin-right:10px;}
 .userconp input.userconbu {background-color:#7abef6;border:0px;color:#fff;height:45px;line-height:45px;font-size:22px;border-radius: 3px;}
 .userconp input.redchu {background-color:#f2474c;}
-.userconp input.userconmacode {width:140px;height:42px;line-height:40px;}
+.userconp .userconmacode {width:140px;height:42px;line-height:40px;border:1px solid #ccc;background-color:#fff;}
 .userconright {width:504px;height:413px;background-image:url(../images/wycms/registerright.png);margin-right:90px;margin-top:30px;}
 .userconright img {margin-top:140px;margin-left:175px;}
 
@@ -11335,3 +11352,23 @@ p.introtitle {
 .userfooter header {width:1200px;margin:0 auto;text-align: center;margin-top:30px;}
 .forgetpaw {float:left;color:#f2474c;}
 .nowregister {float:right;color:#f5a100;}
+
+
+#Dtop {
+    background-color: #fff;
+    border: 1px solid #125adc;
+    box-shadow: 0 0 3px #0e48b0;
+    padding: 10px;
+}
+
+#Dtop .dhead {
+    background-color: #ccc;
+}
+#Dtop tr {height:30px;}
+#Dtop .btn {
+    border:1px solid #7abef6;
+    padding:1px 6px;
+    background-color:#7abef6;
+    color:#fff;
+}
+.Validform_checktip {padding-left:5px;}

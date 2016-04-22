@@ -29,6 +29,7 @@ if($submit) {
     set_cookie('forward_url', $forward);
     $seo_title = '登录-';
     $nav_selected = 'login';
+    $two_nav_selected = '登录';
     include template('login', $module);
 }
 ?>

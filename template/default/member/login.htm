@@ -1,26 +1,27 @@
 {template 'header','member'}
 <section class="usercon">
     <div class="clearfix usercondiv">
-        <form class="userconleft fl" style="margin-top:75px;">
+        <form class="userconleft fl" id="loginform" style="margin-top:75px;">
             <p class="usercontitle">用户登录</p>
             <p class="userconp clearfix">
                 <span class="fl userconpl" style="width:auto;">账号：</span>
                 <span class="userconli fl">
-                    <input type="text" >
-                    <span>fdf</span>
+                    <input type="text" placeholder="请输入手机号/用户名" name="username" datatype="m|s3-15" errormsg="请输入手机号/用户名">
                 </span>
             </p>
             <p class="userconp clearfix">
                 <span class="fl userconpl" style="width:auto;">密码：</span>
                 <span class="userconli fl">
-                    <input type="text" >
+                    <input  type="password" placeholder="请输入登录密码" name="password" datatype="s6-20">
                 </span>
             </p>
             <p class="userconp clearfix">
                 <span class="fl userconpl" style="width:43px;"></span>
                 <span class="userconli fl">
+                    <input type="hidden" name="submit" value="1" />
+                    <input type="hidden" name="forward" value="{$forward}" />
                     <input type="submit" class="userconbu redchu" value="马上登录"  />
-                    <em class="clearfix" style="margin-top:5px;"><a class="forgetpaw">忘记密码？</a><a class="nowregister">还没注册账号,立即注册！</a></em>
+                    <em class="clearfix" style="margin-top:5px;"><a class="forgetpaw" href="findpw.php">忘记密码？</a><a class="nowregister" href="register.php">还没注册账号,立即注册！</a></em>
                 </span>
             </p>
 
@@ -32,7 +33,7 @@
 </section>
 <script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
 <script type="text/javascript">
-    $("#form").Validform({
+    $("#loginform").Validform({
         tiptype: 3,
         postonce:true,
         ajaxPost:true,

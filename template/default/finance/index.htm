@@ -16,7 +16,7 @@
 <section class="group" style="background-color:#fff;position:relative;">
     <div  id="module1" class="g banner" style=" background: url({DT_SKIN_TWO}images/wycms/finance1.jpg) no-repeat center top;height:492px;"></div>
     <div  id="module2" class="" style=" background: url({DT_SKIN_TWO}images/wycms/finance2.jpg) no-repeat center top;height:450px;"></div>
-    <div  id="module3" style=" background: url({DT_SKIN_TWO}images/wycms/finance3.jpg) no-repeat center top;height:910px;position:relative;margin-top:70px;">
+    <div  id="module3" style=" background: url({DT_SKIN_TWO}images/wycms/finance3.jpg) no-repeat center top #7abef6;height:910px;position:relative;margin-top:70px;">
         <span class="quanclick" style="margin-top:179px;">&nbsp;</span>
         <span class="quanclick" style="margin-top:337px;">&nbsp;</span>
         <span class="quanclick" style="margin-top:492px;">&nbsp;</span>
@@ -25,14 +25,18 @@
     <div style=" background: url({DT_SKIN_TWO}images/wycms/finance7.jpg) no-repeat center top;height:565px;margin-top:60px;"></div>
     <div id="module4" style=" background: url({DT_SKIN_TWO}images/wycms/finance8.jpg) no-repeat center top;height:768px;margin-top:185px;position:relative;">
         <form class="financeform">
-            <p class="financeform-title">申请体验单</p>
+            <p class="financeform-title">融资申请单</p>
             <div class="clearfix inputdiv">
-                <div class="fl">您的姓名：<input type="text" /></div>
-                <div class="fr">您的电话：<input type="text" /></div>
+                <div class="fl">公司名称：<input type="text" datatype="*2-50" name="title"  nullmsg="请填写公司名称" errormsg="请填写正确公司名称" maxlength="50" /></div>
+                <div class="fr">联系电话：<input type="text" datatype="mobile" name="mobile" nullmsg="请填写联系电话" errormsg="请填写正确联系电话" /></div>
             </div>
             <div class="clearfix inputdiv">
-                <div class="fl">所在地区：<input type="text" /></div>
-                <div class="fr">您的QQ&nbsp;：<input type="text" /></div>
+                <div class="fl">公司地址：<input type="text" name="address" datatype="*2-50" nullmsg="请填写公司地址" errormsg="请填写公司地址" maxlength="0" /></div>
+                <div class="fr">
+                    申请金额：<input type="text" maxlength="10" datatype="*2-10" name="price" nullmsg="请填写申请金额" errormsg="请填写申请金额" />
+                    <br/>
+                    <span class="pricetishi">*最高不能超过500万元</span>
+                </div>
             </div>
             <div class="inputdiv clearfix textareadiv">
                 <div class="fl ">需求描述：<textarea></textarea></div>
@@ -42,4 +46,26 @@
         </form>
     </div>
 </section>
+<script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript">
+    $(".financeform").Validform({
+        tiptype: 3,
+        postonce:true,
+        ajaxPost:true,
+        beforeSubmit:function(curform){
+            getToken();
+            return true;
+        },
+        callback:function(data){
+            if(data.status=='n'){
+                alert(data.info);
+            }else{
+                window.setTimeout("locationhref('"+data.forward+"')",1000);
+            }
+        }
+    })
+    function locationhref(url){
+        location.href = url;
+    }
+</script>
 {template  'footer'}

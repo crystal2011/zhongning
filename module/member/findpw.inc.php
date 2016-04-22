@@ -30,7 +30,7 @@ if($submit) {
     );
 
     if($do->findpw($post)) {
-        exit(json_encode(array('status'=>'y', 'info' =>"重置成功,请重新登录")));
+        exit(json_encode(array('status'=>'y', 'info' =>"成功找回密码,请重新登录")));
     } else {
         exit(json_encode(array('status' => 'n', 'info' => $do->errmsg)));
     }
@@ -39,6 +39,7 @@ if($submit) {
     if($_userid) dheader($CFG['url']);
     $seo_title = '忘记密码-';
     $nav_selected = 'findpw';
+    $two_nav_selected = '忘记密码';
     include template('findpw', $module);
 }
 ?>
