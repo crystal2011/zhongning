@@ -1,22 +1,22 @@
 <?php
 defined('IN_DESTOON') or exit('Access Denied');
-require DT_ROOT.'/module/'.$module.'/common.inc.php';
-require MD_ROOT.'/member.class.php';
-require DT_ROOT.'/include/post.func.php';
-$do = new member;
-if($submit){
-    $oldpassword = isset($oldpassword)?$oldpassword:'';
-    $password = isset($password)?$password:'';
-    $repassword = isset($repassword)?$repassword:'';
-    if(!$do->is_password($oldpassword,$oldpassword) || !$do->is_password($password,$repassword)) dalert($do->errmsg,'/member/safe.php');
-    if($oldpassword==$password) dalert('新旧密码不能相同','/member/safe.php');
-    $userinfo = $do->get_one('userid='.$_userid,'password');
-    if($userinfo['password']!=md5(md5($oldpassword)))  dalert('旧密码错误','/member/safe.php');
-    $db->query("update {$db->pre}member set password = '".md5(md5($password))."' where userid = ".$_userid);
-    $do->logout();
-    dalert('修改成功','/member/login.php');
+$action = isset($action)?$action:'';
+if(!$_userid) dheader($CFG['url'].'member/login.php');
+require DT_ROOT.'/module/food/food.class.php';
+$oFood = new food(23);
+if($action=='show'){
+    $id = isset($id)?intval($id):0;
+    if(empty($id)) dalert('预约信息不存在','myorder.php');
+    $oFood->itemid = $id;
+    $info = $oFood->get_one();
+    if(!$info || $info['userid']!=$_userid) dalert('预约信息不存在','myorder.php');
+    $seo_title = '我的预约-详情-会员中心-';
+    $two_nav_selected = 'myorder';
+    include template('myordershow', $module);
 }else{
-    if(!$_userid) dheader($CFG['url']);
+
+    list($aFood,$totalpage) = $oFood->foodList('*',' userid = '.$_userid,'hits desc','10');
+
     $seo_title = '我的预约-会员中心-';
     $two_nav_selected = 'myorder';
     include template('myorder', $module);

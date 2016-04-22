@@ -742,7 +742,12 @@ footer.g .bottom img {
     position:absolute;left:50%;top:156px;width:205px;height:60px;display:block;
 }
 .financeform {width:700px;border:5px solid #61a6e6;position:absolute;top:180px;left:50%;margin-left:-390px;background-color:#fff;padding:15px 40px 40px 40px;}
-
+.financeform .Validform_checktip {
+    margin-left:77px;
+}
+.financeform input[type=text] {
+    text-indent: 5px;
+}
  .financeform .financeform-title {
     color:#4ab5ec;
      font-size:18px;
@@ -781,7 +786,7 @@ footer.g .bottom img {
     width:100%;
 }
 .financeform .textareadiv textarea {
-    width:540px;
+    width:614px;
     height:100px;
     vertical-align: top;
     border-color:#ccc;

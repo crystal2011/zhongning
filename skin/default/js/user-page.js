@@ -21,9 +21,9 @@ function pager(
     if (index < 1) {
         return;
     } else if (index == 1) {
-        createLi('', 0, 'icon-double-angle-left');
+        createLi('<', 0, 'icon-double-angle-left');
     } else {
-        createLi('', index - 1, 'icon-double-angle-left');
+        createLi('<', index - 1, 'icon-double-angle-left');
     }
     if(size==1){
         if (1 != index) {
@@ -57,8 +57,8 @@ function pager(
         }
     }
     if (index == size) {
-        createLi('', 0, 'icon-double-angle-right');
+        createLi('>', 0, 'icon-double-angle-right');
     } else if ((index < size)) {
-        createLi('', index + 1, 'icon-double-angle-right');
+        createLi('>', index + 1, 'icon-double-angle-right');
     }
 }

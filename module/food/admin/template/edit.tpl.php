@@ -36,8 +36,8 @@ show_menu($menus);
     <tr>
         <td class="tl"><span class="f_red">*</span> 申请金额</td>
         <td class="tr">
-            <input type="text" name="post[price]" id="price" size="50" maxlength="10" datatype="*2-10"  value="<?php echo $price; ?>" >
-            <span style="color:blue;">( 注：最高不能超过500万元 )</span>
+            <input type="text" name="post[price]" id="price" size="50" maxlength="9" datatype="money"  value="<?php echo $price; ?>" >
+            <span style="color:blue;">( 注:1万-1亿 纯数字 )</span>
         </td>
     </tr>
     </tbody>
@@ -48,11 +48,17 @@ show_menu($menus);
             <input type="text" name="post[month]" id="month" size="50" maxlength="10" datatype="*2-10"  value="<?php echo $month; ?>" >
         </td>
     </tr>
+    <tr>
+        <td class="tl"><span class="f_red">*</span> 有无抵押或担保</td>
+        <td class="tr">
+            <input type="text" name="post[danbao]" id="month" size="50" maxlength="50" datatype="*1-50"  value="<?php echo $danbao; ?>" >
+        </td>
+    </tr>
     </tbody>
 
     <tr>
         <td class="tl"><span class="f_hid">*</span> 其他需求描述</td>
-        <td><textarea name="post[introduce]" maxlength="200" style="width:90%;height:45px;"><?php echo $introduce;?></textarea></td>
+        <td><textarea name="post[introduce]" maxlength="200" datatype="*5-200" style="width:90%;height:45px;"><?php echo $introduce;?></textarea></td>
     </tr>
 
 
@@ -80,6 +86,13 @@ show_menu($menus);
         datatype:{
             "mobile":function(gets,obj,curform,regxp){
                 if(!is_mobile(gets) && !is_phone(gets)) return '输入错误';
+                return true;
+            },
+            "money":function(gets,obj,curform,regxp){
+                var sd = /^[1-9][0-9]{0,8}$/
+                if(!sd.test(gets) || parseInt(gets)>100000000){
+                    return false;
+                }
                 return true;
             }
         }

@@ -4,7 +4,7 @@
         {template 'left','member'}
         <section class="right-main fl">
             <section class="mh-evaluate mh-info">
-                <h2 class="mh-title">安全设置 </h2>
+                <h2 class="mh-title">我的预约 </h2>
             </section>
         </section>
         <div class="rightColumn">
@@ -14,184 +14,49 @@
                         <table>
                             <tbody>
                             <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116338.html" target="_blank" class="blue" title="">知名网站、论坛发</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116338">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116338">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116338.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116338,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116338,'demand')">刷新</a>
-                                </td>
+                                <td width="120px" class="ti">申请金额</td>
+                                <td width="150px" class="ti">申请期限</td>
+                                <td width="100px" class="ti">抵押/担保</td>
+                                <td width="300px" class="ti">需求描述</td>
+                                <td width="140px" class="ti">预约时间</td>
+                                <td width="70px" class="ti">状态</td>
+                                <td width="50px" class="ti">操作</td>
                             </tr>
+                            {if $aFood}
+                            {loop $aFood $k $v}
                             <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116337.html" target="_blank" class="blue" title="">北京各大论坛发布</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116337">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116337">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116337.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116337,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116337,'demand')">刷新</a>
-                                </td>
+                                <td width="120px" class="ti">{$v['price']}</td>
+                                <td width="150px" class="ti">{$v['month']}</td>
+                                <td width="100px" class="ti" title="{$v['danbao']}">{dsubstr($v['danbao'],16,'...')}</td>
+                                <td width="300px" class="ti" title="{$v['introduce']}">{dsubstr($v['introduce'],34,'...')}</td>
+                                <td width="140px" class="ti">{date('Y-m-d H:i',$v['addtime'])}</td>
+                                <td width="70px" class="ti">审核中</td>
+                                <td width="50px" class="ti"><a href="?action=show&id={$v['itemid']}" class="blue" target="_blank">查看</a></td>
                             </tr>
-                            <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116336.html" target="_blank" class="blue" title="">去相关论坛和贴吧</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116336">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116336">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116336.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116336,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116336,'demand')">刷新</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116335.html" target="_blank" class="blue" title="">咔咔寿减肥排毒养</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116335">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116335">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116335.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116335,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116335,'demand')">刷新</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116334.html" target="_blank" class="blue" title="">陆金所注册绑卡成</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116334">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116334">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116334.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116334,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116334,'demand')">刷新</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116333.html" target="_blank" class="blue" title="">【0.8元一贴】【1</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116333">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116333">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116333.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116333,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116333,'demand')">刷新</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116332.html" target="_blank" class="blue" title="">注册成功后截图就</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116332">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116332">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116332.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116332,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116332,'demand')">刷新</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116331.html" target="_blank" class="blue" title="">【论坛发帖宣传推</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116331">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116331">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116331.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116331,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116331,'demand')">刷新</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116330.html" target="_blank" class="blue" title="">法国AL面膜【推广</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116330">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116330">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116330.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116330,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116330,'demand')">刷新</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="188px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116329.html" target="_blank" class="blue" title="">论坛、贴吧或者博</a></td>
-                                <td width="140px" class="ti"></td>
-                                <td width="140px" class="ti">预算面议</td>
-                                <td width="88px" class="ti">长期有效</td>
-                                <td width="88px" class="ti"><a href="demand_message.php?action=demand&amp;itemid=116329">反馈0条</a></td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" href="demand_edit.php?action=demand&amp;itemid=116329">修改</a>
-                                </td>
-                                <td width="88px" class="ti"><a href="http://fuwu.shang.cn/xuqiu/116329.html" class="blue" target="_blank">查看</a></td>
-                                <td width="88px" class="ti">
-                                    <a href="javascript:;" class="blue" onclick="off(116329,'demand')">下架</a>
-                                </td>
-                                <td width="88px" class="ti">
-                                    <a class="blue" onclick="sort(116329,'demand')">刷新</a>
-                                </td>
-                            </tr>
+                            {/loop}
+                            {/if}
                             </tbody>
                         </table>
+                        {if $aFood}
                         <div class="pageIcons">
-                            <div class="iconWrap iconWrap1"><a class="icon-double-angle-left"></a><a class="active">1</a><a pagenum="2" href="/member/demand.php?demand_page=2&amp;nowdemand=1">2</a><a pagenum="3" href="/member/demand.php?demand_page=3&amp;nowdemand=1">3</a><a pagenum="4" href="/member/demand.php?demand_page=4&amp;nowdemand=1">4</a><a class="icon-double-angle-right" pagenum="2" href="/member/demand.php?demand_page=2&amp;nowdemand=1"></a></div>
+                            <div class="iconWrap">
+                            </div>
                         </div>
+                        {/if}
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </section>
+<script src="{DT_SKIN}js/user-page.js"></script>
+<script>
+    $(function() {
+        pager({$page}, {$totalpage}, 'iconWrap');
+        $(".iconWrap a[pagenum]").each(function (k, v) {
+            var url = '?page=' + $(this).attr('pagenum');
+            $(this).attr('href', url);
+        });
+    })
+</script>
 {template 'footer','member'}

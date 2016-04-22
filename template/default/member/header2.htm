@@ -414,7 +414,7 @@
 <body>
 <section class="usertop">
     <header class="clearfix">
-        <a href="/" class="fl"><img  class="userlogo"  src="{DT_SKIN_TWO}images/wycms/logo.png" alt=""></a>
+        <a href="/" class="fl"><img  class="userlogo"  src="{$DT['logo']}" alt=""></a>
         <span class="fl topsane">会员中心</span>
         <span class="fr topphone"><img src="{DT_SKIN_TWO}images/wycms/userphone2.png" />咨询热线：{$DT['telephone']}</span>
     </header>
@@ -436,8 +436,8 @@
                 <img src="{DT_SKIN_TWO}images/wycms/wap.png" class="erweim" />
             </li>
             <li class="money fr">
-                <p>您已预约 0 次</p>
-                <p>您已申请 0 次</p>
+                <p>您已预约 {$_myorder} 次</p>
+                <p>您已申请 {$_myapply} 次</p>
             </li>
         </ul>
     </header>

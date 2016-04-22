@@ -20,7 +20,7 @@ $aSell = $oSell->sellLists('*',' status=3 ','addtime desc','6');
 require_once 'module/article/article.class.php';
 $oArticle = new article(21);
 $mygetcount = false;
-$pagesize = 5;
+$pagesize = 6;
 $aArticleHasThumb = $oArticle->get_list("status = 3 and thumb != ''"); //最新有图
 $snd = '';
 if($aArticleHasThumb){

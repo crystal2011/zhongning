@@ -20,6 +20,16 @@ class member {
         $this->falt = 'shixun';
     }
 
+    function addMyOrder(){
+        global $_userid;
+        $this->db->query("update {$this->table_member} set myorder = myorder + 1 where userid = ".$_userid);
+    }
+
+    function addMyApply(){
+        global $_userid;
+        $this->db->query("update {$this->table_member} set myapply = myapply + 1 where userid = ".$_userid);
+    }
+
     function editHits(){
         $this->db->query("update {$this->table_member} set hits = hits + 1 where userid = $this->userid");
     }

@@ -18,7 +18,7 @@ class food {
 		$this->split = '';
 		$this->db = &$db;
 
-		$this->fields = array('level','title','price','userid','addtime','edittime','status','introduce','address','month','mobile');
+		$this->fields = array('level','title','danbao','price','userid','addtime','edittime','status','introduce','address','month','mobile');
 
     }
 
@@ -34,9 +34,10 @@ class food {
         if(!is_length($post['title'],2,50)) return $this->_('公司名称输入有误');
         if(!is_mobile($post['mobile']) && !is_phone($post['mobile'])) return $this->_('联系电话输入有误');
         if(!is_length($post['address'],2,50)) return $this->_('公司地址输入有误');
-        if(!is_length($post['price'],2,10)) return $this->_('申请金额输入有误');
+        if(!preg_match('/[1-9][0-9]{0,8}/',$post['price']) || $post['price']>100000000) return $this->_('申请金额输入有误');
         if(!is_length($post['month'],2,10)) return $this->_('申请期限输入有误');
-        if($post['introduce']!='' && !is_length($post['introduce'],1,200)) return $this->_('单位输入有误');
+        if(!is_length($post['danbao'],1,50)) return $this->_('有无担保或期限输入有误');
+        if(!is_length($post['introduce'],5,200)) return $this->_('单位输入有误');
 		return $post;
 	}
 
@@ -107,9 +108,9 @@ class food {
 		$this->itemid = $this->db->insert_id();
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
-
-		clear_upload($post['content'].$post['thumb'], $this->itemid);
-        addPublishs($post['userid']);
+        require_once DT_ROOT.'/module/member/member.class.php';
+        $oMember = new member;
+        $oMember->addMyOrder();
 		return $this->itemid;
 	}
 
@@ -124,7 +125,6 @@ class food {
 	    $this->db->query("UPDATE {$this->table} SET $sql WHERE itemid=$this->itemid");
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
-		clear_upload($post['content'].$post['thumb'], $this->itemid);
 		return true;
 	}
 
