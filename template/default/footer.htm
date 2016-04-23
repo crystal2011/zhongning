@@ -79,18 +79,5 @@
         </div>
     </div>
 </footer>
-
-<script>
-    //暂时没用。。。。。。。。。。。。。。。。。。。。
-    $(document).ready(function() {
-        $('.tags-box a').on('click', function(event) {
-            var $tagName = $(this).html();
-            $.post('http://www.lawyermarketing.cn/index.php', {tag: $tagName}, function(data, textStatus, xhr) {
-                window.location.href = 'http://www.lawyermarketing.cn/index.php?q=' + $tagName + '&m=search&c=index&a=init&typeid=&siteid=1';
-            });
-        });
-    });
-</script>
-
 </body>
 </html>

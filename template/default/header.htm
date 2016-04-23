@@ -25,6 +25,12 @@
         $(".fa-qrcode").click(function(){
             $(".toptwo").toggle();
         })
+        //头部登录检测
+        if(isLogin(1)){
+            $("#loginshowlis").html('<a href="{$CFG[url]}member/index.php">会员中心&nbsp;</a>');
+        }else{
+            $("#loginshowlis").html('<a href="{$CFG[url]}member/register.php">注册&nbsp;</a><a>|</a>&nbsp;<a href="{$CFG[url]}member/login.php">登录</a>');
+        }
     })
 </script>
 <body>
@@ -35,13 +41,7 @@
             <a href="" class="social"><i class="fa fa-wechat"></i></a>
             <a href="" class="social"><i class="fa fa-weibo"></i></a>
             <a href="javascript:;" class="social qrcode"><i class="fa fa-qrcode"></i></a>
-            <div class="login">
-                {if $_userid}
-                <a href="{$CFG['url']}member/index.php">会员中心&nbsp;</a>
-                {else}
-                <a href="{$CFG['url']}member/register.php">注册&nbsp;</a><a>|</a>&nbsp;<a href="{$CFG['url']}member/login.php">登录</a>
-                {/if}
-            </div>
+            <div class="login" id="loginshowlis"></div>
             <div class="toptwo">
                 <img src="{DT_SKIN_TWO}images/wycms/wap.png"  />
                 <p>扫描关注</p>
@@ -84,7 +84,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='finance'}now{/if}" >融资业务<small>INVESTMENT</small><span></span></a>
+                        <a href="javascript:void(0)"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='finance'}now{/if}" >融资业务<small>FINANCING</small><span></span></a>
                         <div class="menu-box menu2">
                             <div class="box">
                                 <dl>
@@ -110,7 +110,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='invest'}now{/if}" >投资理财<small>FINANCING</small><span></span></a>
+                        <a href="javascript:void(0)"  class="frist nav-menu {if isset($nav_selected) && $nav_selected=='invest'}now{/if}" >投资理财<small>INVESTMENT</small><span></span></a>
                         <div class="menu-box menu3">
                             <div class="box">
                                 <dl>

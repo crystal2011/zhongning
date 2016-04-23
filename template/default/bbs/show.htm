@@ -1,0 +1,40 @@
+{template  'header'}
+<section class="group" style="background-color:#fff;position:relative;">
+    <div  id="module1" class="g banner" style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
+</section>
+<div class="container school">
+    <div class="school-left details">
+        <div class="big-article">
+            <h2>
+                <span style="color:#000;">{$info['title']}</span>
+                <span class="info">公告时间：{date('Y-m-d',$info['addtime'])}&nbsp;&nbsp;点击：{$info['hits']} 次</span>
+            </h2>
+            <p>{$info['content']}</p>
+        </div>
+    </div>
+    <div class="school-right">
+        <div class="container school">
+            <h3>最新公告<a style="margin-left:130px;font-size:12px;color:#666666;" href="/bbs/index.php">更多>></a></h3>
+            <ul class="article-hot">
+                {if $aNewArticle}
+                {loop $aNewArticle $k $v}
+                <li><a href="show.php?id={$v['itemid']}" title="{$v['title']}">{$v['title']}</a></li>
+                {/loop}
+                {/if}
+            </ul>
+        </div>
+    </div>
+    <div class="school-right">
+        <div class="container school">
+            <h3>热门公告<a style="margin-left:130px;font-size:12px;color:#666666;" href="/bbs/index.php">更多>></a></h3>
+            <ul class="article-hot">
+                {if $aHotArticle}
+                {loop $aHotArticle $k $v}
+                <li><a href="show.php?id={$v['itemid']}" title="{$v['title']}">{$v['title']}</a></li>
+                {/loop}
+                {/if}
+            </ul>
+        </div>
+    </div>
+</div>
+{template  'footer'}

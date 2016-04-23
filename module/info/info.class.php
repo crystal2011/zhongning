@@ -17,18 +17,14 @@ class info {
 		$this->table_data = $table_data;
 		$this->split = '';
 		$this->db = &$db;
-		$this->fields = array('catid','level','code','title','style','fee','introduce','n1','n2','n3','v1','v2','v3','totime','areaid','thumb','thumb1','thumb2','status','hits','username','addtime','adddate','editor','edittime','editdate','ip','template','islink', 'linkurl','filepath','note','company','truename','telephone','mobile','address','email','msn','qq','ali','skype');
+		$this->fields = array('level','title','introduce','thumb','status','hits','addtime','adddate','edittime','editdate');
     }
 
 	function pass($post) {
 		global $DT_TIME, $MOD;
 		if(!is_array($post)) return false;
-
         if(!is_length($post['title'],2,50)) return $this->_('标题输入有误');
         if(!is_url($post['thumb'])) return $this->_('图片上传有误');
-        $areainfo = get_area($post['areaid']);
-        if(!$areainfo || count(explode(',',$areainfo['arrparentid']))<2) return $this->_('地区选择有误');
-
 		if(DT_MAX_LEN && strlen($post['content']) > DT_MAX_LEN) return $this->_(lang('message->pass_max'));
 		return true;
 	}
@@ -289,10 +285,10 @@ class info {
 
     function checkInfo($aInfo){
         if(!$aInfo){
-            return $this->_('羊角会信息不存在');
+            return $this->_('动态信息不存在');
         }
         if($aInfo['status']!=3){
-            return $this->_('羊角会信息已下架');
+            return $this->_('动态信息已下架');
         }
         return true;
     }

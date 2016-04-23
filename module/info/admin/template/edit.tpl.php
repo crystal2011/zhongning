@@ -20,10 +20,6 @@ show_menu($menus);
         <td class="tl"><span class="f_red">*</span> 图片</td>
         <td><input name="post[thumb]" id="thumb" type="text" size="60" datatype="url" nullmsg="请上传图片" errormsg="请上传图片" value="<?php echo $thumb;?>"/>&nbsp;&nbsp;<span onclick="Dthumb(<?php echo $moduleid;?>,'','', Dd('thumb').value,true);" class="jt">[上传]</span>&nbsp;&nbsp;<span onclick="_preview(Dd('thumb').value);" class="jt">[预览]</span>&nbsp;&nbsp;<span onclick="Dd('thumb').value='';" class="jt">[删除]</span><span id="dthumb" class="f_red"></span></td>
     </tr>
-    <tr>
-        <td class="tl"><span class="f_red">*</span> <?php echo $MOD['name'];?>区域</td>
-        <td class="tr"><?php echo ajax_area_select('post[areaid]', '请选择', $areaid,'data-type="1"  isarea = "1"');?> <span id="dareaid" class="f_red"></span><span class="Validform_checktip"></span></td>
-    </tr>
 <tr>
 <td class="tl"><span class="f_hid">*</span> 详细说明</td>
 <td><textarea name="post[content]" id="content" class="dsn"><?php echo $content;?></textarea>

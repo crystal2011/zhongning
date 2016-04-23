@@ -244,19 +244,10 @@ class ad {
     function getAdAllFlash($ad){
         global $DT_TIME;
         $list = $this->getAdList('pid='.$ad.' and status = 3 and fromtime < '.$DT_TIME.' and '.$DT_TIME.' < totime','*');
-        $str = '';
-
-        if($list){
-            foreach($list as $k=>$v){
-                $image_src = $v['image_src'];
-                $text_url = $v['text_url'];
-                $text_title = $v['title'];
-                $str .= '<li><a href="'.$text_url.'" title="'.$text_title.'" target="_blank"><img src="'.$image_src.'" width="728" height="333" /></a></li>';
-
-            }
-        }
-        return $str;
+        return $list;
     }
+
+
 	function add($ad) {
 		$ad = $this->set_ad($ad);
 		$sqlk = $sqlv = '';

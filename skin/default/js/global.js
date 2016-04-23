@@ -43,7 +43,7 @@ function thumbo(){
 /**
  * @name 是否登录
  */
-function isLogin(){
+function isLogin(isreturn){
     var islogin = false;
     $.ajax({
         type:'post',
@@ -52,7 +52,11 @@ function isLogin(){
         dataType:'json',
         success:function(data){
             if(data.status=='n'){
-                alert('请先登录');
+                if(isreturn==1){
+                    alert('请先登录');
+                }else{
+                    islogin = false;
+                }
             }else{
                 islogin = true;
             }

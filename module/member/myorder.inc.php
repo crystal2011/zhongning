@@ -15,7 +15,7 @@ if($action=='show'){
     include template('myordershow', $module);
 }else{
 
-    list($aFood,$totalpage) = $oFood->foodList('*',' userid = '.$_userid,'hits desc','10');
+    list($aFood,$totalpage) = $oFood->foodList('*',' userid = '.$_userid,'addtime desc','10');
 
     $seo_title = '我的预约-会员中心-';
     $two_nav_selected = 'myorder';

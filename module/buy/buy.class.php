@@ -34,15 +34,24 @@ class buy {
         if(!is_mobile($post['mobile'])) return $this->_('联系手机输入有误');
         $post['sell_itemid'] = intval($post['sell_itemid']);
 
-        //检测投资项目是否可投资
-        require_once DT_ROOT . '/module/sell/sell.class.php';
-        $oSell = new sell(5);
-        $oSell->itemid = $post['sell_itemid'];
-        $aSell = $oSell->get_one();
-        if(!$oSell->checkSell($aSell)) return $this->_($oSell->errmsg);
-
-
-        if(!is_length($post['price'],2,10)) return $this->_('投资金额输入有误');
+        if(!$this->itemid){
+            //添加时 检测投资项目是否可投资
+            require_once DT_ROOT . '/module/sell/sell.class.php';
+            $oSell = new sell(5);
+            $oSell->itemid = $post['sell_itemid'];
+            $aSell = $oSell->get_one();
+            if(!$oSell->checkSell($aSell)) return $this->_($oSell->errmsg);
+        }else{ //编辑时  项目id改变检测
+            $info = $this->get_one();
+            if($info['sell_itemid'] != $post['sell_itemid']){
+                require_once DT_ROOT . '/module/sell/sell.class.php';
+                $oSell = new sell(5);
+                $oSell->itemid = $post['sell_itemid'];
+                $aSell = $oSell->get_one();
+                if(!$oSell->checkSell($aSell)) return $this->_($oSell->errmsg);
+            }
+        }
+        if(!preg_match('/[1-9][0-9]{0,8}/',$post['price']) || $post['price']>100000000 || $post['price']<30000) return $this->_('投资金额输入有误');
         if(!is_length($post['month'],2,10)) return $this->_('投资期限输入有误');
         if($post['bonding'] != 0 && $post['bonding'] != 1) return $this->_('是否有担保选择有误');
         return $post;
@@ -50,16 +59,7 @@ class buy {
 
 	function set($post) {
 		global $MOD, $DT_TIME, $DT_IP, $TYPE, $_username, $_userid;
-		is_url($post['thumb']) or $post['thumb'] = '';
-		$post['addtime'] = $DT_TIME;
 		$post['edittime'] = $DT_TIME;
-        $post['content'] = stripslashes($post['content']);
-        $post['content'] = save_local($post['content']);
-        if(isset($post['clear_link']) && $post['clear_link']) $post['content'] = clear_link($post['content']);
-        if(isset($post['save_remotepic']) && $post['save_remotepic']) $post['content'] = save_remote($post['content']);
-        if(strpos($post['content'], 'pagebreak') !== false) $post['content'] = str_replace(array('<hr class="de-pagebreak" /></p>', '<p><hr class="de-pagebreak" />', '<hr class="de-pagebreak" /></div>', '<div><hr class="de-pagebreak" />'), array('</p><hr class="de-pagebreak" />', '<hr class="de-pagebreak" /><p>', '</div><hr class="de-pagebreak" />', '<hr class="de-pagebreak" /><div>'), $post['content']);
-        if($post['content'] && empty($post['introduce'])) $post['introduce'] = addslashes(get_intro($post['content'], isset($post['introduce_length']) && $post['introduce_length']?$post['introduce_length']:200));
-
         if($this->itemid) {
 			$new = $post['content'];
 			if($post['thumb']) $new .= '<img src="'.$post['thumb'].'"/>';
@@ -71,23 +71,12 @@ class buy {
             $post['addtime'] = $DT_TIME;
             $post['status'] = isset($post['status'])?$post['status']:3;
 		}
-		$content = $post['content'];
-		unset($post['content']);
-		$post = dhtmlspecialchars($post);
-		$post['content'] = addslashes(dsafe($content));
 		return array_map("trim", $post);
 	}
 
 	function get_one() {
 		$r = $this->db->get_one("SELECT * FROM {$this->table} WHERE itemid=$this->itemid");
-		if($r) {
-			$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
-			$t = $this->db->get_one("SELECT content FROM {$content_table} WHERE itemid=$this->itemid");
-			$r['content'] = $t ? $t['content'] : '';
-			return $r;
-		} else {
-			return array();
-		}
+        return $r;
 	}
 
 	function get_list($condition = 'status=3', $order = 'addtime DESC', $cache = '') {
@@ -119,10 +108,6 @@ class buy {
         $sqlv = substr($sqlv, 1);
 		$this->db->query("INSERT INTO {$this->table} ($sqlk) VALUES ($sqlv)");
 		$this->itemid = $this->db->insert_id();
-		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
-		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
-		clear_upload($post['content'].$post['thumb'], $this->itemid);
-        addPublishs($post['userid']);
 		return $this->itemid;
 	}
 
@@ -135,9 +120,6 @@ class buy {
 		}
         $sql = substr($sql, 1);
 	    $this->db->query("UPDATE {$this->table} SET $sql WHERE itemid=$this->itemid");
-		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
-		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
-		clear_upload($post['content'].$post['thumb'], $this->itemid);
 		return true;
 	}
 

@@ -1,0 +1,78 @@
+{template  'header'}
+<section class="group" style="background-color:#fff;position:relative;">
+    <div  id="module1" class="g banner" style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
+</section>
+<section class="system">
+    <div class="container">
+        <div class="investinfo">
+            <table>
+                <tr><td class="infofl">融资企业：</td><td colspan="3">{$info['company']}</td></tr>
+                <tr><td class="infofl">融资金额：</td><td class="infoflbig">{$info['price']}</td><td class="infofl">融资期限：</td><td>{$info['month']}</td></tr>
+                <tr><td class="infofl">融资原因：</td><td class="infoflbig">{$info['reason']}</td><td class="infofl">投资利息：</td><td>{$info['fee']}</td></tr>
+                <tr><td class="infofl">担保公司：</td><td colspan="3">{$info['bonding']}</td></tr>
+            </table>
+            <div class="investtitle"><span>{$info['title']}</span></div>
+        </div>
+        <div class="investcon">
+            <div class="investtitle"><span>项目简介</span></div>
+            <div class="investcontent">{$info['content']}</div>
+            <div class="investform">
+                <form id="investformcon">
+                    <p class="investformtitle">我要投资</p>
+                    <div class="investformcon">
+                        <p><span class="formleft">真实姓名：</span><input type="text" name="title" id="title" datatype="*2-5" maxlength="5" nullmsg="请输入真实姓名" errormsg="真实姓名输入有误" ></p>
+                        <p><span class="formleft">联系手机：</span><input name="mobile" type="text" id="mobile" datatype="m" nullmsg="请输入联系手机" errormsg="联系手机输入有误"></p>
+                        <p><span class="formleft">投资金额：</span><input name="price" type="text" id="price" datatype="money" nullmsg="请输入3万-1亿的金额" errormsg="请输入3万-1亿的金额" maxlength="9"  ></p>
+                        <div style="margin-left:105px;font-size:14px;font-size:12px;margin-bottom:7px;color:#00467f;">注：最低限额3万元</div>
+                        <p><span class="formleft">投资期限：</span><input name="month" type="text" id="month" datatype="*2-10" maxlength="10" nullmsg="请输入投资期限" errormsg="投资期限有误"  ></p>
+                        <p><span class="formleft">是否有担保或抵押：</span><label class="bonding"><input type="radio" name="bonding" value="1" checked  >是 </label><label  class="bonding"><input name="bonding" type="radio" value="0" >否</label></p>
+                    </div>
+                    <p class="investformbtn">
+                        <input type="submit" value="提交申请" class="investformsum" />
+                        <input type="hidden" name="submit" value="1" />
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
+<link rel="styleSheet" href="{DT_SKIN}js/layer/skin/layer.css">
+<script src="{DT_SKIN}js/layer/layer.js"></script>
+<script type="text/javascript">
+    $("#investformcon").Validform({
+        tiptype: 3,
+        ajaxPost:true,
+        datatype:{
+            "mobile":function(gets,obj,curform,regxp){
+                if(!is_mobile(gets)) return false;
+                return true;
+            },
+            "money":function(gets,obj,curform,regxp){
+                var sd = /^[1-9][0-9]{0,8}$/
+                var s = parseInt(gets)
+                if(!sd.test(gets) || s>100000000 || s<30000){
+                    return false;
+                }
+                return true;
+            }
+        },
+        beforeSubmit:function(curform){
+            getToken();
+            return true;
+        },
+        callback:function(data){
+            if(data.status=='y'){
+                layer.msg(data.info);
+                $("#investformcon")[0].reset();
+                $("input[name='submit']").val(1);
+                $(".Validform_checktip").remove();
+            }else if(data.status=='n'){
+                layer.msg(data.info);
+            }
+        }
+    })
+
+</script>
+
+{template  'footer'}

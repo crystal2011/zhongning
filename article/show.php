@@ -28,9 +28,20 @@ if($info['keyword']){
 }
 $aLikeArticle = $oArticle->getright('title,itemid',10,'addtime desc',$anwhere); //感兴趣
 
+require_once '../module/extend/ad.class.php';
+$oAd = new ad;
+$oAd->aid = 54;
+$aAd = $oAd->get_one();
+if($aAd){
+    $oAd->pid = $aAd['pid'];
+    $pAd = $oAd->get_one_place();
+}else{
+    $pAd['height'] = 0;
+}
+
 
 $arkey = '';
-$seo_title = '资讯详情-';
+$seo_title = $info['title'].'-资讯-';
 $nav_selected = 'article';
 include template('show', 'article');
 ?>

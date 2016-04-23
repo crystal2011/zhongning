@@ -1,21 +1,14 @@
 {template  'header'}
-<section class="group" style="background-color:#fff;position:relative;">
-    <div  id="module1" class="g banner" style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
-</section>
-    <div class="container school">
+{template  'commontop','abouts'}
+<div class="container school" style="margin-top:80px;">
     <div class="school-left">
-        {if $aArticle}
-        {loop $aArticle $k $v}
+        {if $aInfo}
+        {loop $aInfo $k $v}
         <article>
             <a href="show.php?id={$v['itemid']}" class="img-box" title="{$v['title']}"><img src="{$v['thumb']}" alt=""></a>
             <h3><a href="show.php?id={$v['itemid']}" title="{$v['title']}">{$v['title']}</a></h3>
             <span class="info">发表于：{date('Y-m-d',$v['addtime'])}</span>
             <p>{$v['introduce']}</p>
-                <span class="info">关键词：
-                    <a href="index.php?arkey={$v['keyword']}">
-                        <mark>{$v['keyword']}</mark>
-                    </a>
-                </span>
         </article>
         {/loop}
         <div class="page-box" style="clear:both;margin-bottom:35px;margin-top:40px;">
@@ -24,7 +17,16 @@
         {/if}
 
     </div>
-        {template  'right','article'}
+    <div class="school-right">
+        <h3>热门动态</h3>
+        <ul class="article-hot">
+            {if $aHotArticle}
+            {loop $aHotArticle $k $v}
+            <li><a href="show.php?id={$v['itemid']}" target="_blank"  title="{$v['title']}">{$v['title']}</a></li>
+            {/loop}
+            {/if}
+        </ul>
+    </div>
 </div>
 
 <script src="{DT_SKIN}js/pager.js"></script>
@@ -33,7 +35,7 @@
     $(".pager li").click(function(){
         var pagenum = $(this).attr('pagenum');
         if(typeof(pagenum)!='undefined'){
-            location.href = 'index.php?arkey={$arkey}&page='+pagenum;
+            location.href = 'news.php?page='+pagenum;
         }
     })
 </script>

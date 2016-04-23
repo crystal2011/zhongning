@@ -7,7 +7,7 @@
                 <h2 class="mh-title">我的预约 </h2>
             </section>
         </section>
-        <div class="rightColumn">
+        <div class="rightColumn" style="height:420px;">
             <div class="column">
                 <div class="columnCont deManage">
                     <div style="display:block" class="showBox">
@@ -18,7 +18,7 @@
                                 <td width="150px" class="ti">申请期限</td>
                                 <td width="100px" class="ti">抵押/担保</td>
                                 <td width="300px" class="ti">需求描述</td>
-                                <td width="140px" class="ti">预约时间</td>
+                                <td width="140px" align="center" class="ti">预约时间</td>
                                 <td width="70px" class="ti">状态</td>
                                 <td width="50px" class="ti">操作</td>
                             </tr>
@@ -29,9 +29,9 @@
                                 <td width="150px" class="ti">{$v['month']}</td>
                                 <td width="100px" class="ti" title="{$v['danbao']}">{dsubstr($v['danbao'],16,'...')}</td>
                                 <td width="300px" class="ti" title="{$v['introduce']}">{dsubstr($v['introduce'],34,'...')}</td>
-                                <td width="140px" class="ti">{date('Y-m-d H:i',$v['addtime'])}</td>
+                                <td width="140px" align="center" class="ti">{date('Y-m-d H:i',$v['addtime'])}</td>
                                 <td width="70px" class="ti">审核中</td>
-                                <td width="50px" class="ti"><a href="?action=show&id={$v['itemid']}" class="blue" target="_blank">查看</a></td>
+                                <td width="50px" class="ti"><a href="?action=show&id={$v['itemid']}" class="blue" >查看</a></td>
                             </tr>
                             {/loop}
                             {/if}

@@ -34,6 +34,14 @@ $pagesize = 5;
 $aArticleNews = $oArticle->get_list("status = 3 ".$snd); //最新没上面
 
 
+//广告Flash
+require_once 'module/extend/ad.class.php';
+$oAd = new ad;
+$sAdPlaceHot = $oAd->getAdAllFlash(37);
+$oAd->pid = 37;
+$aAd = $oAd->get_one_place();
+
+
 $seo_title = '';
 $nav_selected = 'index';
 include template('index');

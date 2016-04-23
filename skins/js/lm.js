@@ -206,20 +206,7 @@
             var $index = $('.solutions-btn').index(this);
             $('.solutions_popup').eq($index).show();
         });
-        /*客户案例nav切换*/
-        $('.case nav li').hover(function() {
-            var $index = $('.case nav li').index(this);
-            $(this).addClass('cur').siblings().removeClass('cur');
-            $('.case .main').eq($index).show().siblings('.main').hide();
-        });
-        /*客户案例banner切换*/
-        $('.case-lawer').hover(function() {
-            $(this).addClass('cur').siblings('.case-lawer').removeClass('cur');
-            var $index = $('.case-lawer').index(this);
-            var srcAdd = 'http://www.lawyermarketing.cn/skins/images/wycms/caselawer' + $index + 'big.png';
-            $('.lawer-big img').attr('src', srcAdd);
-            $('.tab-box .title').eq($index).addClass('cur').siblings('.title').removeClass('cur');
-        });
+
         /*关于我们导航*/
         function navLeft() {
             var $navLeft = $(window).width() / 2 + 500 + 'px';

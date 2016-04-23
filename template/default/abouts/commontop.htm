@@ -1,11 +1,23 @@
-<div class="g banner about">
+<?php
+    require_once DT_ROOT.'/module/extend/ad.class.php';
+    $oAd = new ad;
+    $oAd->aid = 51;
+    $aAd = $oAd->get_one();
+    if($aAd){
+    $oAd->pid = $aAd['pid'];
+    $pAd = $oAd->get_one_place();
+    }else{
+    $pAd['height'] = 0;
+    }
+?>
+<div class="g banner about" style="height: {$pAd['height']}px;background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;">
     <div class="container">
         <nav>
-            <a href="{$CFG['url']}about/compintro.html" {if $two_nav_selected=='compintro'}class="cur"{/if}><span>公司介绍</span></a>
-            <a href="{$CFG['url']}about/advantage.html" {if $two_nav_selected=='advantage'}class="cur"{/if}><span>行业优势</span></a>
-            <a href="{$CFG['url']}about/news.html" {if $two_nav_selected=='news'}class="cur"{/if}><span>公司动态</span></a>
-            <a href="{$CFG['url']}about/contact.html" {if $two_nav_selected=='contact'}class="cur"{/if}><span>联系我们</span></a>
-            <a href="{$CFG['url']}about/joinus.html" {if $two_nav_selected=='joinus'}class="cur"{/if}><span>加入我们</span></a>
+            <a href="/about/compintro.html" {if $two_nav_selected=='compintro'}class="cur"{/if}><span>公司介绍</span></a>
+            <a href="/about/advantage.html" {if $two_nav_selected=='advantage'}class="cur"{/if}><span>行业优势</span></a>
+            <a href="/abouts/news.php" {if $two_nav_selected=='news'}class="cur"{/if}><span>公司动态</span></a>
+            <a href="/about/contact.html" {if $two_nav_selected=='contact'}class="cur"{/if}><span>联系我们</span></a>
+            <a href="/about/joinus.html" {if $two_nav_selected=='joinus'}class="cur"{/if}><span>加入我们</span></a>
         </nav>
     </div>
 </div>

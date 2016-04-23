@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="http://zhongning.com/skins/css/validform.css">
     <script src="http://zhongning.com/skins/js/jquery-1.11.1.min.js"></script>
     <script src="http://zhongning.com/skins/js/lm.js"></script>
+    <script src="http://zhongning.com/skin/default/js/global.js"></script>
     <script src="http://zhongning.com/skins/js/html5shiv.js"></script>
     <script src="http://zhongning.com/skins/js/Validform_v5.3.2.js"></script>
     
@@ -24,6 +25,12 @@
         $(".fa-qrcode").click(function(){
             $(".toptwo").toggle();
         })
+        //头部登录检测
+        if(isLogin(1)){
+            $("#loginshowlis").html('<a href="http://zhongning.com/member/index.php">会员中心&nbsp;</a>');
+        }else{
+            $("#loginshowlis").html('<a href="http://zhongning.com/member/register.php">注册&nbsp;</a><a>|</a>&nbsp;<a href="http://zhongning.com/member/login.php">登录</a>');
+        }
     })
 </script>
 <body>
@@ -34,7 +41,7 @@
             <a href="" class="social"><i class="fa fa-wechat"></i></a>
             <a href="" class="social"><i class="fa fa-weibo"></i></a>
             <a href="javascript:;" class="social qrcode"><i class="fa fa-qrcode"></i></a>
-            <div class="login"> <a href="http://zhongning.com/member/register.php">注册&nbsp;</a><a>|</a>&nbsp;<a href="http://zhongning.com/member/login.php">登录</a></div>
+            <div class="login" id="loginshowlis"></div>
             <div class="toptwo">
                 <img src="http://zhongning.com/skins/images/wycms/wap.png"  />
                 <p>扫描关注</p>
@@ -44,7 +51,7 @@
     <div class="header">
         <div class="container">
             <div class="clearfix">
-                <a href="/"><img  class="header-logo" src="http://zhongning.com/skins/images/wycms/logo.png" alt=""></a>
+                <a href="/"><img  class="header-logo" src="http://zhongning.com/file/upload/201604/23/105318280.png" alt=""></a>
                 <a href="/"><img  class="header-logo header-logo-right" src="http://zhongning.com/skins/images/wycms/logoright.png" alt=""></a>
             </div>
             <nav>
@@ -55,28 +62,28 @@
                         <div class="menu-box menu1">
                             <div class="box">
                                 <dl>
-                                    <dt><a href="http://zhongning.com/abouts/compintro.php">公司介绍</a></dt>
+                                    <dt><a href="http://zhongning.com/about/compintro.html">公司介绍</a></dt>
                                 </dl>
                                 <dl>
-                                    <dt><a href="http://zhongning.com/abouts/new.php">公司动态</a></dt>
+                                    <dt><a href="http://zhongning.com/about/news.html">公司动态</a></dt>
                                 </dl>
                                 <dl>
-                                    <dt><a href="http://zhongning.com/abouts/joinus.php">加入我们</a></dt>
+                                    <dt><a href="http://zhongning.com/about/joinus.html">加入我们</a></dt>
                                 </dl>
                             </div>
                             <div class="box">
                                 <dl>
-                                    <dt><a href="http://zhongning.com/abouts/advantage.php">行业优势</a></dt>
+                                    <dt><a href="http://zhongning.com/about/advantage.html">行业优势</a></dt>
                                 </dl>
                                 <dl>
-                                    <dt><a href="http://zhongning.com/abouts/contact.php">联系我们</a></dt>
+                                    <dt><a href="http://zhongning.com/about/contact.html">联系我们</a></dt>
                                 </dl>
                             </div>
                             <img src="http://zhongning.com/skins/images/wycms/01.png"  />
                         </div>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"  class="frist nav-menu " >融资业务<small>INVESTMENT</small><span></span></a>
+                        <a href="javascript:void(0)"  class="frist nav-menu " >融资业务<small>FINANCING</small><span></span></a>
                         <div class="menu-box menu2">
                             <div class="box">
                                 <dl>
@@ -100,7 +107,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"  class="frist nav-menu " >投资理财<small>FINANCING</small><span></span></a>
+                        <a href="javascript:void(0)"  class="frist nav-menu " >投资理财<small>INVESTMENT</small><span></span></a>
                         <div class="menu-box menu3">
                             <div class="box">
                                 <dl>
@@ -124,19 +131,19 @@
                         </div>
                     </li>
                     <li><a class="frist "  href="/article/index.php">最新资讯<small>NEWS</small></a></li>
-                    <li><a class="frist " href="/question/index.php">常见问题<small>question</small></a></li>
+                    <li><a class="frist " href="http://zhongning.com/about/question.html">常见问题<small>question</small></a></li>
                 </ul>
             </nav>
         </div>
     </div>
-</header><div class="g banner about">
+</header><div class="g banner about" style="height: 400px;background: url(http://zhongning.com/file/upload/201604/23/1358325918.jpg) no-repeat center top;">
     <div class="container">
         <nav>
-            <a href="http://zhongning.com/about/compintro.html" ><span>公司介绍</span></a>
-            <a href="http://zhongning.com/about/advantage.html" ><span>行业优势</span></a>
-            <a href="http://zhongning.com/about/news.html" class="cur"><span>公司动态</span></a>
-            <a href="http://zhongning.com/about/contact.html" ><span>联系我们</span></a>
-            <a href="http://zhongning.com/abouts/joinus.php" ><span>加入我们</span></a>
+            <a href="/about/compintro.html" ><span>公司介绍</span></a>
+            <a href="/about/advantage.html" ><span>行业优势</span></a>
+            <a href="/abouts/news.php" class="cur"><span>公司动态</span></a>
+            <a href="/about/contact.html" ><span>联系我们</span></a>
+            <a href="/about/joinus.html" ><span>加入我们</span></a>
         </nav>
     </div>
 </div><div class="about-main common">
@@ -152,11 +159,11 @@
                         <img src="http://zhongning.com/skins/images/wycms/footerr1.png" /> 关于我们
                     </div>
                     <ul>
-                        <li><a href="http://zhongning.com/abouts/compintro.php">公司介绍</a></li>
-                        <li><a href="http://zhongning.com/abouts/advantage.php">行业优势</a></li>
-                        <li><a href="http://zhongning.com/abouts/new.php">公司动态</a></li>
-                        <li><a href="http://zhongning.com/abouts/contact.php">联系我们</a></li>
-                        <li><a href="http://zhongning.com/abouts/joinus.php">加入我们</a></li>
+                        <li><a href="http://zhongning.com/about/compintro.html">公司介绍</a></li>
+                        <li><a href="http://zhongning.com/about/advantage.html">行业优势</a></li>
+                        <li><a href="http://zhongning.com/about/news.html">公司动态</a></li>
+                        <li><a href="http://zhongning.com/about/contact.html">联系我们</a></li>
+                        <li><a href="http://zhongning.com/about/joinus.html">加入我们</a></li>
                     </ul>
                 </div>
                 <div class="column fl">
@@ -213,16 +220,5 @@
         </div>
     </div>
 </footer>
-<script>
-    //暂时没用。。。。。。。。。。。。。。。。。。。。
-    $(document).ready(function() {
-        $('.tags-box a').on('click', function(event) {
-            var $tagName = $(this).html();
-            $.post('http://www.lawyermarketing.cn/index.php', {tag: $tagName}, function(data, textStatus, xhr) {
-                window.location.href = 'http://www.lawyermarketing.cn/index.php?q=' + $tagName + '&m=search&c=index&a=init&typeid=&siteid=1';
-            });
-        });
-    });
-</script>
 </body>
 </html>

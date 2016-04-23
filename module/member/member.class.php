@@ -30,18 +30,7 @@ class member {
         $this->db->query("update {$this->table_member} set myapply = myapply + 1 where userid = ".$_userid);
     }
 
-    function editHits(){
-        $this->db->query("update {$this->table_member} set hits = hits + 1 where userid = $this->userid");
-    }
 
-    function adddelComments($addordel){
-        if($addordel=='add'){
-            $this->db->query("update {$this->table} set comments=comments+1 where itemid = ".$this->itemid);
-        }else{
-            $this->db->query("update {$this->table} set comments=comments-1 where itemid = ".$this->itemid);
-        }
-        return true;
-    }
 
 
     function memberList($field='*',$condition='1=1',$order='hits desc',$limit=10){

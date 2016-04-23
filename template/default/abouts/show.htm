@@ -1,13 +1,11 @@
 {template  'header'}
-<section class="group" style="background-color:#fff;position:relative;">
-    <div  id="module1" class="g banner" style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
-</section>
-<div class="container school">
+{template  'commontop','abouts'}
+<div class="container school" style="margin-top:80px;">
     <div class="school-left details">
         <div class="big-article">
             <h2>
                 <span style="color:#000;">{$info['title']}</span>
-                <span class="info">发表于：{date('Y-m-d',$info['addtime'])}&nbsp;&nbsp;关键词： <a href="index.php?arkey={$info['keyword']}">{$info['keyword']}</a>&nbsp;&nbsp;点击：{$info['hits']} 次</span>
+                <span class="info">发表于：{date('Y-m-d',$info['addtime'])}&nbsp;&nbsp;点击：{$info['hits']} 次</span>
             </h2>
             <p>{$info['content']}</p>
         </div>
@@ -19,18 +17,26 @@
             <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
             <a href="#" class="bds_more" data-cmd="more"></a>
         </div>
-        <div class="nav-box">
-            <h4>你可能感兴趣的文章</h4>
-            <ul>
-                {if $aLikeArticle}
-                    {loop $aLikeArticle $k $v}
-                    <li><a href="show.php?id={$v['itemid']}" title="{$v['title']}">{$v['title']}</a></li>
-                    {/loop}
-                {/if}
-            </ul>
-        </div>
     </div>
-    {template  'right','article'}
+    <div class="school-right">
+        <h3>最新动态</h3>
+        <ul class="article-hot">
+            {if $aNewArticle}
+            {loop $aNewArticle $k $v}
+            <li><a href="show.php?id={$v['itemid']}" title="{$v['title']}">{$v['title']}</a></li>
+            {/loop}
+            {/if}
+        </ul>
+
+        <h3>热门动态</h3>
+        <ul class="article-hot">
+            {if $aHotArticle}
+            {loop $aHotArticle $k $v}
+            <li><a href="show.php?id={$v['itemid']}" title="{$v['title']}">{$v['title']}</a></li>
+            {/loop}
+            {/if}
+        </ul>
+    </div>
 </div>
 <script>
     window.onload = function() {

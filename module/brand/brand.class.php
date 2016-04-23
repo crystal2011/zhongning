@@ -260,10 +260,10 @@ class brand {
     }
     function checkJob($aBrand){
         if(!$aBrand){
-            return $this->_('优惠信息不存在');
+            return $this->_('公告信息不存在');
         }
         if($aBrand['status']!=3){
-            return $this->_('优惠信息已下架');
+            return $this->_('公告信息不存在');
         }
         return true;
     }

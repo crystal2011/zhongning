@@ -27,7 +27,6 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <option value="totime" <?php if($datetype == 'totime') echo 'selected';?>>到期日期</option>
 </select>&nbsp;
 <?php echo dcalendar('fromdate', $fromdate, '');?> 至 <?php echo dcalendar('todate', $todate, '');?>&nbsp;
-<?php echo ajax_area_select('areaid', '所在地区', $areaid);?>&nbsp;
 
 </td>
 </tr>

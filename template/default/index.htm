@@ -3,16 +3,20 @@
 <div id="slideBox" class="slideBox">
     <div class="hd">
         <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            {if $sAdPlaceHot}
+            {loop $sAdPlaceHot $k $v}
+            <li>{$k+1}</li>
+            {/loop}
+            {/if}
         </ul>
     </div>
-    <div class="bd">
+    <div class="bd" style="height:{$aAd['height']}">
         <ul>
-            <li style="background:url({DT_SKIN_TWO}images/wycms/banner.jpg) top center no-repeat"></li>
-            <li style="background:url({DT_SKIN_TWO}images/wycms/banner1.jpg) top center no-repeat"></li>
-            <li style="background:url({DT_SKIN_TWO}images/wycms/banner3.jpg) top center no-repeat"></li>
+            {if $sAdPlaceHot}
+            {loop $sAdPlaceHot $k $v}
+            <li style="background:url('{$v[flash_src]}') top center no-repeat">{if $v['flash_url']}<a href="{$v['flash_url']}" title="{$v['title']}" target="_blank" style="display:block;"></a>{/if}</li>
+            {/loop}
+            {/if}
         </ul>
     </div>
 </div>
@@ -151,7 +155,7 @@ $(document).ready(function() {
                 <div id="scroll_begin">
                     {if $aBrand}
                     {loop $aBrand $k $v}
-                    <span>{$v['title']}</span>
+                    <a href="/bbs/show.php?id={$v['itemid']}" target="_blank">{$v['title']}</a>
                     {/loop}
                     {/if}
                     <div id="scroll_end" style="filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;opacity: 0;"></div>
@@ -197,7 +201,9 @@ $(document).ready(function() {
                         <td align="center" title="{$v['reason']}">{mb_substr($v['reason'],0,4,'utf-8')}</td>
                         <td align="center">{$v['month']}</td>
                         <td>{$v['setbacks']}</td>
-                        <td><img src="{DT_SKIN_TWO}images/wycms/daitou{$v['setstatus']}.png" class="daitou{$v['setstatus']}" /></td>
+                        <td>
+                            <img src="{DT_SKIN_TWO}images/wycms/daitou{$v['setstatus']}.png" class="daitou{$v['setstatus']}" {if $v['setstatus']==0}onclick="location.href='{$CFG[url]}invest/show.php?id={$v[itemid]}'"{/if} />
+                        </td>
                     </tr>
                     {/loop}
                     {/if}

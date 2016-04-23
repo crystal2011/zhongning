@@ -745,6 +745,9 @@ footer.g .bottom img {
 .financeform .Validform_checktip {
     margin-left:77px;
 }
+.financeform .Validform_right{
+    display:none;
+}
 .financeform input[type=text] {
     text-indent: 5px;
 }
@@ -10991,7 +10994,7 @@ p.introtitle {
 #indexnotice #scroll_begin, #scroll_end {
     display: inline;
 }
-#indexnotice #scroll_begin span {
+#indexnotice #scroll_begin a {
     margin: 0 13px;
 }
 .modumoney {
@@ -11377,3 +11380,109 @@ p.introtitle {
     color:#fff;
 }
 .Validform_checktip {padding-left:5px;}
+
+.investinfo {
+    color:#7abef6;
+    border:3px solid #7abef6;
+    padding:60px 0px;
+    position:relative;
+    margin-top:70px;
+}
+.investinfo table {
+    display:block;
+}
+.investinfo td {
+    font-size:25px;
+    line-height:50px;
+}
+.investinfo .infofl {
+    width:200px;
+    text-align:right;
+}
+.investinfo .infoflbig{
+    width:350px;
+}
+.investtitle {
+    position:absolute;
+    top:0px;
+    text-align: center;
+    width:100%;
+    font-size:30px;
+    margin-top:-25px;
+}
+.investtitle span {
+    background-color:#fff;
+    padding:0px 20px;
+    color:#7abef6;
+}
+.investcon {
+    margin-top:75px;
+    border-top:1px solid #dedede;
+    position:relative;
+}
+.investcontent {
+    margin:50px 0px 60px 0px;
+}
+.investform {
+    width:770px;
+    background-color:#7abef6;
+    color:#fff;
+    margin:0 auto;
+}
+.investform .investformtitle{
+    border-bottom:1px solid #fff;
+    height:90px;
+    text-align:center;
+    font-size:30px;
+    line-height:90px;
+}
+.investformcon {
+    background-color:#68b2f4;
+    padding:55px 0px 40px 112px;
+    font-size:18px;
+}
+.investformcon p{
+    height:40px;
+    line-height:40px;
+    font-size:18px;
+    margin-bottom:10px;
+}
+.investformcon p input[type=text] {
+    background-color:#fff;
+    border:0px;
+    font-size:14px;
+    text-indent: 8px;
+    line-height:14px;
+    padding:9px 0px;
+    width:380px;
+}
+.investformcon p label {
+    margin-right:20px;
+}
+.investform .investformbtn{
+    border-top:1px solid #fff;
+    height:130px;
+    text-align:center;
+}
+.investformcon p .formleft{
+    padding-right:15px;
+}
+.investformsum {
+    height:60px;
+    width:210px;
+    border-radius: 5px;
+    background-color:#fff;
+    font-size:30px;
+    line-height:60px;
+    text-align:center;
+    margin:0 auto;
+    color:#7abef6;
+    margin-top:35px;
+}
+
+.investformcon .Validform_wrong{
+    color:#00467f;
+}
+.investformcon .Validform_right {
+    display:none;
+}

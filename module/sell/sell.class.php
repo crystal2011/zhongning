@@ -26,14 +26,16 @@ class sell {
 		global $DT_TIME, $MOD;
 		if(!is_array($post)) return false;
         if(!is_length($post['title'],2,50)) return $this->_('融资年期输入有误');
-        if(!is_length($post['setbacks'],1,10)) return $this->_('进度输入有误');
         if(!is_length($post['company'],2,50)) return $this->_('融资企业输入有误');
         if(!is_length($post['price'],2,10)) return $this->_('融资金额输入有误');
         if(!is_length($post['month'],2,10)) return $this->_('融资期限输入有误');
         if(!is_length($post['reason'],2,50)) return $this->_('融资原因输入有误');
         if(!is_length($post['fee'],2,50)) return $this->_('投资利息输入有误');
-        if(!is_length($post['apr'],2,10)) return $this->_('年利率输入有误');
         if(!is_length($post['bonding'],2,50)) return $this->_('担保公司输入有误');
+
+        if(!is_length($post['setbacks'],1,10)) return $this->_('进度输入有误');
+        if(!is_length($post['apr'],2,10)) return $this->_('年利率输入有误');
+
         return $post;
 	}
 
@@ -297,20 +299,27 @@ class sell {
         if($aSell['status']!=3){
             return $this->_('投资项目已下架');
         }
+        if($aSell['setstatus']==1){
+            return $this->_('投资项目已满标');
+        }
         return true;
     }
     function editHits(){
         $this->db->query("update {$this->table} set hits = hits + 1 where itemid = $this->itemid");
     }
 
-    function getright($field='*',$limit,$order=''){
-        global $dtcity;
-        $where = ' status=3 ';
-        if($dtcity){
-            $info = get_area($dtcity['areaid']);
-            $arrchildid = $info['arrchildid'];
-            $where .= " and areaid in ($arrchildid)";
+    function getrightlie($idstr){
+        $idstr = implode(',',array_unique($idstr));
+        $list = array();
+        $result = $this->db->query("select * from {$this->table} where itemid in ($idstr) ");
+        while($r=$this->db->fetch_array($result)){
+            $list[$r['itemid']] = $r;
         }
+        return $list;
+    }
+
+    function getright($field='*',$limit,$order=''){
+        $where = ' status=3 ';
         $list = array();
         $result = $this->db->query("select {$field} from {$this->table} where {$where} order by {$order} limit $limit");
         while($r=$this->db->fetch_array($result)){

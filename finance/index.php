@@ -12,6 +12,7 @@ if($submit){
 
     $captcha = isset($captcha)?$captcha:'';
     if(captcha($captcha,1,true)) exit(json_encode(array('status'=>'yn','info'=>'验证码错误')));
+    if(!check_token()) exit(json_encode(array('status'=>'n','info'=>'操作失效，请重试')));
 
     require DT_ROOT.'/module/food/food.class.php';
     $oFood = new food(23);
@@ -34,8 +35,19 @@ if($submit){
 
     exit(json_encode(array('status'=>'y','info'=>'申请成功')));
 }else{
-    $nav_selected = 'finance';
 
+
+    require_once '../module/extend/ad.class.php';
+    $oAd = new ad;
+    $oAd->aid = 52;
+    $aAd = $oAd->get_one();
+    if($aAd){
+        $oAd->pid = $aAd['pid'];
+        $pAd = $oAd->get_one_place();
+    }else{
+        $pAd['height'] = 0;
+    }
+    $nav_selected = 'finance';
     $seo_title = '融资业务-';
     include template('index','finance');
 }
