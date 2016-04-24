@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.2
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 2016-04-23 05:57:28
--- 服务器版本： 10.0.17-MariaDB
--- PHP Version: 5.6.8
+-- 主机: localhost
+-- 生成日期: 2016 年 04 月 24 日 14:44
+-- 服务器版本: 5.5.20
+-- PHP 版本: 5.3.10
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,8 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `zhongning`
+-- 数据库: `zhongning`
 --
+CREATE DATABASE `zhongning` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `zhongning`;
 
 -- --------------------------------------------------------
 
@@ -27,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `sx_404` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `loginip` char(11) NOT NULL COMMENT '登录ip',
   `logintime` int(11) NOT NULL COMMENT '登录时间',
   `logintimes` int(11) NOT NULL COMMENT '登录次数',
@@ -36,8 +38,9 @@ CREATE TABLE IF NOT EXISTS `sx_404` (
   `robot` varchar(20) NOT NULL DEFAULT '',
   `username` varchar(30) NOT NULL DEFAULT '',
   `ip` varchar(50) NOT NULL DEFAULT '',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='404日志';
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='404日志' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -46,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `sx_404` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_ad` (
-  `aid` int(10) unsigned NOT NULL,
+  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL DEFAULT '',
   `pid` int(10) unsigned NOT NULL DEFAULT '0',
   `typeid` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -80,23 +83,25 @@ CREATE TABLE IF NOT EXISTS `sx_ad` (
   `key_word` varchar(100) NOT NULL DEFAULT '',
   `key_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='广告';
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`aid`),
+  KEY `pid` (`pid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='广告' AUTO_INCREMENT=57 ;
 
 --
 -- 转存表中的数据 `sx_ad`
 --
 
 INSERT INTO `sx_ad` (`aid`, `title`, `pid`, `typeid`, `areaid`, `amount`, `currency`, `url`, `introduce`, `hits`, `username`, `addtime`, `editor`, `edittime`, `fromtime`, `totime`, `stat`, `note`, `code`, `text_name`, `text_url`, `text_title`, `text_style`, `image_src`, `image_url`, `image_alt`, `flash_src`, `flash_url`, `flash_loop`, `key_moduleid`, `key_catid`, `key_word`, `key_id`, `listorder`, `status`) VALUES
-(20, '图片1', 37, 4, 0, 0, '', '范德萨发', '', 0, 'shixun03d98', 1456657579, '8392673132', 1461390852, 1456588800, 1551283199, 0, '', '', '', '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1347115718.jpg', '范德萨发', 1, 0, 0, '', 0, 0, 3),
-(21, '图片2', 37, 4, 0, 0, '', '', '', 0, '8392673132', 1456657602, '8392673132', 1461390464, 1456588800, 1551283199, 0, '', '', '', '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1347415918.jpg', '', 1, 0, 0, '', 0, 0, 3),
-(50, '图片3', 37, 4, 0, 0, '', '', '', 0, '8392673132', 1461390476, '8392673132', 1461390476, 1461340800, 1556035199, 0, '', '', '', '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1347533418.jpg', '', 1, 0, 0, '', 0, 0, 3),
-(51, '关于我们', 78, 3, 0, 0, '', '', '', 0, '8392673132', 1461391115, '8392673132', 1461391115, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1358325918.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
-(52, '融资业务', 79, 3, 0, 0, '', '', '', 0, '8392673132', 1461392400, '8392673132', 1461392400, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1419542118.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
-(53, '投资理财', 80, 3, 0, 0, '', '', '', 0, '8392673132', 1461392875, '8392673132', 1461392875, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1427496718.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
-(54, '最新资讯', 81, 3, 0, 0, '', '', '', 0, '8392673132', 1461392993, '8392673132', 1461392993, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1429487018.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
-(55, ' 常见问题', 82, 3, 0, 0, '', '', '', 0, '8392673132', 1461393135, '8392673132', 1461393135, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1432085318.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
-(56, ' 公告', 83, 3, 0, 0, '', '', '', 0, '8392673132', 1461395101, '8392673132', 1461395101, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/23/1504578618.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3);
+(20, '图片1', 37, 4, 0, 0, '', '范德萨发', '', 0, 'shixun03d98', 1456657579, '8392673132', 1461463938, 1456588800, 1551283199, 0, '', '', '', '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1010286118.jpg', '范德萨发', 1, 0, 0, '', 0, 0, 3),
+(21, '图片2', 37, 4, 0, 0, '', '', '', 0, '8392673132', 1456657602, '8392673132', 1461463950, 1456588800, 1551283199, 0, '', '', '', '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1012284418.jpg', '', 1, 0, 0, '', 0, 0, 3),
+(50, '图片3', 37, 4, 0, 0, '', '', '', 0, '8392673132', 1461390476, '8392673132', 1461463963, 1461340800, 1556035199, 0, '', '', '', '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1012407418.jpg', '', 1, 0, 0, '', 0, 0, 3),
+(51, '关于我们', 78, 3, 0, 0, '', '', '', 0, '8392673132', 1461391115, '8392673132', 1461464204, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1016412218.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
+(52, '融资业务', 79, 3, 0, 0, '', '', '', 0, '8392673132', 1461392400, '8392673132', 1461464101, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1014586418.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
+(53, '投资理财', 80, 3, 0, 0, '', '', '', 0, '8392673132', 1461392875, '8392673132', 1461464159, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1015574318.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
+(54, '最新资讯', 81, 3, 0, 0, '', '', '', 0, '8392673132', 1461392993, '8392673132', 1461463997, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1013143518.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
+(55, ' 常见问题', 82, 3, 0, 0, '', '', '', 0, '8392673132', 1461393135, '8392673132', 1461464023, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1013405418.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3),
+(56, ' 公告', 83, 3, 0, 0, '', '', '', 0, '8392673132', 1461395101, '8392673132', 1461464051, 1461340800, 1556035199, 0, '', '', '', '', '', '', 'http://zhongning.com/file/upload/201604/24/1014081118.jpg', '', '', '', '', 1, 0, 0, '', 0, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -105,7 +110,7 @@ INSERT INTO `sx_ad` (`aid`, `title`, `pid`, `typeid`, `areaid`, `amount`, `curre
 --
 
 CREATE TABLE IF NOT EXISTS `sx_ad_place` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `typeid` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `open` tinyint(1) unsigned NOT NULL DEFAULT '1',
@@ -122,8 +127,9 @@ CREATE TABLE IF NOT EXISTS `sx_ad_place` (
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `template` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8 COMMENT='广告位';
+  `template` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='广告位' AUTO_INCREMENT=84 ;
 
 --
 -- 转存表中的数据 `sx_ad_place`
@@ -145,7 +151,7 @@ INSERT INTO `sx_ad_place` (`pid`, `moduleid`, `typeid`, `open`, `name`, `thumb`,
 --
 
 CREATE TABLE IF NOT EXISTS `sx_admin` (
-  `adminid` smallint(6) unsigned NOT NULL,
+  `adminid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `userid` int(10) unsigned NOT NULL DEFAULT '0',
   `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
   `title` varchar(30) NOT NULL DEFAULT '',
@@ -154,8 +160,9 @@ CREATE TABLE IF NOT EXISTS `sx_admin` (
   `moduleid` smallint(6) NOT NULL DEFAULT '0',
   `file` varchar(20) NOT NULL DEFAULT '',
   `action` varchar(255) NOT NULL DEFAULT '',
-  `catid` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='管理员';
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`adminid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='管理员' AUTO_INCREMENT=16 ;
 
 --
 -- 转存表中的数据 `sx_admin`
@@ -185,12 +192,13 @@ INSERT INTO `sx_admin` (`adminid`, `userid`, `listorder`, `title`, `url`, `style
 --
 
 CREATE TABLE IF NOT EXISTS `sx_admin_log` (
-  `logid` int(10) unsigned NOT NULL,
+  `logid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `qstring` varchar(255) NOT NULL DEFAULT '',
   `username` varchar(30) NOT NULL DEFAULT '',
   `ip` varchar(50) NOT NULL DEFAULT '',
-  `logtime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='管理日志';
+  `logtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`logid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='管理日志' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -204,15 +212,9 @@ CREATE TABLE IF NOT EXISTS `sx_admin_online` (
   `ip` varchar(50) NOT NULL DEFAULT '',
   `moduleid` int(10) unsigned NOT NULL DEFAULT '0',
   `qstring` varchar(255) NOT NULL DEFAULT '',
-  `lasttime` int(10) unsigned NOT NULL DEFAULT '0'
+  `lasttime` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `sid` (`sid`)
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8 COMMENT='在线管理员';
-
---
--- 转存表中的数据 `sx_admin_online`
---
-
-INSERT INTO `sx_admin_online` (`sid`, `username`, `ip`, `moduleid`, `qstring`, `lasttime`) VALUES
-('q5nn4vd8od7jqreg8tf7s0bq91', '8392673132', '127.0.0.1', 3, 'moduleid=3&file=webpage&item=1', 1461397293);
 
 -- --------------------------------------------------------
 
@@ -221,7 +223,7 @@ INSERT INTO `sx_admin_online` (`sid`, `username`, `ip`, `moduleid`, `qstring`, `
 --
 
 CREATE TABLE IF NOT EXISTS `sx_admin_user` (
-  `adminuid` int(11) NOT NULL COMMENT '管理员id',
+  `adminuid` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员id',
   `username` varchar(20) NOT NULL,
   `password` char(32) NOT NULL,
   `role` varchar(11) NOT NULL COMMENT '255',
@@ -231,8 +233,10 @@ CREATE TABLE IF NOT EXISTS `sx_admin_user` (
   `logintime` int(11) NOT NULL COMMENT '最新登录时间',
   `loginip` varchar(15) NOT NULL COMMENT '最新登录ip',
   `logintimes` int(11) NOT NULL COMMENT '登录次数',
-  `status` tinyint(4) NOT NULL COMMENT '状态 1正常 0失效'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+  `status` tinyint(4) NOT NULL COMMENT '状态 1正常 0失效',
+  PRIMARY KEY (`adminuid`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='管理员表' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `sx_admin_user`
@@ -248,7 +252,7 @@ INSERT INTO `sx_admin_user` (`adminuid`, `username`, `password`, `role`, `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `sx_alert` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `mid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -260,8 +264,10 @@ CREATE TABLE IF NOT EXISTS `sx_alert` (
   `editor` varchar(30) NOT NULL DEFAULT '0',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `sendtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='贸易提醒';
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='贸易提醒' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -270,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `sx_alert` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_announce` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -286,8 +292,10 @@ CREATE TABLE IF NOT EXISTS `sx_announce` (
   `islink` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `template` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公告';
+  `template` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `addtime` (`addtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公告' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -296,14 +304,15 @@ CREATE TABLE IF NOT EXISTS `sx_announce` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_apply` (
-  `itemid` int(11) NOT NULL,
+  `itemid` int(11) NOT NULL AUTO_INCREMENT,
   `money` decimal(10,2) NOT NULL,
   `codeid` int(11) NOT NULL,
   `addtime` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL COMMENT '0,1,2 审核中,不通过,结算成功',
   `codeidstr` text NOT NULL,
-  `userid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `userid` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `sx_apply`
@@ -319,7 +328,7 @@ INSERT INTO `sx_apply` (`itemid`, `money`, `codeid`, `addtime`, `status`, `codei
 --
 
 CREATE TABLE IF NOT EXISTS `sx_area` (
-  `areaid` smallint(6) unsigned NOT NULL,
+  `areaid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `areaname` varchar(50) NOT NULL DEFAULT '',
   `parentid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `arrparentid` varchar(255) NOT NULL DEFAULT '',
@@ -327,8 +336,11 @@ CREATE TABLE IF NOT EXISTS `sx_area` (
   `arrchildid` text NOT NULL,
   `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
   `firstletter` int(11) NOT NULL,
-  `ishot` tinyint(4) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3646 DEFAULT CHARSET=utf8 COMMENT='地区';
+  `ishot` tinyint(4) NOT NULL,
+  PRIMARY KEY (`areaid`),
+  KEY `areaname` (`areaname`(2)) USING BTREE,
+  KEY `ishot` (`ishot`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='地区' AUTO_INCREMENT=3646 ;
 
 --
 -- 转存表中的数据 `sx_area`
@@ -922,7 +934,8 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (585, '固阳县', 558, '0,8,558', 0, '585', 585, 0, 0),
 (586, '达尔罕茂明安联合旗', 558, '0,8,558', 0, '586', 586, 0, 0),
 (587, '海勃湾区', 559, '0,8,559', 0, '587', 587, 0, 0),
-(588, '海南区', 559, '0,8,559', 0, '588', 588, 0, 0),
+(588, '海南区', 559, '0,8,559', 0, '588', 588, 0, 0);
+INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
 (589, '乌达区', 559, '0,8,559', 0, '589', 589, 0, 0),
 (590, '红山区', 560, '0,8,560', 0, '590', 590, 0, 0),
 (591, '元宝山区', 560, '0,8,560', 0, '591', 591, 0, 0),
@@ -996,8 +1009,7 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (659, '临河市', 567, '0,8,567', 0, '659', 659, 0, 0),
 (660, '五原县', 567, '0,8,567', 0, '660', 660, 0, 0),
 (661, '磴口县', 567, '0,8,567', 0, '661', 661, 0, 0),
-(662, '乌拉特前旗', 567, '0,8,567', 0, '662', 662, 0, 0);
-INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
+(662, '乌拉特前旗', 567, '0,8,567', 0, '662', 662, 0, 0),
 (663, '乌拉特中旗', 567, '0,8,567', 0, '663', 663, 0, 0),
 (664, '乌拉特后旗', 567, '0,8,567', 0, '664', 664, 0, 0),
 (665, '杭锦后旗', 567, '0,8,567', 0, '665', 665, 0, 0),
@@ -1724,7 +1736,8 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (1386, '分宜县', 1342, '0,15,1342', 0, '1386', 1386, 0, 0),
 (1387, '月湖区', 1343, '0,15,1343', 0, '1387', 1387, 0, 0),
 (1388, '余江县', 1343, '0,15,1343', 0, '1388', 1388, 0, 0),
-(1389, '贵溪市', 1343, '0,15,1343', 0, '1389', 1389, 0, 0),
+(1389, '贵溪市', 1343, '0,15,1343', 0, '1389', 1389, 0, 0);
+INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
 (1390, '章贡区', 1344, '0,15,1344', 0, '1390', 1390, 0, 0),
 (1391, '黄金区', 1344, '0,15,1344', 0, '1391', 1391, 0, 0),
 (1392, '赣县', 1344, '0,15,1344', 0, '1392', 1392, 0, 0),
@@ -1876,8 +1889,7 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (1538, '安丘市', 1464, '0,16,1464', 0, '1538', 1538, 0, 0),
 (1539, '高密市', 1464, '0,16,1464', 0, '1539', 1539, 0, 0),
 (1540, '昌邑市', 1464, '0,16,1464', 0, '1540', 1540, 0, 0),
-(1541, '市中区', 1465, '0,16,1465', 0, '1541', 1541, 0, 0);
-INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
+(1541, '市中区', 1465, '0,16,1465', 0, '1541', 1541, 0, 0),
 (1542, '任城区', 1465, '0,16,1465', 0, '1542', 1542, 0, 0),
 (1543, '微山县', 1465, '0,16,1465', 0, '1543', 1543, 0, 0),
 (1544, '鱼台县', 1465, '0,16,1465', 0, '1544', 1544, 0, 0),
@@ -2493,7 +2505,8 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (2173, '平远县', 2076, '0,20,2076', 0, '2173', 2173, 0, 0),
 (2174, '蕉岭县', 2076, '0,20,2076', 0, '2174', 2174, 0, 0),
 (2175, '兴宁市', 2076, '0,20,2076', 0, '2175', 2175, 0, 0),
-(2176, '城区', 2077, '0,20,2077', 0, '2176', 2176, 0, 0),
+(2176, '城区', 2077, '0,20,2077', 0, '2176', 2176, 0, 0);
+INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
 (2177, '海丰县', 2077, '0,20,2077', 0, '2177', 2177, 0, 0),
 (2178, '陆河县', 2077, '0,20,2077', 0, '2178', 2178, 0, 0),
 (2179, '陆丰市', 2077, '0,20,2077', 0, '2179', 2179, 0, 0),
@@ -2722,8 +2735,7 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (2402, '南充市', 23, '0,23', 1, '2402,2492,2493,2494,2495,2496,2497,2498,2499,2500', 2402, 0, 0),
 (2403, '眉山市', 23, '0,23', 1, '2403,2501,2502,2503,2504,2505,2506', 2403, 0, 0),
 (2404, '宜宾市', 23, '0,23', 1, '2404,2507,2508,2509,2510,2511,2512,2513,2514,2515,2516', 2404, 0, 0),
-(2405, '广安市', 23, '0,23', 1, '2405,2517,2518,2519,2520,2521', 2405, 0, 0);
-INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
+(2405, '广安市', 23, '0,23', 1, '2405,2517,2518,2519,2520,2521', 2405, 0, 0),
 (2406, '达州市', 23, '0,23', 1, '2406,2522,2523,2524,2525,2526,2527,2528', 2406, 0, 0),
 (2407, '雅安市', 23, '0,23', 1, '2407,2529,2530,2531,2532,2533,2534,2535,2536', 2407, 0, 0),
 (2408, '巴中市', 23, '0,23', 1, '2408,2537,2538,2539,2540', 2408, 0, 0),
@@ -3245,7 +3257,8 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (2924, '莲湖区', 2912, '0,27,2912', 0, '2924', 2924, 0, 0),
 (2925, '灞桥区', 2912, '0,27,2912', 0, '2925', 2925, 0, 0),
 (2926, '未央区', 2912, '0,27,2912', 0, '2926', 2926, 0, 0),
-(2927, '雁塔区', 2912, '0,27,2912', 0, '2927', 2927, 0, 0),
+(2927, '雁塔区', 2912, '0,27,2912', 0, '2927', 2927, 0, 0);
+INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
 (2928, '阎良区', 2912, '0,27,2912', 0, '2928', 2928, 0, 0),
 (2929, '临潼区', 2912, '0,27,2912', 0, '2929', 2929, 0, 0),
 (2930, '长安区', 2912, '0,27,2912', 0, '2930', 2930, 0, 0),
@@ -3567,8 +3580,7 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (3246, '呼图壁县', 3213, '0,31,3213', 0, '3246', 3246, 0, 0),
 (3247, '玛纳斯县', 3213, '0,31,3213', 0, '3247', 3247, 0, 0),
 (3248, '奇台县', 3213, '0,31,3213', 0, '3248', 3248, 0, 0),
-(3249, '吉木萨尔县', 3213, '0,31,3213', 0, '3249', 3249, 0, 0);
-INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
+(3249, '吉木萨尔县', 3213, '0,31,3213', 0, '3249', 3249, 0, 0),
 (3250, '木垒哈萨克自治县', 3213, '0,31,3213', 0, '3250', 3250, 0, 0),
 (3251, '博乐市', 3214, '0,31,3214', 0, '3251', 3251, 0, 0),
 (3252, '精河县', 3214, '0,31,3214', 0, '3252', 3252, 0, 0),
@@ -3963,7 +3975,8 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 (3641, 'Oregon/俄勒冈', 3592, '0,35,3385,3592', 0, '3641', 3641, 0, 0),
 (3642, 'California/加利福尼亚', 3592, '0,35,3385,3592', 0, '3642', 3642, 0, 0),
 (3643, 'Alaska/阿拉斯加', 3593, '0,35,3385,3593', 0, '3643', 3643, 0, 0),
-(3644, 'Hawaii/夏威夷', 3593, '0,35,3385,3593', 0, '3644', 3644, 0, 0),
+(3644, 'Hawaii/夏威夷', 3593, '0,35,3385,3593', 0, '3644', 3644, 0, 0);
+INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`, `arrchildid`, `listorder`, `firstletter`, `ishot`) VALUES
 (3645, 'Others', 3593, '0,35,3385,3593', 0, '3645', 3645, 0, 0);
 
 -- --------------------------------------------------------
@@ -3973,7 +3986,7 @@ INSERT INTO `sx_area` (`areaid`, `areaname`, `parentid`, `arrparentid`, `child`,
 --
 
 CREATE TABLE IF NOT EXISTS `sx_article_21` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -4004,8 +4017,12 @@ CREATE TABLE IF NOT EXISTS `sx_article_21` (
   `note` varchar(255) NOT NULL DEFAULT '',
   `oldstatus` tinyint(4) NOT NULL,
   `userid` int(11) NOT NULL,
-  `comments` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='资讯';
+  `comments` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `addtime` (`addtime`),
+  KEY `username` (`username`),
+  KEY `catid` (`catid`,`level`) USING BTREE
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='资讯' AUTO_INCREMENT=28 ;
 
 --
 -- 转存表中的数据 `sx_article_21`
@@ -4040,7 +4057,8 @@ INSERT INTO `sx_article_21` (`itemid`, `catid`, `areaid`, `level`, `title`, `sty
 
 CREATE TABLE IF NOT EXISTS `sx_article_data_21` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` longtext NOT NULL
+  `content` longtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资讯内容';
 
 --
@@ -4075,10 +4093,13 @@ INSERT INTO `sx_article_data_21` (`itemid`, `content`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_article_keyword` (
-  `itemid` int(11) NOT NULL,
+  `itemid` int(11) NOT NULL AUTO_INCREMENT,
   `keyword` varchar(50) NOT NULL,
-  `nums` int(11) NOT NULL COMMENT '文章id'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='文章关键字';
+  `nums` int(11) NOT NULL COMMENT '文章id',
+  PRIMARY KEY (`itemid`),
+  KEY `article_itemid` (`nums`),
+  KEY `keyword` (`keyword`(5)) USING BTREE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='文章关键字' AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `sx_article_keyword`
@@ -4098,12 +4119,13 @@ INSERT INTO `sx_article_keyword` (`itemid`, `keyword`, `nums`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_banip` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ip` varchar(50) NOT NULL DEFAULT '',
   `editor` varchar(30) NOT NULL DEFAULT '',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `totime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='IP禁止';
+  `totime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='IP禁止' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4112,11 +4134,12 @@ CREATE TABLE IF NOT EXISTS `sx_banip` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_banword` (
-  `bid` int(10) unsigned NOT NULL,
+  `bid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `replacefrom` varchar(255) NOT NULL DEFAULT '',
   `replaceto` varchar(255) NOT NULL DEFAULT '',
-  `deny` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='词语过滤';
+  `deny` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`bid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='词语过滤' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4125,7 +4148,7 @@ CREATE TABLE IF NOT EXISTS `sx_banword` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_brand_13` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL DEFAULT '',
@@ -4170,8 +4193,15 @@ CREATE TABLE IF NOT EXISTS `sx_brand_13` (
   `comments` int(11) NOT NULL,
   `likes` int(11) NOT NULL,
   `fromtime` int(11) NOT NULL,
-  `istop` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='品牌';
+  `istop` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `catid` (`catid`),
+  KEY `areaid` (`areaid`),
+  KEY `edittime` (`edittime`),
+  KEY `editdate` (`editdate`,`vip`,`edittime`),
+  KEY `level` (`level`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='品牌' AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `sx_brand_13`
@@ -4190,7 +4220,8 @@ INSERT INTO `sx_brand_13` (`itemid`, `catid`, `level`, `title`, `style`, `fee`, 
 
 CREATE TABLE IF NOT EXISTS `sx_brand_data_13` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='品牌内容';
 
 --
@@ -4223,7 +4254,7 @@ INSERT INTO `sx_brand_data_13` (`itemid`, `content`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_buy_6` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `title` varchar(5) NOT NULL DEFAULT '',
   `introduce` varchar(255) NOT NULL DEFAULT '',
@@ -4239,20 +4270,24 @@ CREATE TABLE IF NOT EXISTS `sx_buy_6` (
   `oldstatus` tinyint(4) NOT NULL,
   `month` varchar(10) NOT NULL,
   `sell_itemid` int(11) NOT NULL,
-  `bonding` tinyint(1) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='求购';
+  `bonding` tinyint(1) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `editdate` (`editdate`,`edittime`),
+  KEY `edittime` (`edittime`),
+  KEY `sell_itemid` (`sell_itemid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='求购' AUTO_INCREMENT=31 ;
 
 --
 -- 转存表中的数据 `sx_buy_6`
 --
 
 INSERT INTO `sx_buy_6` (`itemid`, `level`, `title`, `introduce`, `price`, `hits`, `mobile`, `edittime`, `editdate`, `addtime`, `adddate`, `status`, `userid`, `oldstatus`, `month`, `sell_itemid`, `bonding`) VALUES
-(30, 0, '撒旦法撒旦', '', '1231564', 0, '18707587890', 1461383537, '0000-00-00', 1461383537, '0000-00-00', 3, 18, 0, '12456', 18, 1),
-(29, 0, 'fasdf', '', '123465', 0, '18707587890', 1461381670, '0000-00-00', 1461381670, '0000-00-00', 3, 18, 0, '12456', 18, 1),
-(28, 0, 'dsfsa', '', '124654', 0, '18707587890', 1461381501, '0000-00-00', 1461381501, '0000-00-00', 3, 0, 0, '156456', 18, 1),
-(27, 0, 'fasfa', '', '125465', 0, '18707587890', 1461381488, '0000-00-00', 1461381488, '0000-00-00', 3, 0, 0, 'fas', 18, 1),
-(26, 0, 'fadsf', '', '1245622', 0, '18707587890', 1461381405, '0000-00-00', 1461381405, '0000-00-00', 3, 0, 0, '1564', 18, 1),
-(25, 0, 'fdfas', '', '23fdsfas', 0, '18707587890', 1460960235, '0000-00-00', 1460960235, '0000-00-00', 3, 17, 0, 'fasdfasdfd', 17, 0);
+(30, 0, '撒旦法撒旦', '', '1231564', 1, '18707587890', 1461458393, '2016-04-24', 1461383537, '0000-00-00', 3, 18, 0, '12456', 18, 1),
+(29, 0, 'fasdf', '', '123465', 1, '18707587890', 1461458399, '2016-04-24', 1461381670, '0000-00-00', 3, 18, 0, '12456', 18, 1),
+(28, 0, 'dsfsa', '', '124654', 0, '18707587890', 1461457972, '0000-00-00', 1461381501, '0000-00-00', 2, 18, 0, '156456', 18, 1),
+(27, 0, 'fasfa', '', '125465', 0, '18707587890', 1461457980, '0000-00-00', 1461381488, '0000-00-00', 2, 18, 0, 'fas', 18, 1),
+(26, 0, 'fadsf', '', '1245622', 0, '18707587890', 1461457984, '0000-00-00', 1461381405, '0000-00-00', 2, 18, 0, '1564', 18, 1),
+(25, 0, 'fdfas', '', '353535', 0, '18707587890', 1461457996, '0000-00-00', 1460960235, '0000-00-00', 2, 17, 0, 'fasdfasdfd', 17, 0);
 
 -- --------------------------------------------------------
 
@@ -4262,7 +4297,8 @@ INSERT INTO `sx_buy_6` (`itemid`, `level`, `title`, `introduce`, `price`, `hits`
 
 CREATE TABLE IF NOT EXISTS `sx_buy_data_6` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='求购内容';
 
 --
@@ -4275,13 +4311,46 @@ INSERT INTO `sx_buy_data_6` (`itemid`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `sx_buy_log`
+--
+
+CREATE TABLE IF NOT EXISTS `sx_buy_log` (
+  `itemid` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(250) NOT NULL,
+  `addtime` int(11) NOT NULL,
+  `food_itemid` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `addtime` (`addtime`,`food_itemid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `sx_buy_log`
+--
+
+INSERT INTO `sx_buy_log` (`itemid`, `content`, `addtime`, `food_itemid`) VALUES
+(1, '发生地方萨芬法师打发沙发aaaa斯蒂爱的是飞洒的范范芬范德萨发', 1461458648, 30),
+(3, 'fsadfasfsfsd', 1461458710, 30),
+(4, 'fdasdsgdsgadsg ', 1461458712, 30),
+(5, 'gagsddasgs', 1461458714, 30);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `sx_cache`
 --
 
 CREATE TABLE IF NOT EXISTS `sx_cache` (
   `cacheid` varchar(32) NOT NULL DEFAULT '',
-  `totime` int(10) unsigned NOT NULL DEFAULT '0'
+  `totime` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `cacheid` (`cacheid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文件缓存';
+
+--
+-- 转存表中的数据 `sx_cache`
+--
+
+INSERT INTO `sx_cache` (`cacheid`, `totime`) VALUES
+('d68dc58da105adb8137f8f4b047eb9c6', 1461467299);
 
 -- --------------------------------------------------------
 
@@ -4290,7 +4359,7 @@ CREATE TABLE IF NOT EXISTS `sx_cache` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_category` (
-  `catid` int(10) unsigned NOT NULL,
+  `catid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `catname` varchar(50) NOT NULL DEFAULT '',
   `style` varchar(50) NOT NULL DEFAULT '',
@@ -4314,8 +4383,11 @@ CREATE TABLE IF NOT EXISTS `sx_category` (
   `group_show` varchar(255) NOT NULL DEFAULT '',
   `group_add` varchar(255) NOT NULL DEFAULT '',
   `promote1` tinyint(4) NOT NULL,
-  `promote2` tinyint(4) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='栏目分类';
+  `promote2` tinyint(4) NOT NULL,
+  PRIMARY KEY (`catid`),
+  KEY `promote1` (`promote1`),
+  KEY `promote2` (`promote2`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='栏目分类' AUTO_INCREMENT=31 ;
 
 --
 -- 转存表中的数据 `sx_category`
@@ -4356,7 +4428,7 @@ INSERT INTO `sx_category` (`catid`, `moduleid`, `catname`, `style`, `catdir`, `l
 --
 
 CREATE TABLE IF NOT EXISTS `sx_category_option` (
-  `oid` bigint(20) unsigned NOT NULL,
+  `oid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `required` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -4364,8 +4436,10 @@ CREATE TABLE IF NOT EXISTS `sx_category_option` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `value` text NOT NULL,
   `extend` text NOT NULL,
-  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='分类属性';
+  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`oid`),
+  KEY `catid` (`catid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='分类属性' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4377,7 +4451,8 @@ CREATE TABLE IF NOT EXISTS `sx_category_value` (
   `oid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `moduleid` smallint(6) NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `value` text NOT NULL
+  `value` text NOT NULL,
+  KEY `moduleid` (`moduleid`,`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='分类属性值';
 
 -- --------------------------------------------------------
@@ -4398,7 +4473,11 @@ CREATE TABLE IF NOT EXISTS `sx_chat` (
   `tnew` int(10) unsigned NOT NULL DEFAULT '0',
   `lastmsg` varchar(255) NOT NULL,
   `lasttime` int(10) unsigned NOT NULL DEFAULT '0',
-  `forward` varchar(255) NOT NULL
+  `forward` varchar(255) NOT NULL,
+  UNIQUE KEY `chatid` (`chatid`),
+  KEY `fromuser` (`fromuser`),
+  KEY `touser` (`touser`),
+  KEY `lasttime` (`lasttime`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='在线聊天';
 
 -- --------------------------------------------------------
@@ -4419,7 +4498,10 @@ CREATE TABLE IF NOT EXISTS `sx_city` (
   `template` varchar(50) NOT NULL DEFAULT '',
   `seo_title` varchar(255) NOT NULL DEFAULT '',
   `seo_keywords` varchar(255) NOT NULL DEFAULT '',
-  `seo_description` varchar(255) NOT NULL DEFAULT ''
+  `seo_description` varchar(255) NOT NULL DEFAULT '',
+  UNIQUE KEY `areaid` (`areaid`),
+  KEY `domain` (`domain`),
+  KEY `pinyin` (`pinyin`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='城市分站';
 
 --
@@ -4439,7 +4521,7 @@ INSERT INTO `sx_city` (`areaid`, `name`, `pinyin`, `style`, `iparea`, `domain`, 
 --
 
 CREATE TABLE IF NOT EXISTS `sx_comment` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `item_mid` smallint(6) NOT NULL DEFAULT '0',
   `item_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `item_title` varchar(255) NOT NULL DEFAULT '',
@@ -4463,8 +4545,12 @@ CREATE TABLE IF NOT EXISTS `sx_comment` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `userid` int(11) NOT NULL,
   `type` tinyint(4) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='评论';
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `item_mid` (`item_mid`),
+  KEY `item_id` (`item_id`),
+  KEY `userid` (`userid`,`type`,`id`) USING BTREE
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='评论' AUTO_INCREMENT=19 ;
 
 --
 -- 转存表中的数据 `sx_comment`
@@ -4497,12 +4583,13 @@ INSERT INTO `sx_comment` (`itemid`, `item_mid`, `item_id`, `item_title`, `item_u
 --
 
 CREATE TABLE IF NOT EXISTS `sx_comment_ban` (
-  `bid` bigint(20) unsigned NOT NULL,
+  `bid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `moduleid` smallint(6) NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL DEFAULT '',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评论禁止';
+  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`bid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评论禁止' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4511,14 +4598,15 @@ CREATE TABLE IF NOT EXISTS `sx_comment_ban` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_comment_stat` (
-  `sid` bigint(20) unsigned NOT NULL,
+  `sid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `moduleid` smallint(6) NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `comment` int(10) unsigned NOT NULL DEFAULT '0',
   `star1` int(10) unsigned NOT NULL DEFAULT '0',
   `star2` int(10) unsigned NOT NULL DEFAULT '0',
-  `star3` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评论统计';
+  `star3` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`sid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评论统计' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4534,7 +4622,9 @@ CREATE TABLE IF NOT EXISTS `sx_company` (
   `edittime` int(11) NOT NULL,
   `mobile` bigint(20) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `address` varchar(50) NOT NULL
+  `address` varchar(50) NOT NULL,
+  PRIMARY KEY (`userid`),
+  KEY `areaid` (`areaid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司';
 
 --
@@ -4552,7 +4642,8 @@ INSERT INTO `sx_company` (`userid`, `company`, `areaid`, `addtime`, `edittime`, 
 
 CREATE TABLE IF NOT EXISTS `sx_company_data` (
   `userid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` text NOT NULL
+  `content` text NOT NULL,
+  PRIMARY KEY (`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司内容';
 
 --
@@ -4573,7 +4664,8 @@ INSERT INTO `sx_company_data` (`userid`, `content`) VALUES
 CREATE TABLE IF NOT EXISTS `sx_company_setting` (
   `userid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `item_key` varchar(100) NOT NULL DEFAULT '',
-  `item_value` text NOT NULL
+  `item_value` text NOT NULL,
+  KEY `userid` (`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司设置';
 
 -- --------------------------------------------------------
@@ -4583,7 +4675,7 @@ CREATE TABLE IF NOT EXISTS `sx_company_setting` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_cron` (
-  `itemid` smallint(6) unsigned NOT NULL,
+  `itemid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(30) NOT NULL,
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `name` varchar(20) NOT NULL,
@@ -4591,24 +4683,26 @@ CREATE TABLE IF NOT EXISTS `sx_cron` (
   `lasttime` int(10) unsigned NOT NULL DEFAULT '0',
   `nexttime` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `note` text NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COMMENT='计划任务';
+  `note` text NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `nexttime` (`nexttime`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='计划任务' AUTO_INCREMENT=66 ;
 
 --
 -- 转存表中的数据 `sx_cron`
 --
 
 INSERT INTO `sx_cron` (`itemid`, `title`, `type`, `name`, `schedule`, `lasttime`, `nexttime`, `status`, `note`) VALUES
-(1, '更新在线状态', 1, 'online', '10', 1461394579, 1461395179, 0, ''),
-(2, '内容分表创建', 1, 'split', '0,0', 1461378696, 1461427200, 0, ''),
-(3, '清理过期文件缓存', 0, 'cache', '30', 1461393208, 1461395008, 0, ''),
-(20, '清理过期禁止IP', 0, 'banip', '0,10', 1461378696, 1461427800, 0, ''),
-(21, '清理系统临时文件', 0, 'temp', '0,20', 1461378696, 1461428400, 0, ''),
-(40, '清理3天前未付款充值记录', 0, 'charge', '1,0', 1461378696, 1461430800, 0, ''),
-(41, '清理30天前404日志', 0, '404', '1,10', 1461378696, 1461431400, 0, ''),
-(42, '清理30天前登录日志', 0, 'loginlog', '1,20', 1461378696, 1461432000, 0, ''),
-(43, '清理30天前管理日志', 0, 'adminlog', '1,30', 1461378696, 1461432600, 0, ''),
-(44, '清理30天前站内交谈', 0, 'chat', '1,40', 1461378696, 1461433200, 0, ''),
+(1, '更新在线状态', 1, 'online', '10', 1461457615, 1461458215, 0, ''),
+(2, '内容分表创建', 1, 'split', '0,0', 1461457615, 1461513600, 0, ''),
+(3, '清理过期文件缓存', 0, 'cache', '30', 1461457615, 1461459415, 0, ''),
+(20, '清理过期禁止IP', 0, 'banip', '0,10', 1461457615, 1461514200, 0, ''),
+(21, '清理系统临时文件', 0, 'temp', '0,20', 1461457615, 1461514800, 0, ''),
+(40, '清理3天前未付款充值记录', 0, 'charge', '1,0', 1461457615, 1461517200, 0, ''),
+(41, '清理30天前404日志', 0, '404', '1,10', 1461457615, 1461517800, 0, ''),
+(42, '清理30天前登录日志', 0, 'loginlog', '1,20', 1461457615, 1461518400, 0, ''),
+(43, '清理30天前管理日志', 0, 'adminlog', '1,30', 1461457615, 1461519000, 0, ''),
+(44, '清理30天前站内交谈', 0, 'chat', '1,40', 1461457615, 1461519600, 0, ''),
 (60, '清理90天前已读信件', 0, 'message', '2,0', 0, 0, 1, ''),
 (61, '清理90天前资金流水', 0, 'money', '2,10', 0, 0, 1, ''),
 (62, '清理90天前积分流水', 0, 'credit', '2,20', 0, 0, 1, ''),
@@ -4623,7 +4717,7 @@ INSERT INTO `sx_cron` (`itemid`, `title`, `type`, `name`, `schedule`, `lasttime`
 --
 
 CREATE TABLE IF NOT EXISTS `sx_email` (
-  `itemid` int(11) NOT NULL,
+  `itemid` int(11) NOT NULL AUTO_INCREMENT,
   `username` char(12) NOT NULL,
   `email` varchar(255) NOT NULL,
   `regtime` int(11) NOT NULL,
@@ -4632,8 +4726,9 @@ CREATE TABLE IF NOT EXISTS `sx_email` (
   `regid` tinyint(4) NOT NULL,
   `password` char(32) NOT NULL,
   `auth` char(32) NOT NULL,
-  `totime` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `totime` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- 转存表中的数据 `sx_email`
@@ -4660,7 +4755,7 @@ INSERT INTO `sx_email` (`itemid`, `username`, `email`, `regtime`, `regip`, `grou
 --
 
 CREATE TABLE IF NOT EXISTS `sx_favorite` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
   `userid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `typeid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -4668,8 +4763,10 @@ CREATE TABLE IF NOT EXISTS `sx_favorite` (
   `style` varchar(50) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `note` varchar(255) NOT NULL DEFAULT '',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商机收藏';
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `userid` (`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商机收藏' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4678,15 +4775,16 @@ CREATE TABLE IF NOT EXISTS `sx_favorite` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_fetch` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `sitename` varchar(100) NOT NULL DEFAULT '',
   `domain` varchar(255) NOT NULL DEFAULT '',
   `title` varchar(255) NOT NULL DEFAULT '',
   `content` text NOT NULL,
   `encode` varchar(30) NOT NULL DEFAULT '',
   `editor` varchar(30) NOT NULL DEFAULT '',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='单页采编';
+  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='单页采编' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4695,7 +4793,7 @@ CREATE TABLE IF NOT EXISTS `sx_fetch` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_fields` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tb` varchar(30) NOT NULL DEFAULT '',
   `name` varchar(50) NOT NULL DEFAULT '',
   `title` varchar(100) NOT NULL DEFAULT '',
@@ -4711,8 +4809,10 @@ CREATE TABLE IF NOT EXISTS `sx_fields` (
   `addition` varchar(255) NOT NULL DEFAULT '',
   `display` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `front` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='自定义字段';
+  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `tablename` (`tb`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='自定义字段' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4721,7 +4821,7 @@ CREATE TABLE IF NOT EXISTS `sx_fields` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_card` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `number` varchar(30) NOT NULL DEFAULT '',
   `password` varchar(30) NOT NULL DEFAULT '',
   `amount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
@@ -4730,8 +4830,10 @@ CREATE TABLE IF NOT EXISTS `sx_finance_card` (
   `totime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='充值卡';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  UNIQUE KEY `number` (`number`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='充值卡' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4740,7 +4842,7 @@ CREATE TABLE IF NOT EXISTS `sx_finance_card` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_cash` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `bank` varchar(50) NOT NULL DEFAULT '',
   `banktype` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -4754,8 +4856,10 @@ CREATE TABLE IF NOT EXISTS `sx_finance_cash` (
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `note` varchar(255) NOT NULL DEFAULT '',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='申请提现';
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='申请提现' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4764,7 +4868,7 @@ CREATE TABLE IF NOT EXISTS `sx_finance_cash` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_charge` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `bank` varchar(20) NOT NULL DEFAULT '',
   `amount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
@@ -4775,8 +4879,10 @@ CREATE TABLE IF NOT EXISTS `sx_finance_charge` (
   `editor` varchar(30) NOT NULL DEFAULT '',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `reason` varchar(255) NOT NULL,
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='在线充值';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='在线充值' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4785,15 +4891,17 @@ CREATE TABLE IF NOT EXISTS `sx_finance_charge` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_credit` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `amount` int(10) NOT NULL DEFAULT '0',
   `balance` int(10) NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `reason` varchar(255) NOT NULL DEFAULT '',
   `note` varchar(255) NOT NULL DEFAULT '',
-  `editor` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='积分流水';
+  `editor` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='积分流水' AUTO_INCREMENT=8 ;
 
 --
 -- 转存表中的数据 `sx_finance_credit`
@@ -4815,14 +4923,16 @@ INSERT INTO `sx_finance_credit` (`itemid`, `username`, `amount`, `balance`, `add
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_deposit` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `amount` decimal(10,2) NOT NULL DEFAULT '0.00',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL,
   `reason` varchar(255) NOT NULL DEFAULT '',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='保证金';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='保证金' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4831,7 +4941,7 @@ CREATE TABLE IF NOT EXISTS `sx_finance_deposit` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_pay` (
-  `pid` bigint(20) unsigned NOT NULL,
+  `pid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `fee` float unsigned NOT NULL DEFAULT '0',
   `currency` varchar(20) NOT NULL DEFAULT '',
@@ -4839,8 +4949,10 @@ CREATE TABLE IF NOT EXISTS `sx_finance_pay` (
   `ip` varchar(50) NOT NULL DEFAULT '',
   `moduleid` smallint(6) NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支付记录';
+  `title` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='支付记录' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4849,7 +4961,7 @@ CREATE TABLE IF NOT EXISTS `sx_finance_pay` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_promo` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `number` varchar(30) NOT NULL DEFAULT '',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `amount` float NOT NULL DEFAULT '0',
@@ -4859,8 +4971,10 @@ CREATE TABLE IF NOT EXISTS `sx_finance_promo` (
   `totime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='优惠码';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  UNIQUE KEY `number` (`number`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='优惠码' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4869,7 +4983,7 @@ CREATE TABLE IF NOT EXISTS `sx_finance_promo` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_record` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `bank` varchar(30) NOT NULL DEFAULT '',
   `amount` decimal(10,2) NOT NULL DEFAULT '0.00',
@@ -4877,8 +4991,10 @@ CREATE TABLE IF NOT EXISTS `sx_finance_record` (
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `reason` varchar(255) NOT NULL DEFAULT '',
   `note` varchar(255) NOT NULL DEFAULT '',
-  `editor` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='财务流水';
+  `editor` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='财务流水' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4887,15 +5003,17 @@ CREATE TABLE IF NOT EXISTS `sx_finance_record` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_finance_sms` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `amount` int(10) NOT NULL DEFAULT '0',
   `balance` int(10) NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `reason` varchar(255) NOT NULL DEFAULT '',
   `note` varchar(255) NOT NULL DEFAULT '',
-  `editor` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='短信增减';
+  `editor` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='短信增减' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4904,7 +5022,7 @@ CREATE TABLE IF NOT EXISTS `sx_finance_sms` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_food_23` (
-  `itemid` int(11) NOT NULL COMMENT 'id',
+  `itemid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `title` varchar(50) NOT NULL COMMENT '名称',
   `price` int(10) NOT NULL COMMENT '价格',
   `level` tinyint(4) NOT NULL,
@@ -4918,17 +5036,19 @@ CREATE TABLE IF NOT EXISTS `sx_food_23` (
   `mobile` varchar(20) NOT NULL,
   `address` varchar(50) NOT NULL,
   `month` varchar(10) NOT NULL,
-  `danbao` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='餐饮供应';
+  `danbao` varchar(50) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  UNIQUE KEY `catid` (`level`,`itemid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='餐饮供应' AUTO_INCREMENT=57 ;
 
 --
 -- 转存表中的数据 `sx_food_23`
 --
 
 INSERT INTO `sx_food_23` (`itemid`, `title`, `price`, `level`, `hits`, `addtime`, `edittime`, `status`, `userid`, `oldstatus`, `introduce`, `mobile`, `address`, `month`, `danbao`) VALUES
-(54, 'fasdfasdfas', 0, 0, 0, 1460961346, 1460962247, 3, 17, 0, 'gdgdsfgsdfg', '18707587890', 'hadgfasdfds1', 'hdfshshsd', ''),
-(55, 'fasdfsadfa', 0, 0, 0, 1460961410, 1460962079, 3, 17, 0, 'fasdfdsafgasgfdsfsadfa', '18707587890', 'hadgfasdfds', 'fsfasf', ''),
-(56, 'fadsfsad', 10234165, 0, 0, 1461381819, 1461381819, 3, 18, 0, '023123', '18707587890', '12456', '20152', '0230123');
+(54, 'fasdfasdfas', 43434, 0, 0, 1460961346, 1461421364, 2, 18, 0, 'gdgdsfgsdfg', '18707587890', 'hadgfasdfds1', 'hdfshshsd', '43434'),
+(55, 'fasdfsadfa', 10, 0, 0, 1460961410, 1461422564, 3, 18, 0, 'fasdfdsafgasgfdsfsadfa', '18707587890', 'hadgfasdfds', 'fsfasf', 'sfga'),
+(56, 'fadsfsad', 10234165, 0, 0, 1461381819, 1461422304, 0, 18, 0, '023123', '18707587890', '12456', '20152', '0230123');
 
 -- --------------------------------------------------------
 
@@ -4937,9 +5057,10 @@ INSERT INTO `sx_food_23` (`itemid`, `title`, `price`, `level`, `hits`, `addtime`
 --
 
 CREATE TABLE IF NOT EXISTS `sx_food_data_23` (
-  `itemid` int(11) NOT NULL,
-  `content` mediumtext NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+  `itemid` int(11) NOT NULL AUTO_INCREMENT,
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 --
 -- 转存表中的数据 `sx_food_data_23`
@@ -4953,11 +5074,36 @@ INSERT INTO `sx_food_data_23` (`itemid`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `sx_food_log`
+--
+
+CREATE TABLE IF NOT EXISTS `sx_food_log` (
+  `itemid` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(250) NOT NULL,
+  `addtime` int(11) NOT NULL,
+  `food_itemid` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `addtime` (`addtime`,`food_itemid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `sx_food_log`
+--
+
+INSERT INTO `sx_food_log` (`itemid`, `content`, `addtime`, `food_itemid`) VALUES
+(2, 'fasdfsdfsfsf发生的发顺丰阿斯蒂芬vv电视v多撒女', 1461419871, 55),
+(3, 'fasdfsdfsfsf发生的发顺丰阿斯蒂芬vv电视v多撒女', 1461419873, 55),
+(4, 'fasdfsdfsfsf发生的发顺丰阿斯蒂芬vv电视v多撒女', 1461419878, 55),
+(5, '富士达发生大发发', 1461420758, 55);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `sx_form`
 --
 
 CREATE TABLE IF NOT EXISTS `sx_form` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -4976,8 +5122,10 @@ CREATE TABLE IF NOT EXISTS `sx_form` (
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
-  `template` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='表单';
+  `template` varchar(30) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `addtime` (`addtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='表单' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -4986,7 +5134,7 @@ CREATE TABLE IF NOT EXISTS `sx_form` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_form_answer` (
-  `aid` bigint(20) unsigned NOT NULL,
+  `aid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `fid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `rid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `qid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -4995,8 +5143,9 @@ CREATE TABLE IF NOT EXISTS `sx_form_answer` (
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `content` mediumtext NOT NULL,
   `other` varchar(255) NOT NULL,
-  `item` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='表单回复';
+  `item` varchar(100) NOT NULL,
+  PRIMARY KEY (`aid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='表单回复' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5005,15 +5154,17 @@ CREATE TABLE IF NOT EXISTS `sx_form_answer` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_form_question` (
-  `qid` bigint(20) unsigned NOT NULL,
+  `qid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `fid` int(10) unsigned NOT NULL DEFAULT '0',
   `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
   `value` mediumtext NOT NULL,
   `required` varchar(30) NOT NULL,
   `extend` mediumtext NOT NULL,
-  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='表单选项';
+  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`qid`),
+  KEY `fid` (`fid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='表单选项' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5022,13 +5173,14 @@ CREATE TABLE IF NOT EXISTS `sx_form_question` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_form_record` (
-  `rid` bigint(20) unsigned NOT NULL,
+  `rid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `fid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
   `ip` varchar(50) NOT NULL DEFAULT '',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `item` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='表单回复记录';
+  `item` varchar(100) NOT NULL,
+  PRIMARY KEY (`rid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='表单回复记录' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5037,7 +5189,7 @@ CREATE TABLE IF NOT EXISTS `sx_form_record` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_friend` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
   `userid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `typeid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -5055,8 +5207,10 @@ CREATE TABLE IF NOT EXISTS `sx_friend` (
   `ali` varchar(30) NOT NULL DEFAULT '',
   `skype` varchar(30) NOT NULL DEFAULT '',
   `note` varchar(255) NOT NULL DEFAULT '',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='我的商友';
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `userid` (`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='我的商友' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5065,7 +5219,7 @@ CREATE TABLE IF NOT EXISTS `sx_friend` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_gift` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -5083,8 +5237,9 @@ CREATE TABLE IF NOT EXISTS `sx_gift` (
   `totime` int(10) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `linkurl` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='积分换礼';
+  `linkurl` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='积分换礼' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5093,15 +5248,17 @@ CREATE TABLE IF NOT EXISTS `sx_gift` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_gift_order` (
-  `oid` bigint(20) unsigned NOT NULL,
+  `oid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `credit` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
   `ip` varchar(50) NOT NULL DEFAULT '',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `status` varchar(255) NOT NULL DEFAULT '',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='积分换礼订单';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`oid`),
+  KEY `itemid` (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='积分换礼订单' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5110,7 +5267,7 @@ CREATE TABLE IF NOT EXISTS `sx_gift_order` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_guestbook` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL DEFAULT '',
   `content` text NOT NULL,
@@ -5128,8 +5285,10 @@ CREATE TABLE IF NOT EXISTS `sx_guestbook` (
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='留言本';
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='留言本' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5138,7 +5297,7 @@ CREATE TABLE IF NOT EXISTS `sx_guestbook` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_honor` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL DEFAULT '',
   `style` varchar(50) NOT NULL DEFAULT '',
   `content` mediumtext NOT NULL,
@@ -5153,8 +5312,11 @@ CREATE TABLE IF NOT EXISTS `sx_honor` (
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL,
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='荣誉资质';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `addtime` (`addtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='荣誉资质' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5163,7 +5325,7 @@ CREATE TABLE IF NOT EXISTS `sx_honor` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_info_22` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL DEFAULT '',
@@ -5211,8 +5373,14 @@ CREATE TABLE IF NOT EXISTS `sx_info_22` (
   `islink` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `filepath` varchar(255) NOT NULL DEFAULT '',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='招商';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `edittime` (`edittime`),
+  KEY `catid` (`catid`),
+  KEY `areaid` (`areaid`),
+  KEY `editdate` (`editdate`,`vip`,`edittime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='招商' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5221,7 +5389,7 @@ CREATE TABLE IF NOT EXISTS `sx_info_22` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_info_24` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL DEFAULT '',
@@ -5271,8 +5439,15 @@ CREATE TABLE IF NOT EXISTS `sx_info_24` (
   `filepath` varchar(255) NOT NULL DEFAULT '',
   `note` varchar(255) NOT NULL DEFAULT '',
   `comments` int(11) NOT NULL,
-  `code` char(30) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='羊角会';
+  `code` char(30) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `edittime` (`edittime`),
+  KEY `catid` (`catid`),
+  KEY `areaid` (`areaid`),
+  KEY `editdate` (`editdate`,`vip`,`edittime`),
+  KEY `code` (`code`(5))
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='羊角会' AUTO_INCREMENT=8 ;
 
 --
 -- 转存表中的数据 `sx_info_24`
@@ -5295,7 +5470,8 @@ INSERT INTO `sx_info_24` (`itemid`, `catid`, `level`, `title`, `style`, `fee`, `
 
 CREATE TABLE IF NOT EXISTS `sx_info_data_22` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='招商内容';
 
 -- --------------------------------------------------------
@@ -5306,7 +5482,8 @@ CREATE TABLE IF NOT EXISTS `sx_info_data_22` (
 
 CREATE TABLE IF NOT EXISTS `sx_info_data_24` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='羊角会内容';
 
 --
@@ -5329,7 +5506,7 @@ INSERT INTO `sx_info_data_24` (`itemid`, `content`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_job` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -5383,8 +5560,12 @@ CREATE TABLE IF NOT EXISTS `sx_job` (
   `note` varchar(255) NOT NULL DEFAULT '',
   `likes` int(11) NOT NULL,
   `comments` int(11) NOT NULL,
-  `istop` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='招聘';
+  `istop` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`userid`),
+  KEY `catid` (`catid`),
+  KEY `areaid` (`areaid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='招聘' AUTO_INCREMENT=18 ;
 
 --
 -- 转存表中的数据 `sx_job`
@@ -5412,15 +5593,18 @@ INSERT INTO `sx_job` (`itemid`, `catid`, `areaid`, `level`, `title`, `style`, `f
 --
 
 CREATE TABLE IF NOT EXISTS `sx_job_apply` (
-  `applyid` bigint(20) unsigned NOT NULL,
+  `applyid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `jobid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `resumeid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `job_username` varchar(30) NOT NULL DEFAULT '',
   `apply_username` varchar(30) NOT NULL DEFAULT '',
   `applytime` int(10) unsigned NOT NULL DEFAULT '0',
   `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='应聘工作';
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`applyid`),
+  KEY `job_username` (`job_username`),
+  KEY `apply_username` (`apply_username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='应聘工作' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5430,7 +5614,8 @@ CREATE TABLE IF NOT EXISTS `sx_job_apply` (
 
 CREATE TABLE IF NOT EXISTS `sx_job_data` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='招聘内容';
 
 --
@@ -5463,11 +5648,13 @@ INSERT INTO `sx_job_data` (`itemid`, `content`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_job_talent` (
-  `talentid` bigint(20) unsigned NOT NULL,
+  `talentid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `resumeid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `jointime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='人才库';
+  `jointime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`talentid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='人才库' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5476,12 +5663,14 @@ CREATE TABLE IF NOT EXISTS `sx_job_talent` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_keylink` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `item` varchar(20) NOT NULL DEFAULT '',
-  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='关联链接';
+  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='关联链接' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5490,7 +5679,7 @@ CREATE TABLE IF NOT EXISTS `sx_keylink` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_keyword` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `moduleid` smallint(6) NOT NULL DEFAULT '0',
   `word` varchar(255) NOT NULL DEFAULT '',
   `keyword` varchar(255) NOT NULL DEFAULT '',
@@ -5501,8 +5690,13 @@ CREATE TABLE IF NOT EXISTS `sx_keyword` (
   `month_search` int(10) unsigned NOT NULL DEFAULT '0',
   `week_search` int(10) unsigned NOT NULL DEFAULT '0',
   `today_search` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '3'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='关键词';
+  `status` tinyint(1) NOT NULL DEFAULT '3',
+  PRIMARY KEY (`itemid`),
+  KEY `moduleid` (`moduleid`),
+  KEY `word` (`word`),
+  KEY `letter` (`letter`),
+  KEY `keyword` (`keyword`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='关键词' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5511,12 +5705,14 @@ CREATE TABLE IF NOT EXISTS `sx_keyword` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_like` (
-  `itemid` int(11) NOT NULL,
+  `itemid` int(11) NOT NULL AUTO_INCREMENT,
   `id` int(11) NOT NULL,
   `type` int(11) NOT NULL,
   `ip` int(11) NOT NULL,
-  `addtime` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+  `addtime` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `id` (`ip`,`type`,`id`) USING BTREE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- 转存表中的数据 `sx_like`
@@ -5543,7 +5739,7 @@ INSERT INTO `sx_like` (`itemid`, `id`, `type`, `ip`, `addtime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_link` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL DEFAULT '',
@@ -5557,8 +5753,11 @@ CREATE TABLE IF NOT EXISTS `sx_link` (
   `listorder` smallint(4) NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `linkurl` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='友情链接';
+  `linkurl` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `listorder` (`listorder`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='友情链接' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `sx_link`
@@ -5574,7 +5773,7 @@ INSERT INTO `sx_link` (`itemid`, `typeid`, `areaid`, `title`, `style`, `thumb`, 
 --
 
 CREATE TABLE IF NOT EXISTS `sx_login` (
-  `logid` bigint(20) unsigned NOT NULL,
+  `logid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `password` varchar(32) NOT NULL DEFAULT '',
   `passsalt` varchar(8) NOT NULL,
@@ -5582,8 +5781,9 @@ CREATE TABLE IF NOT EXISTS `sx_login` (
   `loginip` varchar(50) NOT NULL DEFAULT '',
   `logintime` int(10) unsigned NOT NULL DEFAULT '0',
   `message` varchar(255) NOT NULL DEFAULT '',
-  `agent` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='登录日志';
+  `agent` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`logid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='登录日志' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5592,15 +5792,16 @@ CREATE TABLE IF NOT EXISTS `sx_login` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_mail` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL DEFAULT '',
   `content` text NOT NULL,
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `sendtime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='邮件订阅';
+  `sendtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='邮件订阅' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5609,13 +5810,15 @@ CREATE TABLE IF NOT EXISTS `sx_mail` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_mail_list` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `email` varchar(50) NOT NULL DEFAULT '',
   `typeids` varchar(255) NOT NULL DEFAULT '',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='订阅列表';
+  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='订阅列表' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5624,7 +5827,7 @@ CREATE TABLE IF NOT EXISTS `sx_mail_list` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_mail_log` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL DEFAULT '',
   `title` varchar(255) NOT NULL DEFAULT '',
   `content` text NOT NULL,
@@ -5632,8 +5835,9 @@ CREATE TABLE IF NOT EXISTS `sx_mail_log` (
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='邮件记录';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='邮件记录' AUTO_INCREMENT=30 ;
 
 --
 -- 转存表中的数据 `sx_mail_log`
@@ -5677,7 +5881,7 @@ INSERT INTO `sx_mail_log` (`itemid`, `email`, `title`, `content`, `addtime`, `ed
 --
 
 CREATE TABLE IF NOT EXISTS `sx_mall` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `mycatid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -5748,8 +5952,13 @@ CREATE TABLE IF NOT EXISTS `sx_mall` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `filepath` varchar(255) NOT NULL DEFAULT '',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商城';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `editdate` (`editdate`,`vip`,`edittime`),
+  KEY `catid` (`catid`),
+  KEY `areaid` (`areaid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商城' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5760,7 +5969,8 @@ CREATE TABLE IF NOT EXISTS `sx_mall` (
 CREATE TABLE IF NOT EXISTS `sx_mall_cart` (
   `userid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `data` text NOT NULL,
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0'
+  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `userid` (`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='购物车';
 
 -- --------------------------------------------------------
@@ -5783,7 +5993,10 @@ CREATE TABLE IF NOT EXISTS `sx_mall_comment` (
   `seller_comment` text NOT NULL,
   `seller_ctime` int(10) unsigned NOT NULL DEFAULT '0',
   `seller_reply` text NOT NULL,
-  `seller_rtime` int(10) unsigned NOT NULL DEFAULT '0'
+  `seller_rtime` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `itemid` (`itemid`),
+  KEY `buyer` (`buyer`),
+  KEY `seller` (`seller`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='订单评论';
 
 -- --------------------------------------------------------
@@ -5794,7 +6007,8 @@ CREATE TABLE IF NOT EXISTS `sx_mall_comment` (
 
 CREATE TABLE IF NOT EXISTS `sx_mall_data` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商城内容';
 
 -- --------------------------------------------------------
@@ -5804,7 +6018,7 @@ CREATE TABLE IF NOT EXISTS `sx_mall_data` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_mall_express` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parentid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
@@ -5815,8 +6029,9 @@ CREATE TABLE IF NOT EXISTS `sx_mall_express` (
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `items` int(10) unsigned NOT NULL DEFAULT '0',
   `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `note` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='运费模板';
+  `note` varchar(255) NOT NULL,
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='运费模板' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5825,7 +6040,7 @@ CREATE TABLE IF NOT EXISTS `sx_mall_express` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_mall_order` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `mid` smallint(6) unsigned NOT NULL DEFAULT '16',
   `mallid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `buyer` varchar(30) NOT NULL DEFAULT '',
@@ -5858,8 +6073,11 @@ CREATE TABLE IF NOT EXISTS `sx_mall_order` (
   `buyer_reason` mediumtext NOT NULL,
   `refund_reason` mediumtext NOT NULL,
   `note` varchar(255) NOT NULL DEFAULT '',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商城订单';
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `buyer` (`buyer`),
+  KEY `seller` (`seller`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='商城订单' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5878,7 +6096,8 @@ CREATE TABLE IF NOT EXISTS `sx_mall_stat` (
   `bcomment` int(10) unsigned NOT NULL DEFAULT '0',
   `b1` int(10) unsigned NOT NULL DEFAULT '0',
   `b2` int(10) unsigned NOT NULL DEFAULT '0',
-  `b3` int(10) unsigned NOT NULL DEFAULT '0'
+  `b3` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `mallid` (`mallid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评分统计';
 
 -- --------------------------------------------------------
@@ -5888,7 +6107,7 @@ CREATE TABLE IF NOT EXISTS `sx_mall_stat` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_member` (
-  `userid` bigint(20) unsigned NOT NULL,
+  `userid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(15) NOT NULL DEFAULT '' COMMENT '用户名',
   `password` varchar(32) NOT NULL DEFAULT '',
   `email` varchar(255) DEFAULT NULL,
@@ -5917,15 +6136,19 @@ CREATE TABLE IF NOT EXISTS `sx_member` (
   `infopublishs` int(11) NOT NULL,
   `idcard` char(18) NOT NULL,
   `myapply` int(11) NOT NULL,
-  `myorder` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='会员';
+  `myorder` int(11) NOT NULL,
+  PRIMARY KEY (`userid`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
+  KEY `mobile` (`mobile`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员' AUTO_INCREMENT=19 ;
 
 --
 -- 转存表中的数据 `sx_member`
 --
 
 INSERT INTO `sx_member` (`userid`, `username`, `password`, `email`, `admin`, `role`, `groupid`, `oldgroupid`, `regid`, `edittime`, `regip`, `regtime`, `loginip`, `logintime`, `logintimes`, `thumb`, `areaid`, `address`, `gender`, `ischu`, `mobile`, `truename`, `infonums`, `hits`, `introduce`, `infohits`, `infopublishs`, `idcard`, `myapply`, `myorder`) VALUES
-(18, '8392673132', '14e1b600b1fd579f47433b88e8d85291', 'dfadsf@qq.com', 0, '', 5, 0, 5, 1461310317, '127.0.0.1', 1461309253, '127.0.0.1', 1461381660, 5, 'http://zhongning.com/file/upload/201604/22/1541598618.jpg', 48, 'fdsdf', 1, 0, 18707587890, 'abcd', 0, 0, '', 0, 0, '44122419910429373x', 2, 1),
+(18, '8392673132', '14e1b600b1fd579f47433b88e8d85291', 'dfadsf@qq.com', 0, '', 5, 0, 5, 1461310317, '127.0.0.1', 1461309253, '127.0.0.1', 1461457581, 7, 'http://zhongning.com/file/upload/201604/22/1541598618.jpg', 48, 'fdsdf', 1, 0, 18707587890, 'abcd', 0, 0, '', 0, 0, '44122419910429373x', 2, 1),
 (17, '283f8e2a9e', '14e1b600b1fd579f47433b88e8d85291', NULL, 0, '', 5, 0, 5, 0, '127.0.0.1', 1460947398, '', 0, 0, '', 0, '', 0, 0, 18707587891, '12', 0, 0, '', 0, 5, '', 0, 0);
 
 -- --------------------------------------------------------
@@ -5935,11 +6158,13 @@ INSERT INTO `sx_member` (`userid`, `username`, `password`, `email`, `admin`, `ro
 --
 
 CREATE TABLE IF NOT EXISTS `sx_member_check` (
-  `userid` bigint(20) unsigned NOT NULL,
+  `userid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `content` mediumtext NOT NULL,
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员资料审核';
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`userid`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员资料审核' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -5948,11 +6173,12 @@ CREATE TABLE IF NOT EXISTS `sx_member_check` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_member_group` (
-  `groupid` smallint(4) unsigned NOT NULL,
+  `groupid` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
   `groupname` varchar(50) NOT NULL DEFAULT '',
   `vip` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='会员组';
+  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`groupid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员组' AUTO_INCREMENT=8 ;
 
 --
 -- 转存表中的数据 `sx_member_group`
@@ -5974,7 +6200,7 @@ INSERT INTO `sx_member_group` (`groupid`, `groupname`, `vip`, `listorder`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `sx_message` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL DEFAULT '',
   `style` varchar(50) NOT NULL DEFAULT '',
   `typeid` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -5987,8 +6213,10 @@ CREATE TABLE IF NOT EXISTS `sx_message` (
   `issend` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `feedback` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `groupids` varchar(20) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='站内信件';
+  `groupids` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `touser` (`touser`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='站内信件' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `sx_message`
@@ -6005,7 +6233,7 @@ INSERT INTO `sx_message` (`itemid`, `title`, `style`, `typeid`, `content`, `from
 --
 
 CREATE TABLE IF NOT EXISTS `sx_module` (
-  `moduleid` smallint(6) unsigned NOT NULL,
+  `moduleid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `module` varchar(20) NOT NULL DEFAULT '',
   `name` varchar(20) NOT NULL DEFAULT '',
   `moduledir` varchar(20) NOT NULL DEFAULT '',
@@ -6018,8 +6246,9 @@ CREATE TABLE IF NOT EXISTS `sx_module` (
   `isblank` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `logo` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `installtime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='模型';
+  `installtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`moduleid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='模型' AUTO_INCREMENT=25 ;
 
 --
 -- 转存表中的数据 `sx_module`
@@ -6035,7 +6264,7 @@ INSERT INTO `sx_module` (`moduleid`, `module`, `name`, `moduledir`, `domain`, `l
 (6, 'buy', '投资申请', 'share', '', 'http://zhongning.com/share/', '', 13, 0, 1, 0, 0, 0, 1453453275),
 (8, 'exhibit', '展会', 'exhibit', '', 'http://shixun.com/exhibit/', '', 10, 0, 1, 0, 0, 1, 1453453275),
 (21, 'article', '资讯', 'news', '', 'http://zhongning.com/news/', '', 3, 0, 1, 0, 0, 0, 1453453275),
-(9, 'job', '加入我们', 'job', '', 'http://zhongning.com/job/', '', 14, 0, 1, 0, 0, 0, 1453453275),
+(9, 'job', '加入我们', 'job', '', 'http://zhongning.com/job/', '', 14, 0, 1, 0, 0, 1, 1453453275),
 (13, 'brand', '公告', 'bbs', '', 'http://zhongning.com/bbs/', '', 4, 0, 1, 0, 0, 0, 1453453275),
 (12, 'photo', '图库', 'photo', '', 'http://shixun.com/photo/', '', 15, 0, 1, 0, 0, 1, 1453453275),
 (14, 'video', '视频', 'video', '', 'http://shixun.com/video/', '', 18, 0, 1, 0, 0, 1, 1453453275),
@@ -6052,7 +6281,7 @@ INSERT INTO `sx_module` (`moduleid`, `module`, `name`, `moduledir`, `domain`, `l
 --
 
 CREATE TABLE IF NOT EXISTS `sx_news` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL DEFAULT '',
@@ -6064,8 +6293,11 @@ CREATE TABLE IF NOT EXISTS `sx_news` (
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司新闻';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `addtime` (`addtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司新闻' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6075,8 +6307,30 @@ CREATE TABLE IF NOT EXISTS `sx_news` (
 
 CREATE TABLE IF NOT EXISTS `sx_news_data` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司新闻内容';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `sx_nums`
+--
+
+CREATE TABLE IF NOT EXISTS `sx_nums` (
+  `itemid` int(11) NOT NULL AUTO_INCREMENT,
+  `finance_nums` int(11) NOT NULL COMMENT '融资成功数',
+  `invest_nums` int(11) NOT NULL COMMENT '投资笔数',
+  `invest_money` bigint(20) NOT NULL,
+  PRIMARY KEY (`itemid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `sx_nums`
+--
+
+INSERT INTO `sx_nums` (`itemid`, `finance_nums`, `invest_nums`, `invest_money`) VALUES
+(1, 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -6085,7 +6339,7 @@ CREATE TABLE IF NOT EXISTS `sx_news_data` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_oauth` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL DEFAULT '',
   `site` varchar(30) NOT NULL DEFAULT '',
   `openid` varchar(255) NOT NULL DEFAULT '',
@@ -6094,8 +6348,11 @@ CREATE TABLE IF NOT EXISTS `sx_oauth` (
   `url` varchar(255) NOT NULL DEFAULT '',
   `logintimes` int(10) unsigned NOT NULL DEFAULT '0',
   `logintime` int(10) unsigned NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='一键登录';
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `site` (`site`,`openid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='一键登录' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6109,15 +6366,9 @@ CREATE TABLE IF NOT EXISTS `sx_online` (
   `ip` varchar(50) NOT NULL DEFAULT '',
   `moduleid` int(10) unsigned NOT NULL DEFAULT '0',
   `online` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `lasttime` int(10) unsigned NOT NULL DEFAULT '0'
+  `lasttime` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `userid` (`userid`)
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8 COMMENT='在线会员';
-
---
--- 转存表中的数据 `sx_online`
---
-
-INSERT INTO `sx_online` (`userid`, `username`, `ip`, `moduleid`, `online`, `lasttime`) VALUES
-(18, '8392673132', '127.0.0.1', 1, 0, 1461397300);
 
 -- --------------------------------------------------------
 
@@ -6126,7 +6377,7 @@ INSERT INTO `sx_online` (`userid`, `username`, `ip`, `moduleid`, `online`, `last
 --
 
 CREATE TABLE IF NOT EXISTS `sx_page` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL DEFAULT '',
   `style` varchar(50) NOT NULL DEFAULT '',
   `hits` int(10) unsigned NOT NULL DEFAULT '0',
@@ -6137,8 +6388,11 @@ CREATE TABLE IF NOT EXISTS `sx_page` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司单页';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `addtime` (`addtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司单页' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6148,7 +6402,8 @@ CREATE TABLE IF NOT EXISTS `sx_page` (
 
 CREATE TABLE IF NOT EXISTS `sx_page_data` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='公司单页内容';
 
 -- --------------------------------------------------------
@@ -6158,7 +6413,7 @@ CREATE TABLE IF NOT EXISTS `sx_page_data` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_photo_12` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -6184,8 +6439,12 @@ CREATE TABLE IF NOT EXISTS `sx_photo_12` (
   `answer` varchar(30) NOT NULL DEFAULT '',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `filepath` varchar(255) NOT NULL DEFAULT '',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='图库';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `addtime` (`addtime`),
+  KEY `catid` (`catid`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='图库' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6195,7 +6454,8 @@ CREATE TABLE IF NOT EXISTS `sx_photo_12` (
 
 CREATE TABLE IF NOT EXISTS `sx_photo_data_12` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` longtext NOT NULL
+  `content` longtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='图库内容';
 
 -- --------------------------------------------------------
@@ -6205,12 +6465,15 @@ CREATE TABLE IF NOT EXISTS `sx_photo_data_12` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_photo_item_12` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `item` bigint(20) unsigned NOT NULL DEFAULT '0',
   `introduce` text NOT NULL,
   `thumb` varchar(255) NOT NULL DEFAULT '',
-  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='图库图片';
+  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `listorder` (`listorder`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='图库图片' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6219,7 +6482,7 @@ CREATE TABLE IF NOT EXISTS `sx_photo_item_12` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_poll` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -6244,8 +6507,10 @@ CREATE TABLE IF NOT EXISTS `sx_poll` (
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `template_poll` varchar(30) NOT NULL DEFAULT '',
-  `template` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='票选';
+  `template` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `addtime` (`addtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='票选' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6254,7 +6519,7 @@ CREATE TABLE IF NOT EXISTS `sx_poll` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_poll_item` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `pollid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL DEFAULT '',
   `style` varchar(50) NOT NULL DEFAULT '',
@@ -6262,8 +6527,10 @@ CREATE TABLE IF NOT EXISTS `sx_poll_item` (
   `thumb` varchar(255) NOT NULL DEFAULT '',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `polls` int(10) unsigned NOT NULL DEFAULT '0',
-  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='票选选项';
+  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `pollid` (`pollid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='票选选项' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6272,13 +6539,14 @@ CREATE TABLE IF NOT EXISTS `sx_poll_item` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_poll_record` (
-  `rid` bigint(20) unsigned NOT NULL,
+  `rid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `pollid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
   `ip` varchar(50) NOT NULL DEFAULT '',
-  `polltime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='票选记录';
+  `polltime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`rid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='票选记录' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6287,10 +6555,11 @@ CREATE TABLE IF NOT EXISTS `sx_poll_record` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_question` (
-  `qid` int(10) unsigned NOT NULL,
+  `qid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `question` varchar(255) NOT NULL DEFAULT '',
-  `answer` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='验证问题';
+  `answer` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`qid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='验证问题' AUTO_INCREMENT=6 ;
 
 --
 -- 转存表中的数据 `sx_question`
@@ -6310,7 +6579,7 @@ INSERT INTO `sx_question` (`qid`, `question`, `answer`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_quote_price` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `pid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `price` decimal(10,2) NOT NULL,
   `market` smallint(6) unsigned NOT NULL DEFAULT '0',
@@ -6324,8 +6593,11 @@ CREATE TABLE IF NOT EXISTS `sx_quote_price` (
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `note` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='行情报价';
+  `note` varchar(255) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `addtime` (`addtime`),
+  KEY `pid` (`pid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='行情报价' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6334,7 +6606,7 @@ CREATE TABLE IF NOT EXISTS `sx_quote_price` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_resume` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -6381,8 +6653,13 @@ CREATE TABLE IF NOT EXISTS `sx_resume` (
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `note` varchar(255) NOT NULL DEFAULT '',
   `oldstatus` tinyint(4) NOT NULL,
-  `userid` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='简历';
+  `userid` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `edittime` (`edittime`),
+  KEY `catid` (`catid`),
+  KEY `areaid` (`areaid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='简历' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `sx_resume`
@@ -6400,7 +6677,8 @@ INSERT INTO `sx_resume` (`itemid`, `catid`, `areaid`, `level`, `title`, `style`,
 
 CREATE TABLE IF NOT EXISTS `sx_resume_data` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='简历内容';
 
 --
@@ -6418,7 +6696,7 @@ INSERT INTO `sx_resume_data` (`itemid`, `content`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_sell_5` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `title` varchar(50) NOT NULL DEFAULT '',
   `introduce` varchar(255) NOT NULL DEFAULT '',
@@ -6437,8 +6715,11 @@ CREATE TABLE IF NOT EXISTS `sx_sell_5` (
   `apr` varchar(10) NOT NULL,
   `bonding` varchar(50) NOT NULL,
   `setbacks` varchar(10) NOT NULL,
-  `setstatus` tinyint(4) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='供应';
+  `setstatus` tinyint(4) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `editdate` (`editdate`,`edittime`),
+  KEY `edittime` (`edittime`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='供应' AUTO_INCREMENT=20 ;
 
 --
 -- 转存表中的数据 `sx_sell_5`
@@ -6446,7 +6727,8 @@ CREATE TABLE IF NOT EXISTS `sx_sell_5` (
 
 INSERT INTO `sx_sell_5` (`itemid`, `level`, `title`, `introduce`, `price`, `hits`, `company`, `edittime`, `editdate`, `addtime`, `adddate`, `status`, `oldstatus`, `month`, `reason`, `fee`, `apr`, `bonding`, `setbacks`, `setstatus`) VALUES
 (17, 0, 'fsdfas1', 'jfgjfhdfhfhfdhdf', '2323', 0, 'fasdfasdf2', 1461231133, '0000-00-00', 1460956655, '0000-00-00', 3, 0, 233224, 'vzxvz5', 'shf6', 'vbzxcv7', 'dsfsafas8', '100%', 1),
-(18, 0, 'gdfgdsg', '42342523523', '235', 0, 'fsadf', 1461231243, '0000-00-00', 1461231243, '0000-00-00', 3, 0, 252, '26236', '234', '3252', '234', '0%', 0);
+(18, 0, 'gdfgdsg', '42342523523', '235', 0, 'fsadf', 1461231243, '0000-00-00', 1461231243, '0000-00-00', 3, 0, 252, '26236', '234', '3252', '234', '0%', 0),
+(19, 0, 'fasdff', '434344', '355', 0, 'fads', 1461459480, '0000-00-00', 1461459480, '0000-00-00', 3, 0, 35, '3434', '3535', '353', '4343', '0%', 0);
 
 -- --------------------------------------------------------
 
@@ -6456,7 +6738,8 @@ INSERT INTO `sx_sell_5` (`itemid`, `level`, `title`, `introduce`, `price`, `hits
 
 CREATE TABLE IF NOT EXISTS `sx_sell_data_5` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='供应内容';
 
 --
@@ -6465,7 +6748,8 @@ CREATE TABLE IF NOT EXISTS `sx_sell_data_5` (
 
 INSERT INTO `sx_sell_data_5` (`itemid`, `content`) VALUES
 (18, '&nbsp;42342523523'),
-(17, '&nbsp;ahhsdhdsfgsdfsadfsadf9');
+(17, '&nbsp;ahhsdhdsfgsdfsadfsadf9'),
+(19, '&nbsp;434344');
 
 -- --------------------------------------------------------
 
@@ -6474,13 +6758,15 @@ INSERT INTO `sx_sell_data_5` (`itemid`, `content`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_sell_search_5` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `content` mediumtext NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
-  `sorttime` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='供应搜索';
+  `sorttime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`),
+  KEY `catid` (`catid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='供应搜索' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -6489,15 +6775,17 @@ CREATE TABLE IF NOT EXISTS `sx_sell_search_5` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_send_log` (
-  `log_id` int(11) NOT NULL COMMENT '日志id',
+  `log_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '日志id',
   `ip` varchar(20) NOT NULL COMMENT 'IP号',
   `day` int(4) NOT NULL COMMENT '某天',
   `check_time` int(11) NOT NULL COMMENT '验证时间',
   `num` tinyint(4) NOT NULL COMMENT '次数  一天3次',
   `mobile` varchar(20) NOT NULL COMMENT '手机号码',
   `mobile_code` varchar(64) NOT NULL COMMENT '验证码与手机的加密验证',
-  `check_num` tinyint(1) NOT NULL COMMENT '验证次数  3次失效'
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='短信发送日志';
+  `check_num` tinyint(1) NOT NULL COMMENT '验证次数  3次失效',
+  PRIMARY KEY (`log_id`),
+  KEY `ip` (`ip`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='短信发送日志' AUTO_INCREMENT=14 ;
 
 --
 -- 转存表中的数据 `sx_send_log`
@@ -6521,7 +6809,8 @@ INSERT INTO `sx_send_log` (`log_id`, `ip`, `day`, `check_time`, `num`, `mobile`,
 CREATE TABLE IF NOT EXISTS `sx_session` (
   `sessionid` varchar(32) NOT NULL DEFAULT '',
   `data` text NOT NULL,
-  `lastvisit` int(10) unsigned NOT NULL DEFAULT '0'
+  `lastvisit` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `sessionid` (`sessionid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='SESSION';
 
 -- --------------------------------------------------------
@@ -6533,7 +6822,8 @@ CREATE TABLE IF NOT EXISTS `sx_session` (
 CREATE TABLE IF NOT EXISTS `sx_setting` (
   `item` varchar(30) NOT NULL DEFAULT '',
   `item_key` varchar(100) NOT NULL DEFAULT '',
-  `item_value` text NOT NULL
+  `item_value` text NOT NULL,
+  KEY `item` (`item`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='网站设置';
 
 --
@@ -6541,10 +6831,8 @@ CREATE TABLE IF NOT EXISTS `sx_setting` (
 --
 
 INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
-('1', 'sms_sign', '【签名】'),
-('1', 'sms_ok', '成功'),
-('1', 'sms_len', '70'),
-('1', 'sms_max', ''),
+('1', 'page_brand', '4'),
+('1', 'page_exhibit', '6'),
 ('2', 'pay_banks', '现金|网银在线|贝宝|支付宝|财付通|招商银行|中国工商银行|中国农业银行|中国建设银行|中国交通银行|中国银行|邮政储蓄|邮政汇款'),
 ('2', 'cash_fee_min', '1'),
 ('2', 'cash_fee_max', '50'),
@@ -6935,12 +7223,8 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('6', 'seo_description_index', ''),
 ('6', 'seo_keywords_index', ''),
 ('6', 'seo_title_index', '{模块名称}{分隔符}{页码}{网站名称}'),
-('1', 'sms_fee', '0.1'),
-('1', 'sms', '0'),
-('1', 'page_text', '18'),
-('1', 'page_logo', '18'),
-('1', 'page_down', '5'),
-('1', 'page_job', '5'),
+('1', 'page_know', '6'),
+('1', 'page_club', '8'),
 ('12', 'fee_period', '0'),
 ('12', 'fee_view', '0'),
 ('12', 'fee_add', '0'),
@@ -8016,7 +8300,8 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('group-6', 'vemail', '0'),
 ('group-6', 'moduleids', '16,5,6,17,7,8,22,13,9,10,12,18'),
 ('group-6', 'link_limit', '20'),
-('group-6', 'honor_limit', '10'),
+('group-6', 'honor_limit', '10');
+INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('group-6', 'page_limit', '5'),
 ('group-6', 'news_limit', '20'),
 ('group-6', 'kf', '0'),
@@ -8084,8 +8369,7 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('group-6', 'brand_limit', '5'),
 ('group-6', 'brand_free_limit', '1'),
 ('group-6', 'photo_limit', '5'),
-('group-6', 'photo_free_limit', '1');
-INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
+('group-6', 'photo_free_limit', '1'),
 ('group-6', 'video_limit', '5'),
 ('group-6', 'video_free_limit', '1'),
 ('group-6', 'down_limit', '5'),
@@ -8165,7 +8449,7 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('group-7', 'spread', '1'),
 ('group-7', 'trade_sell', '1'),
 ('destoon', 'backtime', '1453453275'),
-('1', 'page_brand', '4'),
+('1', 'page_post', '8'),
 ('pay-weixin', 'name', '微信'),
 ('pay-weixin', 'enable', '0'),
 ('pay-chinabank', 'enable', '0'),
@@ -8508,32 +8792,28 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('21', 'htm_item_prefix', ''),
 ('21', 'show_html', '0'),
 ('21', 'php_list_urlid', '0'),
-('1', 'page_exhibit', '6'),
-('1', 'page_know', '6'),
-('1', 'page_club', '8'),
-('1', 'page_post', '8'),
 ('1', 'page_video', '3'),
 ('1', 'page_photo', '6'),
 ('1', 'page_news', '5'),
 ('1', 'page_newsh', '1'),
 ('1', 'page_comnews', '5'),
-('1', 'page_special', '1'),
-('1', 'page_rank', '5'),
 ('1', 'page_group', '3'),
+('1', 'page_rank', '5'),
+('1', 'page_special', '1'),
 ('1', 'page_price', '12'),
-('1', 'page_quote', '5'),
 ('1', 'page_mall', '10'),
+('1', 'page_quote', '5'),
 ('1', 'page_sell', '10'),
-('1', 'page_com', '20'),
 ('1', 'page_trade', '10'),
+('1', 'page_com', '20'),
 ('1', 'page_catalog', '1'),
 ('1', 'page_bigcat', ''),
 ('1', 'message_weixin', '0'),
 ('1', 'message_type', '1,2,3'),
 ('1', 'message_time', '60'),
 ('1', 'message_group', '6,7'),
-('1', 'mail_log', '1'),
 ('1', 'message_email', '0'),
+('1', 'mail_log', '1'),
 ('1', 'mail_name', '中宁县民间借贷登记服务中心'),
 ('1', 'mail_sender', '694538309@qq.com'),
 ('1', 'mail_sign', '中国食讯网'),
@@ -8542,28 +8822,7 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('1', 'smtp_auth', '1'),
 ('1', 'smtp_port', '25'),
 ('1', 'smtp_host', 'smtp.qq.com'),
-('1', 'mail_delimiter', '1'),
 ('1', 'mail_type', 'smtp'),
-('1', 'max_image', '800'),
-('1', 'thumb_title', '0'),
-('1', 'thumb_album', '1'),
-('1', 'middle_h', '180'),
-('1', 'middle_w', '240'),
-('1', 'water_middle', '0'),
-('1', 'water_com', '1'),
-('1', 'gif_ani', '1'),
-('1', 'bmp_jpg', '1'),
-('1', 'water_pos', '9'),
-('1', 'water_min_wh', '180'),
-('1', 'water_margin', '10'),
-('1', 'water_type', '0'),
-('1', 'water_fontcolor', '#000000'),
-('1', 'water_fontsize', '20'),
-('1', 'water_font', 'simhei.ttf'),
-('1', 'water_text', 'www.destoon.com'),
-('1', 'water_jpeg_quality', '90'),
-('1', 'water_transition', '60'),
-('1', 'water_mark', 'watermark.png'),
 ('23', 'publishfee', '10.5'),
 ('23', 'cat_property', '0'),
 ('23', 'save_remotepic', '0'),
@@ -8631,12 +8890,10 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('24', 'template_show', ''),
 ('24', 'template_list', ''),
 ('24', 'template_index', ''),
-('1', 'file_my', 'my.php'),
-('1', 'file_login', 'login.php'),
-('1', 'file_register', 'register.php'),
-('1', 'defend_proxy', '0'),
-('1', 'defend_reload', '0'),
-('1', 'defend_cc', '0'),
+('1', 'mail_delimiter', '1'),
+('1', 'middle_h', '180'),
+('1', 'thumb_album', '1'),
+('1', 'thumb_title', '0'),
 ('23', 'credit_refresh', '1'),
 ('23', 'credit_color', '100'),
 ('23', 'credit_del', '5'),
@@ -8814,10 +9071,70 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('21', 'keylink', '1'),
 ('21', 'clear_link', '1'),
 ('21', 'save_remotepic', '1'),
+('1', 'max_image', '800'),
+('1', 'middle_w', '240'),
+('1', 'water_middle', '0'),
+('1', 'water_com', '1'),
+('1', 'gif_ani', '1'),
+('1', 'bmp_jpg', '1'),
+('1', 'water_pos', '9'),
+('1', 'water_min_wh', '180'),
+('1', 'water_margin', '10'),
+('1', 'water_type', '0'),
+('1', 'water_fontcolor', '#000000'),
+('1', 'water_fontsize', '20'),
+('1', 'water_font', 'simhei.ttf'),
+('1', 'water_text', 'www.destoon.com'),
+('1', 'water_mark', 'watermark.png'),
+('1', 'water_transition', '60'),
+('1', 'water_jpeg_quality', '90'),
+('1', 'file_my', 'my.php'),
+('1', 'file_login', 'login.php'),
+('6', 'type', '求购|紧急求购|求购二手|寻求加工|寻求合作|招标'),
+('6', 'order', 'addtime desc'),
+('6', 'editor', 'Destoon'),
+('6', 'introduce_length', '120'),
+('6', 'thumb_height', '100'),
+('6', 'thumb_width', '100'),
+('6', 'template_price', ''),
+('6', 'template_my', ''),
+('6', 'template_search', ''),
+('6', 'template_show', ''),
+('6', 'template_list', ''),
+('6', 'template_index', ''),
+('1', 'file_register', 'register.php'),
+('1', 'defend_proxy', '0'),
+('1', 'defend_reload', '0'),
+('1', 'defend_cc', '0'),
 ('1', 'safe_domain', ''),
 ('1', 'check_referer', '1'),
-('1', 'uploadsize', '20480'),
 ('1', 'uploaddir', 'Ym/d'),
+('1', 'uploadsize', '20480'),
+('21', 'group_color', '6,7'),
+('21', 'check_add', '2'),
+('21', 'cat_property', '0'),
+('21', 'fields', 'itemid,title,thumb,linkurl,style,catid,introduce,addtime,edittime,username,islink'),
+('21', 'order', 'addtime desc'),
+('21', 'editor', 'Default'),
+('21', 'introduce_length', '120'),
+('21', 'thumb_height', '90'),
+('21', 'thumb_width', '120'),
+('21', 'template_my', ''),
+('21', 'template_search', ''),
+('21', 'template_show', ''),
+('21', 'template_list', ''),
+('21', 'template_index', ''),
+('21', 'question_add', '2'),
+('21', 'fee_mode', '1'),
+('21', 'fee_currency', 'money'),
+('21', 'fee_add', '0'),
+('21', 'fee_view', '0'),
+('21', 'fee_period', '0'),
+('21', 'fee_back', '0'),
+('21', 'pre_view', '500'),
+('21', 'credit_add', '2'),
+('21', 'credit_del', '5'),
+('21', 'credit_color', '100'),
 ('1', 'uploadtype', 'jpg|gif|png|rar|zip|pdf|doc|xls|ppt|flv|mp4|docx|ppts|xlsx|jpeg'),
 ('1', 'uploadlog', '1'),
 ('1', 'anticopy', '0'),
@@ -8847,18 +9164,6 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('1', 'schcate_limit', '10'),
 ('1', 'pagesize', '20'),
 ('1', 'pushtime', '0'),
-('6', 'type', '求购|紧急求购|求购二手|寻求加工|寻求合作|招标'),
-('6', 'order', 'addtime desc'),
-('6', 'editor', 'Destoon'),
-('6', 'introduce_length', '120'),
-('6', 'thumb_height', '100'),
-('6', 'thumb_width', '100'),
-('6', 'template_price', ''),
-('6', 'template_my', ''),
-('6', 'template_search', ''),
-('6', 'template_show', ''),
-('6', 'template_list', ''),
-('6', 'template_index', ''),
 ('1', 'online', '1200'),
 ('1', 'search_limit', '1'),
 ('1', 'max_kw', '30'),
@@ -8870,91 +9175,76 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 ('1', 'anti_spam', '1'),
 ('1', 'log_credit', '1'),
 ('1', 'pages_mode', '0'),
-('1', 'lazy', '1'),
 ('1', 'gzip_enable', '0'),
+('1', 'lazy', '1'),
 ('1', 'cache_hits', '0'),
 ('1', 'cache_search', '0'),
 ('1', 'task_item', '7200'),
-('21', 'group_color', '6,7'),
-('21', 'check_add', '2'),
-('21', 'cat_property', '0'),
-('21', 'fields', 'itemid,title,thumb,linkurl,style,catid,introduce,addtime,edittime,username,islink'),
-('21', 'order', 'addtime desc'),
-('21', 'editor', 'Default'),
-('21', 'introduce_length', '120'),
-('21', 'thumb_height', '90'),
-('21', 'thumb_width', '120'),
-('21', 'template_my', ''),
-('21', 'template_search', ''),
-('21', 'template_show', ''),
-('21', 'template_list', ''),
-('21', 'template_index', ''),
-('21', 'question_add', '2'),
-('21', 'fee_mode', '1'),
-('21', 'fee_currency', 'money'),
-('21', 'fee_add', '0'),
-('21', 'fee_view', '0'),
-('21', 'fee_period', '0'),
-('21', 'fee_back', '0'),
-('21', 'pre_view', '500'),
-('21', 'credit_add', '2'),
-('21', 'credit_del', '5'),
-('21', 'credit_color', '100'),
 ('1', 'task_list', '1800'),
 ('1', 'task_index', '600'),
 ('1', 'log_404', '0'),
-('1', 'pcharset', '0'),
 ('1', 'com_www', '0'),
+('1', 'pcharset', '0'),
 ('1', 'rewrite', '0'),
 ('1', 'index_html', '1'),
 ('1', 'file_ext', 'html'),
 ('1', 'index', 'index'),
-('1', 'seo_keywords', 'fsdfadsf'),
-('1', 'seo_description', '的沙发沙发'),
+('1', 'seo_description', '中宁县民间借贷登记服务中心'),
+('1', 'seo_keywords', '中宁县民间借贷登记服务中心'),
 ('1', 'seo_title', '中宁县民间借贷登记服务中心'),
 ('1', 'seo_delimiter', '-'),
 ('1', 'trade_nu', 'notify.php'),
 ('1', 'trade_tp', '0'),
-('1', 'trade_pw', ''),
 ('1', 'trade_ac', ''),
-('1', 'trade_id', ''),
 ('1', 'trade_hm', 'http://www.alipay.com/'),
-('1', 'trade_nm', '支付宝'),
+('1', 'trade_id', ''),
+('1', 'trade_pw', ''),
 ('1', 'trade', ''),
+('1', 'trade_nm', '支付宝'),
 ('1', 'im_skype', '0'),
-('1', 'im_msn', '0'),
 ('1', 'im_ali', '1'),
-('1', 'im_qq', '1'),
+('1', 'im_msn', '0'),
 ('1', 'im_web', '1'),
-('1', 'admin_left', '188'),
+('1', 'im_qq', '1'),
 ('1', 'credit_unit', '点'),
-('1', 'credit_name', '积分'),
+('1', 'admin_left', '188'),
 ('1', 'money_sign', '￥'),
+('1', 'credit_name', '积分'),
 ('1', 'money_unit', '元'),
-('1', 'companyintro', '中宁县民间借贷登记服务中心1'),
 ('1', 'money_name', '资金'),
 ('1', 'city', '1'),
 ('1', 'city_ip', '1'),
 ('1', 'address', '中宁县宁安东街雅泰城市华园31、32#营业房'),
-('1', 'companyx', '105.692818'),
 ('1', 'companyy', '37.499126'),
+('1', 'companyintro', '中宁县民间借贷登记服务中心'),
+('1', 'companyx', '105.692818'),
 ('1', 'company', '中宁县民间借贷登记服务中心'),
 ('1', 'invest_phone', '15909559866,13519253521,13639588261,18465153520'),
+('1', 'invest_rate', '0'),
+('1', 'invest_all_money', '0'),
+('1', 'invest_users', '0'),
 ('1', 'invest_name', '李翊煊,贺建辉,史韵,王志芮'),
-('1', 'invest_users', '10455'),
-('1', 'invest_all_money', '5224'),
-('1', 'invest_rate', '8888'),
+('1', 'invest_money', '0'),
+('1', 'rate', '9.6%'),
 ('1', 'rate_time', '6个月以下'),
-('1', 'invest_money', '1245000'),
-('1', 'rate', '9.6'),
-('1', 'memberlogo', 'http://zhongning.com/file/upload/201604/22/1534549418.jpg'),
+('1', 'memberlogo', 'http://shixun.com/file/upload/201603/18/1044546416.png'),
 ('1', 'close_reason', '网站维护中，请稍候访问...'),
 ('1', 'close', '0'),
+('1', 'icpno', '粤ICP备10231287号-8'),
 ('1', 'telephone', '+86-0955-5716799'),
-('1', 'icpno', ''),
-('1', 'logo', 'http://zhongning.com/file/upload/201604/23/105318280.png'),
-('1', 'copyright', '(c)2008-2015 DESTOON B2B SYSTEM All Rights Reserved'),
+('1', 'copyright', 'Copyright © 2015 中宁普惠金融 All rights reserved.'),
+('1', 'logo', 'http://zhongning.com/file/upload/201604/22/2041033017.png'),
 ('1', 'sitename', '中宁县民间借贷登记服务中心'),
+('1', 'page_job', '5'),
+('1', 'page_down', '5'),
+('1', 'page_logo', '18'),
+('1', 'page_text', '18'),
+('1', 'sms', '0'),
+('1', 'sms_fee', '0.1'),
+('1', 'sms_max', ''),
+('1', 'sms_len', '70'),
+('1', 'sms_ok', '成功'),
+('1', 'sms_sign', '【签名】'),
 ('1', 'cloud_express', '0'),
 ('1', 'admin_week', ''),
 ('1', 'check_week', '');
@@ -8966,14 +9256,15 @@ INSERT INTO `sx_setting` (`item`, `item_key`, `item_value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sx_sms` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `mobile` varchar(30) NOT NULL DEFAULT '',
   `message` text NOT NULL,
   `word` int(10) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL DEFAULT '',
   `sendtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `code` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='短信记录';
+  `code` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='短信记录' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -8983,7 +9274,8 @@ CREATE TABLE IF NOT EXISTS `sx_sms` (
 
 CREATE TABLE IF NOT EXISTS `sx_sphinx` (
   `moduleid` int(10) unsigned NOT NULL DEFAULT '0',
-  `maxid` bigint(20) unsigned NOT NULL DEFAULT '0'
+  `maxid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `moduleid` (`moduleid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Sphinx';
 
 -- --------------------------------------------------------
@@ -8993,7 +9285,7 @@ CREATE TABLE IF NOT EXISTS `sx_sphinx` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_style` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL DEFAULT '',
   `skin` varchar(50) NOT NULL DEFAULT '',
@@ -9008,8 +9300,9 @@ CREATE TABLE IF NOT EXISTS `sx_style` (
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='公司主页模板';
+  `listorder` smallint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='公司主页模板' AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `sx_style`
@@ -9029,14 +9322,17 @@ INSERT INTO `sx_style` (`itemid`, `typeid`, `title`, `skin`, `template`, `author
 --
 
 CREATE TABLE IF NOT EXISTS `sx_type` (
-  `typeid` bigint(20) unsigned NOT NULL,
+  `typeid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `parentid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `listorder` smallint(4) NOT NULL DEFAULT '0',
   `typename` varchar(255) NOT NULL DEFAULT '',
   `style` varchar(50) NOT NULL DEFAULT '',
   `item` varchar(20) NOT NULL DEFAULT '',
-  `cache` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='分类';
+  `cache` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`typeid`),
+  KEY `listorder` (`listorder`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='分类' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `sx_type`
@@ -9052,7 +9348,7 @@ INSERT INTO `sx_type` (`typeid`, `parentid`, `listorder`, `typename`, `style`, `
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upgrade` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `userid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
   `groupid` smallint(4) unsigned NOT NULL DEFAULT '0',
@@ -9076,8 +9372,9 @@ CREATE TABLE IF NOT EXISTS `sx_upgrade` (
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
-  `note` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员升级';
+  `note` text NOT NULL,
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员升级' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9086,7 +9383,7 @@ CREATE TABLE IF NOT EXISTS `sx_upgrade` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_0` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9098,8 +9395,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_0` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COMMENT='上传记录0';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='上传记录0' AUTO_INCREMENT=116 ;
 
 --
 -- 转存表中的数据 `sx_upload_0`
@@ -9156,7 +9455,7 @@ INSERT INTO `sx_upload_0` (`pid`, `item`, `moduleid`, `itemid`, `fileurl`, `file
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_1` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9168,8 +9467,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_1` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COMMENT='上传记录1';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='上传记录1' AUTO_INCREMENT=102 ;
 
 --
 -- 转存表中的数据 `sx_upload_1`
@@ -9240,7 +9541,7 @@ INSERT INTO `sx_upload_1` (`pid`, `item`, `moduleid`, `itemid`, `fileurl`, `file
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_2` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9252,8 +9553,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_2` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录2';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录2' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9262,7 +9565,7 @@ CREATE TABLE IF NOT EXISTS `sx_upload_2` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_3` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9274,8 +9577,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_3` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录3';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录3' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9284,7 +9589,7 @@ CREATE TABLE IF NOT EXISTS `sx_upload_3` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_4` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9296,8 +9601,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_4` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录4';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录4' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9306,7 +9613,7 @@ CREATE TABLE IF NOT EXISTS `sx_upload_4` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_5` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9318,8 +9625,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_5` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录5';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录5' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9328,7 +9637,7 @@ CREATE TABLE IF NOT EXISTS `sx_upload_5` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_6` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9340,8 +9649,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_6` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='上传记录6';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='上传记录6' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `sx_upload_6`
@@ -9357,7 +9668,7 @@ INSERT INTO `sx_upload_6` (`pid`, `item`, `moduleid`, `itemid`, `fileurl`, `file
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_7` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9369,8 +9680,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_7` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录7';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录7' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9379,7 +9692,7 @@ CREATE TABLE IF NOT EXISTS `sx_upload_7` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_8` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9391,8 +9704,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_8` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='上传记录8';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='上传记录8' AUTO_INCREMENT=22 ;
 
 --
 -- 转存表中的数据 `sx_upload_8`
@@ -9403,12 +9718,15 @@ INSERT INTO `sx_upload_8` (`pid`, `item`, `moduleid`, `itemid`, `fileurl`, `file
 (4, '1c02b5187a911202f506e77287b59745', 3, 0, 'http://zhongning.com/file/upload/201604/23/1347115718.jpg', 476208, 'jpg', 'file', 1920, 550, 1461390431, '8392673132', '127.0.0.1'),
 (3, 'e5e5364ab73668d42281c1d208ad93c6', 2, 0, 'http://zhongning.com/file/upload/201604/22/1541598618.jpg', 6701, 'jpg', 'thumb', 150, 150, 1461310919, '8392673', '127.0.0.1'),
 (6, '6cb84b2269ac0a57e05ebbf67f44b022', 3, 0, 'http://zhongning.com/file/upload/201604/23/1347533418.jpg', 347692, 'jpg', 'file', 1920, 550, 1461390473, '8392673132', '127.0.0.1'),
-(7, '2375828f40201a5f82248f2416b9dc58', 3, 0, 'http://zhongning.com/file/upload/201604/23/1358325918.jpg', 154175, 'jpg', 'thumb', 1920, 400, 1461391112, '8392673132', '127.0.0.1'),
-(8, 'a716a00b393e8d33d4c7a76a305f7aba', 3, 0, 'http://zhongning.com/file/upload/201604/23/1419542118.jpg', 289322, 'jpg', 'thumb', 1920, 492, 1461392394, '8392673132', '127.0.0.1'),
-(9, '6758cb14c5835f644c433efb67bd4b1e', 3, 0, 'http://zhongning.com/file/upload/201604/23/1427496718.jpg', 804474, 'jpg', 'thumb', 1920, 401, 1461392869, '8392673132', '127.0.0.1'),
-(10, 'daeb2eb545e2c2c6cc4c836b4a408ed2', 3, 0, 'http://zhongning.com/file/upload/201604/23/1429487018.jpg', 150358, 'jpg', 'thumb', 1920, 402, 1461392988, '8392673132', '127.0.0.1'),
-(11, '197834b42ccb50dabbee267c0e32e483', 3, 0, 'http://zhongning.com/file/upload/201604/23/1432085318.jpg', 61638, 'jpg', 'thumb', 1920, 399, 1461393128, '8392673132', '127.0.0.1'),
-(12, 'b65b770c5343bf160b6ce9355fccdf5b', 3, 0, 'http://zhongning.com/file/upload/201604/23/1504578618.jpg', 69268, 'jpg', 'thumb', 1920, 400, 1461395097, '8392673132', '127.0.0.1');
+(21, 'b7147b4aa541a3cfd31af1b347729e9e', 3, 0, 'http://zhongning.com/file/upload/201604/24/1016412218.jpg', 153459, 'jpg', 'thumb', 1920, 400, 1461464201, '8392673132', '127.0.0.1'),
+(19, 'f70bbb5261572eb802a8d72052200ec0', 3, 0, 'http://zhongning.com/file/upload/201604/24/1014586418.jpg', 289322, 'jpg', 'thumb', 1920, 492, 1461464098, '8392673132', '127.0.0.1'),
+(20, 'cbd0021fa455adacd980a125778cebac', 3, 0, 'http://zhongning.com/file/upload/201604/24/1015574318.jpg', 158930, 'jpg', 'thumb', 1920, 401, 1461464157, '8392673132', '127.0.0.1'),
+(16, '64db3661a94464ba7d15481181957d91', 3, 0, 'http://zhongning.com/file/upload/201604/24/1013143518.jpg', 150358, 'jpg', 'thumb', 1920, 402, 1461463994, '8392673132', '127.0.0.1'),
+(17, 'a704f968cdb4ae1809c97b2b1ca5a7b4', 3, 0, 'http://zhongning.com/file/upload/201604/24/1013405418.jpg', 61638, 'jpg', 'thumb', 1920, 399, 1461464020, '8392673132', '127.0.0.1'),
+(18, 'e96be2482e2c9e4c4a8ad29d8f9d360d', 3, 0, 'http://zhongning.com/file/upload/201604/24/1014081118.jpg', 178604, 'jpg', 'thumb', 1920, 400, 1461464048, '8392673132', '127.0.0.1'),
+(13, 'c7e7e08313487ce532f50d1687725393', 3, 0, 'http://zhongning.com/file/upload/201604/24/1010286118.jpg', 476208, 'jpg', 'file', 1920, 550, 1461463828, '8392673132', '127.0.0.1'),
+(14, 'c1351222baae8a714ad2849816e57cc4', 3, 0, 'http://zhongning.com/file/upload/201604/24/1012284418.jpg', 244298, 'jpg', 'file', 1920, 550, 1461463948, '8392673132', '127.0.0.1'),
+(15, '17dad76251934ae0ffd86abd74d64641', 3, 0, 'http://zhongning.com/file/upload/201604/24/1012407418.jpg', 347692, 'jpg', 'file', 1920, 550, 1461463960, '8392673132', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -9417,7 +9735,7 @@ INSERT INTO `sx_upload_8` (`pid`, `item`, `moduleid`, `itemid`, `fileurl`, `file
 --
 
 CREATE TABLE IF NOT EXISTS `sx_upload_9` (
-  `pid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(32) NOT NULL DEFAULT '',
   `moduleid` smallint(6) unsigned NOT NULL DEFAULT '0',
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -9429,8 +9747,10 @@ CREATE TABLE IF NOT EXISTS `sx_upload_9` (
   `height` int(10) unsigned NOT NULL DEFAULT '0',
   `addtime` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
-  `ip` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录9';
+  `ip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`pid`),
+  KEY `item` (`item`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='上传记录9' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9439,7 +9759,7 @@ CREATE TABLE IF NOT EXISTS `sx_upload_9` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_validate` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL DEFAULT '',
   `type` varchar(30) NOT NULL DEFAULT '',
   `thumb` varchar(255) NOT NULL DEFAULT '',
@@ -9450,8 +9770,9 @@ CREATE TABLE IF NOT EXISTS `sx_validate` (
   `editor` varchar(30) NOT NULL DEFAULT '',
   `edittime` int(10) unsigned NOT NULL DEFAULT '0',
   `ip` varchar(50) NOT NULL DEFAULT '',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资料认证';
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='资料认证' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9460,7 +9781,7 @@ CREATE TABLE IF NOT EXISTS `sx_validate` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_video_14` (
-  `itemid` bigint(20) unsigned NOT NULL,
+  `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -9487,8 +9808,12 @@ CREATE TABLE IF NOT EXISTS `sx_video_14` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `filepath` varchar(255) NOT NULL DEFAULT '',
-  `note` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='视频';
+  `note` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`),
+  KEY `username` (`username`),
+  KEY `addtime` (`addtime`),
+  KEY `catid` (`catid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='视频' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9498,7 +9823,8 @@ CREATE TABLE IF NOT EXISTS `sx_video_14` (
 
 CREATE TABLE IF NOT EXISTS `sx_video_data_14` (
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `content` mediumtext NOT NULL
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`itemid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='视频内容';
 
 -- --------------------------------------------------------
@@ -9508,7 +9834,7 @@ CREATE TABLE IF NOT EXISTS `sx_video_data_14` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_vote` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeid` int(10) unsigned NOT NULL DEFAULT '0',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -9553,8 +9879,10 @@ CREATE TABLE IF NOT EXISTS `sx_vote` (
   `v10` int(10) unsigned NOT NULL DEFAULT '0',
   `userid` int(11) NOT NULL,
   `type` tinyint(4) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='投票';
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`itemid`),
+  KEY `userid` (`userid`,`type`,`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='投票' AUTO_INCREMENT=16 ;
 
 --
 -- 转存表中的数据 `sx_vote`
@@ -9584,13 +9912,15 @@ INSERT INTO `sx_vote` (`itemid`, `typeid`, `areaid`, `level`, `title`, `style`, 
 --
 
 CREATE TABLE IF NOT EXISTS `sx_vote_record` (
-  `rid` bigint(20) unsigned NOT NULL,
+  `rid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `itemid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `username` varchar(30) NOT NULL DEFAULT '',
   `ip` varchar(50) NOT NULL DEFAULT '',
   `votetime` int(10) unsigned NOT NULL DEFAULT '0',
-  `votes` varchar(100) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='投票记录';
+  `votes` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`rid`),
+  KEY `itemid` (`itemid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='投票记录' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -9599,7 +9929,7 @@ CREATE TABLE IF NOT EXISTS `sx_vote_record` (
 --
 
 CREATE TABLE IF NOT EXISTS `sx_webpage` (
-  `itemid` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `item` varchar(30) NOT NULL DEFAULT '',
   `areaid` int(10) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -9616,8 +9946,9 @@ CREATE TABLE IF NOT EXISTS `sx_webpage` (
   `islink` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `linkurl` varchar(255) NOT NULL DEFAULT '',
   `domain` varchar(255) NOT NULL DEFAULT '',
-  `template` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='单网页';
+  `template` varchar(30) NOT NULL DEFAULT '',
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='单网页' AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `sx_webpage`
@@ -9631,1413 +9962,6 @@ INSERT INTO `sx_webpage` (`itemid`, `item`, `areaid`, `level`, `title`, `style`,
 (8, '1', 0, 0, 'PC端-公司介绍', '', '<h3>公司简介</h3>\r\n<p>中宁县民间借贷登记服务中心是一家集&ldquo;金融服务、信息咨询、投融资理财、项目融资、业务代理、理财顾问、业务培训、民间借贷登记服务等业务&rdquo;的             公司，是自治区金融工作局支持下的宁夏第一家民间借贷登记服务机构，采用&ldquo;政府引导，企业经营，市场运作&rdquo;的模式开展工作。</p>\r\n<img src="http://zhongning.com/skins/images/wycms/intro1.jpg" alt="" />\r\n<h3>核心价值</h3>\r\n<p>公司以&ldquo;奉献+服务+发展&rdquo;为己任，以追求永续经营为目标，把推动宁夏中小微企业的健康发展、促进地区经济建设、加强社会和谐与文明进步作为公司             发展的根本任务，以追求股东、企业、员工与社会的共赢发展、实现公司经济效益和社会效益的最大化为行为准则，致力于服务宁夏经济发展和社会繁荣，为             人民群众生活的改善提高，提供金融服务。有效集合民间资金，挖掘融资企业资金需求，通过信息发布与对接服务，引导民间资金以债权方式投资于中小企业，             促进实体经济发展。为投资人提供资金的保值和增值，为融资企业提供可持续发展的保障。</p>\r\n<img src=" http://zhongning.com/skins/images/wycms/intro2.jpg" alt="" />\r\n<h3>诚信服务</h3>\r\n<p>中宁县民间借贷登记服务中心通过阳光化服务，树立诚信典范，助推宁夏民间借贷诚信体系的完善，为民间金融投资拓展了一个新的渠道，丰富了金融市             场的层次和产品，为西部金融改革试验做出了积极探索。我们坚信在&ldquo;法律&rdquo;与&ldquo;诚信&rdquo;的旗帜下，在主管部门的引导和监管下，中宁民间借贷登记服务中心             将竭诚建立一个合法、安全、阳光的民间资金交易平台，引导民间资金进入实体经济，做人民的金融、普惠金融。</p>\r\n<img src=" http://zhongning.com/skins/images/wycms/intro3.jpg" alt="" />         <img src=" http://zhongning.com/skins/images/wycms/intro4.jpg" alt="" />', '', '', '', '', 1461301532, 8, 0, 0, 'about/compintro.html', '', 'webpage-1'),
 (9, '1', 0, 0, 'pc端-常见问题', '', '<div class="questiontitle"><span>常见问题</span></div>\r\n<div class="questionlist">\r\n<p class="qlisttitle clearfix"><img src="http://zhongning.com/skins/images/wycms/wen1.jpg" class="fl" alt="" />                     <span class="fl">什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款？</span></p>\r\n<p class="qlistcon clearfix"><img src="http://zhongning.com/skins/images/wycms/wen2.jpg" class="fl" alt="" />                 <span class="fl">                     公安的反馈拿到手了开发你大方里看到上课了发送到您付款了撒旦法代课老师阿萨德能分开了的撒你发的律师费你看了疯狂老师分开付款的拉萨疯狂的萨拉烦恼打卡上浪费你上单卡扣水电费卡拉丁服阿斯顿发哪里开发商打烂fk                     大但考虑是否你看了撒的发哪的上课了分开来放哪可浪费你快啦你看了撒旦开发的克里斯快递费难看死啦硫酸钠分类可你看老福克斯的了那份卡发上来的可能防辐射服是打发来看的萨芬的刷卡了饭能傻得来看房                 </span></p>\r\n</div>\r\n<div class="questionlist">\r\n<p class="qlisttitle clearfix"><img src="http://zhongning.com/skins/images/wycms/wen1.jpg" class="fl" alt="" />                     <span class="fl">什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款？</span></p>\r\n<p class="qlistcon clearfix"><img src="http://zhongning.com/skins/images/wycms/wen2.jpg" class="fl" alt="" />                 <span class="fl">                     公安的反馈拿到手了开发你大方里看到上课了发送到您付款了撒旦法代课老师阿萨德能分开了的撒你发的律师费你看了疯狂老师分开付款的拉萨疯狂的萨拉烦恼打卡上浪费你上单卡扣水电费卡拉丁服阿斯顿发哪里开发商打烂fk                     大但考虑是否你看了撒的发哪的上课了分开来放哪可浪费你快啦你看了撒旦开发的克里斯快递费难看死啦硫酸钠分类可你看老福克斯的了那份卡发上来的可能防辐射服是打发来看的萨芬的刷卡了饭能傻得来看房                 </span></p>\r\n</div>\r\n<div class="questionlist">\r\n<p class="qlisttitle clearfix"><img src="http://zhongning.com/skins/images/wycms/wen1.jpg" class="fl" alt="" />                     <span class="fl">什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款什么是民间贷款？</span></p>\r\n<p class="qlistcon clearfix"><img src="http://zhongning.com/skins/images/wycms/wen2.jpg" class="fl" alt="" />                 <span class="fl">                     公安的反馈拿到手了开发你大方里看到上课了发送到您付款了撒旦法代课老师阿萨德能分开了的撒你发的律师费你看了疯狂老师分开付款的拉萨疯狂的萨拉烦恼打卡上浪费你上单卡扣水电费卡拉丁服阿斯顿发哪里开发商打烂fk                     大但考虑是否你看了撒的发哪的上课了分开来放哪可浪费你快啦你看了撒旦开发的克里斯快递费难看死啦硫酸钠分类可你看老福克斯的了那份卡发上来的可能防辐射服是打发来看的萨芬的刷卡了饭能傻得来看房                 </span></p>\r\n</div>', '', '', '', '8392673132', 1461393345, 9, 0, 0, 'about/question.html', '', 'webpage-6');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `sx_404`
---
-ALTER TABLE `sx_404`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_ad`
---
-ALTER TABLE `sx_ad`
-  ADD PRIMARY KEY (`aid`),
-  ADD KEY `pid` (`pid`);
-
---
--- Indexes for table `sx_ad_place`
---
-ALTER TABLE `sx_ad_place`
-  ADD PRIMARY KEY (`pid`);
-
---
--- Indexes for table `sx_admin`
---
-ALTER TABLE `sx_admin`
-  ADD PRIMARY KEY (`adminid`);
-
---
--- Indexes for table `sx_admin_log`
---
-ALTER TABLE `sx_admin_log`
-  ADD PRIMARY KEY (`logid`);
-
---
--- Indexes for table `sx_admin_online`
---
-ALTER TABLE `sx_admin_online`
-  ADD UNIQUE KEY `sid` (`sid`);
-
---
--- Indexes for table `sx_admin_user`
---
-ALTER TABLE `sx_admin_user`
-  ADD PRIMARY KEY (`adminuid`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `sx_alert`
---
-ALTER TABLE `sx_alert`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_announce`
---
-ALTER TABLE `sx_announce`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `addtime` (`addtime`);
-
---
--- Indexes for table `sx_apply`
---
-ALTER TABLE `sx_apply`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_area`
---
-ALTER TABLE `sx_area`
-  ADD PRIMARY KEY (`areaid`),
-  ADD KEY `areaname` (`areaname`(2)) USING BTREE,
-  ADD KEY `ishot` (`ishot`);
-
---
--- Indexes for table `sx_article_21`
---
-ALTER TABLE `sx_article_21`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `addtime` (`addtime`),
-  ADD KEY `username` (`username`),
-  ADD KEY `catid` (`catid`,`level`) USING BTREE;
-
---
--- Indexes for table `sx_article_data_21`
---
-ALTER TABLE `sx_article_data_21`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_article_keyword`
---
-ALTER TABLE `sx_article_keyword`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `article_itemid` (`nums`),
-  ADD KEY `keyword` (`keyword`(5)) USING BTREE;
-
---
--- Indexes for table `sx_banip`
---
-ALTER TABLE `sx_banip`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_banword`
---
-ALTER TABLE `sx_banword`
-  ADD PRIMARY KEY (`bid`);
-
---
--- Indexes for table `sx_brand_13`
---
-ALTER TABLE `sx_brand_13`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `catid` (`catid`),
-  ADD KEY `areaid` (`areaid`),
-  ADD KEY `edittime` (`edittime`),
-  ADD KEY `editdate` (`editdate`,`vip`,`edittime`),
-  ADD KEY `level` (`level`);
-
---
--- Indexes for table `sx_brand_data_13`
---
-ALTER TABLE `sx_brand_data_13`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_buy_6`
---
-ALTER TABLE `sx_buy_6`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `editdate` (`editdate`,`edittime`),
-  ADD KEY `edittime` (`edittime`),
-  ADD KEY `sell_itemid` (`sell_itemid`);
-
---
--- Indexes for table `sx_buy_data_6`
---
-ALTER TABLE `sx_buy_data_6`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_cache`
---
-ALTER TABLE `sx_cache`
-  ADD UNIQUE KEY `cacheid` (`cacheid`);
-
---
--- Indexes for table `sx_category`
---
-ALTER TABLE `sx_category`
-  ADD PRIMARY KEY (`catid`),
-  ADD KEY `promote1` (`promote1`),
-  ADD KEY `promote2` (`promote2`);
-
---
--- Indexes for table `sx_category_option`
---
-ALTER TABLE `sx_category_option`
-  ADD PRIMARY KEY (`oid`),
-  ADD KEY `catid` (`catid`);
-
---
--- Indexes for table `sx_category_value`
---
-ALTER TABLE `sx_category_value`
-  ADD KEY `moduleid` (`moduleid`,`itemid`);
-
---
--- Indexes for table `sx_chat`
---
-ALTER TABLE `sx_chat`
-  ADD UNIQUE KEY `chatid` (`chatid`),
-  ADD KEY `fromuser` (`fromuser`),
-  ADD KEY `touser` (`touser`),
-  ADD KEY `lasttime` (`lasttime`);
-
---
--- Indexes for table `sx_city`
---
-ALTER TABLE `sx_city`
-  ADD UNIQUE KEY `areaid` (`areaid`),
-  ADD KEY `domain` (`domain`),
-  ADD KEY `pinyin` (`pinyin`);
-
---
--- Indexes for table `sx_comment`
---
-ALTER TABLE `sx_comment`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `item_mid` (`item_mid`),
-  ADD KEY `item_id` (`item_id`),
-  ADD KEY `userid` (`userid`,`type`,`id`) USING BTREE;
-
---
--- Indexes for table `sx_comment_ban`
---
-ALTER TABLE `sx_comment_ban`
-  ADD PRIMARY KEY (`bid`);
-
---
--- Indexes for table `sx_comment_stat`
---
-ALTER TABLE `sx_comment_stat`
-  ADD PRIMARY KEY (`sid`);
-
---
--- Indexes for table `sx_company`
---
-ALTER TABLE `sx_company`
-  ADD PRIMARY KEY (`userid`),
-  ADD KEY `areaid` (`areaid`);
-
---
--- Indexes for table `sx_company_data`
---
-ALTER TABLE `sx_company_data`
-  ADD PRIMARY KEY (`userid`);
-
---
--- Indexes for table `sx_company_setting`
---
-ALTER TABLE `sx_company_setting`
-  ADD KEY `userid` (`userid`);
-
---
--- Indexes for table `sx_cron`
---
-ALTER TABLE `sx_cron`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `nexttime` (`nexttime`);
-
---
--- Indexes for table `sx_email`
---
-ALTER TABLE `sx_email`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_favorite`
---
-ALTER TABLE `sx_favorite`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `userid` (`userid`);
-
---
--- Indexes for table `sx_fetch`
---
-ALTER TABLE `sx_fetch`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_fields`
---
-ALTER TABLE `sx_fields`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `tablename` (`tb`);
-
---
--- Indexes for table `sx_finance_card`
---
-ALTER TABLE `sx_finance_card`
-  ADD PRIMARY KEY (`itemid`),
-  ADD UNIQUE KEY `number` (`number`);
-
---
--- Indexes for table `sx_finance_cash`
---
-ALTER TABLE `sx_finance_cash`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_finance_charge`
---
-ALTER TABLE `sx_finance_charge`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_finance_credit`
---
-ALTER TABLE `sx_finance_credit`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_finance_deposit`
---
-ALTER TABLE `sx_finance_deposit`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_finance_pay`
---
-ALTER TABLE `sx_finance_pay`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_finance_promo`
---
-ALTER TABLE `sx_finance_promo`
-  ADD PRIMARY KEY (`itemid`),
-  ADD UNIQUE KEY `number` (`number`);
-
---
--- Indexes for table `sx_finance_record`
---
-ALTER TABLE `sx_finance_record`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_finance_sms`
---
-ALTER TABLE `sx_finance_sms`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_food_23`
---
-ALTER TABLE `sx_food_23`
-  ADD PRIMARY KEY (`itemid`),
-  ADD UNIQUE KEY `catid` (`level`,`itemid`);
-
---
--- Indexes for table `sx_food_data_23`
---
-ALTER TABLE `sx_food_data_23`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_form`
---
-ALTER TABLE `sx_form`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `addtime` (`addtime`);
-
---
--- Indexes for table `sx_form_answer`
---
-ALTER TABLE `sx_form_answer`
-  ADD PRIMARY KEY (`aid`);
-
---
--- Indexes for table `sx_form_question`
---
-ALTER TABLE `sx_form_question`
-  ADD PRIMARY KEY (`qid`),
-  ADD KEY `fid` (`fid`);
-
---
--- Indexes for table `sx_form_record`
---
-ALTER TABLE `sx_form_record`
-  ADD PRIMARY KEY (`rid`);
-
---
--- Indexes for table `sx_friend`
---
-ALTER TABLE `sx_friend`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `userid` (`userid`);
-
---
--- Indexes for table `sx_gift`
---
-ALTER TABLE `sx_gift`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_gift_order`
---
-ALTER TABLE `sx_gift_order`
-  ADD PRIMARY KEY (`oid`),
-  ADD KEY `itemid` (`itemid`);
-
---
--- Indexes for table `sx_guestbook`
---
-ALTER TABLE `sx_guestbook`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_honor`
---
-ALTER TABLE `sx_honor`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `addtime` (`addtime`);
-
---
--- Indexes for table `sx_info_22`
---
-ALTER TABLE `sx_info_22`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `edittime` (`edittime`),
-  ADD KEY `catid` (`catid`),
-  ADD KEY `areaid` (`areaid`),
-  ADD KEY `editdate` (`editdate`,`vip`,`edittime`);
-
---
--- Indexes for table `sx_info_24`
---
-ALTER TABLE `sx_info_24`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `edittime` (`edittime`),
-  ADD KEY `catid` (`catid`),
-  ADD KEY `areaid` (`areaid`),
-  ADD KEY `editdate` (`editdate`,`vip`,`edittime`),
-  ADD KEY `code` (`code`(5));
-
---
--- Indexes for table `sx_info_data_22`
---
-ALTER TABLE `sx_info_data_22`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_info_data_24`
---
-ALTER TABLE `sx_info_data_24`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_job`
---
-ALTER TABLE `sx_job`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`userid`),
-  ADD KEY `catid` (`catid`),
-  ADD KEY `areaid` (`areaid`);
-
---
--- Indexes for table `sx_job_apply`
---
-ALTER TABLE `sx_job_apply`
-  ADD PRIMARY KEY (`applyid`),
-  ADD KEY `job_username` (`job_username`),
-  ADD KEY `apply_username` (`apply_username`);
-
---
--- Indexes for table `sx_job_data`
---
-ALTER TABLE `sx_job_data`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_job_talent`
---
-ALTER TABLE `sx_job_talent`
-  ADD PRIMARY KEY (`talentid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_keylink`
---
-ALTER TABLE `sx_keylink`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_keyword`
---
-ALTER TABLE `sx_keyword`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `moduleid` (`moduleid`),
-  ADD KEY `word` (`word`),
-  ADD KEY `letter` (`letter`),
-  ADD KEY `keyword` (`keyword`);
-
---
--- Indexes for table `sx_like`
---
-ALTER TABLE `sx_like`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `id` (`ip`,`type`,`id`) USING BTREE;
-
---
--- Indexes for table `sx_link`
---
-ALTER TABLE `sx_link`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `listorder` (`listorder`);
-
---
--- Indexes for table `sx_login`
---
-ALTER TABLE `sx_login`
-  ADD PRIMARY KEY (`logid`);
-
---
--- Indexes for table `sx_mail`
---
-ALTER TABLE `sx_mail`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_mail_list`
---
-ALTER TABLE `sx_mail_list`
-  ADD PRIMARY KEY (`itemid`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `sx_mail_log`
---
-ALTER TABLE `sx_mail_log`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_mall`
---
-ALTER TABLE `sx_mall`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `editdate` (`editdate`,`vip`,`edittime`),
-  ADD KEY `catid` (`catid`),
-  ADD KEY `areaid` (`areaid`);
-
---
--- Indexes for table `sx_mall_cart`
---
-ALTER TABLE `sx_mall_cart`
-  ADD UNIQUE KEY `userid` (`userid`);
-
---
--- Indexes for table `sx_mall_comment`
---
-ALTER TABLE `sx_mall_comment`
-  ADD UNIQUE KEY `itemid` (`itemid`),
-  ADD KEY `buyer` (`buyer`),
-  ADD KEY `seller` (`seller`);
-
---
--- Indexes for table `sx_mall_data`
---
-ALTER TABLE `sx_mall_data`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_mall_express`
---
-ALTER TABLE `sx_mall_express`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_mall_order`
---
-ALTER TABLE `sx_mall_order`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `buyer` (`buyer`),
-  ADD KEY `seller` (`seller`);
-
---
--- Indexes for table `sx_mall_stat`
---
-ALTER TABLE `sx_mall_stat`
-  ADD UNIQUE KEY `mallid` (`mallid`);
-
---
--- Indexes for table `sx_member`
---
-ALTER TABLE `sx_member`
-  ADD PRIMARY KEY (`userid`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `mobile` (`mobile`);
-
---
--- Indexes for table `sx_member_check`
---
-ALTER TABLE `sx_member_check`
-  ADD PRIMARY KEY (`userid`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `sx_member_group`
---
-ALTER TABLE `sx_member_group`
-  ADD PRIMARY KEY (`groupid`);
-
---
--- Indexes for table `sx_message`
---
-ALTER TABLE `sx_message`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `touser` (`touser`);
-
---
--- Indexes for table `sx_module`
---
-ALTER TABLE `sx_module`
-  ADD PRIMARY KEY (`moduleid`);
-
---
--- Indexes for table `sx_news`
---
-ALTER TABLE `sx_news`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `addtime` (`addtime`);
-
---
--- Indexes for table `sx_news_data`
---
-ALTER TABLE `sx_news_data`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_oauth`
---
-ALTER TABLE `sx_oauth`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `site` (`site`,`openid`);
-
---
--- Indexes for table `sx_online`
---
-ALTER TABLE `sx_online`
-  ADD UNIQUE KEY `userid` (`userid`);
-
---
--- Indexes for table `sx_page`
---
-ALTER TABLE `sx_page`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `addtime` (`addtime`);
-
---
--- Indexes for table `sx_page_data`
---
-ALTER TABLE `sx_page_data`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_photo_12`
---
-ALTER TABLE `sx_photo_12`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `addtime` (`addtime`),
-  ADD KEY `catid` (`catid`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `sx_photo_data_12`
---
-ALTER TABLE `sx_photo_data_12`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_photo_item_12`
---
-ALTER TABLE `sx_photo_item_12`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `listorder` (`listorder`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_poll`
---
-ALTER TABLE `sx_poll`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `addtime` (`addtime`);
-
---
--- Indexes for table `sx_poll_item`
---
-ALTER TABLE `sx_poll_item`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `pollid` (`pollid`);
-
---
--- Indexes for table `sx_poll_record`
---
-ALTER TABLE `sx_poll_record`
-  ADD PRIMARY KEY (`rid`);
-
---
--- Indexes for table `sx_question`
---
-ALTER TABLE `sx_question`
-  ADD PRIMARY KEY (`qid`);
-
---
--- Indexes for table `sx_quote_price`
---
-ALTER TABLE `sx_quote_price`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `addtime` (`addtime`),
-  ADD KEY `pid` (`pid`);
-
---
--- Indexes for table `sx_resume`
---
-ALTER TABLE `sx_resume`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `edittime` (`edittime`),
-  ADD KEY `catid` (`catid`),
-  ADD KEY `areaid` (`areaid`);
-
---
--- Indexes for table `sx_resume_data`
---
-ALTER TABLE `sx_resume_data`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_sell_5`
---
-ALTER TABLE `sx_sell_5`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `editdate` (`editdate`,`edittime`),
-  ADD KEY `edittime` (`edittime`);
-
---
--- Indexes for table `sx_sell_data_5`
---
-ALTER TABLE `sx_sell_data_5`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_sell_search_5`
---
-ALTER TABLE `sx_sell_search_5`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `catid` (`catid`);
-
---
--- Indexes for table `sx_send_log`
---
-ALTER TABLE `sx_send_log`
-  ADD PRIMARY KEY (`log_id`),
-  ADD KEY `ip` (`ip`);
-
---
--- Indexes for table `sx_session`
---
-ALTER TABLE `sx_session`
-  ADD UNIQUE KEY `sessionid` (`sessionid`);
-
---
--- Indexes for table `sx_setting`
---
-ALTER TABLE `sx_setting`
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_sms`
---
-ALTER TABLE `sx_sms`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_sphinx`
---
-ALTER TABLE `sx_sphinx`
-  ADD UNIQUE KEY `moduleid` (`moduleid`);
-
---
--- Indexes for table `sx_style`
---
-ALTER TABLE `sx_style`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_type`
---
-ALTER TABLE `sx_type`
-  ADD PRIMARY KEY (`typeid`),
-  ADD KEY `listorder` (`listorder`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upgrade`
---
-ALTER TABLE `sx_upgrade`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_upload_0`
---
-ALTER TABLE `sx_upload_0`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_1`
---
-ALTER TABLE `sx_upload_1`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_2`
---
-ALTER TABLE `sx_upload_2`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_3`
---
-ALTER TABLE `sx_upload_3`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_4`
---
-ALTER TABLE `sx_upload_4`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_5`
---
-ALTER TABLE `sx_upload_5`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_6`
---
-ALTER TABLE `sx_upload_6`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_7`
---
-ALTER TABLE `sx_upload_7`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_8`
---
-ALTER TABLE `sx_upload_8`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_upload_9`
---
-ALTER TABLE `sx_upload_9`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `item` (`item`);
-
---
--- Indexes for table `sx_validate`
---
-ALTER TABLE `sx_validate`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_video_14`
---
-ALTER TABLE `sx_video_14`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `username` (`username`),
-  ADD KEY `addtime` (`addtime`),
-  ADD KEY `catid` (`catid`);
-
---
--- Indexes for table `sx_video_data_14`
---
-ALTER TABLE `sx_video_data_14`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- Indexes for table `sx_vote`
---
-ALTER TABLE `sx_vote`
-  ADD PRIMARY KEY (`itemid`),
-  ADD KEY `userid` (`userid`,`type`,`id`);
-
---
--- Indexes for table `sx_vote_record`
---
-ALTER TABLE `sx_vote_record`
-  ADD PRIMARY KEY (`rid`),
-  ADD KEY `itemid` (`itemid`);
-
---
--- Indexes for table `sx_webpage`
---
-ALTER TABLE `sx_webpage`
-  ADD PRIMARY KEY (`itemid`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `sx_404`
---
-ALTER TABLE `sx_404`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_ad`
---
-ALTER TABLE `sx_ad`
-  MODIFY `aid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
---
--- AUTO_INCREMENT for table `sx_ad_place`
---
-ALTER TABLE `sx_ad_place`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=84;
---
--- AUTO_INCREMENT for table `sx_admin`
---
-ALTER TABLE `sx_admin`
-  MODIFY `adminid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `sx_admin_log`
---
-ALTER TABLE `sx_admin_log`
-  MODIFY `logid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_admin_user`
---
-ALTER TABLE `sx_admin_user`
-  MODIFY `adminuid` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员id',AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `sx_alert`
---
-ALTER TABLE `sx_alert`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_announce`
---
-ALTER TABLE `sx_announce`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_apply`
---
-ALTER TABLE `sx_apply`
-  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `sx_area`
---
-ALTER TABLE `sx_area`
-  MODIFY `areaid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3646;
---
--- AUTO_INCREMENT for table `sx_article_21`
---
-ALTER TABLE `sx_article_21`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
---
--- AUTO_INCREMENT for table `sx_article_keyword`
---
-ALTER TABLE `sx_article_keyword`
-  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `sx_banip`
---
-ALTER TABLE `sx_banip`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_banword`
---
-ALTER TABLE `sx_banword`
-  MODIFY `bid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_brand_13`
---
-ALTER TABLE `sx_brand_13`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `sx_buy_6`
---
-ALTER TABLE `sx_buy_6`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `sx_category`
---
-ALTER TABLE `sx_category`
-  MODIFY `catid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `sx_category_option`
---
-ALTER TABLE `sx_category_option`
-  MODIFY `oid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_comment`
---
-ALTER TABLE `sx_comment`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `sx_comment_ban`
---
-ALTER TABLE `sx_comment_ban`
-  MODIFY `bid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_comment_stat`
---
-ALTER TABLE `sx_comment_stat`
-  MODIFY `sid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_cron`
---
-ALTER TABLE `sx_cron`
-  MODIFY `itemid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=66;
---
--- AUTO_INCREMENT for table `sx_email`
---
-ALTER TABLE `sx_email`
-  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `sx_favorite`
---
-ALTER TABLE `sx_favorite`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_fetch`
---
-ALTER TABLE `sx_fetch`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_fields`
---
-ALTER TABLE `sx_fields`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_finance_card`
---
-ALTER TABLE `sx_finance_card`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_finance_cash`
---
-ALTER TABLE `sx_finance_cash`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_finance_charge`
---
-ALTER TABLE `sx_finance_charge`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_finance_credit`
---
-ALTER TABLE `sx_finance_credit`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `sx_finance_deposit`
---
-ALTER TABLE `sx_finance_deposit`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_finance_pay`
---
-ALTER TABLE `sx_finance_pay`
-  MODIFY `pid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_finance_promo`
---
-ALTER TABLE `sx_finance_promo`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_finance_record`
---
-ALTER TABLE `sx_finance_record`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_finance_sms`
---
-ALTER TABLE `sx_finance_sms`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_food_23`
---
-ALTER TABLE `sx_food_23`
-  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',AUTO_INCREMENT=57;
---
--- AUTO_INCREMENT for table `sx_food_data_23`
---
-ALTER TABLE `sx_food_data_23`
-  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
---
--- AUTO_INCREMENT for table `sx_form`
---
-ALTER TABLE `sx_form`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_form_answer`
---
-ALTER TABLE `sx_form_answer`
-  MODIFY `aid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_form_question`
---
-ALTER TABLE `sx_form_question`
-  MODIFY `qid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_form_record`
---
-ALTER TABLE `sx_form_record`
-  MODIFY `rid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_friend`
---
-ALTER TABLE `sx_friend`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_gift`
---
-ALTER TABLE `sx_gift`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_gift_order`
---
-ALTER TABLE `sx_gift_order`
-  MODIFY `oid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_guestbook`
---
-ALTER TABLE `sx_guestbook`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_honor`
---
-ALTER TABLE `sx_honor`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_info_22`
---
-ALTER TABLE `sx_info_22`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_info_24`
---
-ALTER TABLE `sx_info_24`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `sx_job`
---
-ALTER TABLE `sx_job`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `sx_job_apply`
---
-ALTER TABLE `sx_job_apply`
-  MODIFY `applyid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_job_talent`
---
-ALTER TABLE `sx_job_talent`
-  MODIFY `talentid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_keylink`
---
-ALTER TABLE `sx_keylink`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_keyword`
---
-ALTER TABLE `sx_keyword`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_like`
---
-ALTER TABLE `sx_like`
-  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT for table `sx_link`
---
-ALTER TABLE `sx_link`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `sx_login`
---
-ALTER TABLE `sx_login`
-  MODIFY `logid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_mail`
---
-ALTER TABLE `sx_mail`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_mail_list`
---
-ALTER TABLE `sx_mail_list`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_mail_log`
---
-ALTER TABLE `sx_mail_log`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
---
--- AUTO_INCREMENT for table `sx_mall`
---
-ALTER TABLE `sx_mall`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_mall_express`
---
-ALTER TABLE `sx_mall_express`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_mall_order`
---
-ALTER TABLE `sx_mall_order`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_member`
---
-ALTER TABLE `sx_member`
-  MODIFY `userid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `sx_member_check`
---
-ALTER TABLE `sx_member_check`
-  MODIFY `userid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_member_group`
---
-ALTER TABLE `sx_member_group`
-  MODIFY `groupid` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `sx_message`
---
-ALTER TABLE `sx_message`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `sx_module`
---
-ALTER TABLE `sx_module`
-  MODIFY `moduleid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
---
--- AUTO_INCREMENT for table `sx_news`
---
-ALTER TABLE `sx_news`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_oauth`
---
-ALTER TABLE `sx_oauth`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_page`
---
-ALTER TABLE `sx_page`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_photo_12`
---
-ALTER TABLE `sx_photo_12`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_photo_item_12`
---
-ALTER TABLE `sx_photo_item_12`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_poll`
---
-ALTER TABLE `sx_poll`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_poll_item`
---
-ALTER TABLE `sx_poll_item`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_poll_record`
---
-ALTER TABLE `sx_poll_record`
-  MODIFY `rid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_question`
---
-ALTER TABLE `sx_question`
-  MODIFY `qid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `sx_quote_price`
---
-ALTER TABLE `sx_quote_price`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_resume`
---
-ALTER TABLE `sx_resume`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `sx_sell_5`
---
-ALTER TABLE `sx_sell_5`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `sx_sell_search_5`
---
-ALTER TABLE `sx_sell_search_5`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_send_log`
---
-ALTER TABLE `sx_send_log`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '日志id',AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `sx_sms`
---
-ALTER TABLE `sx_sms`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_style`
---
-ALTER TABLE `sx_style`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `sx_type`
---
-ALTER TABLE `sx_type`
-  MODIFY `typeid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `sx_upgrade`
---
-ALTER TABLE `sx_upgrade`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_upload_0`
---
-ALTER TABLE `sx_upload_0`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=116;
---
--- AUTO_INCREMENT for table `sx_upload_1`
---
-ALTER TABLE `sx_upload_1`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=102;
---
--- AUTO_INCREMENT for table `sx_upload_2`
---
-ALTER TABLE `sx_upload_2`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_upload_3`
---
-ALTER TABLE `sx_upload_3`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_upload_4`
---
-ALTER TABLE `sx_upload_4`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_upload_5`
---
-ALTER TABLE `sx_upload_5`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_upload_6`
---
-ALTER TABLE `sx_upload_6`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `sx_upload_7`
---
-ALTER TABLE `sx_upload_7`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_upload_8`
---
-ALTER TABLE `sx_upload_8`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `sx_upload_9`
---
-ALTER TABLE `sx_upload_9`
-  MODIFY `pid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_validate`
---
-ALTER TABLE `sx_validate`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_video_14`
---
-ALTER TABLE `sx_video_14`
-  MODIFY `itemid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_vote`
---
-ALTER TABLE `sx_vote`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `sx_vote_record`
---
-ALTER TABLE `sx_vote_record`
-  MODIFY `rid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sx_webpage`
---
-ALTER TABLE `sx_webpage`
-  MODIFY `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
