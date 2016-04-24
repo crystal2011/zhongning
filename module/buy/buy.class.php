@@ -74,10 +74,52 @@ class buy {
 		return array_map("trim", $post);
 	}
 
+    function logList($field='*',$condition='1=1',$order='itemid desc',$limit=10){
+        global $page;
+        $offset = ($page-1)*$limit;
+        $result = $this->db->query("select {$field} from {$this->db->pre}buy_log where $condition order by $order limit $offset,$limit");
+        $list = array();
+        while($r = $this->db->fetch_array($result)){
+            $list[] = $r;
+        }
+        $count = $this->db->get_one("select count(*) as num from {$this->db->pre}buy_log where $condition");
+        $totalpage = ceil($count['num']/$limit);
+        return array($list,$totalpage);
+    }
+
 	function get_one() {
 		$r = $this->db->get_one("SELECT * FROM {$this->table} WHERE itemid=$this->itemid");
         return $r;
 	}
+
+    function get_log_list($condition = '1=1', $order = 'edittime DESC', $cache = '') {
+        global $MOD, $pages, $page, $pagesize, $offset, $items, $sum;
+        if($page > 1 && $sum) {
+            $items = $sum;
+        } else {
+            $r = $this->db->get_one("SELECT COUNT(*) AS num FROM {$this->db->pre}buy_log WHERE $condition", $cache);
+            $items = $r['num'];
+        }
+
+        $pages = defined('CATID') ? listpages(1, CATID, $items, $page, $pagesize, 10, $MOD['linkurl']) : pages($items, $page, $pagesize);
+        if($items < 1) return array();
+        $lists = $catids = $CATS = array();
+        $result = $this->db->query("SELECT * FROM {$this->db->pre}buy_log WHERE $condition ORDER BY $order LIMIT $offset,$pagesize", $cache);
+        while($r = $this->db->fetch_array($result)) {
+            $lists[] = $r;
+        }
+        return $lists;
+    }
+
+    function addInvestNums($invest_money){
+        $this->db->query("update {$this->db->pre}nums set invest_nums = invest_nums + 1,invest_money = invest_money + $invest_money");
+
+
+    }
+
+    function delInvestNums($invest_money){
+        $this->db->query("update {$this->db->pre}nums set invest_nums = invest_nums - 1,invest_money = invest_money - $invest_money");
+    }
 
 	function get_list($condition = 'status=3', $order = 'addtime DESC', $cache = '') {
 		global $MOD, $pages, $page, $pagesize, $offset, $items, $sum,$mygetcount;
@@ -108,6 +150,9 @@ class buy {
         $sqlv = substr($sqlv, 1);
 		$this->db->query("INSERT INTO {$this->table} ($sqlk) VALUES ($sqlv)");
 		$this->itemid = $this->db->insert_id();
+        if($post['status']==3){
+            $this->addInvestNums($post['price']);
+        }
 		return $this->itemid;
 	}
 
@@ -118,8 +163,16 @@ class buy {
 		foreach($post as $k=>$v) {
 			if(in_array($k, $this->fields)) $sql .= ",$k='$v'";
 		}
+        $info = $this->get_one();
         $sql = substr($sql, 1);
 	    $this->db->query("UPDATE {$this->table} SET $sql WHERE itemid=$this->itemid");
+
+        if($info['status'] == 3 && $post['status']!=3){
+            $this->delInvestNums($post['price']);
+        }else if($info['status'] != 3 && $post['status']==3){
+            $this->addInvestNums($post['price']);
+        }
+
 		return true;
 	}
 
@@ -149,6 +202,11 @@ class buy {
 		if(is_array($itemid)) {
 			foreach($itemid as $v) { $this->recycle($v); }
 		} else {
+            $this->itemid = $itemid;
+            $info = $this->get_one();
+            if($info['status']==3){
+                $this->delInvestNums($info['price']);
+            }
 			$this->db->query("UPDATE {$this->table} SET status=0 WHERE itemid=$itemid");
 			$this->delete($itemid, false);
 			return true;
@@ -160,6 +218,9 @@ class buy {
 		if(is_array($itemid)) {
 			foreach($itemid as $v) { $this->restore($v); }
 		} else {
+            $this->itemid = $itemid;
+            $info = $this->get_one();
+            $this->addInvestNums($info['price']);
 			$this->db->query("UPDATE {$this->table} SET status=3 WHERE itemid=$itemid");
 			return true;
 		}		
@@ -172,8 +233,11 @@ class buy {
 				$this->delete($v, $all);
 			}
 		} else {
-			$this->itemid = $itemid;
-			$r = $this->get_one();
+            $this->itemid = $itemid;
+            $r = $this->get_one();
+            if($r['status']==3){
+                $this->delInvestNums($r['price']);
+            }
 			if($all) {
 				$userid = get_user($r['username']);
 				if($r['thumb']) delete_upload($r['thumb'], $userid);
@@ -194,7 +258,8 @@ class buy {
 			$this->itemid = $itemid;
 			$item = $this->get_one();
 			$editdate = timetodate($DT_TIME, 3);
-			$this->db->query("UPDATE {$this->table} SET status=3,hits=hits+1,editor='$_username',edittime=$DT_TIME,editdate='$editdate' WHERE itemid=$itemid");
+            $this->addInvestNums($item['price']);
+			$this->db->query("UPDATE {$this->table} SET status=3,hits=hits+1,edittime=$DT_TIME,editdate='$editdate' WHERE itemid=$itemid");
 			return true;
 		}
 	}
@@ -204,7 +269,12 @@ class buy {
 		if(is_array($itemid)) {
 			foreach($itemid as $v) { $this->reject($v); }
 		} else {
-			$this->db->query("UPDATE {$this->table} SET status=1,editor='$_username' WHERE itemid=$itemid");
+            $this->itemid = $itemid;
+            $info = $this->get_one();
+            if($info['status']==3){
+                $this->delInvestNums($info['price']);
+            }
+			$this->db->query("UPDATE {$this->table} SET status=1 WHERE itemid=$itemid");
 			return true;
 		}
 	}

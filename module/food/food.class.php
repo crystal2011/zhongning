@@ -95,6 +95,33 @@ class food {
 		return $lists;
 	}
 
+    function addFinanceNums(){
+        $this->db->query("update {$this->db->pre}nums set finance_nums = finance_nums + 1");
+    }
+
+    function delFinanceNums(){
+        $this->db->query("update {$this->db->pre}nums set finance_nums = finance_nums - 1");
+    }
+
+    function get_log_list($condition = '1=1', $order = 'edittime DESC', $cache = '') {
+        global $MOD, $pages, $page, $pagesize, $offset, $items, $sum;
+        if($page > 1 && $sum) {
+            $items = $sum;
+        } else {
+            $r = $this->db->get_one("SELECT COUNT(*) AS num FROM {$this->db->pre}food_log WHERE $condition", $cache);
+            $items = $r['num'];
+        }
+
+        $pages = defined('CATID') ? listpages(1, CATID, $items, $page, $pagesize, 10, $MOD['linkurl']) : pages($items, $page, $pagesize);
+        if($items < 1) return array();
+        $lists = $catids = $CATS = array();
+        $result = $this->db->query("SELECT * FROM {$this->db->pre}food_log WHERE $condition ORDER BY $order LIMIT $offset,$pagesize", $cache);
+        while($r = $this->db->fetch_array($result)) {
+            $lists[] = $r;
+        }
+        return $lists;
+    }
+
 	function add($post) {
 		global $MOD;
 		$post = $this->set($post);
@@ -111,6 +138,9 @@ class food {
         require_once DT_ROOT.'/module/member/member.class.php';
         $oMember = new member;
         $oMember->addMyOrder();
+        if($post['status']==3){
+            $this->addFinanceNums();
+        }
 		return $this->itemid;
 	}
 
@@ -122,9 +152,19 @@ class food {
 			if(in_array($k, $this->fields)) $sql .= ",$k='$v'";
 		}
         $sql = substr($sql, 1);
+        $info = $this->get_one();
 	    $this->db->query("UPDATE {$this->table} SET $sql WHERE itemid=$this->itemid");
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
+
+
+
+        if($info['status'] == 3 && $post['status']!=3){
+            $this->delFinanceNums();
+        }else if($info['status'] != 3 && $post['status']==3){
+            $this->addFinanceNums();
+        }
+
 		return true;
 	}
 
@@ -153,6 +193,11 @@ class food {
 		if(is_array($itemid)) {
 			foreach($itemid as $v) { $this->recycle($v); }
 		} else {
+            $this->itemid = $itemid;
+            $info = $this->get_one();
+            if($info['status']==3){
+                $this->delFinanceNums();
+            }
 			$this->db->query("UPDATE {$this->table} SET status=0 WHERE itemid=$itemid");
 			$this->delete($itemid, false);
 			return true;
@@ -164,6 +209,7 @@ class food {
 		if(is_array($itemid)) {
 			foreach($itemid as $v) { $this->restore($v); }
 		} else {
+            $this->addFinanceNums();
 			$this->db->query("UPDATE {$this->table} SET status=3 WHERE itemid=$itemid");
 			return true;
 		}		
@@ -176,9 +222,12 @@ class food {
 				$this->delete($v, $all);
 			}
 		} else {
-			$this->itemid = $itemid;
-			$r = $this->get_one();
 			if($all) {
+                $this->itemid = $itemid;
+                $r = $this->get_one();
+                if($r['status']==3){
+                    $this->delFinanceNums();
+                }
 				$userid = get_user($r['username']);
 				if($r['thumb']) delete_upload($r['thumb'], $userid);
 				if($r['content']) delete_local($r['content'], $userid);
@@ -198,6 +247,7 @@ class food {
 			$this->itemid = $itemid;
 			$item = $this->get_one();
 			$editdate = timetodate($DT_TIME, 3);
+            $this->addFinanceNums();
 			$this->db->query("UPDATE {$this->table} SET status=3,edittime=$DT_TIME WHERE itemid=$itemid");
 
 			return true;
@@ -209,6 +259,11 @@ class food {
 		if(is_array($itemid)) {
 			foreach($itemid as $v) { $this->reject($v); }
 		} else {
+            $this->itemid = $itemid;
+            $info = $this->get_one();
+            if($info['status']==3){
+                $this->delFinanceNums();
+            }
 			$this->db->query("UPDATE {$this->table} SET status=1 WHERE itemid=$itemid");
 			return true;
 		}
@@ -238,6 +293,18 @@ class food {
 		return false;
 	}
 
+    function logList($field='*',$condition='1=1',$order='itemid desc',$limit=10){
+        global $page;
+        $offset = ($page-1)*$limit;
+        $result = $this->db->query("select {$field} from {$this->db->pre}food_log where $condition order by $order limit $offset,$limit");
+        $list = array();
+        while($r = $this->db->fetch_array($result)){
+            $list[] = $this->show($r);
+        }
+        $count = $this->db->get_one("select count(*) as num from {$this->db->pre}food_log where $condition");
+        $totalpage = ceil($count['num']/$limit);
+        return array($list,$totalpage);
+    }
 
     function foodList($field='*',$condition='1=1',$order='itemid desc',$limit=10){
         global $page;

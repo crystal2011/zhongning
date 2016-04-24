@@ -5,7 +5,7 @@ require MD_ROOT.'/food.class.php';
 $do = new food(23);
 $menus = array (
     array('添加'.$MOD['name'], '?moduleid='.$moduleid.'&action=add'),
-    array($MOD['name'].'列表', '?moduleid='.$moduleid),
+    array('成功'.$MOD['name'], '?moduleid='.$moduleid),
     array('审核'.$MOD['name'], '?moduleid='.$moduleid.'&action=check'),
     array('未通过'.$MOD['name'], '?moduleid='.$moduleid.'&action=reject'),
     array('回收站', '?moduleid='.$moduleid.'&action=recycle'),
@@ -56,7 +56,7 @@ switch($action) {
 				isset($$v) or $$v = '';
 			}
 			$content = $month = $mobile = $address = $introduce = '';
-			$status = 3;
+            $status = 2;
 			$username = '';
 			$item = array();
 			$menuid = 0;
@@ -151,7 +151,7 @@ switch($action) {
 	case 'reject':
 		if($itemid && !$psize) {
 			$do->reject($itemid);
-			dmsg('拒绝成功', $forward);
+			dmsg('操作成功', $forward);
 		} else {
 			$lists = $do->get_list('status=1'.$condition, $dorder[$order]);
 			$menuid = 3;
@@ -164,7 +164,7 @@ switch($action) {
 	case 'check':
 		if($itemid && !$psize) {
 			$do->check($itemid);
-			dmsg('审核成功', $forward);
+			dmsg('操作成功', $forward);
 		} else {
 			$lists = $do->get_list('status=2'.$condition, $dorder[$order]);
             require_once DT_ROOT.'/module/member/member.class.php';
@@ -174,6 +174,44 @@ switch($action) {
 			include tpl('index', $module);
 		}
 	break;
+    case 'loglist':
+        //融资进度
+        $itemid = isset($itemid)?intval($itemid):0;
+        if(!$itemid) dmsg('融资申请信息不存在', $forward);
+        $do->itemid = $itemid;
+        $info = $do->get_one();
+        if(!$info) dmsg('融资申请信息不存在', $forward);
+        $lists = $do->get_log_list('food_itemid='.$itemid,'addtime desc');
+        include tpl('loglist', $module);
+        break;
+    case 'logdel':
+        //添加删除融资进度
+        $itemid = isset($itemid)?intval($itemid):0;
+        $db->query("delete from {$db->pre}food_log  where itemid = ".$itemid);
+        dmsg('删除成功', $forward);
+        break;
+    case 'logadd':
+        //添加融资进度
+        $logitemid = isset($logitemid)?$logitemid:0;
+        $content = isset($content)?$content:'';
+        if($logitemid){
+            $db->query("update {$db->pre}food_log set content = '$content' where itemid = ".$logitemid);
+
+        }else{
+            $itemid = isset($itemid)?intval($itemid):0;
+            if(!$itemid) dmsg('融资申请信息不存在', $forward);
+            $do->itemid = $itemid;
+            $info = $do->get_one();
+            if(!$info) dmsg('融资申请信息不存在', $forward);
+
+            if(strlen($content)==0){
+                dmsg('请输入进度内容', $forward);
+            }
+            $db->query("insert into {$db->pre}food_log (content,addtime,food_itemid) value ('$content',$DT_TIME,$itemid)");
+
+        }
+        dmsg('提交成功', $forward);
+        break;
 	default:
 		$lists = $do->get_list('status=3'.$condition, $dorder[$order]);
         require_once DT_ROOT.'/module/member/member.class.php';

@@ -53,9 +53,9 @@ function isLogin(isreturn){
         success:function(data){
             if(data.status=='n'){
                 if(isreturn==1){
-                    alert('请先登录');
-                }else{
                     islogin = false;
+                }else{
+                    alert('请先登录');
                 }
             }else{
                 islogin = true;

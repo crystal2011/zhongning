@@ -1546,4 +1546,10 @@ function isMobile()
     }
     return false;
 }
+
+//成交笔数  成交金额
+function getNums(){
+    global $db;
+    return $db->get_one("select * from {$db->pre}nums where itemid = 1");
+}
 ?>

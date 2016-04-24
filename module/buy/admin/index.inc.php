@@ -4,7 +4,7 @@ require MD_ROOT.'/buy.class.php';
 $do = new buy($moduleid);
 $menus = array (
     array('添加'.$MOD['name'], '?moduleid='.$moduleid.'&action=add'),
-    array($MOD['name'].'列表', '?moduleid='.$moduleid),
+    array('成功'.$MOD['name'], '?moduleid='.$moduleid),
     array('审核'.$MOD['name'], '?moduleid='.$moduleid.'&action=check'),
     array('未通过'.$MOD['name'], '?moduleid='.$moduleid.'&action=reject'),
     array('回收站', '?moduleid='.$moduleid.'&action=recycle'),
@@ -21,6 +21,7 @@ if(in_array($action, array('', 'check', 'expire', 'reject', 'recycle'))) {
 	$typeid = isset($typeid) ? ($typeid === '' ? -1 : intval($typeid)) : -1;
 	isset($fields) && isset($dfields[$fields]) or $fields = 0;
 	isset($order) && isset($dorder[$order]) or $order = 0;
+    $sell_itemid = isset($sell_itemid)?intval($sell_itemid):0;
 	
 	isset($datetype) && in_array($datetype, array('edittime', 'addtime', 'totime')) or $datetype = 'edittime';
 	$fromdate = isset($fromdate) && is_date($fromdate) ? $fromdate : '';
@@ -40,6 +41,7 @@ if(in_array($action, array('', 'check', 'expire', 'reject', 'recycle'))) {
 	if($fromtime) $condition .= " AND `$datetype`>=$fromtime";
 	if($totime) $condition .= " AND `$datetype`<=$totime";
 	if($itemid) $condition .= " AND itemid=$itemid";
+    if($sell_itemid) $condition .= " AND sell_itemid=$sell_itemid";
 
 	$timetype = strpos($dorder[$order], 'add') !== false ? 'add' : '';
 }
@@ -57,7 +59,7 @@ switch($action) {
 				isset($$v) or $$v = '';
 			}
 			$content = $month = $sell_itemid = '';
-			$status = 3;
+			$status = 2;
 			$menuid = 0;
             $username = '';
 			include tpl('edit', $module);
@@ -194,6 +196,44 @@ switch($action) {
 			include tpl('index', $module);
 		}
 	break;
+    case 'loglist':
+        //融资进度
+        $itemid = isset($itemid)?intval($itemid):0;
+        if(!$itemid) dmsg('投资申请信息不存在', $forward);
+        $do->itemid = $itemid;
+        $info = $do->get_one();
+        if(!$info) dmsg('投资申请信息不存在', $forward);
+        $lists = $do->get_log_list('food_itemid='.$itemid,'addtime desc');
+        include tpl('loglist', $module);
+        break;
+    case 'logdel':
+        //添加删除融资进度
+        $itemid = isset($itemid)?intval($itemid):0;
+        $db->query("delete from {$db->pre}buy_log  where itemid = ".$itemid);
+        dmsg('删除成功', $forward);
+        break;
+    case 'logadd':
+        //添加融资进度
+        $logitemid = isset($logitemid)?$logitemid:0;
+        $content = isset($content)?$content:'';
+        if($logitemid){
+            $db->query("update {$db->pre}buy_log set content = '$content' where itemid = ".$logitemid);
+
+        }else{
+            $itemid = isset($itemid)?intval($itemid):0;
+            if(!$itemid) dmsg('投资申请信息不存在', $forward);
+            $do->itemid = $itemid;
+            $info = $do->get_one();
+            if(!$info) dmsg('投资申请信息不存在', $forward);
+
+            if(strlen($content)==0){
+                dmsg('请输入进度内容', $forward);
+            }
+            $db->query("insert into {$db->pre}buy_log (content,addtime,food_itemid) value ('$content',$DT_TIME,$itemid)");
+
+        }
+        dmsg('提交成功', $forward);
+        break;
 	case 'check':
 		if($itemid && !$psize) {
 			$do->check($itemid);

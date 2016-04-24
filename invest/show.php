@@ -20,7 +20,8 @@ if($submit){
         'sell_itemid'=>$id,
         'month'=>isset($month)?$month:'',
         'bonding'=>isset($bonding)?$bonding:'',
-        'userid'=>$_userid
+        'userid'=>$_userid,
+        'status'=>2,
     );
     require_once DT_ROOT.'/module/buy/buy.class.php';
     $oBuy = new buy;

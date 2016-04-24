@@ -25,7 +25,7 @@
                             {if $aBuy}
                             {loop $aBuy $k $v}
                             <tr>
-                                <td width="355px" class="ti">
+                                <td width="345px" class="ti">
                                     {if isset($aSell[$v['sell_itemid']])}
                                         <a href="/invest/show.php?id={$v['sell_itemid']}" target="_blank" class="blue" title="{$aSell[$v['sell_itemid']]['company']}">{dsubstr($aSell[$v['sell_itemid']]['company'],38)}</a>
                                     {else}
@@ -36,7 +36,17 @@
                                 <td width="150px" class="ti">{$v['month']}</td>
                                 <td width="20px" align="center" class="ti">{if $v['bonding']}是{else}否{/if}</td>
                                 <td width="140px" align="center" class="ti">{date('Y-m-d H:i',$v['addtime'])}</td>
-                                <td width="70px" class="ti">审核中</td>
+                                <td width="80px" class="ti">
+                                    {if $v['status']==3}
+                                    完成投资
+                                    {elseif $v['status']==2}
+                                    审核中
+                                    {elseif $v['status']==1}
+                                    拒绝投资
+                                    {else}
+                                    失效
+                                    {/if}
+                                </td>
                                 <td width="50px" class="ti"><a href="?action=show&id={$v['itemid']}" class="blue" >查看</a></td>
                             </tr>
 

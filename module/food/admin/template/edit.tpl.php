@@ -66,7 +66,7 @@ show_menu($menus);
     <tr>
     <td class="tl"><span class="f_hid">*</span> <?php echo $MOD['name'];?>状态</td>
     <td>
-    <input type="radio" name="post[status]" value="3" <?php if($status == 3) echo 'checked';?>/> 通过
+    <input type="radio" name="post[status]" value="3" <?php if($status == 3) echo 'checked';?>/> 完成融资
     <input type="radio" name="post[status]" value="2" <?php if($status == 2) echo 'checked';?>/> 待审
     <input type="radio" name="post[status]" value="1" <?php if($status == 1) echo 'checked';?> onclick="if(this.checked) Dd('note').style.display='';"/> 拒绝
     <input type="radio" name="post[status]" value="0" <?php if($status == 0) echo 'checked';?>/> 删除

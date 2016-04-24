@@ -27,8 +27,8 @@ show_menu($menus);
 <option value="totime" <?php if($datetype == 'totime') echo 'selected';?>>到期日期</option>
 </select>&nbsp;
 <?php echo dcalendar('fromdate', $fromdate, '');?> 至 <?php echo dcalendar('todate', $todate, '');?>&nbsp;
-<?php echo ajax_area_select('areaid', '所在地区', $areaid);?>&nbsp;
 ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&nbsp;
+    投资项目id：<input type="text" size="4" name="sell_itemid" value="<?php echo isset($sell_itemid)?$sell_itemid:'';?>"/>&nbsp;
 </td>
 </tr>
 </table>
@@ -70,6 +70,8 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <?php } ?>
 <td>
 <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=edit&itemid=<?php echo $v['itemid'];?>"><img src="admin/image/edit.png" width="16" height="16" title="修改" alt=""/></a>&nbsp;
+    <br /><a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=loglist&itemid=<?php echo $v['itemid'];?>" >投资进度</a>
+    <br />
     <?php if($v['status']==0){ ?>
         <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=restore&itemid=<?php echo $v['itemid'];?>">还原</a>
     <?php }else{ ?>

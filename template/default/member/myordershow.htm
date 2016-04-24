@@ -38,30 +38,61 @@
                             </tr>
                             <tr>
                                 <td width="120px"   align="center">预约时间</td><td class="ti">{date('Y年m月d日 H时i分',$info['addtime'])}</td>
-                                <td width="120px"  align="center">状态</td><td  class="ti">审核中</td>
+                                <td width="120px"  align="center">状态</td>
+                                <td  class="ti">
+                                    {if $info['status']==3}
+                                    完成融资
+                                    {elseif $info['status']==2}
+                                    审核中
+                                    {elseif $info['status']==1}
+                                    拒绝融资
+                                    {else}
+                                    失效
+                                    {/if}
+                                </td>
                             </tr>
                             </tbody>
                         </table>
 
-                        <table style="width:100%;margin-top:50px;">
+                        <table style="width:100%;margin-top:50px;" id="logtable">
                             <tbody>
+                            {if $aLog}
+                                <tr>
+                                    <td width="200px" align="center">审核时间</td>
+                                    <td  align="center">融资进度</td>
+                                </tr>
+                                {loop $aLog $k $v}
+                                <tr>
+                                    <td align="center">{date('Y-m-d H:i:s',$v['addtime'])}</td>
+                                    <td  class="ti">{$v['content']}</td>
+                                </tr>
+                                {/loop}
+                            {else}
                             <tr>
-                                <td width="200px" align="center">审核时间</td>
-                                <td  align="center">审核记录</td>
+                                <td align="center">暂无融资进度</td>
                             </tr>
-                            <tr>
-                                <td align="center">2016-04-22 16:10:21</td>
-                                <td  class="ti">审核失败</td>
-                            </tr>
+                            {/if}
                             </tbody>
                         </table>
+                        {if $aLog}
                         <div class="pageIcons">
-                            <div class="iconWrap iconWrap1"><a class="icon-double-angle-left"></a><a class="active">1</a><a pagenum="2" href="/member/demand.php?demand_page=2&amp;nowdemand=1">2</a><a pagenum="3" href="/member/demand.php?demand_page=3&amp;nowdemand=1">3</a><a pagenum="4" href="/member/demand.php?demand_page=4&amp;nowdemand=1">4</a><a class="icon-double-angle-right" pagenum="2" href="/member/demand.php?demand_page=2&amp;nowdemand=1"></a></div>
+                            <div class="iconWrap"></div>
                         </div>
+                        {/if}
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </section>
+<script src="{DT_SKIN}js/user-page.js"></script>
+<script>
+    $(function() {
+        pager({$page}, {$totalpage}, 'iconWrap');
+        $(".iconWrap a[pagenum]").each(function (k, v) {
+            var url = '?action=show&id={$id}&page=' + $(this).attr('pagenum')+'#logtable';
+            $(this).attr('href', url);
+        });
+    })
+</script>
 {template 'footer','member'}

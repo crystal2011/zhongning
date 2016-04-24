@@ -22,6 +22,9 @@ if($action=='show'){
     $oSell->itemid = $info['sell_itemid'];
     $aSell = $oSell->get_one();
 
+    //投资进度
+    list($aLog,$totalpage) = $oBuy->logList('*','food_itemid='.$id,'addtime desc',10);
+
     $two_nav_selected = 'myapply';
     include template('myapplyshow', $module);
 }else {

@@ -41,6 +41,7 @@ $sAdPlaceHot = $oAd->getAdAllFlash(37);
 $oAd->pid = 37;
 $aAd = $oAd->get_one_place();
 
+$numsinfo = getNums();
 
 $seo_title = '';
 $nav_selected = 'index';

@@ -9,7 +9,6 @@ show_menu($menus);
 <input type="hidden" name="action" value="<?php echo $action;?>"/>
 <input type="hidden" name="itemid" value="<?php echo $itemid;?>"/>
 <input type="hidden" name="forward" value="<?php echo $forward;?>"/>
-<input type="hidden" name="post[mycatid]" value="<?php echo $mycatid;?>"/>
 <div class="tt"><?php echo $action == 'add' ? '添加' : '修改';?><?php echo $MOD['name'];?></div>
 <table cellpadding="2" cellspacing="1" class="tb">
     <tr>

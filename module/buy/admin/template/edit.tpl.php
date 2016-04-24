@@ -29,7 +29,7 @@ show_menu($menus);
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 投资金额</td>
-        <td><input name="post[price]" type="text" id="price" datatype="*2-10" maxlength="10" size="60" value="<?php echo $price;?>"/></td>
+        <td><input name="post[price]" type="text" id="price" datatype="money" maxlength="9" size="60" value="<?php echo $price;?>"/> 注：最低限额3万元</td>
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 投资期限</td>
@@ -45,7 +45,7 @@ show_menu($menus);
 <tr>
 <td class="tl"><span class="f_hid">*</span> 信息状态</td>
 <td>
-<input type="radio" name="post[status]" value="3" <?php if($status == 3) echo 'checked';?>/> 通过
+<input type="radio" name="post[status]" value="3" <?php if($status == 3) echo 'checked';?>/> 完成投资
 <input type="radio" name="post[status]" value="2" <?php if($status == 2) echo 'checked';?>/> 待审
 <input type="radio" name="post[status]" value="1" <?php if($status == 1) echo 'checked';?> onclick="if(this.checked) Dd('note').style.display='';"/> 拒绝
 <input type="radio" name="post[status]" value="0" <?php if($status == 0) echo 'checked';?>/> 删除
@@ -55,9 +55,25 @@ show_menu($menus);
 <div class="sbt"><input type="submit" name="submit" value=" 确 定 " class="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" name="reset" value=" 重 置 " class="btn"/></div>
 </form><script src="<?php echo DT_SKIN; ?>js/Validform_v5.3.2_min.js"></script>
 <script type="text/javascript">
+
     $("#dform").Validform({
-        tiptype: 3
+        tiptype: 3,
+        datatype:{
+            "mobile":function(gets,obj,curform,regxp){
+                if(!is_mobile(gets)) return false;
+                return true;
+            },
+            "money":function(gets,obj,curform,regxp){
+                var sd = /^[1-9][0-9]{0,8}$/
+                var s = parseInt(gets)
+                if(!sd.test(gets) || s>100000000 || s<30000){
+                    return false;
+                }
+                return true;
+            }
+        }
     })
+
 </script>
 <script type="text/javascript">Menuon(<?php echo $menuid;?>);</script>
 <?php include tpl('footer');?>

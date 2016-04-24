@@ -12,6 +12,10 @@ if($action=='show'){
     if(!$info || $info['userid']!=$_userid) dalert('预约信息不存在','myorder.php');
     $seo_title = '我的预约-详情-会员中心-';
     $two_nav_selected = 'myorder';
+
+    //融资进度
+    list($aLog,$totalpage) = $oFood->logList('*','food_itemid='.$id,'addtime desc',10);
+
     include template('myordershow', $module);
 }else{
 

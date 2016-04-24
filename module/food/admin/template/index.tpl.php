@@ -65,10 +65,14 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <?php } ?>
 <td class="px11"><?php echo $v['hits'];?></td>
 <td>
-<a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=edit&itemid=<?php echo $v['itemid'];?>"><img src="admin/image/edit.png" width="16" height="16" title="修改" alt=""/></a>&nbsp;
-    <?php if($v['status']!=0)?>
+    <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=edit&itemid=<?php echo $v['itemid'];?>"><img src="admin/image/edit.png" width="16" height="16" title="修改" alt=""/></a>&nbsp;
+    <br />
+    <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=loglist&itemid=<?php echo $v['itemid'];?>" >融资进度</a>
+    <br />
+    <?php if($v['status']!=0) ?>
     <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete&recycle=1&itemid=<?php echo $v['itemid'];?>" >回收站</a>
     <?php } ?>
+
 </td>
 </tr>
 
@@ -77,7 +81,7 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 
 <?php if($action == 'check') { ?>
 
-<input type="submit" value=" 通过审核 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=check';"/>&nbsp;
+<input type="submit" value=" 完成融资 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=check';"/>&nbsp;
 <input type="submit" value=" 拒 绝 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=reject';"/>&nbsp;
 <input type="submit" value=" 回收站 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete&recycle=1';"/>&nbsp;
 

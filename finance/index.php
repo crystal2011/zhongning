@@ -25,6 +25,7 @@ if($submit){
         'month'=>isset($month)?$month:'',
         'danbao'=>isset($danbao)?$danbao:'',
         'userid'=>$_userid,
+        'status'=>2
     );
     if(!$post = $oFood->pass($post,false)){
         exit(json_encode(array('status'=>'n','info'=>$oFood->errmsg)));
