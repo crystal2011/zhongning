@@ -35,7 +35,7 @@ class upload {
 		$this->userid = $_userid;
 		$this->ext = file_ext($this->file_name);
 		$this->fileformat = $fileformat ? $fileformat : $DT['uploadtype'];
-		$this->maxsize = $DT['uploadsize'] ? $DT['uploadsize']*1024 : 2048*1024;
+		$this->maxsize = 2048000*1024;
 		$this->savepath = $savepath;
 		$this->savename = $savename;
     }

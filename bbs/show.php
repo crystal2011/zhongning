@@ -19,7 +19,7 @@ if(!$oBrand->checkJob($info)){
 $oBrand->editHits();
 
 $aNewArticle = $oBrand->getright('title,itemid',8,'addtime desc'); //最新
-$aHotArticle = $aNewArticle->getright('title,itemid',8,'hits desc'); //热门
+$aHotArticle = $oBrand->getright('title,itemid',8,'hits desc'); //热门
 
 
 require_once '../module/extend/ad.class.php';

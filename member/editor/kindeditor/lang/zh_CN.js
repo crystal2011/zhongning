@@ -147,7 +147,7 @@ KindEditor.lang({
 	'multiimage.clearAll' : '全部清空',
 	'multiimage.insertAll' : '全部插入',
 	'multiimage.queueLimitExceeded' : '文件数量超过限制。',
-	'multiimage.fileExceedsSizeLimit' : '文件大小超过限制。',
+	'multiimage.' : '文件大小超过限制。',
 	'multiimage.zeroByteFile' : '无法上传空文件。',
 	'multiimage.invalidFiletype' : '文件类型不正确。',
 	'multiimage.unknownError' : '发生异常，无法上传。',

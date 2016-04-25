@@ -10,11 +10,11 @@
             {/if}
         </ul>
     </div>
-    <div class="bd" style="height:{$aAd['height']}">
+    <div class="bd" style="height:{$aAd['height']}px">
         <ul>
             {if $sAdPlaceHot}
             {loop $sAdPlaceHot $k $v}
-            <li style="background:url('{$v[flash_src]}') top center no-repeat">{if $v['flash_url']}<a href="{$v['flash_url']}" title="{$v['title']}" target="_blank" style="display:block;"></a>{/if}</li>
+            <li style="background:url('{$v[flash_src]}') top center no-repeat;height:{$aAd['height']}px">{if $v['flash_url']}<a href="{$v['flash_url']}" title="{$v['title']}" target="_blank" style="display:block;"></a>{/if}</li>
             {/loop}
             {/if}
         </ul>
@@ -60,8 +60,7 @@ $(document).ready(function() {
                     <div class="line">
                     </div>
                     <div class="circle">
-                        <i class="fa fa-laptop"></i>
-                        <img src="{DT_SKIN_TWO}images/wycms/indexmo1.png" />
+                        <img style="margin-top:8px;" src="{DT_SKIN_TWO}images/wycms/indexmo1.png" />
                     </div>
                 </div>
             </div>
@@ -72,8 +71,7 @@ $(document).ready(function() {
                     <div class="line">
                     </div>
                     <div class="circle">
-                        <i class="fa fa-pencil-square-o"></i>
-                        <img src="{DT_SKIN_TWO}images/wycms/indexmo2.png" />
+                        <img style="margin-top:14px;" src="{DT_SKIN_TWO}images/wycms/indexmo2.png" />
                     </div>
                 </div>
             </div>
@@ -83,8 +81,7 @@ $(document).ready(function() {
                     <div class="line">
                     </div>
                     <div class="circle">
-                        <i class="fa fa-bar-chart"></i>
-                        <img src="{DT_SKIN_TWO}images/wycms/indexmo3.png" />
+                        <img style="margin-top:12px;margin-left:3px;" src="{DT_SKIN_TWO}images/wycms/indexmo3.png" />
                     </div>
                 </div>
             </div>
@@ -94,8 +91,7 @@ $(document).ready(function() {
                     <div class="line">
                     </div>
                     <div class="circle">
-                        <i class="fa fa-bar-chart"></i>
-                        <img src="{DT_SKIN_TWO}images/wycms/indexmo4.png" />
+                        <img style="margin-top:10px;" src="{DT_SKIN_TWO}images/wycms/indexmo4.png" />
                     </div>
                 </div>
             </div>
@@ -105,8 +101,7 @@ $(document).ready(function() {
                     <div class="line">
                     </div>
                     <div class="circle">
-                        <i class="fa fa-bar-chart"></i>
-                        <img src="{DT_SKIN_TWO}images/wycms/indexmo5.png" />
+                        <img style="margin-top:13px;margin-left:3px;" src="{DT_SKIN_TWO}images/wycms/indexmo5.png" />
                     </div>
                 </div>
             </div>
@@ -116,8 +111,7 @@ $(document).ready(function() {
                     <div class="line">
                     </div>
                     <div class="circle">
-                        <i class="fa fa-bar-chart"></i>
-                        <img src="{DT_SKIN_TWO}images/wycms/indexmo6.png" />
+                        <img style="margin-top:11px;" src="{DT_SKIN_TWO}images/wycms/indexmo6.png" />
                     </div>
                 </div>
             </div>
@@ -127,8 +121,7 @@ $(document).ready(function() {
                     <div class="line">
                     </div>
                     <div class="circle">
-                        <i class="fa fa-bar-chart"></i>
-                        <img src="{DT_SKIN_TWO}images/wycms/indexmo7.png" />
+                        <img style="margin-top:10px;" src="{DT_SKIN_TWO}images/wycms/indexmo7.png" />
                     </div>
                 </div>
             </div>
@@ -256,14 +249,14 @@ $(document).ready(function() {
             <div class="indexmodu8left clearfix">
                 {if $aArticleHasThumb}
                 {loop $aArticleHasThumb $k $v}
-                <a href="{$CFG['url']}article/show.php?id={$v['itemid']}" title="{$v['title']}" target="_blank"><img src="{$v['thumb']}" /></a>
+                <a href="{$CFG['url']}article/show.php?id={$v['itemid']}" title="{$v['title']}" target="_blank"><img src="{if $v['thumb'] && file_exists(str_replace($CFG['url'],DT_ROOT.'/',$v['thumb']))}{$v['thumb']}{else}{DT_SKIN_TWO}images/wycms/default.jpg{/if}" /></a>
                 {/loop}
                 {/if}
             </div>
             <div class="indexmodu8right">
                 <ul>
-                    {if $aArticleHasThumb}
-                        {loop $aArticleHasThumb $k $v}
+                    {if $aArticleNews}
+                        {loop $aArticleNews $k $v}
                         <li class="clearfix"><span>0{$k+1}、</span><a href="{$CFG['url']}article/show.php?id={$v['itemid']}" title="{$v['title']}" target="_blank">{$v['title']}</a></li>
                         {/loop}
                     {/if}

@@ -205,7 +205,7 @@ header.g .top .container {
     text-align: right;
     padding-right: 20px;
 }
-.toptwo {position:absolute;z-index:9999999;top:30px;display:none;right:175px;border-right:2px solid #e5e5e5;border-left:1px solid #e5e5e5;padding:10px 20px 13px 20px;background-color:#fff;}
+.toptwo {position:absolute;z-index:9999999;top:30px;display:none;right:155px;border-right:2px solid #e5e5e5;border-left:1px solid #e5e5e5;padding:10px 20px 13px 20px;background-color:#fff;}
 .toptwo img{
     width:130px;
     height:130px;
@@ -1038,7 +1038,7 @@ footer.g .bottom img {
     height: 550px;
     overflow: hidden;
     position: relative;
-    margin-top: 91px;
+    margin-top: 170px;
     text-align: center;
 }
 .slideBox .hd {
@@ -1179,6 +1179,7 @@ footer.g .bottom img {
     -o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
 }
+
 .step-box .nav-box .circle i {
     font-size: 35px;
     line-height: 52px;
@@ -11008,14 +11009,17 @@ p.introtitle {
     cursor:pointer;
 }
 .modumoney1 {
-    color:#7abef6;font-size:14px;position:absolute;bottom:185px;left:130px;width:260px;text-align:center;
+    color:#7abef6;font-size:14px;position:absolute;bottom:185px;margin-left:-333px;width:260px;text-align:center;
+    left:50%;
+
 }
 .modumoney1 span{
     font-size:25px;padding:0px 5px;color:#7abef6;
 }
 .indexmodu5button1 {
-    position:absolute;bottom:211px;left:583px;
+    position:absolute;bottom:210px;margin-left:124px;
     cursor:pointer;
+    left:50%;
 }
 
 .indexmodu6 {

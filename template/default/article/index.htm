@@ -7,7 +7,7 @@
         {if $aArticle}
         {loop $aArticle $k $v}
         <article>
-            <a href="show.php?id={$v['itemid']}" class="img-box" title="{$v['title']}"><img src="{$v['thumb']}" alt=""></a>
+            <a href="show.php?id={$v['itemid']}" class="img-box" title="{$v['title']}"><img src="{if $v['thumb'] && file_exists(str_replace($CFG['url'],DT_ROOT.'/',$v['thumb']))}{$v['thumb']}{else}{DT_SKIN_TWO}images/wycms/default.jpg{/if}" alt=""></a>
             <h3><a href="show.php?id={$v['itemid']}" title="{$v['title']}">{$v['title']}</a></h3>
             <span class="info">发表于：{date('Y-m-d',$v['addtime'])}</span>
             <p>{$v['introduce']}</p>
