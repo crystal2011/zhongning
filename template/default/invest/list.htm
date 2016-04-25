@@ -1,0 +1,55 @@
+{template  'header'}
+<section class="group" style="background-color:#fff;position:relative;">
+    <div  id="module1" class="g banner" style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
+</section>
+<div class="container school" style="margin-top:30px;">
+    <div class="school-left" style="width:1080px;">
+        <div class="indexmodu6right"  style="width:1080px;height:auto;">
+            <table>
+                <tr class="rightth">
+                    <th class="td1" style="width:250px;">借款方</th>
+                    <th class="td2">年利率</th>
+                    <th class="td3">金额</th>
+                    <th class="td4" style="width:130px;">用途</th>
+                    <th class="td5"  style="width:190px;">期限</th>
+                    <th class="td6">进度</th>
+                    <th class="td7"></th>
+                </tr>
+                {if $aSell}
+                {loop $aSell $k $v}
+                <tr class="dan<?php echo $k%2; ?>">
+                    <td><span class="dai" title="{$v['title']}">贷</span>{mb_substr($v['title'],0,10,'utf-8')}{if mb_strlen($v['title'])>10}...{/if}</td>
+                    <td>{$v['apr']}</td>
+                    <td align="center">{$v['price']}</td>
+                    <td align="center" title="{$v['reason']}">{mb_substr($v['reason'],0,8,'utf-8')}</td>
+                    <td align="center">{$v['month']}</td>
+                    <td>{$v['setbacks']}</td>
+                    <td>
+                        <img src="{DT_SKIN_TWO}images/wycms/daitou{$v['setstatus']}.png" class="daitou{$v['setstatus']}" {if $v['setstatus']==0}onclick="location.href='{$CFG[url]}invest/show.php?id={$v[itemid]}'"{/if} />
+                    </td>
+                </tr>
+                {/loop}
+
+                {/if}
+            </table>
+            {if $aSell}
+            <div class="page-box" style="clear:both;margin-bottom:35px;margin-top:40px;">
+                <ul class="pager"></ul>
+            </div>
+            {/if}
+        </div>
+    </div>
+
+</div>
+
+<script src="{DT_SKIN}js/pager.js"></script>
+<script>
+    pager({$page},{$totalpage},'pager');
+    $(".pager li").click(function(){
+        var pagenum = $(this).attr('pagenum');
+        if(typeof(pagenum)!='undefined'){
+            location.href = 'list.php?page='+pagenum;
+        }
+    })
+</script>
+{template  'footer'}
