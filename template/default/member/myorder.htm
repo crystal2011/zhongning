@@ -14,40 +14,46 @@
                         <table>
                             <tbody>
                             <tr>
-                                <td width="120px" class="ti">申请金额</td>
-                                <td width="150px" class="ti">申请期限</td>
-                                <td width="100px" class="ti">抵押/担保</td>
-                                <td width="290px" class="ti">需求描述</td>
-                                <td width="140px" align="center" class="ti">预约时间</td>
-                                <td width="80px" class="ti">状态</td>
+                                <td width="360px" class="ti">融资企业</td>
+                                <td width="88px" class="ti">投资金额</td>
+                                <td width="150px" class="ti">投资期限</td>
+                                <td width="140px" align="center" class="ti">申请时间</td>
+                                <td width="70px" class="ti">状态</td>
                                 <td width="50px" class="ti">操作</td>
                             </tr>
-                            {if $aFood}
-                            {loop $aFood $k $v}
+                            {if $aBuy}
+                            {loop $aBuy $k $v}
                             <tr>
-                                <td width="120px" class="ti">{$v['price']}</td>
+                                <td width="360px" class="ti">
+                                    {if isset($aSell[$v['sell_itemid']])}
+                                    <a href="/invest/show.php?id={$v['sell_itemid']}" target="_blank" class="blue" title="{$aSell[$v['sell_itemid']]['company']}">{dsubstr($aSell[$v['sell_itemid']]['company'],38)}</a>
+                                    {else}
+                                    <span style="color:#ccc;">失效</span>
+                                    {/if}
+                                </td>
+                                <td width="88px" class="ti">{$v['price']}</td>
                                 <td width="150px" class="ti">{$v['month']}</td>
-                                <td width="100px" class="ti" title="{$v['danbao']}">{dsubstr($v['danbao'],16,'...')}</td>
-                                <td width="290px" class="ti" title="{$v['introduce']}">{dsubstr($v['introduce'],34,'...')}</td>
                                 <td width="140px" align="center" class="ti">{date('Y-m-d H:i',$v['addtime'])}</td>
                                 <td width="80px" class="ti">
                                     {if $v['status']==3}
-                                        完成融资
+                                    完成投资
                                     {elseif $v['status']==2}
-                                        审核中
+                                    审核中
                                     {elseif $v['status']==1}
-                                        拒绝融资
+                                    拒绝投资
                                     {else}
-                                        失效
+                                    失效
                                     {/if}
                                 </td>
                                 <td width="50px" class="ti"><a href="?action=show&id={$v['itemid']}" class="blue" >查看</a></td>
                             </tr>
+
                             {/loop}
                             {/if}
+
                             </tbody>
                         </table>
-                        {if $aFood}
+                        {if $aBuy}
                         <div class="pageIcons">
                             <div class="iconWrap">
                             </div>

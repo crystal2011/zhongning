@@ -86,16 +86,6 @@ $(document).ready(function() {
                 </div>
             </div>
             <div class="step step4">
-                <div class="title-box">按月收息</div>
-                <div class="nav-box center-block">
-                    <div class="line">
-                    </div>
-                    <div class="circle">
-                        <img style="margin-top:10px;" src="{DT_SKIN_TWO}images/wycms/indexmo4.png" />
-                    </div>
-                </div>
-            </div>
-            <div class="step step5">
                 <div class="title-box">签约并转款</div>
                 <div class="nav-box center-block">
                     <div class="line">
@@ -105,13 +95,23 @@ $(document).ready(function() {
                     </div>
                 </div>
             </div>
-            <div class="step step6">
+            <div class="step step5">
                 <div class="title-box">领取合同和借据</div>
                 <div class="nav-box center-block">
                     <div class="line">
                     </div>
                     <div class="circle">
                         <img style="margin-top:11px;" src="{DT_SKIN_TWO}images/wycms/indexmo6.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="step step6">
+                <div class="title-box">按月收息</div>
+                <div class="nav-box center-block">
+                    <div class="line">
+                    </div>
+                    <div class="circle">
+                        <img style="margin-top:10px;" src="{DT_SKIN_TWO}images/wycms/indexmo4.png" />
                     </div>
                 </div>
             </div>
@@ -132,8 +132,8 @@ $(document).ready(function() {
         <div class="focus">
             <ul>
                 <li><img src="{DT_SKIN_TWO}images/wycms/indexmob1.jpg" alt=""></li>
-                <li><img src="{DT_SKIN_TWO}images/wycms/indexmob2.jpg" alt=""></li>
                 <li><img src="{DT_SKIN_TWO}images/wycms/indexmob3.jpg" alt=""></li>
+                <li><img src="{DT_SKIN_TWO}images/wycms/indexmob2.jpg" alt=""></li>
                 <li><img src="{DT_SKIN_TWO}images/wycms/indexmob4.jpg" alt=""></li>
                 <li><img src="{DT_SKIN_TWO}images/wycms/indexmob5.jpg" alt=""></li>
                 <li><img src="{DT_SKIN_TWO}images/wycms/indexmob6.jpg" alt=""></li>
@@ -162,7 +162,7 @@ $(document).ready(function() {
     <div class="container" style="position:relative;">
         <img src="{DT_SKIN_TWO}images/wycms/indexmodu5.jpg" />
         <div class="modumoney">已为投资人赚取<span>{$DT['invest_money']}</span>元</div>
-        <img src="{DT_SKIN_TWO}images/wycms/indexmodu5button.png" onclick="location.href = '{$CFG[url]}invest/list.php'" class="indexmodu5button" />
+        <img src="{DT_SKIN_TWO}images/wycms/indexmodu5button.png" onclick="location.href = '{$CFG[url]}invest/index.php#module1'" class="indexmodu5button" />
     </div>
 </section>
 <section class="system">
@@ -214,28 +214,24 @@ $(document).ready(function() {
     <div class="container">
         <div class="intro">
             <div><img src="{DT_SKIN_TWO}images/wycms/indexmodu7.png" /></div>
-            <div class="indexmodu7title">累计融资业务分布数据统计-按期限</div>
+            <div class="indexmodu7title">累计融资业务数据公示</div>
         </div>
         <div class="clearfix indexmodu7">
             <div class="numsnsow numtitle1">
-                <p class="numtitle">成交笔数</p>
-                <p class="numtnum">{$numsinfo['invest_nums']}</p>
-                <p class="numtdan">( 笔 )</p>
+                <p class="numtitle">融资项目总数量</p>
+                <p class="numtnum">{$DT['success_nums']}</p>
             </div>
             <div class="numsnsow numtitle2">
-                <p class="numtitle">成交金额</p>
-                <p class="numtnum">{$numsinfo['invest_money']}</p>
-                <p class="numtdan">( 万元 )</p>
+                <p class="numtitle">融资总金额( 万元 )/p>
+                <p class="numtnum">{$DT['success_money']}</p>
             </div>
             <div class="numsnsow numtitle3">
-                <p class="numtitle">为投资者赚取</p>
-                <p class="numtnum">{$DT['invest_money']}</p>
-                <p class="numtdan">( 元 )</p>
+                <p class="numtitle">服务费( ‰ )</p>
+                <p class="numtnum">{$DT['fuwu_fee']}</p>
             </div>
             <div class="numsnsow numtitle4">
-                <p class="numtitle">投资利率( % )</p>
-                <p class="numtnum">{$DT['rate']}</p>
-                <p class="numtdan">( {$DT['rate_time']} )</p>
+                <p class="numtitle">已到期还本的项目数量</p>
+                <p class="numtnum">{$DT['time_nums']}</p>
             </div>
         </div>
     </div>

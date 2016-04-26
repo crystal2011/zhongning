@@ -22,10 +22,9 @@
                     <div class="investformcon">
                         <p><span class="formleft">真实姓名：</span><input type="text" name="title" id="title" datatype="*2-5" maxlength="5" nullmsg="请输入真实姓名" errormsg="真实姓名输入有误" ></p>
                         <p><span class="formleft">联系手机：</span><input name="mobile" type="text" id="mobile" datatype="m" nullmsg="请输入联系手机" errormsg="联系手机输入有误"></p>
-                        <p><span class="formleft">投资金额：</span><input name="price" type="text" id="price" datatype="money" nullmsg="请输入3万-1亿的金额" errormsg="请输入3万-1亿的金额" maxlength="9"  ></p>
+                        <p><span class="formleft">投资金额：</span><input name="price" type="text" id="price" datatype="money" placeholder="输入3万-500万的金额(纯数字)" nullmsg="输入3万-500万的金额(纯数字)" errormsg="输入3万-500万的金额(纯数字)" maxlength="9"  ></p>
                         <div style="margin-left:105px;font-size:14px;font-size:12px;margin-bottom:7px;color:#00467f;">注：最低限额3万元</div>
                         <p><span class="formleft">投资期限：</span><input name="month" type="text" id="month" datatype="*2-10" maxlength="10" nullmsg="请输入投资期限" errormsg="投资期限有误"  ></p>
-                        <p><span class="formleft">是否有担保或抵押：</span><label class="bonding"><input type="radio" name="bonding" value="1" checked  >是 </label><label  class="bonding"><input name="bonding" type="radio" value="0" >否</label></p>
                     </div>
                     <p class="investformbtn">
                         <input type="submit" value="提交申请" class="investformsum" />
@@ -39,7 +38,11 @@
 <script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
 <link rel="styleSheet" href="{DT_SKIN}js/layer/skin/layer.css">
 <script src="{DT_SKIN}js/layer/layer.js"></script>
+<style>
+    .layuidl{background-color:#68b2f4;text-align:center;color:#fff;}
+</style>
 <script type="text/javascript">
+
     $("#investformcon").Validform({
         tiptype: 3,
         ajaxPost:true,
@@ -51,7 +54,7 @@
             "money":function(gets,obj,curform,regxp){
                 var sd = /^[1-9][0-9]{0,8}$/
                 var s = parseInt(gets)
-                if(!sd.test(gets) || s>100000000 || s<30000){
+                if(!sd.test(gets) || s>5000000 || s<30000){
                     return false;
                 }
                 return true;
@@ -63,7 +66,14 @@
         },
         callback:function(data){
             if(data.status=='y'){
-                layer.msg(data.info);
+                layer.open({
+                    type: 1,
+                    area: ['400px', '100px'], //宽高
+                    title: false, //不显示标题
+                    closeBtn: 0, //不显示关闭按钮
+                    skin: 'layuidl',
+                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:18px;">您已提交成功，<br/>稍后投资顾问会与您电话联系，请耐心等待。</div>'
+                });
                 $("#investformcon")[0].reset();
                 $("input[name='submit']").val(1);
                 $(".Validform_checktip").remove();
@@ -72,6 +82,10 @@
             }
         }
     })
+
+    function dellyer(){
+        $(".layui-layer,.layui-layer-shade").remove();
+    }
 
 </script>
 

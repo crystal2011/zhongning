@@ -1,28 +1,13 @@
 {template  'header'}
-<script>
-    $(function(){
-        $(".quanclick").mouseenter(function(){
-            var index = $(this).index();
-            var imageindex = parseInt(index)+3;
-            $(this).parent().css('background-image','url({DT_SKIN_TWO}images/wycms/finance'+imageindex+'.jpg)');
-        })
 
-    })
-    function reloadcaptcha() {
-        $('#captchapng').attr("src",'{DT_PATH}api/captcha.png.php?action=image&refresh='+Math.random());
-
-    }
-</script>
 <section class="group" style="background-color:#fff;position:relative;">
     <div  id="module1" class="g banner" style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
     <div  id="module2" class="" style=" background: url({DT_SKIN_TWO}images/wycms/finance2.jpg) no-repeat center top;height:450px;"></div>
-    <div  id="module3" style=" background: url({DT_SKIN_TWO}images/wycms/finance3.jpg) no-repeat center top #7abef6;height:910px;position:relative;margin-top:70px;">
-        <span class="quanclick" style="margin-top:179px;">&nbsp;</span>
-        <span class="quanclick" style="margin-top:337px;">&nbsp;</span>
-        <span class="quanclick" style="margin-top:492px;">&nbsp;</span>
-        <span class="quanclick" style="margin-top:649px;">&nbsp;</span>
+    <div  id="module3" style=" background: url({DT_SKIN_TWO}images/wycms/finance3.jpg) no-repeat center top #7abef6;height:736px;margin-top:70px;"></div>
+    <div style=" background: url({DT_SKIN_TWO}images/wycms/finance7.jpg) no-repeat center top;height:565px;margin-top:60px;position:relative;">
+        <a style="position:absolute;width:165px;height:100px;top:475px;left:50%;margin-left:-322px;display:block;" href="/track/index.php"></a>
+        <a style="position:absolute;width:142px;height:142px;top:363px;left:50%;margin-left:-147px;display:block;" href="/track/index.php"></a>
     </div>
-    <div style=" background: url({DT_SKIN_TWO}images/wycms/finance7.jpg) no-repeat center top;height:565px;margin-top:60px;"></div>
     <div id="module4" style=" background: url({DT_SKIN_TWO}images/wycms/finance8.jpg) no-repeat center top;height:768px;margin-top:185px;position:relative;">
         <form class="financeform">
             <p class="financeform-title">融资申请单</p>
@@ -33,7 +18,7 @@
             <div class="clearfix inputdiv">
                 <div class="fl">公司地址：<input type="text" name="address" datatype="*2-50" nullmsg="请填写公司地址" errormsg="请填写公司地址" maxlength="50" /></div>
                 <div class="fr">
-                    申请金额：<input type="text" maxlength="9" datatype="money" name="price" placeholder="请填写1万-1亿申请金额" nullmsg="请填写1万-1亿申请金额" errormsg="请填写申请金额" />
+                    申请金额：<input type="text" maxlength="9" datatype="money" name="price" placeholder="请填写50万-500万申请金额(纯数字)" nullmsg="请填写50万-500万申请金额(纯数字)" errormsg="请填写50万-500万申请金额(纯数字)" />
                 </div>
             </div>
             <div class="clearfix inputdiv">
@@ -57,6 +42,9 @@
 <script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
 <link rel="styleSheet" href="{DT_SKIN}js/layer/skin/layer.css">
 <script src="{DT_SKIN}js/layer/layer.js"></script>
+<style>
+    .layuidl{background-color:#68b2f4;text-align:center;color:#fff;}
+</style>
 <script type="text/javascript">
     $(".financeform").Validform({
         tiptype: 3,
@@ -68,7 +56,7 @@
             },
             "money":function(gets,obj,curform,regxp){
                 var sd = /^[1-9][0-9]{0,8}$/
-                if(!sd.test(gets) || parseInt(gets)>100000000){
+                if(!sd.test(gets) || parseInt(gets)>5000000 ||  parseInt(gets)<500000){
                     return false;
                 }
                 return true;
@@ -80,7 +68,15 @@
         },
         callback:function(data){
             if(data.status=='y'){
-                layer.msg(data.info);
+                layer.open({
+                    type: 1,
+                    area: ['400px', '100px'], //宽高
+                    title: false, //不显示标题
+                    closeBtn: 0, //不显示关闭按钮
+                    skin: 'layuidl',
+                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:18px;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。</div>'
+                });
+
                 $(".financeform")[0].reset();
                 $("input[name='submit']").val(1);
                 $(".Validform_checktip").remove();
@@ -95,6 +91,8 @@
             }
         }
     })
-
+    function dellyer(){
+        $(".layui-layer,.layui-layer-shade").remove();
+    }
 </script>
 {template  'footer'}

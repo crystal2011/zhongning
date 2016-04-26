@@ -45,7 +45,6 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
     <th>投资项目id</th>
     <th>投资金额</th>
     <th>投资期限</th>
-    <th>是否有担保</th>
     <th width="130"><?php echo $timetype == 'add' ? '添加' : '更新';?>时间</th>
     <th width="100">操作</th>
 </tr>
@@ -61,7 +60,6 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
     <td><?php echo $v['sell_itemid'];?></td>
     <td><?php echo $v['price'];?></td>
     <td><?php echo $v['month'];?></td>
-    <td><?php echo $v['bonding']?'有':'否';?></td>
 
 <?php if($timetype == 'add') {?>
 <td class="px11" title="更新时间<?php echo timetodate($v['edittime'], 5);?>"><?php echo timetodate($v['addtime'], 5);?></td>

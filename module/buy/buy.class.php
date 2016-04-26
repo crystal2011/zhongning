@@ -17,7 +17,7 @@ class buy {
         $this->table_data = $db->pre.'buy_data_6';
 		$this->split = '';
 		$this->db = &$db;
-		$this->fields = array('userid','level','title','introduce','price','status','hits','addtime','adddate','edittime','editdate','mobile','sell_itemid','month','bonding');
+		$this->fields = array('userid','level','title','introduce','price','status','hits','addtime','adddate','edittime','editdate','mobile','sell_itemid','month');
     }
 
     function pass($post,$isadmin=true) {
@@ -51,9 +51,8 @@ class buy {
                 if(!$oSell->checkSell($aSell)) return $this->_($oSell->errmsg);
             }
         }
-        if(!preg_match('/[1-9][0-9]{0,8}/',$post['price']) || $post['price']>100000000 || $post['price']<30000) return $this->_('投资金额输入有误');
+        if(!preg_match('/[1-9][0-9]{0,8}/',$post['price']) || $post['price']>5000000 || $post['price']<30000) return $this->_('投资金额输入有误');
         if(!is_length($post['month'],2,10)) return $this->_('投资期限输入有误');
-        if($post['bonding'] != 0 && $post['bonding'] != 1) return $this->_('是否有担保选择有误');
         return $post;
     }
 

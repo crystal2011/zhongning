@@ -272,13 +272,7 @@ class brand {
     }
 
     function getright($field='*',$limit,$order=''){
-        global $dtcity;
         $where = ' status=3 ';
-        if($dtcity){
-            $info = get_area($dtcity['areaid']);
-            $arrchildid = $info['arrchildid'];
-            $where .= " and areaid in ($arrchildid)";
-        }
         $list = array();
         $result = $this->db->query("select {$field} from {$this->table} where {$where} order by {$order} limit $limit");
         while($r=$this->db->fetch_array($result)){

@@ -19,7 +19,6 @@ if($submit){
         'price'=>isset($price)?$price:'',
         'sell_itemid'=>$id,
         'month'=>isset($month)?$month:'',
-        'bonding'=>isset($bonding)?$bonding:'',
         'userid'=>$_userid,
         'status'=>2,
     );

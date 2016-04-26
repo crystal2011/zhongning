@@ -27,35 +27,11 @@
         // end
     })
 </script>
-<style>
-    #roll-banner {
-        width: 100%;
-    }
-    .slider li {
-        float: left;
-    }
-    .sliderBox {
-        position: relative;
-        overflow: hidden;
-    }
-    #roll-banner img {
-        min-width: 100%;
-        max-width: 100%;
-        display: block;
-    }
-    .slider {
-        position: absolute;
-        left: 0;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        -webkit-transform-style: preserve-3d;
-    }
-</style>
 <section id="roll-banner" class="sliderBox">
     <ul class="slider">
-        <li><img src="{DT_SKIN_TWO}images/wycms/logo.png" /></li>
-        <li><img src="{DT_SKIN_TWO}images/wycms/logo.png" /></li>
-        <li><img src="{DT_SKIN_TWO}images/wycms/logo.png" /></li>
+        <li><img src="{DT_SKIN_TWO}images/wycms/mobile/banner1.jpg" /></li>
+        <li><img src="{DT_SKIN_TWO}images/wycms/mobile/banner2.jpg" /></li>
+        <li><img src="{DT_SKIN_TWO}images/wycms/mobile/banner3.jpg" /></li>
     </ul>
 </section>
 <section id="index">
@@ -66,54 +42,88 @@
                     <li>
                         <a href="/mobile/food/index.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module1.png"  /></p>
-                            <span>餐饮供应</span>
+                            <span>首页</span>
                         </a>
                     </li>
                     <li>
                         <a href="/mobile/discount/index.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module2.png"  /></p>
-                            <span>餐饮优惠</span>
+                            <span>投资理财</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="noboderright ">
                         <a href="/mobile/job/index.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module3.png"  /></p>
-                            <span>餐饮招聘</span>
+                            <span>关于我们</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="noboderbottom">
                         <a href="/mobile/cession/index.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module4.png"  /></p>
-                            <span>店铺转让</span>
+                            <span>融资业务</span>
                         </a>
                     </li>
-                    <li>
+                    <li  class="noboderbottom">
                         <a href="/mobile/school/index.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module5.png"  /></p>
-                            <span>名厨学堂</span>
+                            <span>联系我们</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/mobile/horn/index.php">
+                    <li  class="noboderright noboderbottom">
+                        <a href="/mobile/horn/index.php" >
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module6.png"  /></p>
-                            <span>羊角会</span>
+                            <span>常见问题</span>
                         </a>
                     </li>
                 </ul>
             </article>
         </div>
     </div>
-    <article class="article">
+    <article>
         <p class="zhongtitle">平台优势</p>
         <img src="{DT_SKIN_TWO}images/wycms/mobile/floor1.jpg" class="zhongimg" />
     </article>
-    <article class="article">
+    <article style="margin-top:18px;">
         <p class="zhongtitle">投资项目</p>
         <img src="{DT_SKIN_TWO}images/wycms/mobile/floor1.jpg" class="zhongimg" />
     </article>
-    <article class="article">
+    <article  style="margin-top:18px;background-color:#fff;">
         <p class="zhongtitle">融资业务</p>
-        <img src="{DT_SKIN_TWO}images/wycms/mobile/floor1.jpg" class="zhongimg" />
+        <img src="{DT_SKIN_TWO}images/wycms/mobile/floor3.jpg" class="zhongimg" />
+        <a href="" class="rongzibtn"><img src="{DT_SKIN_TWO}images/wycms/mobile/daibtn.png" /></a>
+    </article>
+
+
+    <article class="schoolchannel" style="margin-top:20px;">
+        <ul class="comul clear" style="background-color:#fff;">
+
+            <li class="clear" style="margin-bottom:0px;">
+                <div class="lidiv">
+                    <a class="schoola" href="/mobile/article/show.php?id="><img src="" /></a>
+                </div>
+            </li>
+            <li class="clear"  style="margin-bottom:0px;">
+                <div class="lidiv">
+                    <a class="schoola" href="/mobile/article/show.php?id="><img src="" /></a>
+                </div>
+            </li>
+        </ul>
+    </article>
+    <article class="article">
+        <div class="articlelist" style="margin-top:0px;">
+            <ul>
+
+                <li class="clear">
+                    <span class="fr">35535</span>
+                    <article><a >·343434</a></article>
+                </li>
+
+                <li class="more">
+                    <label onclick="location.href='/mobile/article/index.php'">更多&nbsp;<i class="fa fa-angle-right"></i></label>
+                </li>
+            </ul>
+        </div>
     </article>
 </section>
+
 {template 'footer','mobile'}

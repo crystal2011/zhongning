@@ -1,5 +1,5 @@
 // 觅晓风
-(function() {
+$(function() {
 
     return $(function() {
       var i, icon, iconCss, iconIndex, icons, imgIndex, li, liLen, liWidth, ref, setActiveClass, setActiveCss, setAn, slider, touchWrap;
@@ -96,4 +96,4 @@
     });
 
 
-}).call(this);
+})

@@ -6,10 +6,8 @@ $menus = array (
     array('添加'.$MOD['name'], '?moduleid='.$moduleid.'&action=add'),
     array($MOD['name'].'列表', '?moduleid='.$moduleid),
     array('审核'.$MOD['name'], '?moduleid='.$moduleid.'&action=check'),
-    array('过期'.$MOD['name'], '?moduleid='.$moduleid.'&action=expire'),
     array('未通过'.$MOD['name'], '?moduleid='.$moduleid.'&action=reject'),
     array('回收站', '?moduleid='.$moduleid.'&action=recycle'),
-    array('移动分类', '?moduleid='.$moduleid.'&action=move'),
 );
 
 if(in_array($action, array('add', 'edit'))) {
@@ -24,10 +22,10 @@ if(in_array($action, array('add', 'edit'))) {
 if($_catids || $_areaids) require DT_ROOT.'/admin/admin_check.inc.php';
 
 if(in_array($action, array('', 'check', 'expire', 'reject', 'recycle'))) {
-	$sfields = array('模糊', '标题', '展出城市', '展出地址', '展馆名称', '主办单位', '承办单位', '联系人', '会员名', '编辑', 'IP', '文件路径', '内容模板');
-	$dfields = array('keyword', 'title', 'city', 'address', 'hallname', 'sponsor', 'undertaker', 'truename', 'username', 'editor', 'ip', 'filepath', 'template');
-	$sorder  = array('结果排序方式', '开始时间降序', '开始时间升序', '添加时间降序', '添加时间升序', '更新时间降序', '更新时间升序', '浏览次数降序', '浏览次数升序', '报名人数降序', '报名人数升序', '信息ID降序', '信息ID升序');
-	$dorder  = array($MOD['order'], 'fromtime DESC', 'fromtime ASC', 'addtime DESC', 'addtime ASC', 'edittime DESC', 'edittime ASC', 'hits DESC', 'hits ASC', 'orders DESC', 'orders ASC', 'itemid DESC', 'itemid ASC');
+	$sfields = array('标题');
+	$dfields = array('title');
+	$sorder  = array('结果排序方式', '开始时间降序', '开始时间升序', '添加时间降序', '添加时间升序', '更新时间降序', '更新时间升序', '浏览次数降序', '浏览次数升序', '信息ID降序', '信息ID升序');
+	$dorder  = array($MOD['order'], 'fromtime DESC', 'fromtime ASC', 'addtime DESC', 'addtime ASC', 'edittime DESC', 'edittime ASC', 'hits DESC', 'hits ASC', 'itemid DESC', 'itemid ASC');
 	$level = isset($level) ? intval($level) : 0;
 	$process = isset($process) ? intval($process) : 0;
 	isset($fields) && isset($dfields[$fields]) or $fields = 0;
@@ -183,7 +181,7 @@ switch($action) {
 	break;
 	case 'recycle':
 		$lists = $do->get_list('status=0'.$condition, $dorder[$order]);
-		$menuid = 5;
+		$menuid = 4;
 		include tpl('index', $module);
 	break;
 	case 'reject':

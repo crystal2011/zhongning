@@ -29,19 +29,12 @@ show_menu($menus);
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 投资金额</td>
-        <td><input name="post[price]" type="text" id="price" datatype="money" maxlength="9" size="60" value="<?php echo $price;?>"/> 注：最低限额3万元</td>
+        <td><input name="post[price]" type="text" id="price" datatype="money" maxlength="9" size="60" value="<?php echo $price;?>"/> 注：3万-500万（纯数字）</td>
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 投资期限</td>
         <td><input name="post[month]" type="text" id="month" datatype="*2-10" maxlength="10" size="60" value="<?php echo $month;?>"/></td>
     </tr>
-    <tr>
-        <td class="tl"><span class="f_red">*</span> 是否有担保</td>
-        <td><input name="post[bonding]" type="radio" value="1" checked />有 <input name="post[bonding]" type="radio"  value="0" <?php echo empty($bonding)?'checked':''; ?> />否</td>
-    </tr>
-
-
-
 <tr>
 <td class="tl"><span class="f_hid">*</span> 信息状态</td>
 <td>
@@ -66,7 +59,7 @@ show_menu($menus);
             "money":function(gets,obj,curform,regxp){
                 var sd = /^[1-9][0-9]{0,8}$/
                 var s = parseInt(gets)
-                if(!sd.test(gets) || s>100000000 || s<30000){
+                if(!sd.test(gets) || s>5000000 || s<30000){
                     return false;
                 }
                 return true;

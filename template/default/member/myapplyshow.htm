@@ -18,37 +18,37 @@
                         <table style="width:100%">
                             <tbody>
                             <tr>
-                                <td width="120px"  align="center">融资企业</td>
-                                <td  colspan="5" class="ti">
-                                    {if $aSell}
-                                    <a href="/invest/show.php?id={$info['sell_itemid']}" target="_blank" class="blue" title="{$aSell['company']}">{$aSell['company']}</a>
+                                <td width="120px"  align="center">公司名称</td><td  colspan="3" class="ti">{$info['title']}</td>
+                            </tr>
+                            <tr>
+                                <td width="120px"  align="center">公司电话</td><td colspan="3"  class="ti">{$info['mobile']}</td>
+                            </tr>
+                            <tr>
+                                <td width="120px"   align="center">公司地址</td><td colspan="3" class="ti">{$info['address']}</td>
+                            </tr>
+                            <tr>
+                                <td width="120px" align="center">申请金额</td><td  class="ti">{$info['price']}</td>
+                                <td width="120px"   align="center">申请期限</td><td class="ti">{$info['month']}</td>
+                            </tr>
+                            <tr>
+                                <td width="120px"  align="center">抵押/担保</td><td class="ti" colspan="3">{$info['danbao']}</td>
+                            </tr>
+                            <tr>
+                                <td width="120px"  align="center">需求详情</td><td class="ti" colspan="3">{$info['introduce']}</td>
+                            </tr>
+                            <tr>
+                                <td width="120px"   align="center">预约时间</td><td class="ti">{date('Y年m月d日 H时i分',$info['addtime'])}</td>
+                                <td width="120px"  align="center">状态</td>
+                                <td  class="ti">
+                                    {if $info['status']==3}
+                                    完成融资
+                                    {elseif $info['status']==2}
+                                    审核中
+                                    {elseif $info['status']==1}
+                                    拒绝融资
                                     {else}
                                     失效
                                     {/if}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="120px"  align="center">真实姓名</td><td colspan="2"  class="ti">{$info['title']}</td>
-                                <td width="120px"  align="center">联系电话</td><td colspan="2" class="ti">{$info['mobile']}</td>
-                            </tr>
-                            <tr>
-                                <td width="120px"   align="center">申请期限</td><td colspan="2" class="ti">{$info['month']}</td>
-                                <td width="120px" align="center">申请金额</td><td  colspan="2" class="ti">{$info['price']}</td>
-                            </tr>
-                            <tr>
-                                <td width="120px"   align="center">申请时间</td><td class="ti">{date('Y年m月d日 H时i分',$info['addtime'])}</td>
-                                <td width="120px"  align="center">抵押/担保</td><td class="ti">{if $v['bonding']}是{else}否{/if}</td>
-
-                                <td width="120px"  align="center">状态</td><td  class="ti">
-                                {if $info['status']==3}
-                                完成投资
-                                {elseif $info['status']==2}
-                                审核中
-                                {elseif $info['status']==1}
-                                拒绝投资
-                                {else}
-                                失效
-                                {/if}
                                 </td>
                             </tr>
                             </tbody>

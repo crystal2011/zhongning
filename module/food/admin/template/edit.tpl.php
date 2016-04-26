@@ -37,7 +37,7 @@ show_menu($menus);
         <td class="tl"><span class="f_red">*</span> 申请金额</td>
         <td class="tr">
             <input type="text" name="post[price]" id="price" size="50" maxlength="9" datatype="money"  value="<?php echo $price; ?>" >
-            <span style="color:blue;">( 注:1万-1亿 纯数字 )</span>
+            <span style="color:blue;">( 注:50万-500万 纯数字 )</span>
         </td>
     </tr>
     </tbody>
@@ -90,7 +90,7 @@ show_menu($menus);
             },
             "money":function(gets,obj,curform,regxp){
                 var sd = /^[1-9][0-9]{0,8}$/
-                if(!sd.test(gets) || parseInt(gets)>100000000){
+                if(!sd.test(gets) || parseInt(gets)>5000000 || parseInt(gets)<500000){
                     return false;
                 }
                 return true;

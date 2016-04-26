@@ -156,13 +156,12 @@ i {font-style:normal;}
 
 /* 首页 */
 #index-page {
-    height:100px;
     background-color:#fff;
     padding:15px 20px;
     color:#fff;
     position:relative;
 }
-.weblogo {width:58%;height:auto;min-width:200px;}
+.weblogo {width:58%;height:auto;min-width:180px;max-width:483px;}
 #upthumb {width:200px;height:35px;opacity:0;}
 #index-page .area {
     color:#fff;
@@ -180,15 +179,18 @@ i {font-style:normal;}
     position:absolute;
 }
 
-#index-page .user {text-align:right;color:#7abef6;margin-top:2%;}
+#index-page .user {text-align:right;color:#7abef6;position:absolute;right:20px;top:30%;}
 #index-page .user a {font-size:1.8em;color:#7abef6;}
 #index-page .user span {font-size:18px;}
-#index {background-color:#f5f5f5;}
-#index .module {margin-bottom:10px;background-color:#fff;}
+#index {background-color:#ebebeb;}
+.asdf {background-color:#ebebeb;padding:20px;}
+#index .module {background: #fff;}
 #index .module li{
     width:33.333333%;
     float:left;
     text-align:center;
+    border-right:2px solid #ededed;
+    border-bottom:2px solid #ededed;
     display:block;
 }
 .zhongimg {width:100%;height:auto;}
@@ -196,6 +198,13 @@ i {font-style:normal;}
     color:#000;
     padding-bottom:10px;
     display:block;
+
+}
+#index .module li.noboderright {
+    border-right-color:#fff;
+}
+#index .module li.noboderbottom {
+    border-bottom-color:#fff;
 }
 #index .module a img{
     max-width:65px;
@@ -1051,4 +1060,53 @@ a img {font-size:0px;}
     height:auto;
     min-width:100px;
     max-width:150px;
+}
+
+
+
+#roll-banner {
+    width: 100%;
+}
+.slider li {
+    float: left;
+}
+.sliderBox {
+    position: relative;
+    overflow: hidden;
+}
+#roll-banner img {
+    min-width: 100%;
+    max-width: 100%;
+    display: block;
+}
+.slider {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+.zhongtitle {
+    color:#7abef6;
+    font-size:2.4em;
+    line-height:2.4em;
+    text-align:center;
+    height:2.4em;
+    margin:0px;
+    border-bottom:1px solid #7abef6;
+    background-color:#fff;
+}
+.rongzibtn {
+    display:block;
+    margin:0 auto;
+    color:#fff;
+    width:30%;
+    min-width:100px;
+    padding:20px 0px;
+
+}
+.rongzibtn img {
+    width:100%;
+    height:auto;
 }

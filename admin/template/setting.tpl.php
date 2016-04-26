@@ -63,16 +63,26 @@ show_menu($menus);
             <a href="<?php echo DT_PATH;?>" target="_blank"><img src="<?php echo isset($memberlogo) ? $memberlogo : '';?>" style="margin:2px;" id="showlogo1"/></a></td>
     </tr>
     <tr>
-        <td class="tl">已为投资者赚取金额</td>
+        <td class="tl">已为投资者赚取</td>
         <td><input name="setting[invest_money]" type="text" value="<?php echo isset($invest_money)?$invest_money:0;?>" size="10"/> 元</td>
     </tr>
     <tr>
-        <td class="tl">投资利率</td>
-        <td>
-            利率：<input name="setting[rate]" type="text" value="<?php echo isset($rate)?$rate:'';?>" size="10"/>
-            时间：<input name="setting[rate_time]" type="text" value="<?php echo isset($rate_time)?$rate_time:'';?>" size="10"/>
-        </td>
+        <td class="tl">融资项目总数量</td>
+        <td><input name="setting[success_nums]" type="text" value="<?php echo isset($success_nums)?$success_nums:0;?>" size="10"/> </td>
     </tr>
+    <tr>
+        <td class="tl">融资总金额（万元）</td>
+        <td><input name="setting[success_money]" type="text" value="<?php echo isset($success_money)?$success_money:0;?>" size="10"/> </td>
+    </tr>
+    <tr>
+        <td class="tl">服务费率（‰）</td>
+        <td><input name="setting[fuwu_fee]" type="text" value="<?php echo isset($fuwu_fee)?$fuwu_fee:0;?>" size="10"/> </td>
+    </tr>
+    <tr>
+        <td class="tl">已到期还本的项目数量</td>
+        <td><input name="setting[time_nums]" type="text" value="<?php echo isset($time_nums)?$time_nums:0;?>" size="10"/> </td>
+    </tr>
+
     <tr>
         <td class="tl">累计为投资人赚取利息</td>
         <td><input name="setting[invest_rate]" type="text" value="<?php echo isset($invest_rate)?$invest_rate:0;?>" size="10"/> 万元</td>

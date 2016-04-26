@@ -13,64 +13,48 @@ class exhibit {
     function exhibit($moduleid) {
 		global $db, $table, $table_data, $MOD;
 		$this->moduleid = $moduleid;
-		$this->table = $table;
-		$this->table_data = $table_data;
-		$this->split = $MOD['split'];
+		$this->table = $db->pre.'exhibit';
+		$this->table_data = $db->pre.'exhibit_data';
+		$this->split = '';
 		$this->db = &$db;
-		$this->fields = array('catid','areaid','level','title','style','fee','introduce','fromtime','totime','city','address','postcode','homepage','hallname','remark','thumb','sponsor','undertaker','truename','addr','telephone','mobile','fax','email','msn','qq','sign','status','hits','username','addtime','editor','edittime','ip','template','linkurl','filepath','note');
+		$this->fields = array('level','title','style','fee','introduce','fromtime','totime','city','address','postcode','homepage','hallname','remark','thumb','sponsor','undertaker','truename','addr','telephone','mobile','fax','email','msn','qq','sign','status','hits','username','addtime','editor','edittime','ip','template','linkurl','filepath','note');
     }
 
 	function pass($post) {
 		if(!is_array($post)) return false;
-		if(!$post['catid']) return $this->_(lang('message->pass_catid'));
-		if(strlen($post['title']) < 3) return $this->_(lang('message->pass_title'));
-		if(!$post['fromtime'] || !is_date($post['fromtime'])) return $this->_(lang('message->pass_exhibit_fromdate'));
-		if(!$post['totime'] || !is_date($post['totime'])) return $this->_(lang('message->pass_exhibit_todate'));
-		if(strtotime($post['fromtime'].' 0:0:0') > strtotime($post['totime'].' 23:59:59')) return $this->_(lang('message->pass_exhibit_baddate'));
-		if(!$post['address']) return $this->_(lang('message->pass_exhibit_address'));
-		if(!$post['hallname']) return $this->_(lang('message->pass_exhibit_hallname'));
-		if(!$post['sponsor']) return $this->_(lang('message->pass_exhibit_sponsor'));
-		if(!$post['truename']) return $this->_(lang('message->pass_truename'));
-		if(!$post['telephone']) return $this->_(lang('message->pass_telephone'));
-		if(DT_MAX_LEN && strlen($post['content']) > DT_MAX_LEN) return $this->_(lang('message->pass_max'));
+        if(!is_array($post)) return false;
+        if(!is_length($post['title'],2,50)) return $this->_('公告标题输入有误');
+        if(DT_MAX_LEN && strlen($post['content']) > DT_MAX_LEN) return $this->_(lang('message->pass_max'));
 		return true;
 	}
 
 	function set($post) {
-		global $MOD, $DT_TIME, $DT_IP, $AREA, $_username, $_userid;
-		$AREA or $AREA = cache_read('area.php');
-		$post['city'] or $post['city'] = $post['areaid'] ? $AREA[$post['areaid']]['areaname'] : '';
-		is_url($post['thumb']) or $post['thumb'] = '';
-		$post['filepath'] = (isset($post['filepath']) && is_filepath($post['filepath'])) ? file_vname($post['filepath']) : '';
-		$post['addtime'] = isset($post['addtime']) && $post['addtime'] ? strtotime($post['addtime']) : $DT_TIME;
-		$post['edittime'] = $DT_TIME;
-		$post['fromtime'] = strtotime($post['fromtime'].' 0:0:0');
-		$post['totime'] = strtotime($post['totime'].' 23:59:59');
-		$post['homepage'] = fix_link($post['homepage']);
-		$post['sign'] = $post['sign'] ? 1 : 0;
-		$post['fee'] = dround($post['fee']);
-		$post['content'] = stripslashes($post['content']);
-		$post['content'] = save_local($post['content']);
-		if($MOD['clear_link']) $post['content'] = clear_link($post['content']);
-		if($MOD['save_remotepic']) $post['content'] = save_remote($post['content']);
-		if($MOD['introduce_length']) $post['introduce'] = addslashes(get_intro($post['content'], $MOD['introduce_length']));
-		if($this->itemid) {
-			$post['editor'] = $_username;
-			$new = $post['content'];
-			if($post['thumb']) $new .= '<img src="'.$post['thumb'].'"/>';
-			$r = $this->get_one();
-			$old = $r['content'];
-			if($r['thumb']) $old .= '<img src="'.$r['thumb'].'"/>';
-			delete_diff($new, $old);
-		} else {
-			$post['username'] = $post['editor'] = $_username;
-			$post['ip'] = $DT_IP;
-		}
-		$content = $post['content'];
-		unset($post['content']);
-		$post = dhtmlspecialchars($post);
-		$post['content'] = addslashes(dsafe($content));
-		return array_map("trim", $post);
+        global $MOD, $DT_TIME, $DT_IP, $_username, $_userid;
+        $post['edittime'] = $DT_TIME;
+        $post['content'] = stripslashes($post['content']);
+        $post['content'] = save_local($post['content']);
+        $post['status'] = isset($post['status'])?$post['status']:3;
+        $post['content'] = stripslashes($post['content']);
+        $post['content'] = save_local($post['content']);
+        if(isset($post['clear_link']) && $post['clear_link']) $post['content'] = clear_link($post['content']);
+        if(isset($post['save_remotepic']) && $post['save_remotepic']) $post['content'] = save_remote($post['content']);
+        if(strpos($post['content'], 'pagebreak') !== false) $post['content'] = str_replace(array('<hr class="de-pagebreak" /></p>', '<p><hr class="de-pagebreak" />', '<hr class="de-pagebreak" /></div>', '<div><hr class="de-pagebreak" />'), array('</p><hr class="de-pagebreak" />', '<hr class="de-pagebreak" /><p>', '</div><hr class="de-pagebreak" />', '<hr class="de-pagebreak" /><div>'), $post['content']);
+        if($post['content'] && empty($post['introduce'])) $post['introduce'] = addslashes(get_intro($post['content'], isset($post['introduce_length']) && $post['introduce_length']?$post['introduce_length']:200));
+
+        if($this->itemid) {
+            $new = $post['content'];
+            $r = $this->get_one();
+            $old = $r['content'];
+            delete_diff($new, $old);
+        } else {
+            $post['addtime'] = $DT_TIME;
+            $post['status'] = isset($post['status'])?$post['status']:3;
+        }
+        $content = $post['content'];
+        unset($post['content']);
+        $post = dhtmlspecialchars($post);
+        $post['content'] = addslashes(dsafe($content));
+        return array_map("trim", $post);
 	}
 
 	function get_one() {
@@ -84,6 +68,41 @@ class exhibit {
 			return array();
 		}
 	}
+
+    function brandList($field='*',$condition='1=1',$order='hits desc',$limit=10){
+        global $page;
+        $offset = ($page-1)*$limit;
+        $result = $this->db->query("select {$field} from {$this->table} where $condition  order by $order limit $offset,$limit");
+        $list = array();
+        while($r = $this->db->fetch_array($result)){
+            $list[] = $r;
+        }
+        $count = $this->db->get_one("select count(*) as num from {$this->table} where $condition");
+        $totalpage = ceil($count['num']/$limit);
+        return array($list,$totalpage);
+    }
+    function checkJob($aBrand){
+        if(!$aBrand){
+            return $this->_('业绩公示信息不存在');
+        }
+        if($aBrand['status']!=3){
+            return $this->_('业绩公示信息不存在');
+        }
+        return true;
+    }
+    function editHits(){
+        $this->db->query("update {$this->table} set hits = hits + 1 where itemid = $this->itemid");
+    }
+
+    function getright($field='*',$limit,$order=''){
+        $where = ' status=3 ';
+        $list = array();
+        $result = $this->db->query("select {$field} from {$this->table} where {$where} order by {$order} limit $limit");
+        while($r=$this->db->fetch_array($result)){
+            $list[] = $r;
+        }
+        return $list;
+    }
 
 	function get_list($condition = 'status=3', $order = 'addtime DESC', $cache = '') {
 		global $MOD, $pages, $page, $pagesize, $offset, $items, $sum;
@@ -138,11 +157,7 @@ class exhibit {
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
 		$this->update($this->itemid);
-		if($post['status'] == 3 && $post['username'] && $MOD['credit_add']) {
-			credit_add($post['username'], $MOD['credit_add']);
-			credit_record($post['username'], $MOD['credit_add'], 'system', lang('my->credit_record_add', array($MOD['name'])), 'ID:'.$this->itemid);
-		}
-		clear_upload($post['content'].$post['thumb'], $this->itemid);
+		clear_upload($post['content'], $this->itemid);
 		return $this->itemid;
 	}
 
@@ -158,8 +173,7 @@ class exhibit {
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
 		$this->update($this->itemid);
-		clear_upload($post['content'].$post['thumb'], $this->itemid);
-		if($post['status'] > 2) $this->tohtml($this->itemid, $post['catid']);
+		clear_upload($post['content'], $this->itemid);
 		return true;
 	}
 

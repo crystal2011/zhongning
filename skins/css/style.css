@@ -537,7 +537,7 @@ header.g .header.small .menu5{
     left:-631px;
 }
 header.g .header .header-logo-right {
-    width:462px;height:39px;vertical-align: top;margin-left:18px;margin-top:35px;
+    width:430px;height:39px;vertical-align: top;margin-left:18px;margin-top:35px;
 }
 
 
@@ -10932,6 +10932,7 @@ footer.g .bottom img {
     height:260px;
     float:left;
 }
+
 .index-set .index-set1 {
     background: url('../images/wycms/index1.jpg') no-repeat;
 }
