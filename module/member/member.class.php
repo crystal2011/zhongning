@@ -103,7 +103,8 @@ class member {
             if($member['password'] && !$this->is_password($member['password'], $member['cpassword'])) return false;
         } else {
             if(!$this->is_password($member['password'], $member['cpassword'])) return $this->_('密码输入有误');
-            if($this->mobile_exists($member['mobile'])) return $this->_('手机号已存在');
+            if(!$this->is_email($member['email'])) return $this->_('邮箱格式错误');
+            if($this->email_exists($member['email'])) return $this->_('邮箱已注册');
         }
         if(!is_length($member['truename'],2,5))return $this->_('真实姓名输入有误');
         return true;
@@ -147,18 +148,26 @@ class member {
         return $this->db->get_one("SELECT userid FROM {$this->table_company} WHERE {$condition}");
     }
 
+    function memberfield(){
+        return array('username','password','groupid','regid','regip','regtime','truename','email');
+    }
+
+    function addemaillin(){
+
+    }
+
     function add($member) {
         global $DT, $DT_TIME, $DT_IP, $MOD, $L;
         if(!$this->is_member($member)) return false;
         $member = $this->set_member($member);
-        $member_fields = array('username','password','mobile','groupid','regid','regip','regtime','truename');
+        $member_fields = $this->memberfield();
         $member_sqlk = $member_sqlv = '';
         foreach($member as $k=>$v) {
             if(in_array($k, $member_fields)) {$member_sqlk .= ','.$k; $member_sqlv .= ",'$v'";}
         }
         $member_sqlk = substr($member_sqlk, 1);
         $member_sqlv = substr($member_sqlv, 1);
-        $this->db->query("INSERT INTO {$this->table_member} ($member_sqlk,email)  VALUES ($member_sqlv,NULL)");
+        $this->db->query("INSERT INTO {$this->table_member} ($member_sqlk)  VALUES ($member_sqlv)");
         $this->userid = $this->db->insert_id();
         if(!$this->userid) return 0;
         return $this->userid;
@@ -259,9 +268,9 @@ class member {
         }
 
 
-        if(strlen($login_username)<6) return $this->_('用户名输入有误');
+        if(strlen($login_username)<4) return $this->_('用户名输入有误');
         if(!$this->is_password($login_password,$login_password)) return false;
-        $option = is_mobile($login_username)?'mobile':'username';
+        $option = is_email($login_username)?'email':'username';
         $user = $this->db->get_one("SELECT * FROM {$DT_PRE}member WHERE `$option`='$login_username' and groupid = 5");
         if(!$user) {
             $this->lock($login_lock, $LOCK, $DT_IP, $DT_TIME);

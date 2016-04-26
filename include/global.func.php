@@ -1354,9 +1354,9 @@ function make_auth($username) {
 function check_auth($auth) {
     global $db, $L,$DT_TIME;
     if(!preg_match("/^[A-Z0-9]{32}$/", $auth)) return array('status'=>'n','info'=>'验证失效');
-    $user = $db->get_one("SELECT * FROM {$db->pre}email WHERE auth='$auth'");
-    if($user && $auth == make_auth($user['regtime'].$user['email']) && $user['totime']>$DT_TIME) return array('status'=>'y','info'=>$user);
-    if($user && $auth == make_auth($user['regtime'].$user['email']) && $user['totime']<$DT_TIME) return array('status'=>'n','info'=>'验证过期');
+    $user = $db->get_one("SELECT * FROM {$db->pre}member_link WHERE auth='$auth'");
+    $db->query("delete from {$db->pre}member_link WHERE auth='$auth'");
+    if($user && $auth == make_auth($user['authtime'].$user['email']) && $user['authtime']+3*24*3600>$DT_TIME) return array('status'=>'y','info'=>$user);
     return array('status'=>'n','info'=>'验证失效');
 }
 

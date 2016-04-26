@@ -4,28 +4,21 @@
         <form class="userconleft fl" id="registerform">
             <p class="usercontitle">用户注册<a href="login.php">已有账号请直接登录</a></p>
             <p class="userconp clearfix">
-                <span class="fl userconpl">手机账号：</span>
+                <span class="fl userconpl">邮箱：</span>
                 <span class="userconli fl">
-                    <input type="text" name="mobile" class="mobile" placeholder="请输入手机号" datatype="m,mobile">
-                </span>
-            </p>
-            <p class="userconp clearfix">
-                <span class="fl userconpl">验证码：</span>
-                <span class="userconli fl">
-                    <input type="text" class="userconma" name="code" maxlength="6" datatype="n6-6">
-                    <button type="button" id="check-btn"  class="userconmacode" onclick="send_mobile_to(this,1)" disabled>发送验证码</button>
+                    <input type="text" name="email" placeholder="请输入邮箱" datatype="e" ajaxurl="/ajax.php?action=member&job=email&moduleid=2">
                 </span>
             </p>
             <p class="userconp clearfix">
                 <span class="fl userconpl">设置密码：</span>
                 <span class="userconli fl">
-                    <input type="text" name="password" placeholder="请设置密码" maxlength="20" datatype="s6-20" datatype="s6-20">
+                    <input type="password" name="password" placeholder="请设置密码" maxlength="20" datatype="s6-20" datatype="s6-20">
                 </span>
             </p>
             <p class="userconp clearfix">
                 <span class="fl userconpl">确认密码：</span>
                 <span class="userconli fl">
-                    <input type="text" name="cpassword" placeholder="请确认密码"  datatype="*" recheck="password">
+                    <input type="password" name="cpassword" placeholder="请确认密码"  datatype="*" recheck="password">
                 </span>
             </p>
             <p class="userconp clearfix">
@@ -51,32 +44,10 @@
 
 
 <script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
-<script src="{DT_SKIN}js/send.js"></script>
 <script type="text/javascript">
 
     $("#registerform").Validform({
         tiptype: 3,
-        datatype:{
-            "mobile":function(gets,obj,curform,regxp){
-                var istrue = false;
-                $.ajax({
-                    type:'post',
-                    url:"/ajax.php?action=member&job=mobile&moduleid=2&param="+gets,
-                    dataType:'json',
-                    async:false,
-                    success:function(data){
-                        if(data.status=='y'){
-                            istrue = true;
-                            getCodeStatus = getCodeStatus=='10' || getCodeStatus=='00'?'01':getCodeStatus;
-                            $("#check-btn").removeAttr("disabled");
-                        }else{
-                            istrue = data.info;
-                        }
-                    }
-                })
-                return istrue;
-            }
-        },
         postonce:true,
         ajaxPost:true,
         beforeSubmit:function(curform){
@@ -85,16 +56,7 @@
         },
         callback:function(data){
             alert(data.info);
-            if(data.status=='y'){
-                window.setTimeout("locationhref()",1000);
-            }
         }
     })
-
-    function locationhref(){
-        location.href = '/member/login.php'
-    }
-
 </script>
 {template 'footer','member'}
-

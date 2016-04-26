@@ -31,9 +31,17 @@ switch($job) {
         if(!$do->is_payword($value, $value)) exit($do->errmsg);
         break;
     case 'email':
-        $value = trim($value);
-        if(!$do->is_email($value)) exit($do->errmsg);
-        if($do->email_exists($value)) exit($L['member_email_reg']);
+        $value = isset($param)?$param:'';
+        $must_exists = isset($must_exists)?true:false;
+        if(!$do->is_email($value)) exit(json_encode(array('info'=>$do->errmsg,'status'=>'n')));
+        if($must_exists){
+            if(!$do->email_exists($value)) exit(json_encode(array('info'=>'邮箱未注册','status'=>'n')));
+            exit(json_encode(array('info'=>'输入正确','status'=>'y')));
+        }else{
+            if($do->email_exists($value)) exit(json_encode(array('info'=>'邮箱已被注册','status'=>'n')));
+            exit(json_encode(array('info'=>'邮箱可用','status'=>'y')));
+        }
+
         break;
     case 'emailcode':
         $value = trim($value);
