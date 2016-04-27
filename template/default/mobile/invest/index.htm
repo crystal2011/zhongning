@@ -1,0 +1,61 @@
+{template 'header','mobile'}
+{template 'search','mobile'}
+<style>
+    .numsndl {position:absolute;top:0px;left:0px;}
+    .numsndl img{width:25%;height:auto;float:left;}
+
+</style>
+<script>
+    $(function(){
+        $(".numsndl img").click(function(){
+            $(this).parent().prev().attr('src',$(this).attr('data-img'));
+        })
+    })
+</script>
+<section>
+    <span class="ids"><img src="{DT_SKIN_TWO}images/wycms/mobile/investicon.jpg" /></span>
+    <article class="imagecon">
+        <img src="{DT_SKIN_TWO}images/wycms/mobile/invest1.jpg" style="margin-top:20px;" />
+
+        <div style="position:relative;">
+            <img src="{DT_SKIN_TWO}images/wycms/mobile/invest2.jpg" />
+            <span style="position:absolute;left:50%;top:68%;margin-left:-3.6em;color:#7abef6;">已为投资者赚取<br />375700元</span>
+            <div style="background-color:#f4f4f4;margin-top:20px;">
+                <img src="{DT_SKIN_TWO}images/wycms/mobile/wotou.png" width="29.16666%;height:auto;margin:0 auto;display:block;" />
+            </div>
+        </div>
+        <div style="background-color: #fff;">
+            <img src="{DT_SKIN_TWO}images/wycms/mobile/invest3.jpg" />
+            <div style="background-color:#fff;padding:30px 3px 20px 3px;" class="clear">
+                <div class="fl" style="width:33.333333%;padding:0 3px;">
+                    <p style="background-color:#f44336;color:#fff;line-height:3em;margin:0px;">累计为投资人赚取利息</p>
+                    <p style="color:#f44336;background-color:#efefef;margin:0px;padding:20px 0px 5px 0px;font-size:1.4em;">345700</p>
+                    <p style="background-color:#efefef;margin:0px;padding-bottom:20px;">( 元 )</p>
+                </div>
+                <div class="fl" style="width:33.333333%;padding:0 3px;">
+                    <p style="background-color:#00bcd4;color:#fff;line-height:3em;margin:0px;">累计投资额</p>
+                    <p style="color:#00bcd4;background-color:#efefef;margin:0px;padding:20px 0px 5px 0px;font-size:1.4em;">345700</p>
+                    <p style="background-color:#efefef;margin:0px;padding-bottom:20px;">( 元 )</p>
+                </div>
+                <div class="fl" style="width:33.333333%;padding:0 3px;">
+                    <p style="background-color:#ffb607;color:#fff;line-height:3em;margin:0px;">累计投资人数达</p>
+                    <p style="color:#ffb607;background-color:#efefef;margin:0px;padding:20px 0px 5px 0px;font-size:1.4em;">514</p>
+                    <p style="background-color:#efefef;margin:0px;padding-bottom:20px;">( 人 )</p>
+                </div>
+            </div>
+        </div>
+        <img src="{DT_SKIN_TWO}images/wycms/mobile/invest4.jpg" />
+        <div style="position:relative;">
+            <img src="{DT_SKIN_TWO}images/wycms/mobile/invest5.gif" />
+            <div class="numsndl clearfix">
+                <img src="{DT_SKIN_TWO}images/wycms/mobile/bai.png" data-img="{DT_SKIN_TWO}images/wycms/mobile/invest5.gif" />
+                <img src="{DT_SKIN_TWO}images/wycms/mobile/bai.png" data-img="{DT_SKIN_TWO}images/wycms/mobile/invest6.gif" />
+                <img src="{DT_SKIN_TWO}images/wycms/mobile/bai.png" data-img="{DT_SKIN_TWO}images/wycms/mobile/invest7.gif" />
+                <img src="{DT_SKIN_TWO}images/wycms/mobile/bai.png" data-img="{DT_SKIN_TWO}images/wycms/mobile/invest8.gif" />
+            </div>
+        </div>
+        <img src="{DT_SKIN_TWO}images/wycms/mobile/invest9.jpg" style="margin-top:20px;" />
+        <img src="{DT_SKIN_TWO}images/wycms/mobile/invest10.jpg" style="margin-top:20px;border-bottom:2px solid #ebebeb;" />
+    </article>
+</section>
+{template 'footer','mobile'}

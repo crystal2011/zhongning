@@ -41,7 +41,7 @@ body, input, textarea {
 body {
     font-size:62.5%;
     background-color:#f5f5f5;
-
+    max-width:720px;
     margin:0 auto;
     position:relative;
 }
@@ -1125,10 +1125,17 @@ a img {font-size:0px;}
 .aboutsnav a{width:20%;text-align:center;color:#000;font-size:2em;line-height:2.4em;display:block;float:left;border-right:1px solid #ebebeb;background-color:#fff;}
 .aboutsnav a.cur {color:#7abef6;border-bottom:2px solid #7abef6;}
 .aboutscon {background-color:#fff;padding:20px;margin-bottom:20px;}
-img {border:none;display:inline-block;}
+img {vertical-align:middle;}
 .aboutscon img {max-width:100% !important;height:auto !important;}
 .contactsus {background-color:#fff;font-size:1.8em;line-height:2em;margin-bottom:20px;}
 .concon {padding:0px 20px 20px 20px;}
 .concon p{margin:0px;padding:0px;}
 .contactsus .aboutstitle {font-size:1.2em;line-height:3rem;height:3rem;border-bottom:1px solid #ebebeb;padding-left:20px;}
 .conmobile span{margin-right:10px;}
+.imagecon {
+    text-align:center;
+}
+.imagecon img {
+    max-width:100%;
+    height:auto;
+}
