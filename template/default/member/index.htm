@@ -84,11 +84,18 @@
                     </div>
                 </form>
 
-                <div class="info-list clearfix">
+                <div  id="mobileform23" class="info-list clearfix">
                     <label class="name fl">联系电话 :</label>
                     <span id="mobile1_show" class="fl">{substr_replace($info['mobile'],'****',3,4)}</span>
-                    <input id="info-sub_m2" type="submit" onclick="openPhoneNumber('')" value="修改" class="info-sub white fl">
+                    <input id="info-sub_m2" type="submit" onclick="mobileform()" value="修改" class="info-sub white fl">
                 </div>
+                <form id="mobileform" style="display:none" method="post" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=mobile" class="info-from3">
+                    <div class="info-list clearfix">
+                        <label class="name fl">联系电话 :</label>
+                        <input name="mobile" id="mobile" datatype="mobile" type="text" placeholder="请填写你的联系电话" errormsg="请填写正确的联系电话" class="fl">
+                        <input type="submit" value="保存" class="info-sub white fl">
+                    </div>
+                </form>
 
                 <div id="emailform23" class="info-list clearfix">
                     <label class="name fl">联系邮箱 :</label>
@@ -179,6 +186,25 @@
         tiptype: 3,
         ajaxPost:true,
         callback:function(data){
+            layer.msg(data.info);
+        }
+    })
+
+    function mobileform(){
+        document.getElementById('mobileform23').style.display="none";
+        document.getElementById('mobileform').style.display="";
+    }
+
+    $("#mobileform").Validform({
+        tiptype: 3,
+        datatype:{
+            "mobile":function(gets,obj,curform,regxp){
+                if(!is_mobile(gets) && !is_phone(gets)) return '输入错误';
+                return true;
+            }
+        },
+        ajaxPost:true,
+        callback:function(data){
             if(data.status=='y'){
                 location.reload();
             }else{
@@ -186,57 +212,5 @@
             }
         }
     })
-
-
-    //弹出框集合
-    function openPhoneNumber (d) {
-        var cont = '<form id="openPhoneNumber" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=mobile"><div class="clearfix"  style="height:60px;"><span style="float:left;width: 94px;text-align: right;">'+
-                '绑定手机：</span><input type="text" value="'+d+'" class="mobile" id="mobile" name="mobile" datatype="mobile"/><br /><span class="Validform_checktip" style="font-size:12px;line-height:22px;height:22px;margin-left:238px;"></span></div>' +
-                '<div class="clearfix" style="height:60px;"><span style="float:left;width: 94px;text-align: right;">验证码：</span><input style="width:108px;" type="text" datatype="n6-6" name="code" /><button type="button" class="getCode send_mobile_to" onclick="send_mobile_to(this,3)"  id="check-btn" disabled>获取验证码</button><br /><span class="Validform_checktip" style="font-size:12px;line-height:22px;height:22px;width:238px;"></span></div>' +
-                '<div class="clearfix"><span style="float:left;width: 94px;text-align: right; height: 28px;"></span><input type="submit" value="提交"/></div></form>';
-
-        layer.open({
-            title: '更换手机',
-            closeBtn: 2,
-            content: cont,
-            area: ['500px', '270px'],
-            btn: '',
-            success: function () {
-
-                $('#openPhoneNumber').Validform({
-                    tiptype: 3,
-                    datatype:{
-                        "mobile":function(gets,obj,curform,regxp){
-                            var istrue = false;
-                            $.ajax({
-                                type:'post',
-                                url:"/ajax.php?action=member&job=mobile&moduleid=2&param="+gets,
-                                dataType:'json',
-                                async:false,
-                                success:function(data){
-                                    if(data.status=='y'){
-                                        istrue = true;
-                                        getCodeStatus = getCodeStatus=='10' || getCodeStatus=='00'?'01':getCodeStatus;
-                                        $("#check-btn").removeAttr("disabled");
-                                    }else{
-                                        istrue = data.info;
-                                    }
-                                }
-                            })
-                            return istrue;
-                        }
-                    },
-                    ajaxPost: true,
-                    callback: function (data) {
-                        if(data.status=='y'){
-                            $(".layui-layer-close").click();
-                        }
-                        layer.msg(data.info);
-                    }
-                })
-                $("#mobile").blur();
-            }
-        });
-    }
 </script>
 {template 'footer','member'}

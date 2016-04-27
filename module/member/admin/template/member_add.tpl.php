@@ -12,8 +12,8 @@ load('profile.js');
         <input type="hidden" name="action" value="<?php echo $action;?>"/>
         <table cellpadding="2" cellspacing="1" class="tb">
             <tr>
-                <td class="tl"><span class="f_red">*</span> 手机号码</td>
-                <td><input type="text" size="20" datatype="m" name="member[mobile]" ajaxurl="ajax.php?moduleid=<?php echo $moduleid;?>&action=member&job=mobile"/></td>
+                <td class="tl"><span class="f_red">*</span> 邮箱</td>
+                <td><input type="text" size="20" datatype="e" name="member[email]" ajaxurl="ajax.php?moduleid=<?php echo $moduleid;?>&action=member&job=email"/></td>
             </tr>
             <tr>
                 <td class="tl"><span class="f_red">*</span> 登录密码</td>

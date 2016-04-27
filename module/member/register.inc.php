@@ -28,16 +28,15 @@ if($submit) {
     //发送邮件
     $auth = make_auth($DT_TIME.$post['email']);
     $authurl = $CFG['url'].'member/register.php?action=email_register&auth='.$auth;
-
-    $db->query("delete from {$db->pre}member_link where email = '".$post['email']."'");
-    $db->query("insert into {$db->pre}member_link (email,password,auth,authtime,truename) values ('".$post['email']."','".$post['password']."','".$auth."',$DT_TIME,'".$post['truename']."') ");
+    $db->query("delete from {$db->pre}member_link where email = '".$post['email']."' and type = 1");
+    $db->query("insert into {$db->pre}member_link (email,password,auth,authtime,truename,type) values ('".$post['email']."','".$post['password']."','".$auth."',$DT_TIME,'".$post['truename']."',1) ");
     send_mail($post['email'], $DT['sitename'].'用户注册激活信', stripslashes(ob_template('check', 'mail')));
     exit(json_encode(array('status'=>'y', 'info' =>"注册验证邮件已发送,请到邮箱认证！")));
 
-}else if($action){
+}else if($action=='email_register'){
     if($_userid) dheader($CFG['url'].'member/login.php');  //验证是否已登录
     $auth = isset($auth)?$auth:'';
-    $user = check_auth($auth);
+    $user = check_auth($auth,1);
     if($user['status']=='n'){
         dalert('邮件已失效',$CFG['url'].'member/register.php');
     }

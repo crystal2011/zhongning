@@ -40,6 +40,7 @@ show_menu($menus);
 <th width="25"><input type="checkbox" onclick="checkall(this.form);"/></th>
 <th>会员ID</th>
 <th>用户名</th>
+    <th>邮箱</th>
     <th>手机</th>
     <th>真实姓名</th>
 <th>注册时间</th>
@@ -52,6 +53,7 @@ show_menu($menus);
 <td><input type="checkbox" name="userid[]" value="<?php echo $v['userid'];?>"/></td>
 <td class="px11"><?php echo $v['userid'];?></td>
 <td align="left">&nbsp;<a href="javascript:_user('<?php echo $v['username'];?>');" ><?php echo $v['username'];?></a></td>
+    <td><?php echo $v['email']; ?></td>
     <td><?php echo $v['mobile']; ?></td>
     <td><?php echo $v['truename']; ?></td>
     <td class="px11" title="修改时间:<?php echo $v['edittime'] ? timetodate($v['edittime']) : '无';?>"><?php echo $v['regdate'];?></td>

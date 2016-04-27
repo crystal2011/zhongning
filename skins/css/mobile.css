@@ -1033,7 +1033,7 @@ a img {font-size:0px;}
 .guangli a{display:block;font-size:1.2em;line-height:2.6em;color:#000;}
 .guangli img {vertical-align: middle;margin-right:3px;margin-top: -2px}
 
-.footerfix {position:fixed; bottom:0;left:0px; z-index:999;}
+.footerfix {position:fixed; bottom:0;left:0px; z-index:999;width:100%;}
 
 #publishform .imagemodule {margin-bottom:0px;padding-top:0px;padding-left:20px;}
 #publishform .imagedivjia .imagspe {position:relative;display:block;float:left;margin-right:5px;}
@@ -1110,3 +1110,25 @@ a img {font-size:0px;}
     width:100%;
     height:auto;
 }
+.daitable {width:100%;}
+.daitable tr{color:#000;}
+.daitable tr img {vertical-align: middle;}
+.daitable tr.daibgth {background-color:#7abef6;line-height:2.4em;font-size:2.2em;color:#fff;}
+.daibg0 {background-color:#e8f5ff;line-height:2.4em;font-size:2em;}
+.daibg1 {background-color:#d3ebff;line-height:2.4em;font-size:2em;}
+.daiicon {margin:0px 10px;}
+.aboutsnav {
+    width:100%;
+    background-color:#fff;
+    margin-bottom:20px;
+}
+.aboutsnav a{width:20%;text-align:center;color:#000;font-size:2em;line-height:2.4em;display:block;float:left;border-right:1px solid #ebebeb;background-color:#fff;}
+.aboutsnav a.cur {color:#7abef6;border-bottom:2px solid #7abef6;}
+.aboutscon {background-color:#fff;padding:20px;margin-bottom:20px;}
+img {border:none;display:inline-block;}
+.aboutscon img {max-width:100% !important;height:auto !important;}
+.contactsus {background-color:#fff;font-size:1.8em;line-height:2em;margin-bottom:20px;}
+.concon {padding:0px 20px 20px 20px;}
+.concon p{margin:0px;padding:0px;}
+.contactsus .aboutstitle {font-size:1.2em;line-height:3rem;height:3rem;border-bottom:1px solid #ebebeb;padding-left:20px;}
+.conmobile span{margin-right:10px;}

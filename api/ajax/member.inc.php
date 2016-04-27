@@ -132,16 +132,8 @@ switch($job) {
                 break;
             case 'mobile':
                 $mobile = isset($mobile)?$mobile:'';
-                $code = isset($code)?$code:'';
-                //手机验证码检测
-                if(!check_token()) exit(json_encode(array('status'=>'n','info'=>'注册失效，请重试')));
-                require_once DT_ROOT.'/include/send.class.php';
-                $send = new send;
-                if(!$send->check_mobile_code($code,$DT_IP,$mobile)){
-                    exit(json_encode(array('status' => 'n', 'info' => $send->errmsg)));
-                }
-                $add = array('mobile'=>$mobile,'userid'=>$_userid);
-
+                if(!is_mobile($mobile) && !is_phone($mobile)) exit(json_encode(array('status'=>'n','info'=>'联系电话输入有误')));
+                $add = array('mobile'=>$mobile);
                 break;
             case 'address':
                 $areaid = isset($areaid)?intval($areaid):0;
@@ -165,10 +157,20 @@ switch($job) {
                 if(!$do->is_username($username)) exit(json_encode(array('info'=>$do->errmsg,'status'=>'n')));
                 $add = array('username'=>$username);
                 break;
+
             case 'email':
                 $email = isset($email)?$email:'';
                 if(!is_email($email)) exit(json_encode(array('status'=>'n','info'=>'邮箱输入有误')));
-                $add = array('email'=>$email);
+                if($do->email_exists($email)) exit(json_encode(array('status'=>'n','info'=>'邮箱已被注册')));
+
+                //发送邮件
+                $auth = make_auth($DT_TIME.$email);
+                $authurl = $CFG['url'].'ajax.php?action=member&moduleid=2&job=editemail&auth='.$auth;
+                $db->query("delete from {$db->pre}member_link where email = '".$email."' and type = 3");
+                $db->query("insert into {$db->pre}member_link (email,auth,authtime,type,userid) values ('".$email."','".$auth."',$DT_TIME,3,$_userid) ");
+                send_mail($email, $DT['sitename'].'用户修改邮箱', stripslashes(ob_template('editemail', 'mail')));
+                exit(json_encode(array('status'=>'y', 'info' =>"修改邮箱验证邮件已发送,请到邮箱认证！")));
+
                 break;
             default:
                 exit(json_encode(array('status'=>'n','info'=>'操作有误')));
@@ -183,6 +185,14 @@ switch($job) {
         $sql = substr($sql, 1);
         $db->query("UPDATE {$db->pre}member SET $sql WHERE userid=".$_userid);
         exit(json_encode(array('status'=>'y','info'=>'提交成功')));
+        break;
+    case 'editemail':
+        $auth = isset($auth)?$auth:'';
+        $user = check_auth($auth,3);
+        if($user['status']=='n') dalert('邮件已失效',$CFG['url'].'member/index.php');
+        $user = $user['info'];
+        $db->query("UPDATE {$db->pre}member SET email = '".$user['email']."' WHERE userid='".$user['userid']."'");
+        dalert('修改邮箱成功',$CFG['url'].'member/index.php');
         break;
 }
 ?>

@@ -1198,7 +1198,7 @@ function is_mobile($mobile) {
     return preg_match("/^1[3|4|5|7|8]{1}[0-9]{9}$/", $mobile);
 }
 function is_phone($str){
-    return preg_match('/^((\d{3,4})|\d{3,4}-)?\d{7,8}*$/i', $str);
+    return preg_match('/^((\d{3,4})|\d{3,4}-)?\d{7,8}$/i', $str)?true:false;
 }
 
 function is_md5($password) {
@@ -1351,11 +1351,11 @@ function make_auth($username) {
 
 }
 
-function check_auth($auth) {
+function check_auth($auth,$type) {
     global $db, $L,$DT_TIME;
     if(!preg_match("/^[A-Z0-9]{32}$/", $auth)) return array('status'=>'n','info'=>'验证失效');
-    $user = $db->get_one("SELECT * FROM {$db->pre}member_link WHERE auth='$auth'");
-    $db->query("delete from {$db->pre}member_link WHERE auth='$auth'");
+    $user = $db->get_one("SELECT * FROM {$db->pre}member_link WHERE auth='$auth' and type = ".$type);
+    $db->query("delete from {$db->pre}member_link WHERE auth='$auth' and type = ".$type);
     if($user && $auth == make_auth($user['authtime'].$user['email']) && $user['authtime']+3*24*3600>$DT_TIME) return array('status'=>'y','info'=>$user);
     return array('status'=>'n','info'=>'验证失效');
 }

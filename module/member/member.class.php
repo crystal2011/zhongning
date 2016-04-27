@@ -177,7 +177,13 @@ class member {
     {
         global $DT, $DT_TIME, $DT_IP, $MOD, $L;
         if(!$this->is_password($member['password'], $member['cpassword'])) return $this->_('密码输入有误');
-        if(!$userinfo = $this->mobile_exists($member['mobile'])) return $this->_('手机号不存在');
+        if(!$userinfo = $this->is_email($member['email'])) return $this->_('邮箱格式输入有误');
+        if(!$this->email_exists($member['email'])) return $this->_('邮箱不存在');
+        return true;
+    }
+
+    function editpw($member){
+        global $DT, $DT_TIME, $DT_IP, $MOD, $L,$_userid;
         $member['edittime'] = $DT_TIME;
         $member['password'] = md5(md5($member['password']));
         $member_fields = array('password', 'edittime');
@@ -186,8 +192,7 @@ class member {
             if(in_array($k, $member_fields)) $member_sql .= ",$k='$v'";
         }
         $member_sql = substr($member_sql, 1);
-        $this->db->query("UPDATE {$this->table_member} SET $member_sql WHERE userid=".$userinfo['userid']);
-        return true;
+        $this->db->query("UPDATE {$this->table_member} SET $member_sql WHERE email='".$member['email']."'");
     }
 
     function edit($member)	{
