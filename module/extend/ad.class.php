@@ -248,8 +248,8 @@ class ad {
 
         if($list){
             foreach($list as $k=>$v){
-                $image_src = $v['image_src'];
-                $text_url = $v['text_url'];
+                $image_src = $v['flash_src'];
+                $text_url = $v['flash_url'];
                 $text_title = $v['title'];
                 $str .= '<li><a href="'.$text_url.'" title="'.$text_title.'" target="_blank"><img src="'.$image_src.'" width="728" height="333" /></a></li>';
 

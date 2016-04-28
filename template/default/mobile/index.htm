@@ -36,37 +36,37 @@
             <article class="module swiper-slide">
                 <ul class="clear">
                     <li>
-                        <a href="/mobile/food/index.php">
+                        <a href="/mobile/index.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module1.png"  /></p>
                             <span>首页</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/mobile/discount/index.php">
+                        <a href="/mobile/invest/index.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module2.png"  /></p>
                             <span>投资理财</span>
                         </a>
                     </li>
                     <li class="noboderright ">
-                        <a href="/mobile/job/index.php">
+                        <a href="/mobile/abouts/compintro.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module3.png"  /></p>
                             <span>关于我们</span>
                         </a>
                     </li>
                     <li class="noboderbottom">
-                        <a href="/mobile/cession/index.php">
+                        <a href="/mobile/finance/index.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module4.png"  /></p>
                             <span>融资业务</span>
                         </a>
                     </li>
                     <li  class="noboderbottom">
-                        <a href="/mobile/school/index.php">
+                        <a href="/mobile/abouts/contact.php">
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module5.png"  /></p>
                             <span>联系我们</span>
                         </a>
                     </li>
                     <li  class="noboderright noboderbottom">
-                        <a href="/mobile/horn/index.php" >
+                        <a href="/mobile/question/index.php" >
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module6.png"  /></p>
                             <span>常见问题</span>
                         </a>
@@ -79,50 +79,50 @@
         <p class="zhongtitle">平台优势</p>
         <img src="{DT_SKIN_TWO}images/wycms/mobile/floor1.jpg" class="zhongimg" />
     </article>
-    <article style="margin-top:18px;background-color:#fff;">
+    <article style="margin-top:10px;background-color:#fff;">
         <p class="zhongtitle">投资项目</p>
-        <div style="padding:20px;">
+        <div style="padding:10px;">
             <table class="daitable">
-                <tr class="daibgth"><td  align="center">投资方</td><td width="100px" align="center">进度</td><td width="100px" align="center">状态</td></tr>
-                <tr class="daibg0"><td><img src="{DT_SKIN_TWO}images/wycms/mobile/dai.png" class="daiicon" />投资方投资方投资</td><td align="center">78.51%</td><td align="center"><img src="{DT_SKIN_TWO}images/wycms/mobile/tou.jpg" /></td></tr>
-                <tr class="daibg1"><td><img src="{DT_SKIN_TWO}images/wycms/mobile/dai.png" class="daiicon" />投资方投资方投资</td><td align="center">78.51%</td><td align="center"><img src="{DT_SKIN_TWO}images/wycms/mobile/tou.jpg" /></td></tr>
-                <tr class="daibg0"><td><img src="{DT_SKIN_TWO}images/wycms/mobile/dai.png" class="daiicon" />投资方投资方投资</td><td align="center">78.51%</td><td align="center"><img src="{DT_SKIN_TWO}images/wycms/mobile/tou.jpg" /></td></tr>
-                <tr class="daibg1"><td><img src="{DT_SKIN_TWO}images/wycms/mobile/dai.png" class="daiicon" />投资方投资方投资</td><td align="center">78.51%</td><td align="center"><img src="{DT_SKIN_TWO}images/wycms/mobile/tou.jpg" /></td></tr>
-                <tr class="daibg0"><td><img src="{DT_SKIN_TWO}images/wycms/mobile/dai.png" class="daiicon" />投资方投资方投资</td><td align="center">78.51%</td><td align="center"><img src="{DT_SKIN_TWO}images/wycms/mobile/tou.jpg" /></td></tr>
+                <tr class="daibgth"><td  align="center">投资方</td><td width="60px" align="center">进度</td><td width="70px" align="center">状态</td></tr>
+                {if $aSell}
+                {loop $aSell $k $v}
+                <tr class="daibg<?php echo $k%2; ?>"><td><img src="{DT_SKIN_TWO}images/wycms/mobile/dai.png" class="daiicon" />{mb_substr($v['title'],0,6,'utf-8')}{if mb_strlen($v['title'])>6}...{/if}</td><td align="center">{$v['setbacks']}</td><td align="center"><img src="{DT_SKIN_TWO}images/wycms/mobile/tou{$v['setstatus']}.jpg" {if $v['setstatus']==0}onclick="location.href='{$CFG[url]}mobile/invest/show.php?id={$v[itemid]}'"{/if} width="60px" /></td></tr>
+                {/loop}
+                {/if}
             </table>
         </div>
     </article>
-    <article  style="margin-top:18px;background-color:#fff;">
+    <article  style="margin-top:10px;background-color:#fff;">
         <p class="zhongtitle">融资业务</p>
         <img src="{DT_SKIN_TWO}images/wycms/mobile/floor3.jpg" class="zhongimg" />
-        <a href="" class="rongzibtn"><img src="{DT_SKIN_TWO}images/wycms/mobile/daibtn.png" /></a>
+        <a href="{$CFG['url']}mobile/finance/index.php#financeform" class="rongzibtn"><img src="{DT_SKIN_TWO}images/wycms/mobile/daibtn.png" /></a>
     </article>
 
 
-    <article class="schoolchannel" style="margin-top:20px;">
+    <article class="schoolchannel" style="margin-top:10px;">
         <ul class="comul clear" style="background-color:#fff;">
-
+            {if $aArticleHasThumb}
+            {loop $aArticleHasThumb $k $v}
             <li class="clear" style="margin-bottom:0px;">
                 <div class="lidiv">
-                    <a class="schoola" href="/mobile/article/show.php?id="><img src="" /></a>
+                    <a class="schoola" href="/mobile/article/show.php?id={$v['itemid']}"><img src="{$v['thumb']}" /></a>
                 </div>
             </li>
-            <li class="clear"  style="margin-bottom:0px;">
-                <div class="lidiv">
-                    <a class="schoola" href="/mobile/article/show.php?id="><img src="" /></a>
-                </div>
-            </li>
+            {/loop}
+            {/if}
         </ul>
     </article>
-    <article class="article" style="margin-bottom:20px;">
+    <article class="article" style="margin-bottom:10px;">
         <div class="articlelist" >
             <ul>
-
+                {if $aArticleNews}
+                {loop $aArticleNews $k $v}
                 <li class="clear">
-                    <span class="fr">35535</span>
-                    <article><a >·343434</a></article>
+                    <span class="fr">{date('m-d',$v['addtime'])}</span>
+                    <article><a href="/mobile/article/show.php?id={$v['itemid']}">·{$v['title']}</a></article>
                 </li>
-
+                {/loop}
+                {/if}
                 <li class="more">
                     <label onclick="location.href='/mobile/article/index.php'">更多&nbsp;<i class="fa fa-angle-right"></i></label>
                 </li>

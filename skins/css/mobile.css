@@ -183,7 +183,7 @@ i {font-style:normal;}
 #index-page .user a {font-size:1.8em;color:#7abef6;}
 #index-page .user span {font-size:18px;}
 #index {background-color:#ebebeb;}
-.asdf {background-color:#ebebeb;padding:20px;}
+.asdf {background-color:#ebebeb;padding:10px;}
 #index .module {background: #fff;}
 #index .module li{
     width:33.333333%;
@@ -1115,21 +1115,21 @@ a img {font-size:0px;}
 .daitable {width:100%;}
 .daitable tr{color:#000;}
 .daitable tr img {vertical-align: middle;}
-.daitable tr.daibgth {background-color:#7abef6;line-height:2.4em;font-size:2.2em;color:#fff;}
-.daibg0 {background-color:#e8f5ff;line-height:2.4em;font-size:2em;}
-.daibg1 {background-color:#d3ebff;line-height:2.4em;font-size:2em;}
-.daiicon {margin:0px 10px;}
+.daitable tr.daibgth {background-color:#7abef6;line-height:2.2em;font-size:1.8em;color:#fff;}
+.daibg0 {background-color:#e8f5ff;line-height:2.6em;font-size:1.6em;}
+.daibg1 {background-color:#d3ebff;line-height:2.6em;font-size:1.6em;}
+.daiicon {margin:0px 5px;width:20px;}
 .aboutsnav {
     width:100%;
     background-color:#fff;
-    margin-bottom:20px;
+    margin-bottom:10px;
 }
-.aboutsnav a{width:20%;text-align:center;color:#000;font-size:2em;line-height:2.4em;display:block;float:left;border-right:1px solid #ebebeb;background-color:#fff;}
+.aboutsnav a{width:20%;text-align:center;color:#000;font-size:1.4em;line-height:2.4em;display:block;float:left;border-right:1px solid #ebebeb;background-color:#fff;}
 .aboutsnav a.cur {color:#7abef6;border-bottom:2px solid #7abef6;}
-.aboutscon {background-color:#fff;padding:20px;margin-bottom:20px;}
+.aboutscon {background-color:#fff;margin-bottom:10px;}
 img {vertical-align:middle;}
 .aboutscon img {max-width:100% !important;height:auto !important;}
-.contactsus {background-color:#fff;font-size:1.8em;line-height:2em;margin-bottom:20px;}
+.contactsus {background-color:#fff;font-size:1.6em;line-height:2em;margin-bottom:10px;}
 .concon {padding:0px 20px 20px 20px;}
 .concon p{margin:0px;padding:0px;}
 .contactsus .aboutstitle {font-size:1.2em;line-height:3rem;height:3rem;border-bottom:1px solid #ebebeb;padding-left:20px;}

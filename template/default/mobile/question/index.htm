@@ -2,8 +2,8 @@
 {template 'search','mobile'}
 <style>
     .questiontitle {font-size:1.8em;color:#000;}
-    .questioncon {color:#454545;padding:0.5em 0 1em 2.2em;font-size:1.6em;border-bottom:1px dashed #ebebeb;position:relative;height:5.8em;overflow:hidden;}
-    .downup {position:absolute;bottom:1px;right:0px;}
+    .questioncon {color:#454545;padding:0.5em 0 1em 2.2em;font-size:1.6em;height:4.6em;overflow:hidden;}
+    .downup {position:absolute;bottom:3px;right:3px;}
     .fringd {padding:20px;background-color:#fff;border-bottom:1px solid #ebebeb;}
     .fringd a{max-width:33.333333%;float:left;}
     .fringd a img{width:100%;height:auto;}
@@ -12,10 +12,10 @@
     $(function(){
         $(".downup").click(function(){
             if($(this).attr('data-type')=='down'){
-                $(this).parent().css('height','auto');
+                $(this).prev().css('height','auto');
                 $(this).attr('data-type','up').attr('src','{DT_SKIN_TWO}images/wycms/mobile/up.png');
             }else{
-                $(this).parent().css('height','5.8em');
+                $(this).prev().css('height','4.6em');
                 $(this).attr('data-type','down').attr('src','{DT_SKIN_TWO}images/wycms/mobile/down.png');
             }
         })
@@ -26,17 +26,22 @@
     <span class="ids"><img src="{DT_SKIN_TWO}images/wycms/mobile/questionicon.jpg" /></span>
     <p class="zhongtitle">常见问题</p>
     <div style="background-color:#fff;padding:20px;">
-        <div class="clear questiontitle"><img src="{DT_SKIN_TWO}images/wycms/mobile/questions.jpg" class="fl" /><span style="padding-left:2em;width:100%;display:block;">范德萨发士大夫阿斯顿发第三方方法士大夫</span></div>
-        <div class="questioncon">
-            fadsfa发送放大法法法师法发送大师法第三搜索说到底是方法是打发代发发发送
+        {if $list}
+        {loop $list $k $v}
+        <div style="border-bottom:1px dashed #ebebeb;padding-bottom:15px;margin-bottom:15px;position:relative;">
+            <div class="clear questiontitle"><img src="{DT_SKIN_TWO}images/wycms/mobile/questions.jpg" class="fl" /><span style="padding-left:2em;width:100%;display:block;">{$v['title']}</span></div>
+            <div class="questioncon">
+                {$v['content']}
+
+            </div>
             <img src="{DT_SKIN_TWO}images/wycms/mobile/down.png" class="downup" data-type="down" />
         </div>
+        {/loop}
+        {/if}
     </div>
-    <p class="zhongtitle" style="margin-top:20px;">合作伙伴</p>
+    <p class="zhongtitle" style="margin-top:10px;">合作伙伴</p>
     <div class="fringd clear">
-        <a><img src="{DT_SKIN_TWO}images/wycms/mobile/bank1.png" /></a>
-        <a><img src="{DT_SKIN_TWO}images/wycms/mobile/bank1.png" /></a>
-        <a><img src="{DT_SKIN_TWO}images/wycms/mobile/bank1.png" /></a>
+        {template  'link'}
     </div>
 </section>
 {template 'footer','mobile'}
