@@ -9,60 +9,38 @@ class group {
 	var $split;
 	var $errmsg = errmsg;
 
-    function group($moduleid) {
+    function group($moduleid=17) {
 		global $db, $table, $table_data, $MOD;
 		$this->moduleid = $moduleid;
-		$this->table = $table;
-		$this->table_data = $table_data;
-		$this->split = $MOD['split'];
+		$this->table = $db->pre.'group';
+		$this->table_data = $db->pre.'group_data';
+		$this->split = '';
 		$this->db = &$db;
-		$this->fields = array('catid','areaid','level','title','style','fee','introduce','marketprice','price','savemoney','discount','minamount','amount','logistic','thumb','tag','status','hits','orders','username','totime','editor','addtime','edittime','ip','template','linkurl','filepath','note','company','truename','telephone','mobile','address','email','msn','qq','ali','skype');
+		$this->fields = array('title','addtime','edittime','content','level','status');
     }
 
 	function pass($post) {
 		global $DT_TIME, $MOD;
 		if(!is_array($post)) return false;
-		if(!$post['catid']) return $this->_(lang('message->pass_cate'));
 		if(strlen($post['title']) < 3) return $this->_(lang('message->pass_title'));
-		if(!is_url($post['thumb'])) return $this->_(lang('message->pass_thumb'));
-		if(dround($post['price']) < 0.1) return $this->_(lang('message->pass_group_price'));
-		if(dround($post['marketprice']) < 0.1) return $this->_(lang('message->pass_group_mprice'));
-		if(dround($post['marketprice']) <= dround($post['price'])) return $this->_(lang('message->pass_group_eprice'));
-		if($post['totime']) {
-			if(!is_date($post['totime'])) return $this->_(lang('message->pass_date'));
-			if(strtotime($post['totime'].' 23:59:59') < $DT_TIME) return $this->_(lang('message->pass_todate'));
-		}
 		if(DT_MAX_LEN && strlen($post['content']) > DT_MAX_LEN) return $this->_(lang('message->pass_max'));
 		return true;
 	}
 
 	function set($post) {
 		global $MOD, $DT_TIME, $DT_IP, $_username, $_userid;
-		$post['filepath'] = (isset($post['filepath']) && is_filepath($post['filepath'])) ? file_vname($post['filepath']) : '';
-		$post['editor'] = $_username;
-		$post['addtime'] = (isset($post['addtime']) && $post['addtime']) ? strtotime($post['addtime']) : $DT_TIME;
 		$post['edittime'] = $DT_TIME;
-		$post['totime'] = $post['totime'] ? strtotime($post['totime'].' 23:59:59') : 0;
-		$post['discount'] = dround($post['price']*10/$post['marketprice'], 1);
-		$post['savemoney'] = dround($post['marketprice'] - $post['price']);
-		$post['fee'] = dround($post['fee']);
-		$post['price'] = dround($post['price']);
-		$post['marketprice'] = dround($post['marketprice']);
-		$post['minamount'] = dround($post['minamount']);
-		$post['amount'] = dround($post['amount']);
 		$post['content'] = stripslashes($post['content']);
 		$post['content'] = save_local($post['content']);
 		if($MOD['clear_link']) $post['content'] = clear_link($post['content']);
 		if($MOD['save_remotepic']) $post['content'] = save_remote($post['content']);
-		if($post['content'] && !$post['introduce'] && $post['introduce_length']) $post['introduce'] = addslashes(get_intro($post['content'], $MOD['introduce_length']));
 		if($this->itemid) {
 			$new = $post['content'];
-			if($post['thumb']) $new .= '<img src="'.$post['thumb'].'"/>';
 			$r = $this->get_one();
 			$old = $r['content'];
-			if($r['thumb']) $old .= '<img src="'.$r['thumb'].'"/>';
 			delete_diff($new, $old);
 		} else {
+            $post['addtime'] =  $DT_TIME;
 			$post['ip'] = $DT_IP;
 		}
 		$content = $post['content'];
@@ -74,14 +52,7 @@ class group {
 
 	function get_one() {
 		$r = $this->db->get_one("SELECT * FROM {$this->table} WHERE itemid=$this->itemid");
-		if($r) {
-			$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
-			$t = $this->db->get_one("SELECT content FROM {$content_table} WHERE itemid=$this->itemid");
-			$r['content'] = $t ? $t['content'] : '';
-			return $r;
-		} else {
-			return array();
-		}
+        return $r;
 	}
 
 	function get_list($condition = 'status=3', $order = 'edittime DESC', $cache = '') {
@@ -97,24 +68,7 @@ class group {
 		$lists = $catids = $CATS = array();
 		$result = $this->db->query("SELECT * FROM {$this->table} WHERE $condition ORDER BY $order LIMIT $offset,$pagesize", $cache);
 		while($r = $this->db->fetch_array($result)) {
-			$r['alt'] = $r['title'];
-			$r['title'] = set_style($r['title'], $r['style']);
-			$r['userurl'] = userurl($r['username']);
-			$r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
-			$catids[$r['catid']] = $r['catid'];
 			$lists[] = $r;
-		}
-		if($catids) {
-			$result = $this->db->query("SELECT catid,catname,linkurl FROM {$this->db->pre}category WHERE catid IN (".implode(',', $catids).")");
-			while($r = $this->db->fetch_array($result)) {
-				$CATS[$r['catid']] = $r;
-			}
-			if($CATS) {
-				foreach($lists as $k=>$v) {
-					$lists[$k]['catname'] = $v['catid'] ? $CATS[$v['catid']]['catname'] : '';
-					$lists[$k]['caturl'] = $v['catid'] ? $MOD['linkurl'].$CATS[$v['catid']]['linkurl'] : '';
-				}
-			}
 		}
 		return $lists;
 	}
@@ -133,11 +87,7 @@ class group {
 		$content_table = content_table($this->moduleid, $this->itemid, $this->split, $this->table_data);
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
 		$this->update($this->itemid);
-		if($post['status'] == 3 && $post['username'] && $MOD['credit_add']) {
-			credit_add($post['username'], $MOD['credit_add']);
-			credit_record($post['username'], $MOD['credit_add'], 'system', lang('my->credit_record_add', array($MOD['name'])), 'ID:'.$this->itemid);
-		}
-		clear_upload($post['content'].$post['thumb'], $this->itemid);
+		clear_upload($post['content'], $this->itemid);
 		return $this->itemid;
 	}
 
@@ -154,7 +104,6 @@ class group {
 		$this->db->query("REPLACE INTO {$content_table} (itemid,content) VALUES ('$this->itemid', '$post[content]')");
 		$this->update($this->itemid);
 		clear_upload($post['content'].$post['thumb'], $this->itemid);
-		if($post['status'] > 2) $this->tohtml($this->itemid, $post['catid']);
 		return true;
 	}
 

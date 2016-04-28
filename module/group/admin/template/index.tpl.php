@@ -28,90 +28,41 @@ show_menu($menus);
 <option value="totime" <?php if($datetype == 'endtime') echo 'selected';?>>结束日期</option>
 </select>&nbsp;
 <?php echo dcalendar('fromdate', $fromdate, '');?> 至 <?php echo dcalendar('todate', $todate, '');?>&nbsp;
-<?php echo category_select('catid', '所属行业', $catid, $moduleid);?>&nbsp;
-<?php echo ajax_area_select('areaid', '所在地区', $areaid);?>&nbsp;
-<select name="logistic">
-<option value="-1">快递</option>
-<option value="0" <?php if($logistic == 0) echo 'selected';?>>不需要</option>
-<option value="1" <?php if($logistic == 1) echo 'selected';?>>需要</option>
-</select>&nbsp;
-<select name="process">
-<option value="-1">状态</option>
-<option value="0" <?php if($process == 0) echo 'selected';?>>成团中</option>
-<option value="1" <?php if($process == 1) echo 'selected';?>>团购中</option>
-<option value="2" <?php if($process == 2) echo 'selected';?>>已结束</option>
-</select>&nbsp;
 ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>
-</td>
-</tr>
-<tr>
-<td>
-&nbsp;团购价：<input type="text" size="4" name="minprice" value="<?php echo $minprice;?>"/> ~ <input type="text" size="4" name="maxprice" value="<?php echo $maxprice;?>"/>&nbsp;
-市场价：<input type="text" size="4" name="minmarketprice" value="<?php echo $minmarketprice;?>"/> ~ <input type="text" size="4" name="maxmarketprice" value="<?php echo $maxmarketprice;?>"/>&nbsp;
-最低人数：<input type="text" size="4" name="minminamount" value="<?php echo $minminamount;?>"/> ~ <input type="text" size="4" name="maxminamount" value="<?php echo $maxminamount;?>"/>&nbsp;
-最多人数：<input type="text" size="4" name="minamount" value="<?php echo $minamount;?>"/> ~ <input type="text" size="4" name="maxamount" value="<?php echo $maxamount;?>"/>&nbsp;
-折扣：<input type="text" size="2" name="mindiscount" value="<?php echo $mindiscount;?>"/> ~ <input type="text" size="2" name="maxdiscount" value="<?php echo $maxdiscount;?>"/>&nbsp;
 </td>
 </tr>
 </table>
 </form>
 <form method="post">
-<div class="tt"><?php echo $menus[$menuid][0];?></div>
+<div class="tt"></div>
 <table cellpadding="2" cellspacing="1" class="tb">
 <tr>
 <th width="25"><input type="checkbox" onclick="checkall(this.form);"/></th>
-<th>行业</th>
-<th width="14"> </th>
-<th width="70">图片</th>
 <th>标 题</th>
-<th>会员</th>
-<th>团购价</th>
-<th>折扣</th>
-<th>订单</th>
-<th>销量</th>
-<th>人气</th>
+<th>内容</th>
+    <th>添加时间</th>
 <th width="70">操作</th>
 </tr>
 <?php foreach($lists as $k=>$v) {?>
 <tr onmouseover="this.className='on';" onmouseout="this.className='';" align="center">
 <td><input type="checkbox" name="itemid[]" value="<?php echo $v['itemid'];?>"/></td>
-<td><a href="<?php echo $v['caturl'];?>" target="_blank"><?php echo $v['catname'];?></a></td>
-<td><?php if($v['level']) {?><a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=<?php echo $action;?>&level=<?php echo $v['level'];?>"><img src="admin/image/level_<?php echo $v['level'];?>.gif" title="<?php echo $v['level'];?>级" alt=""/></a><?php } ?></td>
-<td><a href="javascript:_preview('<?php echo $v['thumb'];?>');"><img src="<?php echo $v['thumb'] ? $v['thumb'] : DT_SKIN.'image/nopic60.gif';?>" width="60" style="padding:5px;"/></a></td>
-<td align="left">&nbsp;<a href="<?php echo $v['linkurl'];?>" target="_blank" class="t f_b"><?php echo $v['title'];?></a><?php if($v['vip']) {?> <img src="<?php echo DT_SKIN;?>image/vip_<?php echo $v['vip'];?>.gif" title="<?php echo VIP;?>:<?php echo $v['vip'];?>" align="absmiddle"/><?php } ?><br/>
-<span class="f_gray">
-&nbsp;更新:<span class="px11"><?php echo timetodate($v['edittime'], 6);?></span> <?php echo $_process[$v['process']];?> <br/>
-&nbsp;添加:<span class="px11"><?php echo timetodate($v['addtime'], 6);?></span>
-</span>
-</td>
+<td align="left">&nbsp;<?php echo $v['title'];?></a></td>
+    <td align="left" style="width:500px;">&nbsp;<?php echo dsubstr($v['content'],200,'...');?></a></td>
+    <td>添加:<span class="px11"><?php echo timetodate($v['addtime'], 6);?></span></td>
 <td>
-<?php if($v['username']) { ?>
-<a href="javascript:_user('<?php echo $v['username'];?>');"><?php echo $v['username'];?></a>
-<?php } else { ?>
-	<a href="javascript:_ip('<?php echo $v['ip'];?>');" title="游客"><?php echo $v['ip'];?></a>
-<?php } ?>
-</td>
-<td class="f_price" title="市场价：<?php echo $v['marketprice'];?> 节省：<?php echo $v['savemoney'];?> 折扣：<?php echo $v['discount'];?>"><?php echo $v['price'];?></td>
-<td class="px11"><?php echo $v['discount'];?></td>
-<td class="px11"><a href="javascript:Dwidget('?moduleid=<?php echo $moduleid;?>&file=order&id=<?php echo $v['itemid'];?>', '[<?php echo $v['alt'];?>] 订单列表');"><?php echo $v['orders'];?></a></td>
-<td class="px11"><?php echo $v['sales'];?></td>
-<td class="px11"><?php echo $v['hits'];?></td>
-<td>
-<a href="javascript:Dwidget('?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&file=order&gid=<?php echo $v['itemid'];?>', '[<?php echo $v['alt'];?>] 订单列表');"><img src="admin/image/order.gif" width="16" height="16" title="管理订单" alt=""/></a>&nbsp;
 <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=edit&itemid=<?php echo $v['itemid'];?>"><img src="admin/image/edit.png" width="16" height="16" title="修改" alt=""/></a>&nbsp;
 <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete&itemid=<?php echo $v['itemid'];?>" onclick="return _delete();"><img src="admin/image/delete.png" width="16" height="16" title="删除" alt=""/></a>
 </td>
 </tr>
 <?php } ?>
 </table>
-<?php include tpl('notice_chip');?>
+
 <div class="btns">
 
 <?php if($action == 'check') { ?>
 
 <input type="submit" value=" 通过审核 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=check';"/>&nbsp;
 <input type="submit" value=" 拒 绝 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=reject';"/>&nbsp;
-<input type="submit" value=" 移动分类 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=move';"/>&nbsp;
 <input type="submit" value=" 回收站 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete&recycle=1';"/>&nbsp;
 <input type="submit" value=" 彻底删除 " class="btn" onclick="if(confirm('确定要删除选中<?php echo $MOD['name'];?>吗？此操作将不可撤销')){this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete'}else{return false;}"/>&nbsp;
 
@@ -143,7 +94,6 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>
 <?php if($MOD['show_html']) { ?><input type="submit" value=" 生成网页 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=tohtml';"/>&nbsp; <?php } ?>
 <input type="submit" value=" 回收站 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete&recycle=1';"/>&nbsp;
 <input type="submit" value=" 彻底删除 " class="btn" onclick="if(confirm('确定要删除选中<?php echo $MOD['name'];?>吗？此操作将不可撤销')){this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete'}else{return false;}"/>&nbsp;
-<input type="submit" value=" 移动分类 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=move';"/>&nbsp;
 <?php echo level_select('level', '设置级别为</option><option value="0">取消', 0, 'onchange="this.form.action=\'?moduleid='.$moduleid.'&file='.$file.'&action=level\';this.form.submit();"');?>
 <?php } ?>
 </div>

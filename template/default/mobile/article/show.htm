@@ -1,55 +1,15 @@
 {template 'header','mobile'}
-{template 'search1','mobile'}
-
-<style>
-    .list .content .info .text .introduce {height:4.2em;overflow: hidden;}
-</style>
-<section id="content">
-    {template 'thumbinfo1','mobile'}
-    <article class="info clear" style="font-size:1em;margin-top:-15px;line-height:1em;padding-bottom:10px;">
-        <span class="fl huiyui">{date('Y-m-d',$info['addtime'])}</span>
-        <span class="numsviews">
-            <img src="{DT_SKIN}image/public/icon-liulan.png" />浏览({$info['hits']})&nbsp;&nbsp;&nbsp;
-            <img src="{DT_SKIN}image/public/icon-pinlun.png" />评论({$info['comments']})
-        </span>
+{template 'search','mobile'}
+<section id="content" style="margin-top:20px;">
+    <article class="thumbinfo1">
+        <p>gadsfdsfdsaf范德萨发撒旦法师打发是打发是啊</p>
     </article>
-    <article class="line"></article>
-    {template 'view','mobile'}
-    {if !isset($isajax) || !$isajax}
-    <article class="line"></article>
-    {template 'commentlist','mobile'}
-    {/if}
-    <article class="line"></article>
-</section>
-<section class="contentlist">
-    <header class="channelheader clear">
-        <div class="fl"><img src="{DT_SKIN}image/mobile/promote1.png"><span>最新美食文章</span></div>
-        <a class="fr" href="index.php">查看全部&nbsp;&gt;</a>
-    </header>
-    <article class="list">
-        {if $aRecommendFood}
-        {loop $aRecommendFood $k $v}
-        <div class="content">
-            <div class="clear info">
-                <a class="thumb"  href="?id={$v['itemid']}"><img src="{$v['thumb']}" /></a>
-                <div class="text">
-                    <a class="title" href="?id={$v['itemid']}">{$v['title']}</a>
-                    <p class="introduce">简介：{$v['introduce']}</p>
-                    <p class="numviesshow clear">
-                            <span class="fl numtimes">
-                                {date('Y-m-d',$v['addtime'])}
-                            </span>
-                            <span class="numsviews">
-                                <img src="{DT_SKIN}image/public/icon-liulan.png" />浏览({$v['hits']})&nbsp;
-                                <img src="{DT_SKIN}image/public/icon-pinlun.png" />评论({$v['comments']})
-                            </span>
-                    </p>
-                </div>
-            </div>
-        </div>
-        {/loop}
-        {/if}
+    <article class="info clear">
+        <span class="fl">关键词 <i class="guanjjin">我是</i></span>
+        <span class="fr">35353535</span>
     </article>
-
+    <article class="view" style="border-top:1px solid #ebebeb;">
+        <div class="viewinfo clear">发大水发的说法v法师打发三分大厦法师打发发阿萨德发的撒法师打发法师打发</div>
+    </article>
 </section>
 {template 'footer','mobile'}

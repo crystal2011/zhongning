@@ -554,7 +554,6 @@ i {font-style:normal;}
 }
 
 .list .content{
-    margin-bottom:10px;
     background:#fff;
 }
 .list .content:first-child{
@@ -562,8 +561,8 @@ i {font-style:normal;}
 }
 .list .content .info {
     padding:20px;
-    border-bottom:1px solid #e6e6e6;
-    border-top:1px solid #e6e6e6;
+    border-bottom:1px solid #dedede;
+
 }
 .list .content .info .thumb {
     float:left;
@@ -590,12 +589,14 @@ i {font-style:normal;}
 }
 .list .content .info .text .introduce {
     font-size: 1.4em;
-    color: #989898;
+    height:2.8em;
+    color: #666;
     overflow: hidden;
     margin:0px;
 
 }
-.numviesshow {margin:0px;}
+.numviesshow {margin:0px;color:#a0a0a0;}
+.guanjjin {background-color:#bcdefa;color:#fff;padding:6px 10px;border-radius: 5px;margin-left:5px;}
 .list .content .price1 {
     font-size: 1.4em;
     color: #ff8125;
@@ -644,6 +645,8 @@ i {font-style:normal;}
     text-align:center;
     padding:20px 0px;
     display:block;
+    color:#000;
+    background-color:#dedede;
     font-size:1.6em;
 }
 /* 内容 */
@@ -700,11 +703,11 @@ i {font-style:normal;}
     color:#de0000;
 }
 #content .info {
-    font-size:2em;
+    font-size:1em;
     padding:0px 20px;
-    line-height:2.6em;
+    line-height:3em;
     background-color:#fff;
-    color:#e56101;
+    color:#dedede;
 }
 #content .handle {
     position:relative;
@@ -722,7 +725,7 @@ i {font-style:normal;}
 .numsviews img {vertical-align: middle;}
 .numsviews img.likethujmsd {width:12px;height:auto;}
 .thumbinfo1 {
-    padding:0px 20px 20px 20px;
+    padding:30px 20px;
     border-top:1px solid #e6e6e6;
     background-color:#fff;
 }
@@ -730,8 +733,7 @@ i {font-style:normal;}
     margin:0px;
     font-size:2em;
     color:#000;
-    line-height:2em;
-    font-weight: bold;
+    line-height:1em;
 }
 .thumbinfo1 img {
     width:100% !important;

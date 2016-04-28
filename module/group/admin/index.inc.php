@@ -6,10 +6,8 @@ $menus = array (
     array('添加'.$MOD['name'], '?moduleid='.$moduleid.'&action=add'),
     array($MOD['name'].'列表', '?moduleid='.$moduleid),
     array('审核'.$MOD['name'], '?moduleid='.$moduleid.'&action=check'),
-    array('过期'.$MOD['name'], '?moduleid='.$moduleid.'&action=expire'),
     array('未通过'.$MOD['name'], '?moduleid='.$moduleid.'&action=reject'),
     array('回收站', '?moduleid='.$moduleid.'&action=recycle'),
-    array('移动分类', '?moduleid='.$moduleid.'&action=move'),
 );
 
 if(in_array($action, array('add', 'edit'))) {
@@ -26,8 +24,8 @@ if($_catids || $_areaids) require DT_ROOT.'/admin/admin_check.inc.php';
 if(in_array($action, array('', 'check', 'expire', 'reject', 'recycle'))) {
 	$sfields = array('模糊', '标题', '简介', '公司名', '联系人', '联系电话', '联系地址', '电子邮件', '联系MSN', '联系QQ', '会员名', '编辑', 'IP', '文件路径', '内容模板');
 	$dfields = array('keyword', 'title', 'introduce', 'company', 'truename', 'telephone', 'address', 'email', 'msn', 'qq', 'username', 'editor', 'ip', 'filepath', 'template');
-	$sorder  = array('结果排序方式', '订单数量降序', '订单数量升序', '销售量降序', '销售量升序', '团购价降序', '团购价升序', '市场价降序', '市场价升序', '节省费用降序', '节省费用升序', '享受折扣降序', '享受折扣升序', '最多人数降序', '最多人数升序', '最低人数降序', '最低人数升序', '浏览人次降序', '浏览人次升序', '更新时间降序', '更新时间升序', VIP.'级别降序', VIP.'级别升序', '添加时间降序', '添加时间升序', '结束时间降序', '结束时间升序', '信息ID降序', '信息ID升序');
-	$dorder  = array($MOD['order'], 'orders DESC', 'orders ASC', 'sales DESC', 'sales ASC', 'price DESC', 'price ASC', 'marketprice DESC', 'marketprice ASC', 'savemoney DESC', 'savemoney ASC', 'discount DESC', 'discount ASC', 'amount DESC', 'amount ASC', 'minamount DESC', 'minamount ASC', 'hits DESC', 'hits ASC', 'edittime DESC', 'edittime ASC', 'vip DESC', 'vip ASC', 'addtime DESC', 'addtime ASC', 'endtime DESC', 'endtime ASC', 'itemid DESC', 'itemid ASC');
+	$sorder  = array('结果排序方式', '更新时间降序', '更新时间升序', '添加时间降序', '添加时间升序', '信息ID降序', '信息ID升序');
+	$dorder  = array($MOD['order'], 'edittime DESC', 'edittime ASC','addtime DESC', 'addtime ASC', 'itemid DESC', 'itemid ASC');
 	$_process = array(
 	'<span style="color:#008000;">[成团中]</span>',
 	'<span style="color:#0000FF;">[团购中]</span>',

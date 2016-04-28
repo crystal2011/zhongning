@@ -1,15 +1,10 @@
 {template 'header','mobile'}
 {template 'search','mobile'}
-<style>
-    .list .content .info .text .introduce {height:4.2em;overflow: hidden;}
-</style>
 <section>
-    <span class="ids">{ad(84)}</span>
-    <article id="areaselect"  class="clear">
-        <span  style="float:right;"><a href="/mobile/share/publish.php?moduleidtype={$moduleidtype}">发布</a></span>
-    </article>
-    <article class="line" style="border-width:0px;"></article>
-    <article class="list">
+    <span class="ids"><img src="{DT_SKIN_TWO}images/wycms/mobile/articleicon.jpg" /></span>
+
+    <article class="list" style="margin-top:20px;">
+        <p class="zhongtitle">最新资讯</p>
         {if $list}
         {loop $list $k $v}
         <div class="content">
@@ -17,15 +12,13 @@
                 <a class="thumb" href="/mobile/article/show.php?id={$v['itemid']}"><img src="{$v['thumb']}" /></a>
                 <div class="text">
                     <a class="title" href="/mobile/article/show.php?id={$v['itemid']}">{$v['title']}</a>
-                    <p class="introduce">简介：{$v['introduce']}</p>
+                    <p class="introduce">{$v['introduce']}发达师范生方法撒范德萨发大水啥地方范德萨发大水方fdsfasdf afdsf 法发撒飞洒发啊</p>
                     <p class="numviesshow clear">
-                            <span class="fl numtimes">
+                            <span class=""><i class="guanjjin">我是</i></span>
+                            <span class="fr numtimes">
                                 {date('Y-m-d',$v['addtime'])}
                             </span>
-                            <span class="numsviews">
-                                <img src="{DT_SKIN}image/public/icon-liulan.png" />浏览({$v['hits']})&nbsp;
-                                <img src="{DT_SKIN}image/public/icon-pinlun.png" />评论({$v['comments']})
-                            </span>
+
                     </p>
                 </div>
             </div>

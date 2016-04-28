@@ -40,9 +40,7 @@ if($action=='ajax'){
     }
     exit(json_encode(array('info'=>$info,'totalpage'=>$totalpage)));
 }else{
-    $seo_title = '文章发布-';
-    $topname = '文章发布';
-    $moduleidtype = 6;
-    $backurl = '/mobile/index.php';
+    $seo_title = '最新资讯-';
+    $topname = '最新资讯';
     include template('article/index','mobile');
 }
