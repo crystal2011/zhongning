@@ -4,17 +4,15 @@
     <span class="ids"><img src="{DT_SKIN_TWO}images/wycms/mobile/articleicon.jpg" /></span>
 
     <article class="list" style="margin-top:10px;">
-        <p class="zhongtitle">最新资讯</p>
-        {if $list}
-        {loop $list $k $v}
+        <p class="zhongtitle">业绩公示</p>
+        {if $aBrand}
+        {loop $aBrand $k $v}
         <div class="content">
             <div class="clear info">
-                <a class="thumb" href="/mobile/article/show.php?id={$v['itemid']}"><img src="{if $v['thumb'] && file_exists(str_replace($CFG['url'],DT_ROOT.'/',$v['thumb']))}{$v['thumb']}{else}{DT_SKIN_TWO}images/wycms/default.jpg{/if}" /></a>
-                <div class="text">
-                    <a class="title" href="/mobile/article/show.php?id={$v['itemid']}">{$v['title']}</a>
+                <div class="text" style="padding:0px;">
+                    <a class="title" href="/mobile/track/show.php?id={$v['itemid']}">{$v['title']}</a>
                     <p class="introduce">{$v['introduce']}</p>
                     <p class="numviesshow clear">
-                            <span class=""><i class="guanjjin">{dsubstr($v['keyword'],12)}</i></span>
                             <span class="fr numtimes">
                                 {date('Y-m-d',$v['addtime'])}
                             </span>
@@ -25,8 +23,8 @@
         {/loop}
         {/if}
     </article>
-    {if $list && $page!=$totalpage}
-    <article class="readmore" onclick="getmorecommont('{$CFG[url]}/mobile/article/index.php',this)" data-page="1">
+    {if $aBrand && $page!=$totalpage}
+    <article class="readmore" onclick="getmorecommont('{$CFG[url]}/mobile/track/index.php',this)" data-page="1">
         <a>查看更多>></a>
     </article>
     {/if}

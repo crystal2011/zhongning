@@ -725,7 +725,7 @@ i {font-style:normal;}
 .numsviews img {vertical-align: middle;}
 .numsviews img.likethujmsd {width:12px;height:auto;}
 .thumbinfo1 {
-    padding:30px 20px;
+    padding:20px;
     border-top:1px solid #e6e6e6;
     background-color:#fff;
 }
@@ -1124,7 +1124,7 @@ a img {font-size:0px;}
     background-color:#fff;
     margin-bottom:10px;
 }
-.aboutsnav a{width:20%;text-align:center;color:#000;font-size:1.4em;line-height:2.4em;display:block;float:left;border-right:1px solid #ebebeb;background-color:#fff;}
+.aboutsnav a{width:25%;text-align:center;color:#000;font-size:1.6em;line-height:2.4em;display:block;float:left;border-right:1px solid #ebebeb;background-color:#fff;}
 .aboutsnav a.cur {color:#7abef6;border-bottom:2px solid #7abef6;}
 .aboutscon {background-color:#fff;margin-bottom:10px;}
 img {vertical-align:middle;}
@@ -1140,4 +1140,20 @@ img {vertical-align:middle;}
 .imagecon img {
     max-width:100%;
     height:auto;
+}
+
+#financeform {background-color:#7abef6;color:#fff;padding:10px 0px 30px 0px;margin-top:10px;}
+#financeform p {margin:0px;}
+#financeform .title {text-align:center;font-size:2em;line-height:2em;border-bottom:1px solid #f1f1f1;margin-bottom:20px;}
+#financeform .finformleft {float:left;font-size:1.8em;line-height:2.4em;}
+#financeform .finformright {padding-left:90px;width:100%;display:block;}
+#financeform .finformright input {text-indent: 5px;}
+#financeform .Validform_wrong {color:#fff;}
+#financeform .Validform_right {color:#7abef6 !important;}
+#financeform .finformright input,#financeform .finformright textarea {width:100%;border:0px;background-color:#fff;padding:0.7em 0px;font-size:1.4em;margin-top:0.3em;}
+#financeform .diyadanbao .finformright {padding-left:145px;}
+#financeform .finformright textarea {height:6em;padding:0px;}
+#financeform .Validform_checktip {
+    text-align: left;
+    padding: 0px;
 }

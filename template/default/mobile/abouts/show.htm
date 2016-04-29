@@ -1,11 +1,16 @@
 {template 'header','mobile'}
 {template 'search','mobile'}
+<style>
+    #content .info {line-height:normal;}
+</style>
+<section>
+    {template 'top','mobile/abouts'}
+</section>
 <section id="content" style="margin-top:10px;">
     <article class="thumbinfo1">
         <p>{$info['title']}</p>
     </article>
     <article class="info clear">
-        <span class="fl">关键词 <i class="guanjjin">{if $info['keyword']}{$info['keyword']}{else}&nbsp;{/if}</i></span>
         <span class="fr">{date('Y-m-d',$info['addtime'])}</span>
     </article>
     <article class="view" style="border-top:1px solid #ebebeb;">

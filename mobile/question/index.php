@@ -10,5 +10,6 @@ $list = $oGroup->get_list(' status = 3');
 
 $seo_title = '常见问题-';
 $topname = '常见问题';
+$backurl = '/mobile/index.php';
 include template('index','mobile/question');
 ?>

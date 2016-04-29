@@ -7,5 +7,6 @@ require '../../common.inc.php';
 $two_nav_selected = 'joinus';
 $topname = '关于我们';
 $seo_title = '加入我们-';
+$backurl = '/mobile/abouts/compintro.php';
 include template('joinus','mobile/abouts');
 ?>

@@ -12,11 +12,21 @@
     </article>
     <article class="contactsus">
         <div class="aboutstitle">联系我们</div>
+        <?php
+                        $ainvest_name = explode(',',$DT['invest_name']);
+                        $ainvest_phone = explode(',',$DT['invest_phone']);
+                     ?>
         <div class="concon">
             <p>投资顾问：</p>
-            <p class="clear conmobile"><span class="fl">没谁能&nbsp;&nbsp;1870757890 </span><span class="fl">没谁能&nbsp;&nbsp;1870757890 </span><span class="fl">没谁能&nbsp;&nbsp;1870757890</span></p>
-            <p style="margin:0px;">公司电话：875414511</p>
-            <p class="clear"><span class="fl" >公司地址：</span><span style="padding-left:5em;width:100%;display:block;"><span>发发发发的发送到发发发发的发送到发发生的范德萨发撒旦法是否发发生的范德萨发撒旦法是否</span></span></p>
+            <p class="clear conmobile">
+                {if $ainvest_name}
+                {loop $ainvest_name $k $v}
+                <span class="fl clear"><span style="float:left;margin-right:10px;width:4.3em;">{$v}</span><span style="float:left;">{if isset($ainvest_phone[$k])}{$ainvest_phone[$k]}{/if} </span></span>
+                {/loop}
+                {/if}
+            </p>
+            <p style="margin:0px;">公司电话：{$DT['telephone']}</p>
+            <p class="clear"><span class="fl" >公司地址：</span><span style="padding-left:5em;width:100%;display:block;">{$DT['address']}</span></p>
             </div>
     </article>
 </section>

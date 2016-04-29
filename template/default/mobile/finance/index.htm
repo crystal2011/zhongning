@@ -1,29 +1,15 @@
 {template 'header','mobile'}
 {template 'search','mobile'}
-<style>
-    #financeform {background-color:#7abef6;color:#fff;padding:10px 0px 30px 0px;margin-top:10px;}
-    #financeform p {margin:0px;}
-    #financeform .title {text-align:center;font-size:2em;line-height:2em;border-bottom:1px solid #f1f1f1;margin-bottom:20px;}
-    #financeform .finformleft {float:left;font-size:1.8em;line-height:2.4em;}
-    #financeform .finformright {padding-left:90px;width:100%;display:block;}
-    #financeform .finformright input {text-indent: 5px;}
-    #financeform .Validform_wrong {color:#fff;}
-    #financeform .Validform_right {color:#7abef6 !important;}
-    #financeform .finformright input,#financeform .finformright textarea {width:100%;border:0px;background-color:#fff;padding:0.7em 0px;font-size:1.4em;margin-top:0.3em;}
-    #financeform .diyadanbao .finformright {padding-left:145px;}
-    #financeform .finformright textarea {height:6em;padding:0px;}
-    #financeform .Validform_checktip {
-        text-align: left;
-        display: block;
-        padding: 0px;
-    }
-</style>
+
 <section>
     <span class="ids"><img src="{DT_SKIN_TWO}images/wycms/mobile/finicon.jpg" /></span>
     <article class="imagecon">
         <img src="{DT_SKIN_TWO}images/wycms/mobile/fin1.jpg" style="margin-top:10px;" />
         <img src="{DT_SKIN_TWO}images/wycms/mobile/fin2.jpg" style="margin-top:10px;" />
-        <img src="{DT_SKIN_TWO}images/wycms/mobile/fin3.jpg" style="margin-top:10px;" />
+        <div style="margin-top:10px;position:relative;">
+            <img src="{DT_SKIN_TWO}images/wycms/mobile/fin3.jpg" />
+            <img src="{DT_SKIN_TWO}images/wycms/mobile/finds.png" onclick="location.href='/mobile/track/index.php'" style="width:50%;height:auto;left:0px;bottom:0px;position:absolute;"></div>
+        </div>
         <form id="financeform">
             <div class="title">在线申请</div>
             <div style="padding:0 10px;">
@@ -116,7 +102,7 @@
                     title: false, //不显示标题
                     closeBtn: 0, //不显示关闭按钮
                     skin: 'layuidl',
-                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:1.4em;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。</div>'
+                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:1.4em;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。<br /><div style="height:5px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:5px 10px;">确定</span></div>'
                 });
                 $("#financeform")[0].reset();
                 $("input[name='submit']").val(1);

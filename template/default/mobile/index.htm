@@ -35,10 +35,10 @@
         <div class="swiper-wrapper asdf">
             <article class="module swiper-slide">
                 <ul class="clear">
-                    <li>
-                        <a href="/mobile/index.php">
-                            <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module1.png"  /></p>
-                            <span>首页</span>
+                    <li >
+                        <a href="/mobile/finance/index.php">
+                            <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module4.png"  /></p>
+                            <span>融资业务</span>
                         </a>
                     </li>
                     <li>
@@ -54,21 +54,21 @@
                         </a>
                     </li>
                     <li class="noboderbottom">
-                        <a href="/mobile/finance/index.php">
-                            <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module4.png"  /></p>
-                            <span>融资业务</span>
+                        <a href="/mobile/index.php">
+                            <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module1.png"  /></p>
+                            <span>首页</span>
                         </a>
                     </li>
-                    <li  class="noboderbottom">
-                        <a href="/mobile/abouts/contact.php">
-                            <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module5.png"  /></p>
-                            <span>联系我们</span>
-                        </a>
-                    </li>
-                    <li  class="noboderright noboderbottom">
+                    <li class="noboderbottom">
                         <a href="/mobile/question/index.php" >
                             <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module6.png"  /></p>
                             <span>常见问题</span>
+                        </a>
+                    </li>
+                    <li  class="noboderright noboderbottom">
+                        <a href="/mobile/abouts/contact.php">
+                            <p><img src="{DT_SKIN_TWO}images/wycms/mobile/module5.png"  /></p>
+                            <span>联系我们</span>
                         </a>
                     </li>
                 </ul>
@@ -105,7 +105,7 @@
             {loop $aArticleHasThumb $k $v}
             <li class="clear" style="margin-bottom:0px;">
                 <div class="lidiv">
-                    <a class="schoola" href="/mobile/article/show.php?id={$v['itemid']}"><img src="{$v['thumb']}" /></a>
+                    <a class="schoola" href="/mobile/article/show.php?id={$v['itemid']}"><img src="{if $v['thumb'] && file_exists(str_replace($CFG['url'],DT_ROOT.'/',$v['thumb']))}{$v['thumb']}{else}{DT_SKIN_TWO}images/wycms/default.jpg{/if}" /></a>
                 </div>
             </li>
             {/loop}

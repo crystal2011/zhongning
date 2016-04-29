@@ -70,11 +70,11 @@
             if(data.status=='y'){
                 layer.open({
                     type: 1,
-                    area: ['400px', '100px'], //宽高
+                    area: ['400px', '120px'], //宽高
                     title: false, //不显示标题
                     closeBtn: 0, //不显示关闭按钮
                     skin: 'layuidl',
-                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:18px;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。</div>'
+                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:18px;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。<br /><div style="height:10px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:3px 10px;">确定</span></div>'
                 });
 
                 $(".financeform")[0].reset();
@@ -94,5 +94,6 @@
     function dellyer(){
         $(".layui-layer,.layui-layer-shade").remove();
     }
+
 </script>
 {template  'footer'}

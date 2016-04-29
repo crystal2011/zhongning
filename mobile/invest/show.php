@@ -4,7 +4,7 @@
  *
  */
 define('DT_REWRITE', true);
-require '../common.inc.php';
+require '../../common.inc.php';
 require DT_ROOT.'/module/sell/sell.class.php';
 $oSell = new sell(5);
 
@@ -35,28 +35,18 @@ if($submit){
     exit(json_encode(array('status'=>'y','info'=>'你已提交成功,<br />稍后投资顾问会跟您联系！')));
 }else{
     $id = isset($id)?intval($id):0;
-    if(empty($id)) dalert('投资项目不存在','/invest/index.php');
+    if(empty($id)) dalert('投资项目不存在','/mobile/invest/list.php');
 
     $oSell->itemid = $id;
     $info = $oSell->get_one();
     if(!$oSell->checkSell($info)){
-        dalert($oSell->errmsg,'/invest/index.php');
+        dalert($oSell->errmsg,'/mobile/invest/list.php');
     }
 
-    require_once '../module/extend/ad.class.php';
-    $oAd = new ad;
-    $oAd->aid = 53;
-    $aAd = $oAd->get_one();
-    if($aAd){
-        $oAd->pid = $aAd['pid'];
-        $pAd = $oAd->get_one_place();
-    }else{
-        $pAd['height'] = 0;
-    }
-
-    $nav_selected = 'invest';
+    $topname = '投资理财';
     $seo_title = $info['title'].'-投资理财-';
-    include template('show','invest');
+    $backurl = '/mobile/list.php';
+    include template('show','mobile/invest');
 }
 
 ?>

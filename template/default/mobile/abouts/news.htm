@@ -1,0 +1,36 @@
+{template 'header','mobile'}
+{template 'search','mobile'}
+<style>
+    .list .content .info .text .introduce {height:4.2em;}
+</style>
+<section>
+    {template 'top','mobile/abouts'}
+    <article class="list" style="margin-top:10px;">
+        {if $aInfo}
+        {loop $aInfo $k $v}
+        <div class="content">
+            <div class="clear info">
+                <a class="thumb" href="/mobile/abouts/show.php?id={$v['itemid']}"><img src="{$v['thumb']}" /></a>
+                <div class="text">
+                    <a class="title" href="/mobile/abouts/show.php?id={$v['itemid']}">{$v['title']}</a>
+                    <p class="introduce">{$v['introduce']}</p>
+                    <p class="numviesshow clear">
+                            <span class="fr numtimes">
+                                {date('Y-m-d',$v['addtime'])}
+                            </span>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        {/loop}
+        {/if}
+    </article>
+    {if $aInfo && $page!=$totalpage}
+    <article class="readmore" onclick="getmorecommont('{$CFG[url]}/mobile/abouts/news.php',this)" data-page="1">
+        <a>查看更多>></a>
+    </article>
+    {/if}
+</section>
+{template 'footer','mobile'}
+

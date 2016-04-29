@@ -6,7 +6,7 @@ define('DT_REWRITE', true);
 require '../../common.inc.php';
 
 
-$pagesize = 6;
+$pagesize = 10;
 $offset = ($page-1)*$pagesize;
 require_once '../../module/article/article.class.php';
 $oArticle = new article(21);
@@ -21,18 +21,18 @@ if($action=='ajax'){
     $info = '';
     if($list){
         foreach($list as $k=>$v){
+
+            $v['thumb'] = $v['thumb'] && file_exists(str_replace($CFG['url'],DT_ROOT.'/',$v['thumb']))?$v['thumb']:DT_SKIN_TWO.'images/wycms/default.jpg';
+
             $info .= '<div class="content">
                         <div class="clear info">
                             <a class="thumb" href="/mobile/article/show.php?id='.$v['itemid'].'"><img src="'.$v['thumb'].'" /></a>
                             <div class="text">
                                 <a class="title" href="/mobile/article/show.php?id='.$v['itemid'].'">'.$v['title'].'</a>
-                                <p class="introduce">简介：'.$v['introduce'].'</p>
+                                <p class="introduce">'.$v['introduce'].'</p>
                                 <p class="numviesshow clear">
-                                    <span class="fl numtimes">'.date('Y-m-d',$v['addtime']).'</span>
-                                    <span class="numsviews">
-                                        <img src="'.DT_SKIN.'image/public/icon-liulan.png" />浏览('.$v['hits'].')&nbsp;
-                                        <img src="'.DT_SKIN.'image/public/icon-pinlun.png" />评论('.$v['comments'].')
-                                    </span>
+                                    <span class=""><i class="guanjjin">'.dsubstr($v['keyword'],12).'</i></span>
+                                    <span class="fr numtimes">'.date('Y-m-d',$v['addtime']).'</span>
                                 </p>
                             </div>
                         </div>';
@@ -42,5 +42,6 @@ if($action=='ajax'){
 }else{
     $seo_title = '最新资讯-';
     $topname = '最新资讯';
+    $backurl = '/mobile/index.php';
     include template('article/index','mobile');
 }
