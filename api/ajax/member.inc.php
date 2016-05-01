@@ -165,7 +165,8 @@ switch($job) {
 
                 //发送邮件
                 $auth = make_auth($DT_TIME.$email);
-                $authurl = $CFG['url'].'ajax.php?action=member&moduleid=2&job=editemail&auth='.$auth;
+                $s = isset($s)?$s:'';
+                $authurl = $CFG['url'].'ajax.php?action=member&moduleid=2&job=editemail&auth='.$auth.'&s='.$s;
                 $db->query("delete from {$db->pre}member_link where email = '".$email."' and type = 3");
                 $db->query("insert into {$db->pre}member_link (email,auth,authtime,type,userid) values ('".$email."','".$auth."',$DT_TIME,3,$_userid) ");
                 send_mail($email, $DT['sitename'].'用户修改邮箱', stripslashes(ob_template('editemail', 'mail')));
@@ -189,10 +190,11 @@ switch($job) {
     case 'editemail':
         $auth = isset($auth)?$auth:'';
         $user = check_auth($auth,3);
-        if($user['status']=='n') dalert('邮件已失效',$CFG['url'].'member/index.php');
+        $s = isset($s)?$s:'';
+        if($user['status']=='n') $s?dalert('邮件已失效',$CFG['url'].'mobile/member/info.php'):dalert('邮件已失效',$CFG['url'].'member/index.php');
         $user = $user['info'];
         $db->query("UPDATE {$db->pre}member SET email = '".$user['email']."' WHERE userid='".$user['userid']."'");
-        dalert('修改邮箱成功',$CFG['url'].'member/index.php');
+        $s?dalert('修改邮箱成功',$CFG['url'].'mobile/member/info.php'):dalert('修改邮箱成功',$CFG['url'].'member/index.php');
         break;
 }
 ?>

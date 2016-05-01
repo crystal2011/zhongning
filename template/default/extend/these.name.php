@@ -27,6 +27,7 @@ $names = array (
   'webpage-4' => 'webpage4',
   'webpage-5' => 'webpage5',
   'webpage-6' => 'webpage6',
+  'webpage-7' => 'webpage7',
   'webpage1' => 'webpage',
 );
 ?>

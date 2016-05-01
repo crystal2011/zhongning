@@ -6,7 +6,7 @@
 
     .thumbinfo1 p{font-size:1.6em}
 </style>
-<span class="ids"><img src="{DT_SKIN_TWO}images/wycms/mobile/finicon.jpg" /></span>
+<span class="ids">{ad(86)}</span>
 <section id="content" style="margin-top:10px;">
     <article class="thumbinfo1" style="border-bottom:1px solid #ebebeb;padding:20px;text-align:center;">
         <p>{$info['title']}</p>
@@ -39,8 +39,8 @@
             <p class="clear">
                 <span class="finformleft">投资金额：</span>
                 <span class="finformright">
-                    <input type="text"  name="price" type="text" id="price" datatype="money" placeholder="输入3万-500万的金额(纯数字)" nullmsg="输入3万-500万的金额(纯数字)" errormsg="输入3万-500万的金额(纯数字)" maxlength="9" />
-                    <span style="color:#00467f;">注：最低限额3万元</span>
+                    <input type="text"  name="price" type="text" id="price" datatype="money" placeholder="输入3万-500万的金额(纯数字)" nullmsg="3万-500万(纯数字)" errormsg="3万-500万(纯数字)" maxlength="9" />
+                    <span style="color:#00467f;line-height:20px;float:left;font-size:12px;height:20px;">最低限额3万元</span>
                 </span>
 
             </p>
@@ -62,6 +62,7 @@
 <style>
     .layuidl{background-color:#68b2f4;text-align:center;color:#fff;}
     .layui-layer {max-width:400px;}
+    .layui-layer-content {height:auto !important;}
 </style>
 <script type="text/javascript">
     function fasdf(){
@@ -93,21 +94,21 @@
 
                 layer.open({
                     type: 1,
-                    area: ['90%', '100px'], //宽高
+                    area: ['90%','auto'], //宽高
                     title: false, //不显示标题
                     closeBtn: 0, //不显示关闭按钮
-                    skin: 'layuidl',
-                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:1.4em;">您已提交成功，<br/>稍后投资顾问会与您电话联系，请耐心等待。<br /><div style="height:5px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:5px 10px;">确定</span></div>'
+                    style: '',
+                    content: '<div class="layuidl" style="padding-bottom:20px;"><img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="font-size:1.2em;padding-top:20px;"><span style="margin:0px 10px;">您已提交成功<br/>稍后投资顾问会与您电话联系，请耐心等待。<br /><div style="height:5px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:5px 10px;">确定</span></span></div></div>'
                 });
                 $("#financeform")[0].reset();
                 $("input[name='submit']").val(1);
             }else if(data.status=='n'){
-                layer.msg(data.info);
+                alert(data.info);
             }
         }
     })
     function dellyer(){
-        $(".layui-layer,.layui-layer-shade").remove();
+        $(".layui-layer,.layui-layer-shade,.layermbox").remove();
     }
 
 </script>

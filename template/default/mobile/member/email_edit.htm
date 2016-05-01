@@ -1,8 +1,8 @@
 {template 'header','mobile'}
 {template 'search','mobile'}
 <section id="login-main">
-    <form id="res-form" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=username" method="post">
-        <input type="text" class="newinput" placeholder="3-15个字" value="{$member_info['username']}" name="username" datatype="s3-15" nullmsg="请输入用户名" errormsg="用户名输入有误" />
+    <form id="res-form" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=email&s=mobile" method="post">
+        <input type="text" class="newinput" placeholder="请填写邮箱" name="email" datatype="e" value="{$member_info['email']}" nullmsg="请填写邮箱" errormsg="邮箱输入有误" />
         <span class="Validform_checktip"></span>
         <p class="submit-btn"><input type="submit" value="提交" /></p>
         <input type="hidden" name="submit" value="1" />
@@ -17,9 +17,6 @@
         ajaxPost:true,
         callback:function(data){
             alert(data.info);
-            if(data.status=='y'){
-                location.href = 'info.php';
-            }
         }
     });
 

@@ -1,40 +1,45 @@
-{template 'top','mobile/member'}
+{template 'header','mobile'}
+{template 'search','mobile'}
+
+<!-- 注册 第一步-->
 <section id="login-main">
     <form id="res-form" action="/mobile/member/login.php" method="post">
-        <article class="input-wrap"><span class="input-key">用户名：</span>
-            <input type="text" placeholder="请输入手机号/用户名" name="username" datatype="m|s3-15" errormsg="请输入手机号/用户名" class="input-value" autocomplete="off"/>
-        </article>
-        <article class="input-wrap"><span class="input-key">密&nbsp;&nbsp;&nbsp;码：</span>
-            <input style="display:none">
-            <input type="password" placeholder="请输入登录密码" name="password" datatype="s6-20" class="input-value" autocomplete="off"/>
-        </article>
-        <input type="hidden" name="submit" value="1" />
+        <input type="text" class="newinput" placeholder="邮箱/用户名" name="username" datatype="e|s3-15" nullmsg="请输入邮箱/用户名" errormsg="邮箱/用户名输入有误" />
+        <input type="password" class="newinput" placeholder="密码"  name="password" maxlength="20" datatype="s6-20" datatype="s6-20"  nullmsg="请填写密码" errormsg="密码输入有误" />
+        <span class="Validform_checktip"></span>
+        <p class="submit-btn"><input type="submit" value="马上登录" /></p>
         <input type="hidden" name="forward" value="{$forward}" />
-        <input type="submit" value="立即登录" class="submit-btn"/>
+        <input type="hidden" name="submit" value="1" />
+        <article class="think-tip clear">
+            <span class="fl"> <a href="register.php">快速注册</a></span>
+            <a class="fr" href="findpw.php">找回密码</a>
+        </article>
     </form>
-    <article class="page-skip-box clear"><span class="fl">还没账号，<a href="register.php">立即注册</a></span><span class="fr"><a href="findpw.php">忘记密码</a></span></article>
-    <script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
-    <script src="{DT_SKIN_TWO}js/popup.js"></script>
-    <script type="text/javascript">
-        $("#res-form").Validform({
-            tiptype: 3,
-            postonce:true,
-            ajaxPost:true,
-            beforeSubmit:function(curform){
-                getToken();
-                return true;
-            },
-            callback:function(data){
-                if(data.status=='n'){
-                    alert(data.info);
-                }else{
-                    window.setTimeout("locationhref('"+data.forward+"')",1000);
-                }
-            }
-        })
-        function locationhref(url){
-            location.href = url;
-        }
-    </script>
+
 </section>
+
+<script src="{DT_SKIN}js/Validform_v5.3.2_min.js"></script>
+<script src="{DT_SKIN}js/send.js"></script>
+<script type="text/javascript">
+
+    $("#res-form").Validform({
+        tiptype: 3,
+        postonce:true,
+        ajaxPost:true,
+        beforeSubmit:function(curform){
+            getToken();
+            return true;
+        },
+        callback:function(data){
+            if(data.status=='n'){
+                alert(data.info);
+            }else{
+                window.setTimeout("locationhref('"+data.forward+"')",1000);
+            }
+        }
+    })
+    function locationhref(url){
+        location.href = url;
+    }
+</script>
 {template 'footer','mobile'}

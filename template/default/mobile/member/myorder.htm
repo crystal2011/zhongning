@@ -1,0 +1,49 @@
+{template 'header','mobile'}
+{template 'search','mobile'}
+<section>
+    {if $aBuy}
+    <article class="sdn">
+
+            <table class="adtable">
+
+                {loop $aBuy $k $v}
+                <tr><td colspan="2">
+                    企业：
+                    {if isset($aSell[$v['sell_itemid']])}
+                        <a href="/mobile/invest/show.php?id={$v['sell_itemid']}" class="youxiao">
+                        {$aSell[$v['sell_itemid']]['company']}
+                        </a>
+                    {else}
+                        <span class="shixiao">失效</span>
+                    {/if}
+                </td>
+                </tr>
+                <tr><td>金额：{$v['price']}</td><td >期限：{$v['month']}</td></tr>
+                <tr>
+                    <td>时间：{date('Y-m-d',$v['addtime'])}</td>
+                    <td>
+                        状态：
+                        {if $v['status']==3}
+                        完成投资
+                        {elseif $v['status']==2}
+                        审核中
+                        {elseif $v['status']==1}
+                        拒绝投资
+                        {else}
+                        失效
+                        {/if}
+                    </td>
+                </tr>
+                <tr class="bottomtr"><td colspan="2" align="center"><a href="myordershow.php?id={$v['itemid']}" class="blue" >查看</a></td></tr>
+                {/loop}
+            </table>
+
+    </article>
+    {/if}
+    {if $aBuy && $page!=$totalpage}
+    <article class="readmore" onclick="getmorecommont('{$CFG[url]}mobile/member/myorder.php',this,'adtable')" data-page="1">
+        <a>查看更多>></a>
+    </article>
+    {/if}
+</section>
+{template 'footer','mobile'}

@@ -4,7 +4,7 @@ require '../../common.inc.php';
 
 require_once '../../module/exhibit/exhibit.class.php';
 $oBrand = new exhibit(8);
-list($aBrand,$totalpage) = $oBrand->brandList('title,itemid,introduce,addtime','status = 3','addtime desc',20);
+list($aBrand,$totalpage) = $oBrand->brandList('title,itemid,introduce,addtime','status = 3','addtime desc',10);
 
 if($action=='ajax'){
     $info = '';

@@ -139,14 +139,12 @@ if(isset($forward)) {
 } else {
 	$forward = strpos($DT_REF, (DT_DOMAIN ? DT_DOMAIN : DT_PATH)) === false ? DT_PATH : $DT_REF;
 }
-
 $isMobile = isMobile();
 $isMobilestr = strpos($_SERVER['PHP_SELF'],'mobile');
-$isallowhost = in_array($_SERVER['HTTP_HOST'],array('shixun.com','192.168.0.103','06.8660.org'))?true:false;
-/*if($isMobile && $isMobilestr===false && $isallowhost && strpos($_SERVER['PHP_SELF'],'ajax')===false){
+if($isMobile && $isMobilestr===false && strpos($_SERVER['PHP_SELF'],'ajax')===false  && strpos($_SERVER['PHP_SELF'],'upload')===false){
     dheader($CFG['url'].'mobile/index.php');
-}*/
-if($isMobile && $isMobilestr && $isallowhost){
+}
+if($isMobile && $isMobilestr){
     $forward = wapforward();
 }
 

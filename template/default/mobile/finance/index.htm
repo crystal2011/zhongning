@@ -2,7 +2,7 @@
 {template 'search','mobile'}
 
 <section>
-    <span class="ids"><img src="{DT_SKIN_TWO}images/wycms/mobile/finicon.jpg" /></span>
+    <span class="ids">{ad(85)}</span>
     <article class="imagecon">
         <img src="{DT_SKIN_TWO}images/wycms/mobile/fin1.jpg" style="margin-top:10px;" />
         <img src="{DT_SKIN_TWO}images/wycms/mobile/fin2.jpg" style="margin-top:10px;" />
@@ -68,10 +68,15 @@
 <style>
     .layuidl{background-color:#68b2f4;text-align:center;color:#fff;}
     .layui-layer {max-width:400px;}
+    .layui-layer-content {height:auto !important;}
 </style>
 <script type="text/javascript">
     function fasdf(){
         $("#financeform").submit();
+    }
+    function dellyer(){
+
+        $(".layui-layer,.layui-layer-shade,.layermbox").remove();
     }
     $("#financeform").Validform({
         tiptype: 3,
@@ -95,25 +100,24 @@
         },
         callback:function(data){
             if(data.status=='y'){
-
                 layer.open({
                     type: 1,
-                    area: ['90%', '100px'], //宽高
+                    area: ['90%','auto'], //宽高
                     title: false, //不显示标题
                     closeBtn: 0, //不显示关闭按钮
-                    skin: 'layuidl',
-                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:1.4em;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。<br /><div style="height:5px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:5px 10px;">确定</span></div>'
+                    style: '',
+                    content: '<div class="layuidl" style="padding-bottom:20px;"><img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="font-size:1.2em;padding-top:20px;"><span style="margin:0px 10px;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。<br /><div style="height:5px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:5px 10px;">确定</span></span></div></div>'
                 });
                 $("#financeform")[0].reset();
                 $("input[name='submit']").val(1);
             }else if(data.status=='n'){
-                layer.msg(data.info);
+                alert(data.info);
             }
         }
     })
-    function dellyer(){
-        $(".layui-layer,.layui-layer-shade").remove();
-    }
+
+
+
 
 </script>
 {template 'footer','mobile'}

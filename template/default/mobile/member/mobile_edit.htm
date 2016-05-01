@@ -1,8 +1,8 @@
 {template 'header','mobile'}
 {template 'search','mobile'}
 <section id="login-main">
-    <form id="res-form" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=username" method="post">
-        <input type="text" class="newinput" placeholder="3-15个字" value="{$member_info['username']}" name="username" datatype="s3-15" nullmsg="请输入用户名" errormsg="用户名输入有误" />
+    <form id="res-form" action="/ajax.php?action=member&moduleid=2&job=saveinfo&field=mobile" method="post">
+        <input type="text" class="newinput" placeholder="请填写联系电话" name="mobile" datatype="mobile" nullmsg="请填写联系电话" value="{$member_info['mobile']}" errormsg="请填写联系电话" />
         <span class="Validform_checktip"></span>
         <p class="submit-btn"><input type="submit" value="提交" /></p>
         <input type="hidden" name="submit" value="1" />
@@ -15,6 +15,12 @@
     $('#res-form').Validform({
         tiptype:3,
         ajaxPost:true,
+        datatype:{
+            "mobile":function(gets,obj,curform,regxp){
+                if(!is_mobile(gets) && !is_phone(gets)) return '输入错误';
+                return true;
+            }
+        },
         callback:function(data){
             alert(data.info);
             if(data.status=='y'){

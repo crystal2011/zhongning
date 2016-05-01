@@ -77,7 +77,6 @@ $(function() {
       icons = '';
       icon = '<li style="float:left;font-size: 50px; line-height:20px;width: 20px; text-align: center; color:#fff;"> <i style="display: inline-block; width: 5px; height: 5px; border: 1px solid #a5b2b2; border-radius: 50%;"></i></li>';
       for (i = 1, ref = liLen; 1 <= ref ? i <= ref : i >= ref; 1 <= ref ? i++ : i--) {
-        console.log(liLen);
         icons += icon;
       }
       touchWrap.append('<ul class="clear" style="position: absolute; z-index: 10;left: ' + (liWidth - liLen*20) / 2 + 'px; bottom: 10px;">' + icons + '</ul>');

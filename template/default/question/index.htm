@@ -1,11 +1,19 @@
 {template  'header'}
 <section class="group" style="background-color:#fff;position:relative;">
-    <div  id="module1" class="g banner" style=" background: url({DT_SKIN_TWO}images/wycms/question.jpg) no-repeat center top;height:399px;"></div>
+    <div  id="module1" class="g banner"  style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
 </section>
 <section>
     <article class="container">
         <div class="questioncontain">
-
+            <div class="questiontitle"><span>常见问题</span></div>
+            {if $list}
+            {loop $list $k $v}
+            <div class="questionlist">
+                <p class="qlisttitle clearfix"><img src="{DT_SKIN_TWO}images/wycms/wen1.jpg" class="fl" alt="" /><span class="fl">{$v['title']}</span></p>
+                <p class="qlistcon clearfix"><img src="{DT_SKIN_TWO}images/wycms/wen2.jpg" class="fl" alt="" /><span class="fl">{$v['content']}</span></p>
+            </div>
+            {/loop}
+            {/if}
         </div>
         <div class="questioncontain1">
             <div class="questiontitle">

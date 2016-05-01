@@ -1,0 +1,39 @@
+{template 'header','mobile'}
+{template 'search','mobile'}
+<section>
+    {if $aFood}
+    <article class="sdn">
+
+            <table class="adtable">
+
+                {loop $aFood $k $v}
+                <tr><td>金额：{$v['price']}</td><td >期限：{$v['month']}</td></tr>
+                <tr><td colspan="2">抵押/担保：{dsubstr($v['danbao'],12,'...')}</td></tr>
+                <tr>
+                    <td>时间：{date('Y-m-d',$v['addtime'])}</td>
+                    <td>
+                        状态：
+                        {if $v['status']==3}
+                        完成融资
+                        {elseif $v['status']==2}
+                        审核中
+                        {elseif $v['status']==1}
+                        拒绝融资
+                        {else}
+                        失效
+                        {/if}
+                    </td>
+                </tr>
+                <tr class="bottomtr"><td colspan="2" align="center"><a href="myapplyshow.php?id={$v['itemid']}" class="blue" >查看</a></td></tr>
+                {/loop}
+            </table>
+
+    </article>
+    {/if}
+    {if $aFood && $page!=$totalpage}
+    <article class="readmore" onclick="getmorecommont('{$CFG[url]}mobile/member/myapply.php',this,'adtable')" data-page="1">
+        <a>查看更多>></a>
+    </article>
+    {/if}
+</section>
+{template 'footer','mobile'}

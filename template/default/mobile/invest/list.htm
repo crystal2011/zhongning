@@ -1,7 +1,7 @@
 {template 'header','mobile'}
 {template 'search','mobile'}
 <section>
-    <span class="ids"><img src="{DT_SKIN_TWO}images/wycms/mobile/investicon.jpg" /></span>
+    <span class="ids">{ad(86)}</span>
     <article style="margin-top:10px;background-color:#fff;">
         <p class="zhongtitle">投资项目</p>
         <div style="padding:10px;">
@@ -16,7 +16,7 @@
         </div>
     </article>
     {if $aSell && $page!=$totalpage}
-    <article class="readmore" onclick="getmorecommont('{$CFG[url]}/mobile/invest/list.php',this,'daitable')" data-page="1">
+    <article class="readmore" onclick="getmorecommont('{$CFG[url]}mobile/invest/list.php',this,'daitable')" data-page="1">
         <a>查看更多>></a>
     </article>
     {/if}

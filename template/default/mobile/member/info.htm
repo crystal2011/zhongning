@@ -1,43 +1,76 @@
-{template 'top','mobile/member'}
-<section class="mu mu-pay-info">
-    <ul>
-        <li class="clear">
-            <a href="?action=username_edit" class="db clear">
-                <label class="name db fl">用户名 :</label><span class="db fl info grey">{$member_info['username']}</span>
-                <i class="fa fa-angle-right fr"></i>
+{template 'header','mobile'}
+{template 'search','mobile'}
+<section id="index" style="margin-top:20px;">
+    <article class="hotchannel" style="margin-top:0px;">
+        <header class="channelheader">
+            <a style="" href="/mobile/member/info.php?action=username_edit" class="clear">
+                <div class="fl"><span>用户名称</span><span class="grey">{$member_info['username']}</span></div>
+                <i class="fa fa-angle-right fr dnfdd"></i>
             </a>
-        </li>
-        <li class="clear">
-            <a href="?action=truename_edit" class="db clear">
-                <label class="name db fl">真实姓名 :</label><span class="db fl info grey">{if $member_info['truename']}{$member_info['truename']}{else}请输入真实姓名{/if}</span>
-                <i class="fa fa-angle-right fr"></i>
+            <a style="" href="/mobile/member/myapply.php" class="clear">
+                <div class="fl">
+                    <span>真实姓名</span>
+                    <span class="grey">{$member_info['truename']}</span>
+                </div>
             </a>
-        </li>
-        <li class="clear">
-            <a href="?action=gender_edit" class="db clear">
-                <label class="name db fl">性别 :</label><span class="db fl info grey">{if $member_info['gender']==1}男{elseif $member_info['gender']==2}女{else}请选择性别{/if}</span>
-                <i class="fa fa-angle-right fr"></i>
+            <a style="" href="{if !$member_info['idcard']}/mobile/member/info.php?action=idcard_edit{else}javascript:;{/if}" class="clear">
+                <div class="fl">
+                    <span>身份证号</span>
+                    {if $member_info['idcard']}
+                    <span class="grey">{substr_replace($member_info['idcard'],'**************',2,(strlen($member_info['idcard'])-4))}</span>
+                    {else}
+                    <span class="greysd">(填写后不能修改)</span>
+                    {/if}
+                </div>
+                {if !$member_info['idcard']}
+                <i class="fa fa-angle-right fr dnfdd"></i>
+                {/if}
             </a>
-        </li>
 
-        <li class="clear">
-            <a href="?action=change_mobile" class="db clear">
-                <label class="name db fl">手机号码 :</label><span class="db fl info grey">{if $member_info['mobile']}{$member_info['mobile']}{else}完善手机{/if}</span>
-                <i class="fa fa-angle-right fr"></i>
+            <a style="" href="{if !$member_info['gender']}/mobile/member/info.php?action=gender_edit{else}javascript:;{/if}" class="clear">
+                <div class="fl">
+                    <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+                    {if $member_info['gender']}
+                    <span class="grey">{if $member_info['gender']==1}男{else}女{/if}</span>
+                    {else}
+                    <span class="greysd">(选择后不能修改)</span>
+                    {/if}
+                </div>
+                {if !$member_info['gender']}
+                <i class="fa fa-angle-right fr dnfdd"></i>
+                {/if}
             </a>
-        </li>
-        <li class="clear">
-            <a href="?action=area_edit" class="db clear">
-                <label class="name db fl">地址 :</label><span class="db fl info grey">{if $member_info['areaid']}{area_pos($member_info['areaid'],'')}{else}请选择地区{/if}{if $member_info['address']}{$member_info['address']}{/if}</span>
-                <i class="fa fa-angle-right fr"></i>
+            <a style="" href="/mobile/member/info.php?action=mobile_edit" class="clear">
+                <div class="fl">
+                    <span>联系电话</span>
+                    <span class="grey">
+                    {if $member_info['mobile']}{substr_replace($member_info['mobile'],'****',3,4)}{else}(请填写联系电话){/if}
+                    </span>
+                </div>
+                <i class="fa fa-angle-right fr dnfdd"></i>
             </a>
-        </li>
-        <li class="clear">
-            <a href="?action=info_edit" class="db clear">
-                <label class="name db fl">个人简介 :</label><span class="db fl info grey">{if $member_info['introduce']}{$member_info['introduce']}{else}请填写个人简介{/if}</span>
-                <i class="fa fa-angle-right fr"></i>
+            <a style="" href="/mobile/member/info.php?action=email_edit" class="clear">
+                <div class="fl">
+                    <span>联系邮箱</span>
+                    <span class="grey">
+                    {$member_info['email']}
+                    </span>
+                </div>
+                <i class="fa fa-angle-right fr dnfdd"></i>
             </a>
-        </li>
-    </ul>
+            <a style="" href="/mobile/member/info.php?action=area_edit" class="clear">
+                <div class="fl">
+                    <span>通讯地址</span>
+                    {if $member_info['address'] || $member_info['areaid']}
+                    <span class="grey">{area_pos($member_info['areaid'],'')}{$member_info['address']}</span>
+                        {else}
+                    <span class="greysd">(请填写通讯地址)</span>
+                        {/if}
+
+                </div>
+                <i class="fa fa-angle-right fr dnfdd" ></i>
+            </a>
+        </header>
+    </article>
 </section>
 {template 'footer','mobile'}

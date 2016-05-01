@@ -103,7 +103,10 @@ function getmorecommont(url,_this,appenddiv){
         data:{'page':page,'action':'ajax'},
         dataType:'json',
         success:function(data){
-            if(typeof(appenddiv)=='undefined'){
+            if(data.status=='n'){
+                alert(data.info);
+                return false;
+            }else if(typeof(appenddiv)=='undefined'){
                 _this.prev().append(data.info);
             }else{
                 $("."+appenddiv).append(data.info);

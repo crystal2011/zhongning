@@ -1,0 +1,62 @@
+{template 'header','mobile'}
+{template 'search','mobile'}
+<section>
+    <article class="sdn">
+            <table class="adtable">
+                <tr><td colspan="2">
+                    企业：
+                    {if $aSell}
+                        <a href="/mobile/invest/show.php?id={$info['sell_itemid']}" class="youxiao">{$aSell['company']}</a>
+                    {else}
+                        <span class="shixiao">失效</span>
+                    {/if}
+                </td>
+                </tr>
+                <tr><td>姓名：{$info['title']}</td><td >电话：{$info['mobile']}</td></tr>
+                <tr><td>金额：{$info['price']}</td><td >期限：{$info['month']}</td></tr>
+                <tr>
+                    <td>时间：{date('Y-m-d',$info['addtime'])}</td>
+                    <td>
+                        状态：
+                        {if $info['status']==3}
+                        完成投资
+                        {elseif $info['status']==2}
+                        审核中
+                        {elseif $info['status']==1}
+                        拒绝投资
+                        {else}
+                        失效
+                        {/if}
+                    </td>
+                </tr>
+            </table>
+    </article>
+    <article class="sdn">
+        <table class="adtable adtabledfd">
+            <tbody>
+            {if $aLog}
+            <tr>
+                <td align="center">审核时间</td>
+                <td align="center">预约进度</td>
+            </tr>
+            {loop $aLog $k $v}
+            <tr>
+                <td  align="center">{date('Y-m-d H:i:s',$v['addtime'])}</td>
+                <td>{$v['content']}</td>
+            </tr>
+            {/loop}
+            {else}
+            <tr>
+                <td align="center">暂无预约进度</td>
+            </tr>
+            {/if}
+            </tbody>
+        </table>
+    </article>
+    {if $aLog && $page!=$totalpage}
+    <article class="readmore" onclick="getmorecommont('{$CFG[url]}mobile/member/myordershow.php?id={$id}',this,'adtabledfd')" data-page="1">
+        <a>查看更多>></a>
+    </article>
+    {/if}
+</section>
+{template 'footer','mobile'}

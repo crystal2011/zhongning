@@ -20,19 +20,35 @@ switch($action){
         $topname = '修改用户名';
         include template('username_edit', 'mobile/member');
         break;
-    case 'truename_edit':
-        $seo_title = '修改真实姓名-';
-        $topname = '修改真实姓名';
-        include template('truename_edit', 'mobile/member');
+    case 'idcard_edit':
+        $seo_title = '修改身份证号-';
+        $topname = '修改身份证号';
+        if($member_info['idcard']){
+            dalert('不能再次修改身份证号','info.php');
+        }
+        include template('idcard_edit', 'mobile/member');
         break;
     case 'gender_edit':
         $seo_title = '修改性别-';
         $topname = '修改性别';
+        if($member_info['idcard']){
+            dalert('不能再次修改性别','info.php');
+        }
         include template('gender_edit', 'mobile/member');
         break;
+    case 'mobile_edit':
+        $seo_title = '修改联系电话-';
+        $topname = '修改联系电话';
+        include template('mobile_edit', 'mobile/member');
+        break;
+    case 'email_edit':
+        $seo_title = '修改联系邮箱-';
+        $topname = '修改联系邮箱';
+        include template('email_edit', 'mobile/member');
+        break;
     case 'area_edit':
-        $seo_title = '修改地址-';
-        $topname = '修改地址';
+        $seo_title = '修改通讯地址-';
+        $topname = '修改通讯地址';
         include template('area_edit', 'mobile/member');
         break;
     case 'info_edit':
