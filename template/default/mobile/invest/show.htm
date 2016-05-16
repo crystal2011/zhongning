@@ -3,7 +3,14 @@
 <style>
     .investshow {background-color:#fff;font-size:1.4em;padding:10px 20px;line-height:2em;}
     .investshow p{margin:0px;}
-
+    .dnfdsele {
+        width: 100%;
+        border: 0px;
+        background-color: #fff;
+        padding: 0.7em 0px;
+        font-size: 1.4em;
+        margin-top: 0.3em;
+    }
     .thumbinfo1 p{font-size:1.6em}
 </style>
 <span class="ids">{ad(86)}</span>
@@ -13,8 +20,8 @@
     </article>
     <article class="investshow">
         <p>融资企业：	{$info['company']}</p>
-        <p class="investmoney clear"><span class="fl">融资金额：{$info['price']}</span><span class="fr">投资利息：{$info['fee']}</span></p>
-        <p>融资期限：	{$info['month']}</p>
+        <p class="investmoney clear"><span class="fl">融资金额：{$info['price']}万元</span><span class="fr">投资利息：{$info['fee']}</span></p>
+        <p>融资期限：	{$info['month']}个月</p>
         <p>融资原因：	{$info['reason']}</p>
         <p>担保公司：	{$info['bonding']}</p>
     </article>
@@ -24,10 +31,11 @@
     <form id="financeform">
         <div class="title">在线申请</div>
         <div style="padding:0 10px;">
-            <p class="clear">
-                <span class="finformleft">真实姓名：</span>
-                    <span class="finformright">
-                        <input type="text" name="title" id="title" datatype="*2-5" maxlength="5" nullmsg="请输入真实姓名" errormsg="真实姓名输入有误" />
+            <p class="clear" style="height:65px;">
+                <span class="finformleft ">您的称呼：</span>
+                    <span class="finformright clear" style="text-align:left;">
+                        <input type="text" name="title" id="title" datatype="*1-20" maxlength="20" style="width:50%;float:left;" nullmsg="请输入您的称呼" errormsg="您的称呼输入有误" />
+                        <select name="gender" style="float:right;width:48%;border: 0px;background-color: #fff;padding: 0.75em 0px;font-size: 1.4em;margin-top: 0.3em;"><option value="1">先生</option><option value="2">女士</option></select>
                     </span>
             </p>
             <p class="clear">
@@ -39,15 +47,30 @@
             <p class="clear">
                 <span class="finformleft">投资金额：</span>
                 <span class="finformright">
-                    <input type="text"  name="price" type="text" id="price" datatype="money" placeholder="输入3万-500万的金额(纯数字)" nullmsg="3万-500万(纯数字)" errormsg="3万-500万(纯数字)" maxlength="9" />
-                    <span style="color:#00467f;line-height:20px;float:left;font-size:12px;height:20px;">最低限额3万元</span>
+                    <input type="text"  name="price" type="text" id="price" datatype="money" nullmsg="请输入投资金额" errormsg="投资金额输入有误" maxlength="9" />
+                    <span style="color:#00467f;line-height:20px;float:left;font-size:12px;width:100%;" id="bigmoney"></span>
+                    <span style="color:#00467f;line-height:20px;float:left;font-size:12px;height:20px;">最低起投金额为30000元</span>
                 </span>
 
             </p>
             <p class="clear">
                 <span class="finformleft">投资期限：</span>
                     <span class="finformright">
-                        <input type="text" name="month" type="text" id="month" datatype="*2-10" maxlength="10" nullmsg="请输入投资期限" errormsg="投资期限有误" />
+                        <select name="month" datatype="*" class="dnfdsele">
+                            <option  value="">请选择期限</option>
+                            <option value="1">1个月</option>
+                            <option value="2">2个月</option>
+                            <option value="3">3个月</option>
+                            <option value="4">4个月</option>
+                            <option value="5">5个月</option>
+                            <option value="6">6个月</option>
+                            <option value="7">7个月</option>
+                            <option value="8">8个月</option>
+                            <option value="9">9个月</option>
+                            <option value="10">10个月</option>
+                            <option value="11">11个月</option>
+                            <option value="12">12个月</option>
+                        </select>
                     </span>
             </p>
             <p style="margin:20px 0px;">
@@ -68,6 +91,20 @@
     function fasdf(){
         $("#financeform").submit();
     }
+    $(function(){
+        $("#price").keyup(function(){
+            var gets = $(this).val();
+            var sd = /^[1-9][0-9]{0,8}$/
+            var s = parseInt(gets)
+            if(!sd.test(gets)){
+
+            }else{
+                $("#bigmoney").html(digitUppercase(gets));
+            }
+        })
+
+
+    })
     $("#financeform").Validform({
         tiptype: 3,
         ajaxPost:true,
@@ -79,7 +116,7 @@
             "money":function(gets,obj,curform,regxp){
                 var sd = /^[1-9][0-9]{0,8}$/
                 var s = parseInt(gets)
-                if(!sd.test(gets) || s>5000000 || s<30000){
+                if(!sd.test(gets) || s<30000){
                     return false;
                 }
                 return true;
@@ -102,6 +139,7 @@
                 });
                 $("#financeform")[0].reset();
                 $("input[name='submit']").val(1);
+                $("#bigmoney").html('');
             }else if(data.status=='n'){
                 alert(data.info);
             }

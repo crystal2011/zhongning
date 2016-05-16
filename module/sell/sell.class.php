@@ -27,14 +27,14 @@ class sell {
 		if(!is_array($post)) return false;
         if(!is_length($post['title'],2,50)) return $this->_('融资年期输入有误');
         if(!is_length($post['company'],2,50)) return $this->_('融资企业输入有误');
-        if(!is_length($post['price'],2,10)) return $this->_('融资金额输入有误');
-        if(!is_length($post['month'],2,10)) return $this->_('融资期限输入有误');
+        if(!preg_match('/^[1-9][0-9]{0,7}$/',$post['month'])) return $this->_('融资金额输入有误');
+        if(!preg_match('/^[1-9][0-9]?$/',$post['month'])) return $this->_('融资期限输入有误');
         if(!is_length($post['reason'],2,50)) return $this->_('融资原因输入有误');
         if(!is_length($post['fee'],2,50)) return $this->_('投资利息输入有误');
         if(!is_length($post['bonding'],2,50)) return $this->_('担保公司输入有误');
 
         if(!is_length($post['setbacks'],1,10)) return $this->_('进度输入有误');
-        if(!is_length($post['apr'],2,10)) return $this->_('年利率输入有误');
+        if(!is_length($post['apr'],1,10)) return $this->_('年利率输入有误');
 
         return $post;
 	}

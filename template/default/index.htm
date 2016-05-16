@@ -162,7 +162,7 @@ $(document).ready(function() {
     <div class="container" style="position:relative;">
         <img src="{DT_SKIN_TWO}images/wycms/indexmodu5.jpg" />
         <div class="modumoney">已为投资人赚取<span>{$DT['invest_money']}</span>元</div>
-        <img src="{DT_SKIN_TWO}images/wycms/indexmodu5button.png" onclick="location.href = '{$CFG[url]}invest/index.php#module1'" class="indexmodu5button" />
+        <img src="{DT_SKIN_TWO}images/wycms/indexmodu5button.png" onclick="location.href = '{$CFG[url]}invest/list.php'" class="indexmodu5button" />
     </div>
 </section>
 <section class="system">
@@ -189,10 +189,10 @@ $(document).ready(function() {
                     {loop $aSell $k $v}
                     <tr class="dan<?php echo $k%2; ?>">
                         <td><span class="dai" title="{$v['title']}">贷</span>{mb_substr($v['title'],0,4,'utf-8')}{if mb_strlen($v['title'])>4}...{/if}</td>
-                        <td>{$v['apr']}</td>
-                        <td align="center">{$v['price']}</td>
+                        <td>{$v['apr']}%</td>
+                        <td align="center">{$v['price']}万元</td>
                         <td align="center" title="{$v['reason']}">{mb_substr($v['reason'],0,4,'utf-8')}</td>
-                        <td align="center">{$v['month']}</td>
+                        <td align="center">{$v['month']}个月</td>
                         <td>{$v['setbacks']}</td>
                         <td>
                             <img src="{DT_SKIN_TWO}images/wycms/daitou{$v['setstatus']}.png" class="daitou{$v['setstatus']}" {if $v['setstatus']==0}onclick="location.href='{$CFG[url]}invest/show.php?id={$v[itemid]}'"{/if} />
@@ -222,7 +222,7 @@ $(document).ready(function() {
                 <p class="numtnum">{$DT['success_nums']}</p>
             </div>
             <div class="numsnsow numtitle2">
-                <p class="numtitle">融资总金额( 万元 )/p>
+                <p class="numtitle">融资总金额( 万元 )</p>
                 <p class="numtnum">{$DT['success_money']}</p>
             </div>
             <div class="numsnsow numtitle3">

@@ -26,8 +26,8 @@
                             {loop $aFood $k $v}
                             <tr>
                                 <td width="120px" class="ti">{$v['price']}</td>
-                                <td width="150px" class="ti">{$v['month']}</td>
-                                <td width="100px" class="ti" title="{$v['danbao']}">{dsubstr($v['danbao'],16,'...')}</td>
+                                <td width="150px" class="ti">{$v['month']}个月</td>
+                                <td width="100px" class="ti" title="{$v['danbao']}"><?php if($v['danbao']==1){ echo '无';}else if($v['danbao']==2){echo '有抵押';}else if($v['danbao']==3){echo '有担保';}else{echo '有抵押、有担保';}?></td>
                                 <td width="290px" class="ti" title="{$v['introduce']}">{dsubstr($v['introduce'],34,'...')}</td>
                                 <td width="140px" align="center" class="ti">{date('Y-m-d H:i',$v['addtime'])}</td>
                                 <td width="80px" class="ti">

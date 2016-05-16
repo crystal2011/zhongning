@@ -39,10 +39,10 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
     <th width="14"> </th>
     <th>融资年期</th>
     <th>融资企业</th>
-    <th>融资金额</th>
-    <th>融资期限</th>
+    <th>融资金额(万元)</th>
+    <th>融资期限(个月)</th>
     <th>投资利息</th>
-    <th>年利率</th>
+    <th>年利率(%)</th>
     <th width="120"><?php echo $timetype == 'add' ? '添加' : '更新';?>时间</th>
     <th>浏览</th>
     <th width="100">操作</th>

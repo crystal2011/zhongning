@@ -42,7 +42,7 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <th>联系电话</th>
     <th>申请金额</th>
     <th>申请期限</th>
-
+    <th>有无抵押或担保</th>
 <th width="130"><?php echo $timetype == 'add' ? '添加' : '更新';?>时间</th>
 <th>浏览</th>
 <th width="80">操作</th>
@@ -57,7 +57,8 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <td align="left">&nbsp;<?php echo $v['title'];?></td>
     <td><?php echo $v['mobile'];?></td>
     <td><?php echo $v['price'];?></td>
-    <td><?php echo $v['month'];?></td>
+    <td><?php echo $v['month'];?>个月</td>
+    <td><?php if($v['danbao']==1){ echo '无';}else if($v['danbao']==2){echo '有抵押';}else if($v['danbao']==3){echo '有担保';}else{echo '有抵押、有担保';}?></td>
 <?php if($timetype == 'add') {?>
 <td class="px11" title="更新时间<?php echo $v['editdate'];?>"><?php echo $v['adddate'];?></td>
 <?php } else { ?>

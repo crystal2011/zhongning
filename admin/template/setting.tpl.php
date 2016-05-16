@@ -44,6 +44,14 @@ show_menu($menus);
 <td class="tl">ICP备案序号</td>
 <td><input name="setting[icpno]" type="text" value="<?php echo $icpno;?>" size="20"/></td>
 </tr>
+    <tr>
+        <td class="tl">公司邮箱</td>
+        <td><input name="setting[emailnum]" type="text" value="<?php echo $emailnum;?>" size="20"/></td>
+    </tr>
+    <tr>
+        <td class="tl">微信公众号</td>
+        <td><input name="setting[weixinnum]" type="text" value="<?php echo $weixinnum;?>" size="20"/></td>
+    </tr>
 <tr>
 <td class="tl">网站状态</td>
 <td>

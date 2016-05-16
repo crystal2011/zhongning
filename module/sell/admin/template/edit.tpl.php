@@ -29,11 +29,11 @@ show_menu($menus);
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 融资金额</td>
-        <td><input name="post[price]" type="text" id="price" size="60" datatype="*2-10" maxlength="10" value="<?php echo $price;?>" /> </td>
+        <td><input name="post[price]" type="text" id="price" size="40" datatype="n1-8" maxlength="8" value="<?php echo $price;?>" /> 万元 </td>
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 融资期限</td>
-        <td><input name="post[month]" type="text" id="month" size="60" datatype="*2-10" maxlength="10" value="<?php echo $month;?>"/> </td>
+        <td><input name="post[month]" type="text" id="month" size="40" datatype="n1-2" maxlength="2" value="<?php echo $month;?>"/> 个月 </td>
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 融资原因</td>
@@ -41,11 +41,11 @@ show_menu($menus);
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 投资利息</td>
-        <td><input name="post[fee]" type="text" id="fee" datatype="*2-50" size="60" maxlength="50" value="<?php echo $fee;?>"/> </td>
+        <td><input name="post[fee]" type="text" id="fee" datatype="*2-50" size="40" maxlength="50" value="<?php echo $fee;?>"/> </td>
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 年利率</td>
-        <td><input name="post[apr]" type="text" id="apr" datatype="*2-10" size="60" maxlength="10" value="<?php echo $apr;?>"/></td>
+        <td><input name="post[apr]" type="text" id="apr" datatype="*1-10" size="40" maxlength="10" value="<?php echo $apr;?>"/> %</td>
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 担保公司</td>

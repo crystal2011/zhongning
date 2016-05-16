@@ -19,10 +19,10 @@
                 {loop $aSell $k $v}
                 <tr class="dan<?php echo $k%2; ?>">
                     <td><span class="dai" title="{$v['title']}">贷</span>{mb_substr($v['title'],0,10,'utf-8')}{if mb_strlen($v['title'])>10}...{/if}</td>
-                    <td>{$v['apr']}</td>
-                    <td align="center">{$v['price']}</td>
+                    <td>{$v['apr']}%</td>
+                    <td align="center">{$v['price']}万元</td>
                     <td align="center" title="{$v['reason']}">{mb_substr($v['reason'],0,8,'utf-8')}</td>
-                    <td align="center">{$v['month']}</td>
+                    <td align="center">{$v['month']}个月</td>
                     <td>{$v['setbacks']}</td>
                     <td>
                         <img src="{DT_SKIN_TWO}images/wycms/daitou{$v['setstatus']}.png" class="daitou{$v['setstatus']}" {if $v['setstatus']==0}onclick="location.href='{$CFG[url]}invest/show.php?id={$v[itemid]}'"{/if} />

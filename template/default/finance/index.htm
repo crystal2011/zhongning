@@ -1,5 +1,10 @@
 {template  'header'}
-
+<style>
+    .dnfdsele {border: 1px solid #cccccc;
+        height: 35px;
+        line-height: 35px;
+        width: 257px;}
+</style>
 <section class="group" style="background-color:#fff;position:relative;">
     <div  id="module1" class="g banner" style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
     <div  id="module2" class="" style=" background: url({DT_SKIN_TWO}images/wycms/finance2.jpg) no-repeat center top;height:450px;"></div>
@@ -12,23 +17,53 @@
         <form class="financeform">
             <p class="financeform-title">融资申请单</p>
             <div class="clearfix inputdiv">
-                <div class="fl">公司名称：<input type="text" datatype="*2-50" name="title"  nullmsg="请填写公司名称" errormsg="请填写正确公司名称" maxlength="50" /></div>
-                <div class="fr">联系电话：<input type="text" datatype="mobile" name="mobile" nullmsg="请填写联系电话" errormsg="请填写正确联系电话" /></div>
+                <div class="fl">公司名称：<input type="text" datatype="*2-50" name="title"  nullmsg="请填写公司名称" errormsg="请填写正确公司名称" maxlength="50" /><span class="Validform_checktip">&nbsp;</span></div>
+                <div class="fr">联系电话：<input type="text" datatype="mobile" name="mobile" nullmsg="请填写联系电话" errormsg="请填写正确联系电话" /><span class="Validform_checktip">&nbsp;</span></div>
             </div>
             <div class="clearfix inputdiv">
-                <div class="fl">公司地址：<input type="text" name="address" datatype="*2-50" nullmsg="请填写公司地址" errormsg="请填写公司地址" maxlength="50" /></div>
+                <div class="fl">
+                    公司地址：<input type="text" name="address" datatype="*2-50" nullmsg="请填写公司地址" errormsg="请填写公司地址" maxlength="50" />
+                    <span class="Validform_checktip">&nbsp;</span>
+                </div>
                 <div class="fr">
-                    申请金额：<input type="text" maxlength="9" datatype="money" name="price" placeholder="请填写50万-500万申请金额(纯数字)" nullmsg="请填写50万-500万申请金额(纯数字)" errormsg="请填写50万-500万申请金额(纯数字)" />
+                    申请金额：<input type="text" maxlength="7" datatype="money" name="price" id="price" placeholder="请填写500000-5000000的金额" nullmsg="请填写500000-5000000的金额" errormsg="请填写500000-5000000的金额" style="width:210px;" /> .00元
+                    <span style="overflow: hidden;color: #999;font-size: 12px;display:block;margin-left:80px;" id="bigmoney"></span>
+                    <span class="Validform_checktip">&nbsp;</span>
                 </div>
             </div>
+
             <div class="clearfix inputdiv">
-                <div class="fl">申请期限：<input type="text" name="month" datatype="*2-10" nullmsg="请填写申请期限" errormsg="请正确填写申请期限" maxlength="10" /></div>
+                <div class="fl">
+                    申请期限：<select name="month" datatype="*" class="dnfdsele">
+                        <option  value="">请选择期限</option>
+                        <option value="1">1个月</option>
+                        <option value="2">2个月</option>
+                        <option value="3">3个月</option>
+                        <option value="4">4个月</option>
+                        <option value="5">5个月</option>
+                        <option value="6">6个月</option>
+                        <option value="7">7个月</option>
+                        <option value="8">8个月</option>
+                        <option value="9">9个月</option>
+                        <option value="10">10个月</option>
+                        <option value="11">11个月</option>
+                        <option value="12">12个月</option>
+                    </select>
+                    <span class="Validform_checktip">&nbsp;</span>
+                </div>
                 <div class="fr">
-                    有无抵押或担保：<input type="text" name="danbao" style="width:206px;" datatype="*1-50" nullmsg="请填写抵押或担保情况" errormsg="请填写抵押或担保情况" />
+                    有无抵押或担保：<select name="danbao" datatype="*" class="dnfdsele" style="width:208px;">
+                        <option  value="">请选择</option>
+                        <option value="1">无</option>
+                        <option value="2">有抵押</option>
+                        <option value="3">有担保</option>
+                        <option value="4">有抵押、有担保</option>
+                    </select>
+                    <span class="Validform_checktip">&nbsp;</span>
                 </div>
             </div>
             <div class="inputdiv clearfix textareadiv">
-                <div class="fl ">需求描述：<textarea name="introduce" maxlength="200" datatype="*5-200" nullmsg="请输入不少于5个字的需求描述" errormsg="请输入不少于5个字的需求描述"></textarea></div>
+                <div class="fl ">需求描述：<textarea name="introduce" maxlength="200" datatype="*5-200" placeholder="请填写借款用途、抵押物或担保人简单情况等描述信息" nullmsg="请输入不少于5个字的需求描述" errormsg="请输入不少于5个字的需求描述"></textarea><span class="Validform_checktip">&nbsp;</span></div>
             </div>
             <div class="inputdiv madiv clearfix">
                 <div class="fl"  style="width:468px;text-align:left;" >&nbsp;&nbsp;&nbsp;验证码：<input type="text"  datatype="*4-4" maxlength="4" nullmsg="请输入验证码" errormsg="验证码错误" name="captcha" /><img src="{DT_PATH}api/captcha.png.php?action=image" title="验证码,看不清楚?请点击刷新&#10;字母不区分大小写" alt="" align="absmiddle" id="captchapng" onclick="reloadcaptcha();" style="width:115px;height:35px;margin-left:10px;cursor:pointer;"/><br /></div>
@@ -46,6 +81,20 @@
     .layuidl{background-color:#68b2f4;text-align:center;color:#fff;}
 </style>
 <script type="text/javascript">
+    $(function(){
+        $("#price").keyup(function(){
+            var gets = $(this).val();
+            var sd = /^[1-9][0-9]{0,6}$/
+            var s = parseInt(gets)
+            if(!sd.test(gets)){
+
+            }else{
+                $("#bigmoney").html(digitUppercase(gets));
+            }
+        })
+
+
+    })
     $(".financeform").Validform({
         tiptype: 3,
         ajaxPost:true,
@@ -55,7 +104,7 @@
                 return true;
             },
             "money":function(gets,obj,curform,regxp){
-                var sd = /^[1-9][0-9]{0,8}$/
+                var sd = /^[1-9][0-9]{0,6}$/
                 if(!sd.test(gets) || parseInt(gets)>5000000 ||  parseInt(gets)<500000){
                     return false;
                 }
@@ -74,12 +123,13 @@
                     title: false, //不显示标题
                     closeBtn: 0, //不显示关闭按钮
                     skin: 'layuidl',
-                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:18px;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。<br /><div style="height:10px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:3px 10px;">确定</span></div>'
+                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:14px;">您的申请已提交成功<br/>稍后项目经理会与您电话联系，请耐心等待。<br /><div style="height:10px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:3px 10px;">确定</span></div>'
                 });
 
                 $(".financeform")[0].reset();
                 $("input[name='submit']").val(1);
                 $(".Validform_checktip").remove();
+                $("#bigmoney").html('');
                 reloadcaptcha();
 
             }else if(data.status=='n'){
@@ -91,6 +141,10 @@
             }
         }
     })
+
+    function reloadcaptcha(){
+        $("#captchapng").attr('src','{DT_PATH}api/captcha.png.php?action=image&refresh='+Math.random());
+    }
     function dellyer(){
         $(".layui-layer,.layui-layer-shade").remove();
     }

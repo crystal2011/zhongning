@@ -34,10 +34,10 @@ class food {
         if(!is_length($post['title'],2,50)) return $this->_('公司名称输入有误');
         if(!is_mobile($post['mobile']) && !is_phone($post['mobile'])) return $this->_('联系电话输入有误');
         if(!is_length($post['address'],2,50)) return $this->_('公司地址输入有误');
-        if(!preg_match('/[1-9][0-9]{0,8}/',$post['price']) || $post['price']>5000000 || $post['price']<500000) return $this->_('申请金额输入有误');
-        if(!is_length($post['month'],2,10)) return $this->_('申请期限输入有误');
-        if(!is_length($post['danbao'],1,50)) return $this->_('有无担保或期限输入有误');
-        if(!is_length($post['introduce'],5,200)) return $this->_('单位输入有误');
+        if(!preg_match('/[1-9][0-9]{0,6}/',$post['price']) || $post['price']>5000000 || $post['price']<500000) return $this->_('申请金额输入有误');
+        if(!in_array($post['month'],array(1,2,3,4,5,6,7,8,9,10,11,12))) return $this->_('申请期限输入有误');
+        if(!in_array($post['danbao'],array(1,2,3,4))) return $this->_('有无担保或期限选择有误');
+        if(!is_length($post['introduce'],5,200)) return $this->_('需求描述输入有误');
 		return $post;
 	}
 

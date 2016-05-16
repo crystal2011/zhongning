@@ -390,7 +390,7 @@ function cache_city(){
 }
 function cache_link(){
     global $db;
-    $result = $db->query("select * from {$db->pre}link limit 13");
+    $result = $db->query("select * from {$db->pre}link  order by listorder asc limit 100");
     $str = '';
     while($r=$db->fetch_array($result)){
         $linkurl = $r['linkurl'];

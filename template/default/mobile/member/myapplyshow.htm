@@ -6,8 +6,8 @@
                 <tr><td colspan="2">公司名称：{$info['title']}</td>
                 <tr><td colspan="2" >公司电话：{$info['mobile']}</td></tr>
                 <tr><td colspan="2" >公司地址：{$info['address']}</td></tr>
-                <tr><td>金额：{$info['price']}</td><td >期限：{$info['month']}</td></tr>
-                <tr><td colspan="2" >抵押/担保：{$info['danbao']}</td></tr>
+                <tr><td>金额：{$info['price']}</td><td >期限：{$info['month']}个月</td></tr>
+                <tr><td colspan="2" >抵押/担保：<?php if($v['danbao']==1){ echo '无';}else if($v['danbao']==2){echo '有抵押';}else if($v['danbao']==3){echo '有担保';}else{echo '有抵押有担保';}?></td></tr>
                 <tr><td colspan="2" >需求详情：{$info['introduce']}</td></tr>
                 <tr>
                     <td>时间：{date('Y-m-d',$info['addtime'])}</td>

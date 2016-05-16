@@ -40,11 +40,11 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <th width="50"><input type="checkbox" onclick="checkall(this.form);"/></th>
     <th width="14"> </th>
     <th>会员</th>
-    <th>真实姓名</th>
+    <th>称呼</th>
     <th>联系手机</th>
     <th>投资项目id</th>
-    <th>投资金额</th>
-    <th>投资期限</th>
+    <th>投资金额（元）</th>
+    <th>投资期限(个月)</th>
     <th width="130"><?php echo $timetype == 'add' ? '添加' : '更新';?>时间</th>
     <th width="100">操作</th>
 </tr>
@@ -55,7 +55,7 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
     <td>
         <a href="javascript:_user('<?php echo $v['userid'];?>','userid');"><?php echo $getListUser[$v['userid']]['username'];?></a>
     </td>
-    <td align="left"><?php echo $v['title'];?></td>
+    <td align="left"><?php echo $v['title'];?><?php echo $v['gender']==1?'先生':'女士';?></td>
     <td><?php echo $v['mobile'];?></td>
     <td><?php echo $v['sell_itemid'];?></td>
     <td><?php echo $v['price'];?></td>

@@ -12,8 +12,8 @@
                     {/if}
                 </td>
                 </tr>
-                <tr><td>姓名：{$info['title']}</td><td >电话：{$info['mobile']}</td></tr>
-                <tr><td>金额：{$info['price']}</td><td >期限：{$info['month']}</td></tr>
+                <tr><td>称呼：{$info['title']}{if $info['gender']==1}先生{else}女士{/if}</td><td >电话：{$info['mobile']}</td></tr>
+                <tr><td>金额：{$info['price']}</td><td >期限：{$info['month']}个月</td></tr>
                 <tr>
                     <td>时间：{date('Y-m-d',$info['addtime'])}</td>
                     <td>

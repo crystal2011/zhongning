@@ -562,11 +562,11 @@ footer.g .column {
     width:270px;
 }
 footer.g .column1{
-    width:410px;
+    width:435px;
 }
 
 footer.g .column1 span{
-    width:160px;
+    width:170px;
     float:left;
 }
 footer.g .column1 span.touwen{
@@ -795,7 +795,7 @@ footer.g .bottom img {
     width:614px;
     height:100px;
     vertical-align: top;
-    border-color:#ccc;
+    border:1px solid #ccc;
 }
 .banner {
     width: 100%;

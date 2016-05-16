@@ -17,7 +17,7 @@ class buy {
         $this->table_data = $db->pre.'buy_data_6';
 		$this->split = '';
 		$this->db = &$db;
-		$this->fields = array('userid','level','title','introduce','price','status','hits','addtime','adddate','edittime','editdate','mobile','sell_itemid','month');
+		$this->fields = array('userid','level','title','introduce','price','status','hits','addtime','adddate','edittime','editdate','mobile','sell_itemid','month','gender');
     }
 
     function pass($post,$isadmin=true) {
@@ -30,7 +30,7 @@ class buy {
             else $post['userid'] = $aUser['userid'];
         }
 
-        if(!is_length($post['title'],2,5)) return $this->_('真实姓名输入有误');
+        if(!is_length($post['title'],1,20)) return $this->_('您的称呼输入有误');
         if(!is_mobile($post['mobile'])) return $this->_('联系手机输入有误');
         $post['sell_itemid'] = intval($post['sell_itemid']);
 
@@ -51,8 +51,9 @@ class buy {
                 if(!$oSell->checkSell($aSell)) return $this->_($oSell->errmsg);
             }
         }
-        if(!preg_match('/[1-9][0-9]{0,8}/',$post['price']) || $post['price']>5000000 || $post['price']<30000) return $this->_('投资金额输入有误');
-        if(!is_length($post['month'],2,10)) return $this->_('投资期限输入有误');
+        if($post['gender']!=1 && $post['gender']!=2) return $this->_('输入有误');
+        if(!preg_match('/[1-9][0-9]{0,8}/',$post['price']) || $post['price']<30000) return $this->_('投资金额输入有误');
+        if(!in_array($post['month'],array(1,2,3,4,5,6,7,8,9,10,11,12))) return $this->_('投资期限输入有误');
         return $post;
     }
 

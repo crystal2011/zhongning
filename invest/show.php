@@ -21,6 +21,7 @@ if($submit){
         'month'=>isset($month)?$month:'',
         'userid'=>$_userid,
         'status'=>2,
+        'gender'=>isset($gender)?$gender:''
     );
     require_once DT_ROOT.'/module/buy/buy.class.php';
     $oBuy = new buy;

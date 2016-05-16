@@ -50,23 +50,8 @@
             </div>
             <div class="msg">
                 <div class="column column1 fl">
-                    <?php
-                        $ainvest_name = array_chunk(explode(',',$DT['invest_name']),2);
-                        $ainvest_phone = array_chunk(explode(',',$DT['invest_phone']),2);
-                     ?>
-                    <p class="clearfix"><span class="touwen">投资顾问： </span><span>{if isset($ainvest_name[0][0])}{$ainvest_name[0][0]} {if isset($ainvest_phone[0][0])}{$ainvest_phone[0][0]}{/if}{/if}</span><span>{if isset($ainvest_name[0][1])}{$ainvest_name[0][1]} {if isset($ainvest_phone[0][1])}{$ainvest_phone[0][1]}{/if}{/if}</span></p>
-                    {if $ainvest_name}
-                    {loop $ainvest_name $k $v}
-                    {if $k>0}
-                    <p class="clearfix">
-                        <span class="touwen">&nbsp;</span>
-                        {loop $v $key $val}
-                        <span>{$val} {if isset($ainvest_phone[$k][$key])}{$ainvest_phone[$k][$key]}{/if}</span>
-                        {/loop}
-                    </p>
-                    {/if}
-                    {/loop}
-                    {/if}
+
+                    <p class="clearfix"><span class="touwen">公司邮箱： </span><span>{$DT['emailnum']}</span><span>微信公众号：{$DT['weixinnum']}</span></p>
                     <p>公司地址： {$DT['address']}</p>
                     <p>公司电话： {$DT['telephone']}</p>
                 </div>

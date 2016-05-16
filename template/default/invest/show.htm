@@ -1,4 +1,15 @@
 {template  'header'}
+<style>
+    .dnfdsele {
+        background-color: #fff;
+        border: 0px;
+        font-size: 14px;
+        text-indent: 8px;
+        line-height: 14px;
+        padding: 9px 0px;
+        width: 100px;
+    }
+</style>
 <section class="group" style="background-color:#fff;position:relative;">
     <div  id="module1" class="g banner" style=" background: url({if $aAd}{$aAd['image_src']}{/if}) no-repeat center top;height:{$pAd['height']}px;"></div>
 </section>
@@ -7,7 +18,7 @@
         <div class="investinfo">
             <table>
                 <tr><td class="infofl">融资企业：</td><td colspan="3">{$info['company']}</td></tr>
-                <tr><td class="infofl">融资金额：</td><td class="infoflbig">{$info['price']}</td><td class="infofl">融资期限：</td><td>{$info['month']}</td></tr>
+                <tr><td class="infofl">融资金额：</td><td class="infoflbig">{$info['price']}万元</td><td class="infofl">融资期限：</td><td>{$info['month']}个月</td></tr>
                 <tr><td class="infofl">融资原因：</td><td class="infoflbig">{$info['reason']}</td><td class="infofl">投资利息：</td><td>{$info['fee']}</td></tr>
                 <tr><td class="infofl">担保公司：</td><td colspan="3">{$info['bonding']}</td></tr>
             </table>
@@ -20,11 +31,33 @@
                 <form id="investformcon">
                     <p class="investformtitle">我要投资</p>
                     <div class="investformcon">
-                        <p><span class="formleft">真实姓名：</span><input type="text" name="title" id="title" datatype="*2-5" maxlength="5" nullmsg="请输入真实姓名" errormsg="真实姓名输入有误" ></p>
+                        <p>
+                            <span class="formleft">您的称呼：</span><input type="text" name="title" id="title" datatype="*1-20" maxlength="20" style="width:275px;" nullmsg="请输入您的称呼" errormsg="您的称呼输入有误" />
+                            <select name="gender" class="dnfdsele"><option value="1">先生</option><option value="2">女士</option></select>
+                        </p>
                         <p><span class="formleft">联系手机：</span><input name="mobile" type="text" id="mobile" datatype="m" nullmsg="请输入联系手机" errormsg="联系手机输入有误"></p>
-                        <p><span class="formleft">投资金额：</span><input name="price" type="text" id="price" datatype="money" placeholder="输入3万-500万的金额(纯数字)" nullmsg="输入3万-500万的金额(纯数字)" errormsg="输入3万-500万的金额(纯数字)" maxlength="9"  ></p>
-                        <div style="margin-left:105px;font-size:14px;font-size:12px;margin-bottom:7px;color:#00467f;">注：最低限额3万元</div>
-                        <p><span class="formleft">投资期限：</span><input name="month" type="text" id="month" datatype="*2-10" maxlength="10" nullmsg="请输入投资期限" errormsg="投资期限有误"  ></p>
+                        <p>
+                            <span class="formleft">投资金额：</span><input name="price" type="text" id="price" datatype="money" nullmsg="请输入投资金额" errormsg="投资金额输入有误" maxlength="9"  style="width:325px;"> .00元
+                        </p>
+                        <div style="margin-left:105px;font-size:14px;font-size:12px;margin-bottom:7px;color:#00467f;" id="bigmoney"></div>
+                        <div style="margin-left:105px;font-size:14px;font-size:12px;margin-bottom:7px;color:#00467f;">注：最低起投金额为30000元</div>
+                        <p><span class="formleft">投资期限：</span>
+                            <select name="month" datatype="*" class="dnfdsele" style="width:380px;">
+                            <option  value="">请选择期限</option>
+                            <option value="1">1个月</option>
+                            <option value="2">2个月</option>
+                            <option value="3">3个月</option>
+                            <option value="4">4个月</option>
+                            <option value="5">5个月</option>
+                            <option value="6">6个月</option>
+                            <option value="7">7个月</option>
+                            <option value="8">8个月</option>
+                            <option value="9">9个月</option>
+                            <option value="10">10个月</option>
+                            <option value="11">11个月</option>
+                            <option value="12">12个月</option>
+                        </select>
+                        </p>
                     </div>
                     <p class="investformbtn">
                         <input type="submit" value="提交申请" class="investformsum" />
@@ -43,6 +76,20 @@
 </style>
 <script type="text/javascript">
 
+    $(function(){
+        $("#price").keyup(function(){
+            var gets = $(this).val();
+            var sd = /^[1-9][0-9]{0,8}$/
+            var s = parseInt(gets)
+            if(!sd.test(gets)){
+
+            }else{
+                $("#bigmoney").html(digitUppercase(gets));
+            }
+        })
+
+
+    })
     $("#investformcon").Validform({
         tiptype: 3,
         ajaxPost:true,
@@ -54,7 +101,7 @@
             "money":function(gets,obj,curform,regxp){
                 var sd = /^[1-9][0-9]{0,8}$/
                 var s = parseInt(gets)
-                if(!sd.test(gets) || s>5000000 || s<30000){
+                if(!sd.test(gets) || s<30000){
                     return false;
                 }
                 return true;
@@ -72,11 +119,12 @@
                     title: false, //不显示标题
                     closeBtn: 0, //不显示关闭按钮
                     skin: 'layuidl',
-                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:18px;">您已提交成功，<br/>稍后投资顾问会与您电话联系，请耐心等待。<br /><div style="height:10px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:3px 10px;">确定</span></div>'
+                    content: '<img src="{DT_SKIN_TWO}images/wycms/delete.png" style="float:right;margin-right:5px;margin-top:5px;display:block;" onclick="dellyer()" /><div style="margin-top:30px;font-size:14px;">您已提交成功，<br/>稍后投资顾问会与您电话联系，请耐心等待。<br /><div style="height:10px;"></div><span onclick="dellyer()" style="background-color:#fff;color:#68b2f4;border-radius: 3px;padding:3px 10px;">确定</span></div>'
                 });
                 $("#investformcon")[0].reset();
                 $("input[name='submit']").val(1);
                 $(".Validform_checktip").remove();
+                $("#bigmoney").html('');
             }else if(data.status=='n'){
                 layer.msg(data.info);
             }

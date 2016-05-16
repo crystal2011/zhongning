@@ -16,8 +16,14 @@ show_menu($menus);
         <td><input name="post[username]" type="text" datatype="*2-20" size="20" value="<?php echo $username;?>" id="username"/> <a href="javascript:_user(Dd('username').value);" class="t">[资料]</a> <span id="dusername" class="f_red"></span></td>
     </tr>
     <tr>
-    <td class="tl"><span class="f_red">*</span> 真实姓名</td>
-    <td><input name="post[title]" type="text" id="title" datatype="*2-5" maxlength="5" size="60" value="<?php echo $title;?>"/> <?php echo level_select('post[level]', '级别', $level, 'id="level"');?> <span id="dtitle" class="f_red"></span></td>
+    <td class="tl"><span class="f_red">*</span> 您的称呼</td>
+    <td>
+        <input name="post[title]" type="text" id="title" datatype="*1-20" maxlength="20" size="30" value="<?php echo $title;?>"/>
+        <select name="post[gender]"><option value="1" checked> 先生</option><option value="2" <?php echo $gender==2?'selected':''; ?>>女士</option></select>
+        <?php echo level_select('post[level]', '级别', $level, 'id="level"');?>
+
+        <span id="dtitle" class="f_red"></span>
+    </td>
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 联系手机</td>
@@ -29,11 +35,27 @@ show_menu($menus);
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 投资金额</td>
-        <td><input name="post[price]" type="text" id="price" datatype="money" maxlength="9" size="60" value="<?php echo $price;?>"/> 注：3万-500万（纯数字）</td>
+        <td><input name="post[price]" type="text" id="price" datatype="money" maxlength="9" size="60" value="<?php echo $price;?>"/> 注：最低起投金额为30000元</td>
     </tr>
     <tr>
         <td class="tl"><span class="f_red">*</span> 投资期限</td>
-        <td><input name="post[month]" type="text" id="month" datatype="*2-10" maxlength="10" size="60" value="<?php echo $month;?>"/></td>
+        <td>
+            <select name="post[month]" datatype="*">
+                <option value="">请选择期限</option>
+                <option value="1" <?php echo $month==1?'selected':''; ?>>1个月</option>
+                <option value="2" <?php echo $month==2?'selected':''; ?>>2个月</option>
+                <option value="3" <?php echo $month==3?'selected':''; ?>>3个月</option>
+                <option value="4" <?php echo $month==4?'selected':''; ?>>4个月</option>
+                <option value="5" <?php echo $month==5?'selected':''; ?>>5个月</option>
+                <option value="6" <?php echo $month==6?'selected':''; ?>>6个月</option>
+                <option value="7" <?php echo $month==7?'selected':''; ?>>7个月</option>
+                <option value="8" <?php echo $month==8?'selected':''; ?>>8个月</option>
+                <option value="9" <?php echo $month==9?'selected':''; ?>>9个月</option>
+                <option value="10" <?php echo $month==10?'selected':''; ?>>10个月</option>
+                <option value="11" <?php echo $month==11?'selected':''; ?>>11个月</option>
+                <option value="12" <?php echo $month==12?'selected':''; ?>>12个月</option>
+            </select>
+        </td>
     </tr>
 <tr>
 <td class="tl"><span class="f_hid">*</span> 信息状态</td>
@@ -59,7 +81,7 @@ show_menu($menus);
             "money":function(gets,obj,curform,regxp){
                 var sd = /^[1-9][0-9]{0,8}$/
                 var s = parseInt(gets)
-                if(!sd.test(gets) || s>5000000 || s<30000){
+                if(!sd.test(gets) || s<30000){
                     return false;
                 }
                 return true;

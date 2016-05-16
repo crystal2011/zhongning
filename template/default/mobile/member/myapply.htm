@@ -7,8 +7,8 @@
             <table class="adtable">
 
                 {loop $aFood $k $v}
-                <tr><td>金额：{$v['price']}</td><td >期限：{$v['month']}</td></tr>
-                <tr><td colspan="2">抵押/担保：{dsubstr($v['danbao'],12,'...')}</td></tr>
+                <tr><td>金额：{$v['price']}</td><td >期限：{$v['month']}个月</td></tr>
+                <tr><td colspan="2">抵押/担保：<?php if($v['danbao']==1){ echo '无';}else if($v['danbao']==2){echo '有抵押';}else if($v['danbao']==3){echo '有担保';}else{echo '有抵押有担保';}?></td></tr>
                 <tr>
                     <td>时间：{date('Y-m-d',$v['addtime'])}</td>
                     <td>

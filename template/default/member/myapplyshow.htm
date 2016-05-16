@@ -28,10 +28,10 @@
                             </tr>
                             <tr>
                                 <td width="120px" align="center">申请金额</td><td  class="ti">{$info['price']}</td>
-                                <td width="120px"   align="center">申请期限</td><td class="ti">{$info['month']}</td>
+                                <td width="120px"   align="center">申请期限</td><td class="ti">{$info['month']}个月</td>
                             </tr>
                             <tr>
-                                <td width="120px"  align="center">抵押/担保</td><td class="ti" colspan="3">{$info['danbao']}</td>
+                                <td width="120px"  align="center">抵押/担保</td><td class="ti" colspan="3"><?php if($v['danbao']==1){ echo '无';}else if($v['danbao']==2){echo '有抵押';}else if($v['danbao']==3){echo '有担保';}else{echo '有抵押、有担保';}?></td>
                             </tr>
                             <tr>
                                 <td width="120px"  align="center">需求详情</td><td class="ti" colspan="3">{$info['introduce']}</td>

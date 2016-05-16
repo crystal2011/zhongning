@@ -1,5 +1,17 @@
 {template 'header','mobile'}
 {template 'search','mobile'}
+<style>
+    .dfdasfa .Validform_right {
+        display: none !important;
+    }
+    .dnfdsele {width: 100%;
+        border: 0px;
+        background-color: #fff;
+        padding: 0.7em 0px;
+        font-size: 1.4em;
+        margin-top: 0.3em;}
+</style>
+
 
 <section>
     <span class="ids">{ad(85)}</span>
@@ -33,26 +45,47 @@
                 </p>
                 <p class="clear">
                     <span class="finformleft">申请金额：</span>
-                    <span class="finformright">
-                        <input type="text" maxlength="9" datatype="money" name="price" placeholder="请填写50万-500万申请金额(纯数字)" nullmsg="请填写50万-500万申请金额(纯数字)" errormsg="请填写50万-500万申请金额(纯数字)" />
+                    <span class="finformright dfdasfa">
+                        <input type="text" maxlength="7" datatype="money" name="price" id="price" placeholder="请填写500000-5000000的金额" nullmsg="请填写500000-5000000的金额" errormsg="请填写500000-5000000的金额" />
+                        <span style="color:#00467f;line-height:20px;float:left;font-size:12px;width:100%;text-align:left;margin-left:9px;" id="bigmoney"></span>
                     </span>
                 </p>
                 <p class="clear">
                     <span class="finformleft">申请期限：</span>
                     <span class="finformright">
-                        <input type="text" name="month" datatype="*2-10" nullmsg="请填写申请期限" errormsg="请正确填写申请期限" maxlength="10" />
+                        <select name="month" datatype="*" class="dnfdsele">
+                            <option  value="">请选择期限</option>
+                            <option value="1">1个月</option>
+                            <option value="2">2个月</option>
+                            <option value="3">3个月</option>
+                            <option value="4">4个月</option>
+                            <option value="5">5个月</option>
+                            <option value="6">6个月</option>
+                            <option value="7">7个月</option>
+                            <option value="8">8个月</option>
+                            <option value="9">9个月</option>
+                            <option value="10">10个月</option>
+                            <option value="11">11个月</option>
+                            <option value="12">12个月</option>
+                        </select>
                     </span>
                 </p>
                 <p class="clear diyadanbao">
                     <span class="finformleft">有无抵押或担保：</span>
                     <span class="finformright">
-                        <input type="text" name="danbao"  datatype="*1-50" nullmsg="请填写抵押或担保情况" errormsg="请填写抵押或担保情况" />
+                        <select name="danbao" datatype="*" class="dnfdsele" >
+                            <option  value="">请选择</option>
+                            <option value="1">无</option>
+                            <option value="2">有抵押</option>
+                            <option value="3">有担保</option>
+                            <option value="4">有抵押、有担保</option>
+                        </select>
                     </span>
                 </p>
                 <p class="clear">
                     <span class="finformleft">需求描述：</span>
                     <span class="finformright">
-                        <textarea name="introduce" maxlength="200" datatype="*5-200" nullmsg="请输入不少于5个字的需求描述" errormsg="请输入不少于5个字的需求描述"></textarea>
+                        <textarea name="introduce" placeholder="请填写借款用途、抵押物或担保人简单情况等描述信息" maxlength="200" datatype="*5-200" nullmsg="请输入不少于5个字的需求描述" errormsg="请输入不少于5个字的需求描述"></textarea>
                     </span>
                 </p>
                 <p style="margin:20px 0px;">
@@ -71,6 +104,20 @@
     .layui-layer-content {height:auto !important;}
 </style>
 <script type="text/javascript">
+    $(function(){
+        $("#price").keyup(function(){
+            var gets = $(this).val();
+            var sd = /^[1-9][0-9]{0,6}$/
+            var s = parseInt(gets)
+            if(!sd.test(gets)){
+
+            }else{
+                $("#bigmoney").html(digitUppercase(gets));
+            }
+        })
+
+
+    })
     function fasdf(){
         $("#financeform").submit();
     }
@@ -110,6 +157,7 @@
                 });
                 $("#financeform")[0].reset();
                 $("input[name='submit']").val(1);
+                $("#bigmoney").html('');
             }else if(data.status=='n'){
                 alert(data.info);
             }
